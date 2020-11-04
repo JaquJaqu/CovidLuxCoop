@@ -7,8 +7,11 @@
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="css/index.css">
         <title>CovidLux</title>
-
+        <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
+        <script src="https://d3js.org/d3-fetch.v2.min.js"></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js'></script> 
         <script src="js/standort.js"></script>
+        
     </head>
     <body>
         <!-- <div class="app">
@@ -18,14 +21,64 @@
                 <p class="event received">Device is Ready</p>
             </div>
         </div> -->
+<header>
 
+</header>
      
+     <div id ="mainwrapper">
+        <ul id='menu'>
+            
+            <li>
+                <h3>anderen Bezirk wählen</h3>
+                    <select id="dropdown-content"> 
+                    </select>
+            </li>
+        </ul>
+
+
+
         <h2>Sie sind in:</h2>
         <h1 id="bezirk">Österreich</h1>
+
+        <!--
+            <a class="active" href="#home">Home</a>
+            <a href="#about">About</a> 
+        
+
+        <input type="text" placeholder="Search..">-->
+
         <h1 id="bundesland"></h1>
-        <div id="farbkreis"></div>
+        <div id="farbkreis"></div>   
+        
+    <div id="farbkreiswrap">
+        <div id="farbkreiswrapGrRe">
+            <div class = "farbkreiseklein" id="farbkreisgreen"></div>
+            <div class = "farbkreiseklein" id="farbkreisred"></div>
+        </div>
+        <div id="farbkreiswrapYeOr"></div>
+            <div class = "farbkreiseklein" id="farbkreisyellow"></div>
+            <div class = "farbkreiseklein" id="farbkreisorange"></div>
+        </div>
+    </div>   
+    
+
+
+    <footer>
+        <nav>
+             <ul>
+                 <li><a href="#">Home</a></li>
+                 <li><a href="#">Stuff</a></li>
+                 <li><a href="#">More</a></li>
+                 <li><a href="#">C</a></li>
+             </ul>
+        </nav>
+     </footer>
+
 
         <script src="cordova.js"></script>
-        <script src="js/index.js"></script>
+        <script src="js/ampelcolor.js"></script>
+        <script src="js/dashboarddata.js"></script>
+       
+        
     </body>
 </html>
