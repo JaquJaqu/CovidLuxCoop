@@ -9,7 +9,7 @@ body {
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
     background-color:rgb(255, 250, 250);
     /*background-image:linear-gradient(to bottom, #A7A7A7 0%, #E4E4E4 51%);*/
-    font-family: system-ui, -apple-system, -apple-system-font, 'Segoe UI', 'Roboto', sans-serif;
+    font-family: system-ui, -apple-system, -apple-system-font, 'Inter UI', 'regular';
     font-size:12px;
     height:100vh;
     margin:0px;
@@ -134,7 +134,7 @@ h2{
     border-radius: 100%;
     width:10px;
     height:10px;
-    background-color: red;
+    background-color: #CB0538;
     display: inline-block;
     position:relative;
     align-items: center;
@@ -143,28 +143,28 @@ h2{
 
 #farbkreisgreen{
     
-    background-color: green;
+    background-color: #60B564;
     margin-left: -4%;
 }
 
 #farbkreisred{
     /* margin-left: px;
     margin-top: -51px; */
-    background-color: red;
+    background-color: #CB0538;
     margin-left: 30%;
 }
 
 #farbkreisyellow{
     /* margin-left: 10px;
     margin-top: 10px; */
-    background-color: yellow;
+    background-color: #FED500;
     margin-left: 7%;
 }
 
 #farbkreisorange{
     /* margin-left: 10px;
     margin-top: 10px; */
-    background-color: orange;
+    background-color: #F59C00;
     margin-top:0px;
     margin-left: 5.5%;
 }

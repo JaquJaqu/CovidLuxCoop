@@ -1,11 +1,13 @@
 
 let bezirk;
 let bundesland;
+let ampelStufe;
+const url = 'https://corona-ampel.gv.at/sites/corona-ampel.gv.at/files/assets/Warnstufen_Corona_Ampel_aktuell.json';
+const corsFix = 'https://cors-anywhere.herokuapp.com/';
 
 function getLocation(latitude, longitude) {
     var apiString = 'https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=' 
-    + latitude + '&longitude=' + longitude + '&localityLanguage=de' ;
-
+    + latitude+ '&longitude=' + longitude + '&localityLanguage=de' ;
 
 
 //============================================Testdaten===========================================================
@@ -37,6 +39,12 @@ function getLocation(latitude, longitude) {
 // console.log(apiString);
 //=============================================================================================
 
+function getBezirk(){  
+    lokationbezirk = bezirk;
+    console.log('Du befindest dich im Bezirk: ', lokationbezirk);
+}
+      
+//Bekomme Standort von API
     loadJSON(apiString,
         function(data) {for(i=0; i<data.localityInfo.administrative.length; i++){ 
             
@@ -56,14 +64,11 @@ function getLocation(latitude, longitude) {
               bezirk = bezirk.replace("St.","Sankt");
              
              if(bezirk.includes("Bezirk")){
-                //bezirk = result; 
                 bezirk = bezirk.slice(7);
              }
              document.getElementById('bezirk').innerHTML = bezirk;
-
-                        
-
-
+            getBezirk();
+            getAmpel();
              //console.log(bezirk);
              }
              //Bundesland
@@ -76,6 +81,30 @@ function getLocation(latitude, longitude) {
          function(xhr) { console.error(xhr); }
 );
 }
+
+//Bekomme Ampelwarnstufe von jsonFile
+function getAmpel(){
+loadJSON(corsFix+url, function(data){for(i=0; i<data[0].Warnstufen.length; i++){ 
+    if(data[0].Warnstufen[i].Region == 'Bezirk'){
+       
+        if(data[0].Warnstufen[i].Name == bezirk){
+            console.log("Ampelstufe: "+data[0].Warnstufen[i].Warnstufe);
+            ampelStufe = data[0].Warnstufen[i].Warnstufe;
+            if(ampelStufe == 1){
+                document.getElementById("farbkreis").style.backgroundColor = "#60B564";
+                }else if(ampelStufe == 2){
+                    document.getElementById("farbkreis").style.backgroundColor = "#FED500";
+                }else if(ampelStufe == 3){
+                    document.getElementById("farbkreis").style.backgroundColor = "#F59C00";
+                }else if(ampelStufe == 4){
+                    document.getElementById("farbkreis").style.backgroundColor = "#CB0538";
+                }
+        }
+    }
+}
+}, function(xhr){console.error(xhr);});
+}
+
 
 function loadJSON(path, success, error)
 {
@@ -115,3 +144,90 @@ function onLocationError(error) {
 navigator.geolocation.getCurrentPosition
 (onLocationSuccess, onLocationError, { enableHighAccuracy: true });
 
+
+// METHOD 2
+d3.json(corsFix + url).then(res => {
+    // console.log('Alle: ', res[0].Warnstufen);
+    // console.log('Länge neuster Datensatz: ', res[0].Warnstufen.length);
+
+
+// //Gib mir alle Bundesländer
+// for(i=0; i<res[0].Warnstufen.length; i++){
+//     if(res[0].Warnstufen[i].Region =="Bundesland"){
+//     bundeslandname = res[0].Warnstufen[i].Name;
+//     ampelwarnstufeBL = res[0].Warnstufen[i].Warnstufe;
+//     }
+// }
+
+//Gib mir alle Bezirknamen
+    for(i=0; i<res[0].Warnstufen.length; i++){
+        if(res[0].Warnstufen[i].Region =="Bezirk"){
+        bezirkname = res[0].Warnstufen[i].Name;
+        ampelwarnstufe = res[0].Warnstufen[i].Warnstufe;
+    }
+   }
+
+
+
+//Versuch die Anzahl der Bezirke automatisch zu bekommen, fnktioniert aber nicht, stattdessen 89 Elemente
+// for(i=0; i<res[0].Warnstufen.length; i++){
+//     if(res[0].Warnstufen[i].Region =="Bezirk"){
+//     arrLänge=[i];
+//     //console.log("arrlänge:",arrLänge);
+//     }
+// }
+
+
+//DROP DOWN__
+//Alle Berzirknamen im Json File vom letzten Datum 
+
+for(i=0; i<89; i++){
+    if(res[0].Warnstufen[i].Region =="Bezirk"){
+    allebezirknamen = res[0].Warnstufen[i];
+    }
+
+    element = allebezirknamen;
+    dropdownContent = document.querySelector('#dropdown-content');
+    htmlToAppend = document.createElement('option');
+    htmlToAppend.setAttribute('onclick', 'changeListener()');
+    htmlToAppend.setAttribute('id', element.Name);
+    htmlToAppend.innerHTML = element.Name;
+    dropdownContent.appendChild(htmlToAppend);  
+}
+
+
+// //_________Farbe wechseln
+// lokationbezirk = document.getElementById('bezirk').innerHTML;
+
+// function getBezirk(){  
+// lokationbezirk = sessionStorage.getItem("bezirk");
+// //lokationbezirk = bezirk;
+// console.log('Du befindest dich im Bezirk: ', lokationbezirk);
+
+// if(document.getElementById('bezirk').innerHTML == lokationbezirk){
+//     console.log("Warnstufe in deinem Bezirk: ", ampelwarnstufe);
+//     if(ampelwarnstufe == 1){
+//         circlecolor = "green";
+//     }else if(ampelwarnstufe == 2){
+//         circlecolor = "yellow";
+//     }else if(ampelwarnstufe == 3){
+//         circlecolor = "orange";
+//     }else if(ampelwarnstufe == 4){
+//         circlecolor = "red";
+//     }
+//     document.getElementById("farbkreis").style.backgroundColor = circlecolor;
+// }
+//   }
+
+
+});
+
+
+//Auswählen des Bezirks im Drop Down
+document.getElementById("dropdown-content").onchange = changeListener;
+  function changeListener(){
+  var value = this.value
+    bezirk = value;
+  document.getElementById("bezirk").innerHTML = bezirk;
+  getAmpel();    
+}
