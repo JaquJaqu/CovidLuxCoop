@@ -2,16 +2,13 @@
 let bezirk;
 let bundesland;
 let ampelStufe;
-<<<<<<< HEAD
-=======
 var arrLänge = 0;
->>>>>>> master
 const url = 'https://corona-ampel.gv.at/sites/corona-ampel.gv.at/files/assets/Warnstufen_Corona_Ampel_aktuell.json';
 const corsFix = 'https://cors-anywhere.herokuapp.com/';
 
 function getLocation(latitude, longitude) {
     var apiString = 'https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=' 
-    + latitude+ '&longitude=' + longitude + '&localityLanguage=de' ;
+    + latitude + '&longitude=' + longitude + '&localityLanguage=de' ;
 
 
 //============================================Testdaten===========================================================
@@ -25,20 +22,6 @@ function getLocation(latitude, longitude) {
 // Steyr-Land Längengrad :   14.522420
 
 
-<<<<<<< HEAD
-=======
-//============================================Testdaten===========================================================
-// Urfahr längen und Breitengrad
-// Urfahr Breitengrad :   48.439299
-// Urfahr Längengrad :   14.236832
-
-
-// Steyr-Land längen und Breitengrad
-// Steyr-Land Breitengrad :   47.915987
-// Steyr-Land Längengrad :   14.522420
-
-
->>>>>>> master
 //________Salzburg-Land______________:
 // Fuschl längen und Breitengrad
 // Breitengrad von Fuschl	47.796566
@@ -84,9 +67,6 @@ function getBezirk(){
              if(bezirk.includes("Bezirk")){
                 bezirk = bezirk.slice(7);
              }
-<<<<<<< HEAD
-             document.getElementById('bezirk').innerHTML = bezirk;
-=======
 
              //Spezialfälle
              if(bezirk == "Krems"){
@@ -150,7 +130,6 @@ function getBezirk(){
                 bezirk = "Wels(Stadt)";
             }
             document.getElementById('bezirk').innerHTML = bezirk;
->>>>>>> master
             getBezirk();
             getAmpel();
              //console.log(bezirk);
@@ -172,22 +151,11 @@ loadJSON(corsFix+url, function(data){for(i=0; i<data[0].Warnstufen.length; i++){
     if(data[0].Warnstufen[i].Region == 'Bezirk'){
        
         if(data[0].Warnstufen[i].Name == bezirk){
-<<<<<<< HEAD
-=======
             console.log(bezirk);
->>>>>>> master
             console.log("Ampelstufe: "+data[0].Warnstufen[i].Warnstufe);
             ampelStufe = data[0].Warnstufen[i].Warnstufe;
             if(ampelStufe == 1){
                 document.getElementById("farbkreis").style.backgroundColor = "#60B564";
-<<<<<<< HEAD
-                }else if(ampelStufe == 2){
-                    document.getElementById("farbkreis").style.backgroundColor = "#FED500";
-                }else if(ampelStufe == 3){
-                    document.getElementById("farbkreis").style.backgroundColor = "#F59C00";
-                }else if(ampelStufe == 4){
-                    document.getElementById("farbkreis").style.backgroundColor = "#CB0538";
-=======
                 document.getElementById("WarnstufeGeschrieben").innerHTML = "GRÜN <br/> geringes Risiko";
                 }else if(ampelStufe == 2){
                     document.getElementById("farbkreis").style.backgroundColor = "#FED500";
@@ -198,7 +166,6 @@ loadJSON(corsFix+url, function(data){for(i=0; i<data[0].Warnstufen.length; i++){
                 }else if(ampelStufe == 4){
                     document.getElementById("farbkreis").style.backgroundColor = "#CB0538";
                     document.getElementById("WarnstufeGeschrieben").innerHTML = "ROT <br/> sehr hohes Risiko";
->>>>>>> master
                 }
         }
     }
@@ -265,11 +232,8 @@ d3.json(corsFix + url).then(res => {
         if(res[0].Warnstufen[i].Region =="Bezirk"){
         bezirkname = res[0].Warnstufen[i].Name;
         ampelwarnstufe = res[0].Warnstufen[i].Warnstufe;
-<<<<<<< HEAD
-=======
         arrLänge= arrLänge + 1;
         //console.log("arrlänge:",arrLänge);
->>>>>>> master
     }
    }
 
@@ -278,12 +242,7 @@ d3.json(corsFix + url).then(res => {
 //Versuch die Anzahl der Bezirke automatisch zu bekommen, fnktioniert aber nicht, stattdessen 89 Elemente
 // for(i=0; i<res[0].Warnstufen.length; i++){
 //     if(res[0].Warnstufen[i].Region =="Bezirk"){
-<<<<<<< HEAD
-//     arrLänge=[i];
-//     //console.log("arrlänge:",arrLänge);
-=======
 
->>>>>>> master
 //     }
 // }
 
@@ -291,25 +250,11 @@ d3.json(corsFix + url).then(res => {
 //DROP DOWN__
 //Alle Berzirknamen im Json File vom letzten Datum 
 
-<<<<<<< HEAD
-for(i=0; i<89; i++){
-=======
 for(i=0; i<arrLänge;i++){
->>>>>>> master
     if(res[0].Warnstufen[i].Region =="Bezirk"){
     allebezirknamen = res[0].Warnstufen[i];
     }
 
-<<<<<<< HEAD
-    element = allebezirknamen;
-    dropdownContent = document.querySelector('#dropdown-content');
-    htmlToAppend = document.createElement('option');
-    htmlToAppend.setAttribute('onclick', 'changeListener()');
-    htmlToAppend.setAttribute('id', element.Name);
-    htmlToAppend.innerHTML = element.Name;
-    dropdownContent.appendChild(htmlToAppend);  
-}
-=======
     // element = allebezirknamen;
     // dropdownContent = document.querySelector('#dropdown-content');
     // htmlToAppend = document.createElement('a');
@@ -329,7 +274,6 @@ for(i=0; i<arrLänge;i++){
     dropdownContent.appendChild(htmlToAppend);  
 }
 sortListDir();
->>>>>>> master
 
 
 // //_________Farbe wechseln
@@ -360,14 +304,6 @@ sortListDir();
 
 
 //Auswählen des Bezirks im Drop Down
-<<<<<<< HEAD
-document.getElementById("dropdown-content").onchange = changeListener;
-  function changeListener(){
-  var value = this.value
-    bezirk = value;
-  document.getElementById("bezirk").innerHTML = bezirk;
-  getAmpel();    
-=======
 function changeText(elm){
     bezirk = elm.getAttribute('value');
     myFunction();
@@ -444,5 +380,4 @@ function filterFunction() {
         }
       }
     }
->>>>>>> master
 }
