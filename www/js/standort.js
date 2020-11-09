@@ -2,12 +2,13 @@
 let bezirk;
 let bundesland;
 let ampelStufe;
+var arrLänge = 0;
 const url = 'https://corona-ampel.gv.at/sites/corona-ampel.gv.at/files/assets/Warnstufen_Corona_Ampel_aktuell.json';
 const corsFix = 'https://cors-anywhere.herokuapp.com/';
 
 function getLocation(latitude, longitude) {
     var apiString = 'https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=' 
-    + latitude+ '&longitude=' + longitude + '&localityLanguage=de' ;
+    + latitude + '&longitude=' + longitude + '&localityLanguage=de' ;
 
 
 //============================================Testdaten===========================================================
@@ -66,7 +67,69 @@ function getBezirk(){
              if(bezirk.includes("Bezirk")){
                 bezirk = bezirk.slice(7);
              }
-             document.getElementById('bezirk').innerHTML = bezirk;
+
+             //Spezialfälle
+             if(bezirk == "Krems"){
+                 bezirk = "Krems(Land)";
+             }
+             if(bezirk == "Krems an der Donau"){
+                 bezirk = "Krems an der Donau(Stadt)";
+             }
+             if(bezirk =="Kirchdorf"){
+                 bezirk = "Kirchdorf an der Krems";
+             }
+             if(bezirk == "Eisenstadt"){
+                 bezirk = "Eisenstadt(Stadt)";
+             }
+             if(bezirk == "Graz"){
+                 bezirk = "Graz(Stadt)";
+             }
+             if(bezirk == "Innsbruck"){
+                 bezirk = "Innsbruck-Stadt";
+             }
+             if(bezirk == "Klagenfurt am Wörthersee"){
+                bezirk = "Klagenfurt Stadt";
+            }
+            if(bezirk == "Klagenfurt-Land"){
+                bezirk = "Klagenfurt Land";
+            }
+            if(bezirk == "Linz"){
+                bezirk = "Linz(Stadt)";
+            }
+            if(bezirk == "Salzburg"){
+                bezirk = "Salzburg(Stadt)";
+            }
+            if(bezirk == "Sankt Pölten"){
+                bezirk = "Sankt Pölten(Stadt)";
+            }
+            if(bezirk == "Sankt Pölten-Land"){
+                bezirk = "Sankt Pölten(Land)";
+            }
+            if(bezirk == "Steyr"){
+                bezirk = "Steyr(Stadt)";
+            }
+            if(bezirk == "Villach-Land"){
+                bezirk = "Villach Land";
+            }
+            if(bezirk == "Villach"){
+                bezirk = "Villach Stadt";
+            }
+            if(bezirk == "Wiener Neustadt-Land"){
+                bezirk = "Wiener Neustadt (Land)";
+            }
+            if(bezirk == "Wiener Neustadt"){
+                bezirk = "Wiener Neustadt(Stadt)";
+            }
+            if(bezirk == "Rust"){
+                bezirk = "Rust(Stadt)";
+            }
+            if(bezirk == "Waidhofen an der Ybbs"){
+                bezirk = "Waidhofen an der Ybbs(Stadt)";
+            }
+            if(bezirk == "Wels"){
+                bezirk = "Wels(Stadt)";
+            }
+            document.getElementById('bezirk').innerHTML = bezirk;
             getBezirk();
             getAmpel();
              //console.log(bezirk);
@@ -88,16 +151,21 @@ loadJSON(corsFix+url, function(data){for(i=0; i<data[0].Warnstufen.length; i++){
     if(data[0].Warnstufen[i].Region == 'Bezirk'){
        
         if(data[0].Warnstufen[i].Name == bezirk){
+            console.log(bezirk);
             console.log("Ampelstufe: "+data[0].Warnstufen[i].Warnstufe);
             ampelStufe = data[0].Warnstufen[i].Warnstufe;
             if(ampelStufe == 1){
                 document.getElementById("farbkreis").style.backgroundColor = "#60B564";
+                document.getElementById("WarnstufeGeschrieben").innerHTML = "GRÜN <br/> geringes Risiko";
                 }else if(ampelStufe == 2){
                     document.getElementById("farbkreis").style.backgroundColor = "#FED500";
+                    document.getElementById("WarnstufeGeschrieben").innerHTML = "GELB <br/> mittleres Risiko";
                 }else if(ampelStufe == 3){
                     document.getElementById("farbkreis").style.backgroundColor = "#F59C00";
+                    document.getElementById("WarnstufeGeschrieben").innerHTML = "ORANGE <br/> hohes Risiko";
                 }else if(ampelStufe == 4){
                     document.getElementById("farbkreis").style.backgroundColor = "#CB0538";
+                    document.getElementById("WarnstufeGeschrieben").innerHTML = "ROT <br/> sehr hohes Risiko";
                 }
         }
     }
@@ -164,6 +232,8 @@ d3.json(corsFix + url).then(res => {
         if(res[0].Warnstufen[i].Region =="Bezirk"){
         bezirkname = res[0].Warnstufen[i].Name;
         ampelwarnstufe = res[0].Warnstufen[i].Warnstufe;
+        arrLänge= arrLänge + 1;
+        //console.log("arrlänge:",arrLänge);
     }
    }
 
@@ -172,8 +242,7 @@ d3.json(corsFix + url).then(res => {
 //Versuch die Anzahl der Bezirke automatisch zu bekommen, fnktioniert aber nicht, stattdessen 89 Elemente
 // for(i=0; i<res[0].Warnstufen.length; i++){
 //     if(res[0].Warnstufen[i].Region =="Bezirk"){
-//     arrLänge=[i];
-//     //console.log("arrlänge:",arrLänge);
+
 //     }
 // }
 
@@ -181,19 +250,30 @@ d3.json(corsFix + url).then(res => {
 //DROP DOWN__
 //Alle Berzirknamen im Json File vom letzten Datum 
 
-for(i=0; i<89; i++){
+for(i=0; i<arrLänge;i++){
     if(res[0].Warnstufen[i].Region =="Bezirk"){
     allebezirknamen = res[0].Warnstufen[i];
     }
 
+    // element = allebezirknamen;
+    // dropdownContent = document.querySelector('#dropdown-content');
+    // htmlToAppend = document.createElement('a');
+    // htmlToAppend.setAttribute('onclick', 'changeListener()');
+    // htmlToAppend.setAttribute('id', element.Name);
+    // htmlToAppend.setAttribute('value', element.Name);
+    // htmlToAppend.innerHTML = element.Name;
+    // dropdownContent.appendChild(htmlToAppend);  
+
     element = allebezirknamen;
-    dropdownContent = document.querySelector('#dropdown-content');
-    htmlToAppend = document.createElement('option');
-    htmlToAppend.setAttribute('onclick', 'changeListener()');
-    htmlToAppend.setAttribute('id', element.Name);
-    htmlToAppend.innerHTML = element.Name;
+    dropdownContent = document.getElementById('myDropdown');
+    htmlToAppend = document.createElement('LI');
+    htmlToAppend.setAttribute('onclick', 'changeText(this)');
+    textnode = document.createTextNode(element.Name);
+    htmlToAppend.appendChild(textnode);
+    htmlToAppend.setAttribute('value', element.Name);
     dropdownContent.appendChild(htmlToAppend);  
 }
+sortListDir();
 
 
 // //_________Farbe wechseln
@@ -224,10 +304,80 @@ for(i=0; i<89; i++){
 
 
 //Auswählen des Bezirks im Drop Down
-document.getElementById("dropdown-content").onchange = changeListener;
-  function changeListener(){
-  var value = this.value
-    bezirk = value;
-  document.getElementById("bezirk").innerHTML = bezirk;
-  getAmpel();    
+function changeText(elm){
+    bezirk = elm.getAttribute('value');
+    myFunction();
+    document.getElementById("bezirk").innerHTML = bezirk;
+    getAmpel();  
+}
+
+function filterFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("myDropdown");
+    a = div.getElementsByTagName("li");
+    for (i = 0; i < a.length; i++) {
+      txtValue = a[i].textContent || a[i].innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        a[i].style.display = "";
+      } else {
+        a[i].style.display = "none";
+      }
+    }
+  }
+
+  function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+
+  function sortListDir() {
+    var list, i, switching, b, shouldSwitch, dir, switchcount = 0;
+    list = document.getElementById("myDropdown");
+    switching = true;
+    // Set the sorting direction to ascending:
+    dir = "asc";
+    // Make a loop that will continue until no switching has been done:
+    while (switching) {
+      // Start by saying: no switching is done:
+      switching = false;
+      b = list.getElementsByTagName("LI");
+      // Loop through all list-items:
+      for (i = 0; i < (b.length - 1); i++) {
+        // Start by saying there should be no switching:
+        shouldSwitch = false;
+        /* Check if the next item should switch place with the current item,
+        based on the sorting direction (asc or desc): */
+        if (dir == "asc") {
+          if (b[i].innerHTML.toLowerCase() > b[i + 1].innerHTML.toLowerCase()) {
+            /* If next item is alphabetically lower than current item,
+            mark as a switch and break the loop: */
+            shouldSwitch = true;
+            break;
+          }
+        } else if (dir == "desc") {
+          if (b[i].innerHTML.toLowerCase() < b[i + 1].innerHTML.toLowerCase()) {
+            /* If next item is alphabetically higher than current item,
+            mark as a switch and break the loop: */
+            shouldSwitch= true;
+            break;
+          }
+        }
+      }
+      if (shouldSwitch) {
+        /* If a switch has been marked, make the switch
+        and mark that a switch has been done: */
+        b[i].parentNode.insertBefore(b[i + 1], b[i]);
+        switching = true;
+        // Each time a switch is done, increase switchcount by 1:
+        switchcount ++;
+      } else {
+        /* If no switching has been done AND the direction is "asc",
+        set the direction to "desc" and run the while loop again. */
+        if (switchcount == 0 && dir == "asc") {
+          dir = "desc";
+          switching = true;
+        }
+      }
+    }
 }
