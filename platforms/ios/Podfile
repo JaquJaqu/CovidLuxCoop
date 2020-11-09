@@ -2,7 +2,7 @@
 
 platform :ios, '11.0'
 
-target 'C:\Users\natal\OneDrive\Desktop\FH\BMT 5\CoronaAmpelApp\CovidLux\platforms\ios\CovidLux' do
-	project 'C:\Users\natal\OneDrive\Desktop\FH\BMT 5\CoronaAmpelApp\CovidLux\platforms\ios\CovidLux.xcodeproj'
+target 'CovidLux' do
+	project 'CovidLux.xcodeproj'
 
 end

@@ -27,3 +27,30 @@
 //     console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
 //     document.getElementById('deviceready').classList.add('ready');
 // }
+
+// const sourceFile = require('./ampelcolor.js');
+// console.log(sourceFile.allebezirknamen);
+
+
+
+// //allebezirke = document.getElementById('bezirkname').innerHTML;
+//  dropdownContent = document.querySelector('.dropdown-content');
+
+// for (i = 0; i < res[0].Warnstufen.length; i++) {
+//     if(res[0].Warnstufen[i].Region =="Bezirk"){
+//         bezirkname = res[0].Warnstufen[i];
+//     }
+//    element = bezirkname;
+
+//    htmlToAppend = document.createElement('li');
+//   htmlToAppend.innerHTML = element.Name;
+//   //htmlToAppend.href = element.C;
+  
+//   dropdownContent.appendChild(htmlToAppend);
+// console.log(element);
+// }
+
+
+//import { firstHelper, secondHelper } from './ampelcolor.js'; 
+ 
+

@@ -1,21 +1,4 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
+
 * {
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
@@ -24,16 +7,23 @@ body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#E4E4E4;
-    background-image:linear-gradient(to bottom, #A7A7A7 0%, #E4E4E4 51%);
-    font-family: system-ui, -apple-system, -apple-system-font, 'Segoe UI', 'Roboto', sans-serif;
+<<<<<<< HEAD
+    background-color:rgb(255, 250, 250);
+    /*background-image:linear-gradient(to bottom, #A7A7A7 0%, #E4E4E4 51%);*/
+    font-family: system-ui, -apple-system, -apple-system-font, 'Inter UI', 'regular';
+=======
+    background-color:white;
+    /*background-image:linear-gradient(to bottom, #A7A7A7 0%, #E4E4E4 51%);*/
+    font-family: system-ui, -apple-system, -apple-system-font, 'Inter UI', 'regular';
+    src: url('/Inter Desktop/Inter-Regular.otf');
+>>>>>>> master
     font-size:12px;
     height:100vh;
     margin:0px;
     padding:0px;
     /* Padding to avoid the "unsafe" areas behind notches in the screen */
     padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
-    text-transform:uppercase;
+    /*text-transform:uppercase;*/
     width:100%;
 }
 
@@ -61,12 +51,21 @@ body {
     }
 }
 
-h1 {
+#bezirk {
     font-size:24px;
-    font-weight:normal;
+    font-weight:500;
     margin:0px;
     overflow:visible;
     padding:0px;
+    text-align:center;
+    text-transform: uppercase;
+}
+
+h2{
+    text-align:center;
+}
+
+h2{
     text-align:center;
 }
 
@@ -105,6 +104,273 @@ h1 {
 
 @media screen and (prefers-color-scheme: dark) {
     body {
-        background-image:linear-gradient(to bottom, #585858 0%, #1B1B1B 51%);
+        background-color: white;
+        
     }
 }
+
+#farbkreiswrap{
+    margin-left:40%;
+    margin-top:-10px;
+    display: block;
+   }
+
+#farbkreiswrapGrRe{
+    margin:0;
+    display: block;
+   }
+
+   #farbkreiswrapYeOr{
+    margin-top:0;
+    display: block;
+   }
+
+#farbkreis{
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    border-radius: 100%;
+    width:100px;
+    height:100px;
+    display: block;
+    /*background-color: red;*/
+}
+
+
+
+.farbkreiseklein{
+    
+    /* margin-right: 20%; */
+    
+    border-radius: 100%;
+    width:10px;
+    height:10px;
+    background-color: #CB0538;
+    display: inline-block;
+    position:relative;
+    align-items: center;
+
+}
+
+#farbkreisgreen{
+    
+    background-color: #60B564;
+    margin-left: -4%;
+}
+
+#farbkreisred{
+    /* margin-left: px;
+    margin-top: -51px; */
+    background-color: #CB0538;
+    margin-left: 30%;
+}
+
+#farbkreisyellow{
+    /* margin-left: 10px;
+    margin-top: 10px; */
+    background-color: #FED500;
+    margin-left: 7%;
+}
+
+#farbkreisorange{
+    /* margin-left: 10px;
+    margin-top: 10px; */
+    background-color: #F59C00;
+    margin-top:0px;
+    margin-left: 5.5%;
+}
+
+
+
+
+header {
+    background-color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    display: inline-block;
+    align-items: center;
+}
+
+.a {
+    
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+
+
+  
+
+  .a.active {
+    background-color: #2196F3;
+    color: white;
+  }
+
+ 
+
+
+
+footer {
+    background-image:linear-gradient(to bottom, #A7A7A7 0%, #E4E4E4 51%);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+<<<<<<< HEAD
+=======
+    width: 100%;
+>>>>>>> master
+}
+
+footer * {
+    display: inline-block;
+<<<<<<< HEAD
+=======
+    font-size: 8pt;
+>>>>>>> master
+}
+
+footer li {
+    margin: 20px;
+}
+
+
+#bundesland{
+    display:none;
+}
+
+#mainwrapper{
+<<<<<<< HEAD
+   
+=======
+>>>>>>> master
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    height: 80px;
+    display: block;
+<<<<<<< HEAD
+    align-items: center;
+    
+=======
+>>>>>>> master
+}
+
+body, html {
+    width:100%;
+}
+ul {
+    list-style:none;
+    margin:0;
+    padding:0
+}
+
+
+#menu > li {
+    display:block;
+    border:1px solid grey;
+    position:relative;
+    width:200px;
+    margin-left:20%;
+    text-align:center;
+    
+}
+#menu li ul {
+    position:absolute;
+    border:1px solid grey;
+    width:100%;
+    max-height:0;
+    overflow:hidden;
+    /*-moz-transition: 1s;
+    -ms-transition: 1s;
+    -o-transition: 1s;
+    -webkit-transition: 1s;
+    transition: 1s;*/
+    background-color: white;
+}
+#menu li:hover ul {
+    overflow:auto;
+    max-height:150px;
+    
+<<<<<<< HEAD
+}
+=======
+}
+#WarnstufeGeschrieben{
+    text-align:center;
+    font-weight: 500;
+    margin-top: 5%;
+}
+/* Dropdown Button */
+.dropbtn {
+    color: #211F77;
+    background-color: white;
+    font-weight: bold;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Dropdown button on hover & focus */
+
+  /* The search field */
+  #myInput {
+    box-sizing: border-box;
+    background-position: 14px 12px;
+    background-repeat: no-repeat;
+    font-size: 16px;
+    padding: 14px 20px 12px 45px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* The search field when it gets focus/clicked on */
+  #myInput:focus {outline: 3px solid #ddd;}
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: block;
+    text-align:center;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    /*top: 70%;*/
+    left: 40%;
+    margin-right: -60%;
+    transform: translate(-60%, -0%);
+    background-color: #f6f6f6;
+    min-width: 230px;
+    border: 1px solid #ddd;
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content li {
+    color: black;
+    font-size: 16pt;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    visibility: visible;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content li:hover {background-color: #f1f1f1}
+  
+  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+  .show {display:block;}
+>>>>>>> master
