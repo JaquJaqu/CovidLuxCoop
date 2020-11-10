@@ -273,14 +273,68 @@ for(i=0; i<arrLänge;i++){
 sortListDir();
 });
 
-//Auswählen des Bezirks im Drop Down
+
+
+
+//__TOGGLE FUNKTION______
+  function myToggle(){
+    let isChecked=document.getElementById("switchValue");
+    if(isChecked.checked){
+        checkBool = true; //true = Standort deaktiviert! ==> DEFAULT
+        //console.log('checkbool',checkBool);
+    }else{
+        checkBool = false; //false = Standort deaktiviert!
+        //console.log('checkbool',checkBool);
+    }
+}
+
+//______STANDORT verwenden mit Toggle________
+function myLocation() {
+    let isChecked=document.getElementById("switchValue");
+    myToggle(isChecked); //Toggle Mechanismus: true = Standort deaktiviert!
+     
+        //Manuelle Lokation
+        if(checkBool == true){
+            
+            document.getElementById("bezirk").innerHTML = bezirk;
+            infoText.setAttribute('display', 'none');
+
+            bezirk=document.getElementById("bezirk").innerHTML;
+            document.getElementById("infoText").innerText = "das ist nicht dein aktueller Standort";
+           
+        //Standortbasierte Lokation
+        }else if(checkBool == false){
+            readUserLocation(); //Standort abfragen
+            
+            document.getElementById("bezirk").innerHTML = bezirk;
+            let infoText = document.getElementById("infoText");
+            infoText.setAttribute('display', 'inline-block');
+
+            document.getElementById("infoText").innerText = "dein derzeitiger Standort wird angezeigt";
+            document.getElementById("infoText2").style.display= "none";
+            //console.log(bezirk);
+        }
+}
+
+
+//Auswählen des Bezirks im Drop Down - Text
 function changeText(elm){
     bezirk = elm.getAttribute('value');
     myFunction();
     document.getElementById("bezirk").innerHTML = bezirk;
     getAmpel();
-    document.getElementById("infoText").innerText = "Das ist nicht dein Standort, du hast dir selbst einen Bezirk gewählt";  
+
+    //NEU: Für Toggle funktionalität
+    document.getElementById("infoText").innerText = "Das ist nicht dein Standort, du hast dir selbst einen Bezirk gewählt";
+    document.getElementById("infoText2").style.display= "none"; 
+    //NEU: Anderer Berzirk ausgewählt, Standort wird deaktiviert
+    document.getElementById("switchValue").checked= true;
+
   }
+
+
+
+//____DROP DOWN_____
 
 function filterFunction() {
     var input, filter, ul, li, a, i;
@@ -355,42 +409,8 @@ function filterFunction() {
     }
 }
 
-//Standort verwenden Toggle
-function myLocation() {
-    let isChecked=document.getElementById("switchValue").checked;
-       
 
-    //Manuelle Lokation
-        if(isChecked ==false){
-            console.log(isChecked);
-            document.getElementById("bezirk").innerHTML = bezirk;
-            infoText.setAttribute('display', 'none');
-            bezirk=document.getElementById("bezirk").innerHTML;
-            document.getElementById("infoText").innerText = "das ist nicht dein aktueller Standort";
-            
-            console.log(bezirk);
 
-        //Standortbasierte Lokation
-        }else if(isChecked ==true){
-            readUserLocation();
-           
-            console.log(isChecked);
-            document.getElementById("bezirk").innerHTML = bezirk;
 
-            let infoText = document.getElementById("infoText");
-            infoText.setAttribute('display', 'inline-block');
-            document.getElementById("infoText").innerText = "dein derzeitiger Standort wird angezeigt";
-            document.getElementById("infoText2").style.display= "none";
-            
-        //bezirk = lokationbezirk;
-        console.log(bezirk);
-        }
-   //PROBLEM: Toogle Button ist von Start der App an auf "Standort an". Beim Start sollte das Tracken der GPS Daten deaktiviert sein?
-   //Derzeit ist es so: App Startet, Toogle Button ist auf "Standort an" (Wird aber noch nicht getrackt).
-   //Wählt mein Manuell keinen Bezirk aus und Toggled auf aus " Bezirk undefined"(weil nichts ausgewählt).
-   //Toggled man jetzt wieder auf Standort an funktioniert sowohl das mit den GPS als auch das mit dem Manuellen einstellen.
-    //Wenn man von beginn an Manuell einstellt funktioniert es auch.
-    //Also TO DO: Toggle Button richtig stellen!
-}
     
 

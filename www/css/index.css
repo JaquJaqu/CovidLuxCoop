@@ -349,8 +349,71 @@ ul {
   /*_Toggle__*/
 
 
-/* Rounded sliders */
-.slider.round {
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(121, 113, 233);
+    -webkit-transition: .4s;
+    transition: .4s;
+    
+
+  
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 33px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    content: "AN";
+    font-weight: bold;
+	
+
+
+  }
+  
+  input:checked + .slider {
+    background-color: #c4c4c4;
+    
+  }
+  
+  input:focus + .slider {
+    box-shadow: 1 4 1px #9e8ec7;
+    
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(-32px);
+    -ms-transform: translateX(-32px);
+    transform: translateX(-32px);
+    content: "AUS"
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
     border-radius: 34px;
   }
   
@@ -358,84 +421,7 @@ ul {
     border-radius: 50%;
   }
 
-  .toggle label {
-	position: relative;
-	display: inline-block;
-	width: 10em;
-	height: 3.5em;
-}
 
-.toggle input {
-	display: none;
-}
-
-.toggle .slider {
-	/* Grundfläche */
 	
-	position: absolute;
-	cursor: pointer;
-	top: 1.5em;
-	left: 2em;
-	width: 4em;
-	height: 2em;
-	background-color:#666666;
-	/* red */
 	
-	transition: all .3s ease-in-out;
-	border-radius: 1em;
-}
 
-.toggle .slider:before {
-	/* verschiebbarer Button */
-	
-	position: absolute;
-	content: "";
-	height: 1.6em;
-	width: 1.6em;
-	left: 0.2em;
-	bottom: 0.2em;
-	background-color: white;
-	border-radius: 50%;
-	transition: all .3s ease-in-out;
-}
-
-.toggle input:checked + .slider {
-	background-color: #2196F3;
-	/* green */
-}
-
-.toggle input:focus + .slider {
-	background-color: rgb(149, 149, 149)cdc;
-	box-shadow: 0 0 1px #4d4d4d;
-}
-
-.toggle input:checked + .slider:before {
-	-webkit-transform: translateX(1.9em);
-	/* Android 4 */
-	
-	-ms-transform: translateX(1.9em);
-	/* IE9 */
-	
-	transform: translateX(1.9em);
-}
-
-.text .slider:after {
-	/* Text vor dem FlipFlop-Schalter */
-	
-	position: absolute;
-	content: "AUS";
-	color: #2196F3;
-	font-weight: bold;
-	height: 1.6em;
-	left: -2.5em;
-	bottom: 0.2em;
-}
-
-.text input:checked + .slider:after {
-	/* Text hinter dem FlipFlop-Schalter */
-	
-	position: absolute;
-	content: "AN";
-	color: #2196F3;
-	left: 4.5em;
-}

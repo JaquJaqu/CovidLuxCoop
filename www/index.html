@@ -23,7 +23,7 @@
                     <!--<select id="dropdown-content" placeholder="Search..">
                         <option value="">Select a state...</option> 
                     </select>-->
-                    <h3 id = "infoText" display= "inline-block">dein derzeitiger Standort wird angezeigt</h3>
+                    <h3 id = "infoText" display= "inline-block">Es wird kein Bezirk angezeigt</h3>
                     <div class="dropdown" display="block">
                         <button onclick="myFunction()" class="dropbtn" id="dropbtn">anderen Bezirk wählen</button>
                         <div id="myDropdown" class="dropdown-content">
@@ -57,13 +57,20 @@
       </div>
         <h3>Standort</h3>
         
-    <div class="toggle text">
+    <!-- <div class="toggle text">
 		<label> An-/Aus-Schalter
             
                 <input onclick="myLocation()" type="checkbox" id='switchValue' checked="false" name="disableLocation"><span class="slider"></span>
           
     </label>              
-	</div>
+    </div> -->
+    
+
+    <label class="switch">
+        <input type="checkbox" onclick="myLocation()"  checked ='true' id='switchValue'  name="disableLocation">
+        <!-- <input type="checkbox" onclick="myToggle()" id='switchValue' checked ='true' name="disableLocation"> -->
+        <span class="slider round"></span>
+      </label>
         
 
 </div>
