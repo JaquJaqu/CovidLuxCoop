@@ -10,7 +10,6 @@
         <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
         <script src="https://d3js.org/d3-fetch.v2.min.js"></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js'></script>
-        <script src="js/standort.js"></script>
         <script src="js/ampelcolor.js"></script>
     </head>
     <body>
@@ -20,27 +19,12 @@
 </header>
      
      <div id ="mainwrapper">
-        <nav id="Navi">
-            <ul>
-                <li><a href="dashboard.html" class="active">Bezirk</a></li>
-                <li><a href="dashboard_bundesland.html">Bundesland</a></li>
-                <li><a href="dashboard_österreich.html">Österreich</a></li>
-            </ul>
-        </nav>
 
-        <div id="RectDashboard_Bezirk"></div>
-
-        <!--<div class="dropdown">
-            <button onclick="myFunction()" class="dropbtn" id="dropbtn">anderen Bezirk wählen</button>
-        <div id="myDropdown" class="dropdown-content">
-            <input type="text" placeholder="Suchen.." id="myInput" onkeyup="filterFunction()">
-          </div>
-        </div>-->
                     
   
-        <h1>Ich bin die Dashboard.html</h1>
-   
-        <div id="RectDashboard"></div>
+        <h1>Ich bin die Symptome.html</h1>
+        <div id="RectSymptome"></div>
+    
     </div>   
     
 
@@ -49,22 +33,21 @@
         <nav>
             <div id="icons">
                 <a href="index.html"><img alt="Home" src="img/home_grau.png" width="5%" height="5%"></a>
-                <a href="dashboard.html"><img alt="Statistik" src="img/statistics_blau.png" width="5%" height="5%"></a>
+                <a href="dashboard.html"><img alt="Statistik" src="img/statistics_grau.png" width="5%" height="5%"></a>
                 <a href="maßnahmen.html"><img alt="Maßnahmen" src="img/maske_grau.png" width="5%" height="5%"></a>
-                <a href="symptome.html"><img alt="Symptome" src="img/fieber_grau.png" width="5%" height="5%"></a>
+                <a href="symptome.html"><img alt="Symptome" src="img/fieber_blau.png" width="5%" height="5%"></a>
             </div>
              <ul>
                  <li><a href="index.html">Home</a></li>
-                 <li><a href="dashboard.html" class="active">Statistik</a></li>
+                 <li><a href="dashboard.html">Statistik</a></li>
                  <li><a href="maßnahmen.html">Maßnahmen</a></li>
-                 <li><a href="symptome.html">Symptome</a></li>
+                 <li><a href="symptome.html" class="active">Symptome</a></li>
              </ul>
         </nav>
      </footer>
 
 
-        <script src="cordova.js"></script>
-        
+        <script src="cordova.js"></script> 
         <!--<script src="js/dashboarddata.js"></script>-->
        
         

@@ -44,6 +44,7 @@
         <input type="text" placeholder="Search..">-->
 
         <h1 id="bundesland"></h1>
+        <div id="farbkreisAktiv"></div>
         <div id="farbkreisPH"></div>  
         
     <div id="farbkreiswrap">
@@ -55,6 +56,10 @@
             <div class = "farbkreiseklein" id="farbkreisyellow"></div>
             <div class = "farbkreiseklein" id="farbkreisorange"></div>
       </div>
+      <h1 id="WarnstufeGeschrieben"></h1>
+      <p id="FälleHome">*aktuell positive Fälle</p>
+
+      <div id="Standortbox">
         <h3>Standort</h3>
         
     <!-- <div class="toggle text">
@@ -71,20 +76,25 @@
         <!-- <input type="checkbox" onclick="myToggle()" id='switchValue' checked ='true' name="disableLocation"> -->
         <span class="slider round"></span>
       </label>
+    </div>
         
-
+      <div id="RectHome"></div>
 </div>
-
-    <h1 id="WarnstufeGeschrieben"></h1>
 
     
     <footer>
         <nav>
+            <div id="icons">
+                <a href="index.html"><img alt="Home" src="img/home_blau.png" width="5%" height="5%"></a>
+                <a href="dashboard.html"><img alt="Statistik" src="img/statistics_grau.png" width="5%" height="5%"></a>
+                <a href="maßnahmen.html"><img alt="Maßnahmen" src="img/maske_grau.png" width="5%" height="5%"></a>
+                <a href="symptome.html"><img alt="Symptome" src="img/fieber_grau.png" width="5%" height="5%"></a>
+            </div>
              <ul>
-                 <li><a href="#">Home</a></li>
-                 <li><a href="#">Statistik</a></li>
-                 <li><a href="#">Maßnahmen</a></li>
-                 <li><a href="#">Symptome</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="dashboard.html">Statistik</a></li>
+                <li><a href="maßnahmen.html">Maßnahmen</a></li>
+                <li><a href="symptome.html">Symptome</a></li>
              </ul>
         </nav>
      </footer>

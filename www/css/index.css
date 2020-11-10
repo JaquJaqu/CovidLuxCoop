@@ -58,6 +58,11 @@ h2{
     text-align:center;
 }
 
+#FälleHome{
+    color: #ADADB9;
+    text-align:center;
+}
+
 .event {
     border-radius:4px;
     color:#FFFFFF;
@@ -126,7 +131,18 @@ h2{
     background-color: rgb(61, 61, 61);
 }
 
-
+#farbkreisAktiv{
+    margin-top: 10%;
+    margin-left: 57%;
+    margin-right: auto;
+    position: absolute;
+    border-radius: 100%;
+    width:50px;
+    height:50px;
+    display: block;
+    background-color: white;
+    border:1px solid rgb(61, 61, 61);
+}
 
 
 
@@ -186,45 +202,117 @@ header {
     align-items: center;
 }
 
-.a {
-    
-    display: inline-block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
+#RectHome{
+    position:absolute;
+    top: 555%;
+    left: 5%;
+    width: 11%;
+    height:2%;
+    background-color: #211F77;
+}
+
+#RectDashboard{
+    position:absolute;
+    top: 555%;
+    left: 27%;
+    width: 11%;
+    height:2%;
+    background-color: #211F77;
+}
+
+#RectMaßnahmen{
+    position:absolute;
+    top: 555%;
+    left: 50%;
+    width: 15%;
+    height:2%;
+    background-color: #211F77;
+}
+
+#RectSymptome{
+    position:absolute;
+    top: 555%;
+    left: 80%;
+    width: 11%;
+    height:2%;
+    background-color: #211F77;
+}
+
+#RectDashboard_Österreich{
+    position:absolute;
+    top:30%;
+    left: 67%;
+    width: 28%;
+    height:2%;
+    background-color: #211F77;
+}
+#RectDashboard_Bezirk{
+    position:absolute;
+    top:30%;
+    left: 7%;
+    width: 16%;
+    height:2%;
+    background-color: #211F77;
+}
+#RectDashboard_Bundesland{
+    position:absolute;
+    top:30%;
+    left: 30%;
+    width: 30%;
+    height:2%;
+    background-color: #211F77;
+}
+
+a {
+    color: #ADADB9;
     text-decoration: none;
     font-size: 17px;
   }
 
 
-  
-
-  .a.active {
-    background-color: #2196F3;
-    color: white;
+  .active{
+      color: #211F77;
   }
 
 
 
 footer {
-    background-image:linear-gradient(to bottom, #A7A7A7 0%, #E4E4E4 51%);
+    background-color: white;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 60px;
+    top: 93%;
+    height: 10%;
     width: 100%;
 }
 
-footer * {
-    display: inline-block;
+footer *{
     font-size: 8pt;
 }
-
-footer li {
-    margin: 20px;
+footer ul {
+    position:absolute;
+    left: 45%;
+    margin-right: -50%;
+    margin-top:2%;
+    transform: translate(-50%, -50%);
+    width: 100%;  
+    float: left;  
 }
-
+footer li{
+    margin-left: 10%;
+    font-weight: 500;
+    display:inline;
+}
+#icons{
+    margin:auto;
+    width: auto;
+    top: 5%;
+}
+#icons a{
+    padding-inline-start: 8%;
+    padding-inline-end: 8%;
+}
 
 #bundesland{
     display:none;
@@ -348,6 +436,14 @@ ul {
 
   /*_Toggle__*/
 
+  #Standortbox{
+      display:flex;
+      flex-direction:row;
+      justify-content: space-between;
+      width: 40%;
+        margin-left:auto;
+        margin-right: auto;
+  }
 
 .switch {
     position: relative;
@@ -420,6 +516,32 @@ ul {
   .slider.round:before {
     border-radius: 50%;
   }
+
+  #Navi{
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10%;
+    width: 100%;
+}
+
+  #Navi ul{
+    display: flex;
+    flex-direction: row;
+    position:absolute;
+    left: 45%;
+    margin-right: -50%;
+    margin-top:2%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+}
+#Navi li{
+    margin-left: 10%;
+    font-weight: 500;
+}
+
 
 
 	
