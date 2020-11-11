@@ -6,6 +6,17 @@ var arrLänge = 0;
 const url = 'https://corona-ampel.gv.at/sites/corona-ampel.gv.at/files/assets/Warnstufen_Corona_Ampel_aktuell.json';
 const corsFix = 'https://cors-anywhere.herokuapp.com/';
 
+
+
+//__NEU--> DEFAULT FARBKREIS
+farbkreisPH = document.getElementById("farbkreisPH");
+            farbkreis = document.createElement("div");
+            farbkreis.setAttribute("id","farbkreis");
+            
+            farbkreisPH.appendChild(farbkreis);
+            
+
+
 function getLocation(latitude, longitude) {
     var apiString = 'https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=' 
     + latitude + '&longitude=' + longitude + '&localityLanguage=de' ;
@@ -44,7 +55,7 @@ function getBezirk(){
     lokationbezirk = bezirk;
     console.log('Du befindest dich im Bezirk: ', lokationbezirk);
 }
-      
+    
 //Bekomme Standort von API
     loadJSON(apiString,
         function(data) {for(i=0; i<data.localityInfo.administrative.length; i++){ 
@@ -145,6 +156,10 @@ function getBezirk(){
 );
 }
 
+
+
+
+
 //Bekomme Ampelwarnstufe von jsonFile
 function getAmpel(){
 loadJSON(corsFix+url, function(data){for(i=0; i<data[0].Warnstufen.length; i++){ 
@@ -154,18 +169,26 @@ loadJSON(corsFix+url, function(data){for(i=0; i<data[0].Warnstufen.length; i++){
             console.log(bezirk);
             console.log("Ampelstufe: "+data[0].Warnstufen[i].Warnstufe);
             ampelStufe = data[0].Warnstufen[i].Warnstufe;
+
+         
+
+            //document.getElementById("farbkreis").style.backgroundColor = "rgb(168, 168, 168)";
             if(ampelStufe == 1){
                 document.getElementById("farbkreis").style.backgroundColor = "#60B564";
                 document.getElementById("WarnstufeGeschrieben").innerHTML = "GRÜN <br/> geringes Risiko";
+                document.getElementById("farbkreisAktiv").style.border = "1px solid #60B564";
                 }else if(ampelStufe == 2){
                     document.getElementById("farbkreis").style.backgroundColor = "#FED500";
                     document.getElementById("WarnstufeGeschrieben").innerHTML = "GELB <br/> mittleres Risiko";
+                    document.getElementById("farbkreisAktiv").style.border = "1px solid #FED500";
                 }else if(ampelStufe == 3){
                     document.getElementById("farbkreis").style.backgroundColor = "#F59C00";
                     document.getElementById("WarnstufeGeschrieben").innerHTML = "ORANGE <br/> hohes Risiko";
+                    document.getElementById("farbkreisAktiv").style.border = "1px solid #F59C00";
                 }else if(ampelStufe == 4){
                     document.getElementById("farbkreis").style.backgroundColor = "#CB0538";
                     document.getElementById("WarnstufeGeschrieben").innerHTML = "ROT <br/> sehr hohes Risiko";
+                    document.getElementById("farbkreisAktiv").style.border = "1px solid #CB0538";
                 }
         }
     }
@@ -209,23 +232,15 @@ function onLocationError(error) {
         'message: ' + error.message + '\n');
 }
 
-navigator.geolocation.getCurrentPosition
-(onLocationSuccess, onLocationError, { enableHighAccuracy: true });
 
+//NEU__FUNKTION ZUM STANDORT LESEN
+function readUserLocation(){
+navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError, { enableHighAccuracy: true });
+}
 
 // METHOD 2
 d3.json(corsFix + url).then(res => {
-    // console.log('Alle: ', res[0].Warnstufen);
-    // console.log('Länge neuster Datensatz: ', res[0].Warnstufen.length);
 
-
-// //Gib mir alle Bundesländer
-// for(i=0; i<res[0].Warnstufen.length; i++){
-//     if(res[0].Warnstufen[i].Region =="Bundesland"){
-//     bundeslandname = res[0].Warnstufen[i].Name;
-//     ampelwarnstufeBL = res[0].Warnstufen[i].Warnstufe;
-//     }
-// }
 
 //Gib mir alle Bezirknamen
     for(i=0; i<res[0].Warnstufen.length; i++){
@@ -239,13 +254,6 @@ d3.json(corsFix + url).then(res => {
 
 
 
-//Versuch die Anzahl der Bezirke automatisch zu bekommen, fnktioniert aber nicht, stattdessen 89 Elemente
-// for(i=0; i<res[0].Warnstufen.length; i++){
-//     if(res[0].Warnstufen[i].Region =="Bezirk"){
-
-//     }
-// }
-
 
 //DROP DOWN__
 //Alle Berzirknamen im Json File vom letzten Datum 
@@ -255,18 +263,11 @@ for(i=0; i<arrLänge;i++){
     allebezirknamen = res[0].Warnstufen[i];
     }
 
-    // element = allebezirknamen;
-    // dropdownContent = document.querySelector('#dropdown-content');
-    // htmlToAppend = document.createElement('a');
-    // htmlToAppend.setAttribute('onclick', 'changeListener()');
-    // htmlToAppend.setAttribute('id', element.Name);
-    // htmlToAppend.setAttribute('value', element.Name);
-    // htmlToAppend.innerHTML = element.Name;
-    // dropdownContent.appendChild(htmlToAppend);  
 
     element = allebezirknamen;
     dropdownContent = document.getElementById('myDropdown');
     htmlToAppend = document.createElement('LI');
+    
     htmlToAppend.setAttribute('onclick', 'changeText(this)');
     textnode = document.createTextNode(element.Name);
     htmlToAppend.appendChild(textnode);
@@ -274,42 +275,70 @@ for(i=0; i<arrLänge;i++){
     dropdownContent.appendChild(htmlToAppend);  
 }
 sortListDir();
-
-
-// //_________Farbe wechseln
-// lokationbezirk = document.getElementById('bezirk').innerHTML;
-
-// function getBezirk(){  
-// lokationbezirk = sessionStorage.getItem("bezirk");
-// //lokationbezirk = bezirk;
-// console.log('Du befindest dich im Bezirk: ', lokationbezirk);
-
-// if(document.getElementById('bezirk').innerHTML == lokationbezirk){
-//     console.log("Warnstufe in deinem Bezirk: ", ampelwarnstufe);
-//     if(ampelwarnstufe == 1){
-//         circlecolor = "green";
-//     }else if(ampelwarnstufe == 2){
-//         circlecolor = "yellow";
-//     }else if(ampelwarnstufe == 3){
-//         circlecolor = "orange";
-//     }else if(ampelwarnstufe == 4){
-//         circlecolor = "red";
-//     }
-//     document.getElementById("farbkreis").style.backgroundColor = circlecolor;
-// }
-//   }
-
-
 });
 
 
-//Auswählen des Bezirks im Drop Down
+
+
+//__TOGGLE FUNKTION______
+  function myToggle(){
+    let isChecked=document.getElementById("switchValue");
+    if(isChecked.checked){
+        checkBool = true; //true = Standort deaktiviert! ==> DEFAULT
+        //console.log('checkbool',checkBool);
+    }else{
+        checkBool = false; //false = Standort deaktiviert!
+        //console.log('checkbool',checkBool);
+    }
+}
+
+//______STANDORT verwenden mit Toggle________
+function myLocation() {
+    let isChecked=document.getElementById("switchValue");
+    myToggle(isChecked); //Toggle Mechanismus: true = Standort deaktiviert!
+     
+        //Manuelle Lokation
+        if(checkBool == true){
+            
+            document.getElementById("bezirk").innerHTML = bezirk;
+            infoText.setAttribute('display', 'none');
+
+            bezirk=document.getElementById("bezirk").innerHTML;
+            document.getElementById("infoText").innerText = "das ist nicht dein aktueller Standort";
+           
+        //Standortbasierte Lokation
+        }else if(checkBool == false){
+            readUserLocation(); //Standort abfragen
+            
+            document.getElementById("bezirk").innerHTML = bezirk;
+            let infoText = document.getElementById("infoText");
+            infoText.setAttribute('display', 'inline-block');
+
+            document.getElementById("infoText").innerText = "dein derzeitiger Standort wird angezeigt";
+            document.getElementById("infoText2").style.display= "none";
+            //console.log(bezirk);
+        }
+}
+
+
+//Auswählen des Bezirks im Drop Down - Text
 function changeText(elm){
     bezirk = elm.getAttribute('value');
     myFunction();
     document.getElementById("bezirk").innerHTML = bezirk;
-    getAmpel();  
-}
+    getAmpel();
+
+    //NEU: Für Toggle funktionalität
+    document.getElementById("infoText").innerText = "Das ist nicht dein Standort, du hast dir selbst einen Bezirk gewählt";
+    document.getElementById("infoText2").style.display= "none"; 
+    //NEU: Anderer Berzirk ausgewählt, Standort wird deaktiviert
+    document.getElementById("switchValue").checked= true;
+
+  }
+
+
+
+//____DROP DOWN_____
 
 function filterFunction() {
     var input, filter, ul, li, a, i;
@@ -329,7 +358,9 @@ function filterFunction() {
 
   function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
-  }
+   }
+
+  
 
   function sortListDir() {
     var list, i, switching, b, shouldSwitch, dir, switchcount = 0;
@@ -381,3 +412,9 @@ function filterFunction() {
       }
     }
 }
+
+
+
+
+    
+

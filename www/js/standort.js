@@ -176,15 +176,19 @@ loadJSON(corsFix+url, function(data){for(i=0; i<data[0].Warnstufen.length; i++){
             if(ampelStufe == 1){
                 document.getElementById("farbkreis").style.backgroundColor = "#60B564";
                 document.getElementById("WarnstufeGeschrieben").innerHTML = "GRÜN <br/> geringes Risiko";
+                document.getElementById("farbkreisAktiv").style.border = "1px solid #60B564";
                 }else if(ampelStufe == 2){
                     document.getElementById("farbkreis").style.backgroundColor = "#FED500";
                     document.getElementById("WarnstufeGeschrieben").innerHTML = "GELB <br/> mittleres Risiko";
+                    document.getElementById("farbkreisAktiv").style.border = "1px solid #FED500";
                 }else if(ampelStufe == 3){
                     document.getElementById("farbkreis").style.backgroundColor = "#F59C00";
                     document.getElementById("WarnstufeGeschrieben").innerHTML = "ORANGE <br/> hohes Risiko";
+                    document.getElementById("farbkreisAktiv").style.border = "1px solid #F59C00";
                 }else if(ampelStufe == 4){
                     document.getElementById("farbkreis").style.backgroundColor = "#CB0538";
                     document.getElementById("WarnstufeGeschrieben").innerHTML = "ROT <br/> sehr hohes Risiko";
+                    document.getElementById("farbkreisAktiv").style.border = "1px solid #CB0538";
                 }
         }
     }
@@ -373,41 +377,32 @@ function filterFunction() {
       for (i = 0; i < (b.length - 1); i++) {
         // Start by saying there should be no switching:
         shouldSwitch = false;
-        /* Check if the next item should switch place with the current item,
-        based on the sorting direction (asc or desc): */
         if (dir == "asc") {
           if (b[i].innerHTML.toLowerCase() > b[i + 1].innerHTML.toLowerCase()) {
-            /* If next item is alphabetically lower than current item,
-            mark as a switch and break the loop: */
-            shouldSwitch = true;
+           shouldSwitch = true;
             break;
           }
         } else if (dir == "desc") {
           if (b[i].innerHTML.toLowerCase() < b[i + 1].innerHTML.toLowerCase()) {
-            /* If next item is alphabetically higher than current item,
-            mark as a switch and break the loop: */
             shouldSwitch= true;
             break;
           }
         }
       }
       if (shouldSwitch) {
-        /* If a switch has been marked, make the switch
-        and mark that a switch has been done: */
         b[i].parentNode.insertBefore(b[i + 1], b[i]);
         switching = true;
         // Each time a switch is done, increase switchcount by 1:
         switchcount ++;
       } else {
-        /* If no switching has been done AND the direction is "asc",
-        set the direction to "desc" and run the while loop again. */
-        if (switchcount == 0 && dir == "asc") {
+       
+       if (switchcount == 0 && dir == "asc") {
           dir = "desc";
           switching = true;
         }
       }
     }
-}
+  }
 
 
 
