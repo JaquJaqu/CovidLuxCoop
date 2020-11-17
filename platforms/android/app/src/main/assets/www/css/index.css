@@ -11,7 +11,7 @@ body {
     /*background-image:linear-gradient(to bottom, #A7A7A7 0%, #E4E4E4 51%);*/
     font-family: system-ui, -apple-system, -apple-system-font, 'Inter UI', 'regular';
     font-size:12px;
-    height:100vh;
+    height:105vh;
     margin:0px;
     padding:0px;
     /* Padding to avoid the "unsafe" areas behind notches in the screen */
@@ -45,11 +45,11 @@ body {
 }
 
 #bezirk {
-    font-size:24px;
+    font-size:4vh;
     font-weight:500;
-    margin:0px;
+    margin:0;
     overflow:visible;
-    padding:0px;
+    padding:0;
     text-align:center;
     text-transform: uppercase;
 }
@@ -96,16 +96,9 @@ h2{
 }
 
 
-@media screen and (prefers-color-scheme: dark) {
-    body {
-        background-color: white;
-        
-    }
-}
-
 #farbkreiswrap{
-    margin-left:40%;
-    margin-top:-10px;
+    margin-left:40vw;
+    margin-top:-1vh;
     display: block;
    }
 
@@ -120,11 +113,11 @@ h2{
    }
 
 #farbkreis{
-    margin-top: 40px;
+    margin-top: 5vh;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: auto;
-    border-radius: 100%;
+    border-radius: 100vw;
     width:100px;
     height:100px;
     display: block;
@@ -132,16 +125,39 @@ h2{
 }
 
 #farbkreisAktiv{
-    margin-top: 10%;
-    margin-left: 57%;
+    margin-top: 4vh;
+    margin-left: 57vw;
     margin-right: auto;
     position: absolute;
-    border-radius: 100%;
+    border-radius: 100vw;
     width:50px;
     height:50px;
     display: block;
     background-color: white;
     border:1px solid rgb(61, 61, 61);
+}
+
+#ringerlReGr{
+    position: absolute;
+    border-radius: 100vw;
+    width:16px;
+    height:16px;
+    /*margin-left: -3.5vw;
+    margin-top: -0.2vh;*/
+    background-color: white;
+    border:1.5px solid rgb(61, 61, 61);
+    display:none;
+}
+#ringerlYeOr{
+    position: absolute;
+    border-radius: 100vw;
+    width:16px;
+    height:16px;
+    /*margin-left: 9.5vw;
+    margin-top: -0.2vh;*/
+    background-color: white;
+    border:1.5px solid rgb(61, 61, 61);
+    display:none;
 }
 
 
@@ -150,7 +166,7 @@ h2{
     
     /* margin-right: 20%; */
     
-    border-radius: 100%;
+    border-radius: 100vw;
     width:10px;
     height:10px;
     background-color: #CB0538;
@@ -163,29 +179,29 @@ h2{
 #farbkreisgreen{
     
     background-color: #60B564;
-    margin-left: -4%;
+    margin-left: -2.5vw;
 }
 
 #farbkreisred{
     /* margin-left: px;
     margin-top: -51px; */
     background-color: #CB0538;
-    margin-left: 30%;
+    margin-left: 19vw;
 }
 
 #farbkreisyellow{
     /* margin-left: 10px;
     margin-top: 10px; */
     background-color: #FED500;
-    margin-left: 7%;
+    margin-left: 6vw;
 }
 
 #farbkreisorange{
     /* margin-left: 10px;
     margin-top: 10px; */
     background-color: #F59C00;
-    margin-top:0px;
-    margin-left: 5.5%;
+    margin-top:0;
+    margin-left: 3vw;
 }
 
 
@@ -198,67 +214,69 @@ header {
     left: 0;
     right: 0;
     height: 80px;
+    width: 100vw;
     display: inline-block;
     align-items: center;
 }
 
 #RectHome{
-    position:absolute;
-    top: 555%;
-    left: 5%;
-    width: 11%;
-    height:2%;
+    position:fixed;
+    top: 85vh;
+    left: 5vw;
+    width: 11vw;
+    height:0.3vh;
     background-color: #211F77;
 }
 
 #RectDashboard{
-    position:absolute;
-    top: 555%;
-    left: 27%;
-    width: 11%;
-    height:2%;
+    position:fixed;
+    top: 85vh;
+    left: 27vw;
+    width: 11vw;
+    height:0.3vh;
     background-color: #211F77;
 }
 
 #RectMaßnahmen{
-    position:absolute;
-    top: 555%;
-    left: 50%;
-    width: 15%;
-    height:2%;
+    position:fixed;
+    top: 85vh;
+    left: 50vw;
+    width: 15vw;
+    height:0.3vh;
     background-color: #211F77;
 }
 
 #RectSymptome{
-    position:absolute;
-    top: 555%;
-    left: 80%;
-    width: 11%;
-    height:2%;
+    position:fixed;
+    top: 85vh;
+    left: 80vw;
+    width: 11vw;
+    height:0.3vh;
     background-color: #211F77;
 }
 
 #RectDashboard_Österreich{
-    position:relative;
-    top: 150%;
-    width: 25vw;
-    height:0.3%;
+    position:fixed;
+    top:24vh;
+    left: 65vw;
+    width: 28vw;
+    height:0.3vh;
     background-color: #211F77;
 }
 #RectDashboard_Bezirk{
     position:fixed;
-    margin-top:140px;
-    left: 7%;
-    width: 16%;
-    height:0.3%;
+    top:24vh;
+    left: 7vw;
+    width: 20vw;
+    height:0.3vh;
     background-color: #211F77;
 }
 #RectDashboard_Bundesland{
     position:fixed;
-    top:140px;
-    left: 30%;
-    width: 30%;
-    height:0.3%;
+    top:24vh;
+    left: 32vw;
+    width: 30vw;
+    height:0.3vh;
     background-color: #211F77;
 }
 
@@ -279,39 +297,39 @@ footer {
     background-color: white;
     position: fixed;
     bottom: 0;
-    left: 0;
     right: 0;
-    top: 93%;
-    height: 20%;
-    width: 100%;
-    margin-top: -10%;
+    left: 0;
+    height: 13vh;
+    width: 80vw;
+    margin-top: -10vw;
+    margin-left: 10vw;
 }
 
 footer *{
-    font-size: 2.5vw;
+    font-size: 2vh;
 }
 footer ul {
     position:absolute;
-    left: 45%;
-    margin-right: -50%;
-    margin-top:2%;
-    transform: translate(-50%, -50%);
-    width: 100%;  
+    left: 0vw;
+    margin-right: -60vw;
+    margin-top:2.5vh;
+    width: 100vw; 
+    right: 2vw; 
     float: left;  
 }
 footer li{
-    margin-left: 12vw;
+    margin-left: 8vw;
     font-weight: 500;
     display:inline;
 }
 #icons{
     margin:auto;
     width: auto;
-    top: 5%;
+    top: 5vh;
 }
 #icons a{
-    padding-inline-start: 7%;
-    padding-inline-end: 8%;
+    padding-inline-start: 7vw;
+    padding-inline-end: 8vw;
 }
 
 #bundesland{
@@ -323,13 +341,15 @@ footer li{
     top: 80px;
     left: 0;
     right: 0;
-    height: 80px;
+    /*height: 80px;
+    /*width:50%;*/
+    width: 100vw;
     display: block;
 }
 
-body, html {
+/*body, html {
     width:100%;
-}
+}*/
 ul {
     list-style:none;
     margin:0;
@@ -373,11 +393,19 @@ ul {
 .dropbtn {
     color: #211F77;
     background-color: white;
-    font-weight: bold;
+    font-weight: 750;
     padding: 16px;
-    font-size: 16px;
+    font-size: 12pt;
     border: none;
     cursor: pointer;
+  }
+  .dropbtn:after {
+    content: '\2BC6';
+    color: #211F77;
+    font-weight: bold;
+    float: right;
+    margin-left: 2vw;
+    margin-top: -0.5vh;
   }
   
   /* Dropdown button on hover & focus */
@@ -391,12 +419,44 @@ ul {
     border: none;
     width: 100%;
     background-color: #D7D7D9;
-    color: white;
+    color: black;
     border-bottom: 1px solid #ddd;
   }
   
   /* The search field when it gets focus/clicked on */
   #myInput:focus {outline: 3px solid #ddd;}
+
+  #myInput_bezirk {
+    box-sizing: border-box;
+    background-position: 14px 12px;
+    background-repeat: no-repeat;
+    font-size: 16px;
+    padding: 14px 20px 12px 45px;
+    border: none;
+    width: 100%;
+    background-color: #D7D7D9;
+    color: black;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* The search field when it gets focus/clicked on */
+  #myInput_bezirk:focus {outline: 3px solid #ddd;}
+
+  #myInput_bundesland {
+    box-sizing: border-box;
+    background-position: 14px 12px;
+    background-repeat: no-repeat;
+    font-size: 16px;
+    padding: 14px 20px 12px 45px;
+    border: none;
+    width: 100%;
+    background-color: #D7D7D9;
+    color: black;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* The search field when it gets focus/clicked on */
+  #myInput_bundesland:focus {outline: 3px solid #ddd;}
   
   /* The container <div> - needed to position the dropdown content */
   .dropdown {
@@ -443,16 +503,19 @@ ul {
       display:flex;
       flex-direction:row;
       justify-content: space-between;
-      width: 40%;
+      align-content: center;
+      width: 180px;
         margin-left:auto;
         margin-right: auto;
+        margin-top: -1vh;
   }
 
 .switch {
     position: relative;
     display: inline-block;
-    width: 60px;
-    height: 34px;
+    width: 68px;
+    height: 30px;
+    margin-top: 1.5vh;
   }
   
   .switch input { 
@@ -469,7 +532,8 @@ ul {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgb(121, 113, 233);
+    background-color: white;
+    border: 1px solid #211F77;
     -webkit-transition: .4s;
     transition: .4s;
     
@@ -480,27 +544,25 @@ ul {
   .slider:before {
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
-    left: 33px;
-    bottom: 4px;
-    background-color: white;
+    height: 29px;
+    width: 35px;
+    left: 32px;
+    background-color: #211F77;
+    color: white;
     -webkit-transition: .4s;
     transition: .4s;
     content: "AN";
-    font-weight: bold;
-	
-
-
+    text-align: center;
+    line-height: 4vh;
   }
   
   input:checked + .slider {
-    background-color: #c4c4c4;
+    background-color: white;
     
   }
   
   input:focus + .slider {
-    box-shadow: 1 4 1px #9e8ec7;
+    box-shadow: 1 4 1px #211F77;
     
   }
   
@@ -513,36 +575,34 @@ ul {
   
   /* Rounded sliders */
   .slider.round {
-    border-radius: 34px;
+    border-radius: 15%;
   }
   
   .slider.round:before {
-    border-radius: 50%;
+    border-radius: 15%;
   }
 
   #Navi{
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 10%;
-    width: 100%;
+    height: 10vh;
+    width: 100vw;
 }
 
   #Navi ul{
     display: flex;
     flex-direction: row;
     position:absolute;
-    left: 45%;
-    margin-right: -50%;
-    margin-top:10%;
-    transform: translate(-50%, -50%);
-    width: 100%;
+    margin-top:7vh;
+    width: 92vw;
     text-align: center;
     justify-content: center;
 }
 #Navi li{
-    margin-left: 10%;
+    margin-left: 10vw;
     font-weight: 500;
+    
+}
+#Akkordeon{
+    margin-top: 7vh;
 }
 .accordion {
     background-color: white;
@@ -562,15 +622,15 @@ ul {
   }
   
   .accordion:after {
-    content: '\2B9E';
+    content: '\2BC6';
     color: #ADADB9;
     font-weight: bold;
     float: right;
-    margin-left: 5px;
+    margin-right: 35vw;
   }
   
   .active:after {
-    content: "\2B9F";
+    content: "\2BC6";
   }
   
   .panel {
@@ -594,6 +654,7 @@ ul {
     height: 100%;
     text-align: center;
     padding-top: 2%;
+    padding-bottom: 2%;
     margin-left: 10%;
     border-radius: 15px;
 }
@@ -601,7 +662,6 @@ p{
     color: black;
     font-size: 12pt;
     font-weight: 500;
-    text-align:center;
 }
 #Quelle{
     color: #211F77;
@@ -610,7 +670,7 @@ p{
 }
 #Österreich{
     text-align: center;
-    margin-top: 15%;
+    margin-top: 5vh;
 }
 .lilaWelle{
     background-color: #5E5C97;
@@ -618,40 +678,113 @@ p{
     font-size: 16pt;
     text-align:center;
     vertical-align: middle;
-    padding-top: 8%;
-    height: 80%;
-    width: 100%;
-    top: 0;
+    padding-top: 5vh;
+    height: 10vh;
 }
 .info{
-    margin-top:-16%;
-    margin-left: 10%;
+    margin-top:-9.5vh;
+    margin-left: 10vw;
 }
 .settings{
-    margin-left:85%;
-    margin-top: -8%;
+    margin-left:85vw;
+    margin-top: -4.5vh;
 }
 .blockWie{
     background-color: rgba(173, 173, 185, 0.2);
     color: black;
-    margin-top: 10%;
-    top: 10%;
+    margin-top: 5vh;
+    padding-right:5vw;
+    padding-left: 6vw;
 }
 #blockWieGesamt{
-    margin-top: 40%;
+    margin-top: 20vh;
+    width: 100vw;
 }
 h3{
-    font-size: 12pt;
+    font-size: 2.5vh;
 }
-.flexboxwietext{
-    display: flex;
-    width: 50%;
+.flexboxwiebild{
+    width: 120vw;
+    text-align: center;
+    margin-top: 7vh;
+    padding-left: 2vw;
 }
 .flexboxwie{
     display:flex;
-    flex-direction: row;
-    justify-content: space-around;
     text-align: left;
+}
+.textInfobutton{
+    font-size:2.3vh;
+}
+#DataSymptome{
+    text-align:center;
+}
+#einstellungen{
+    margin-top: 7vh;
+}
+.einstellungen_header {
+    background-color: white;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  
+  .einstellungen_content{
+    padding: 8px;
+    background-color:rgba(173, 173, 185, 0.2);
+    text-align: left;
+  }
+  .einstellungen_content p{
+      font-size: 10pt;
+  }
+  .einstellungen_buttons {
+    color: black;
+    cursor: pointer;
+    padding: 6px;
+    width: 100%;
+    font-weight: 700;
+    text-align: left;
+    font-size: 15px;
+    border: none;
+  }
+  .einstellungen_buttons:after {
+    content: '\2BC8';
+    color: black;
+    font-weight: bold;
+    float: right;
+    margin-right: 2vw;
+  }
+  .einstellungen_content .switch{
+      float:right;
+      margin-top: -7vh;
+      margin-right: 3vw;
+  }
+
+
+@media screen and (max-width:820px) {
+    /*#mainwrapper, header{
+        width: auto;
+        left:0;
+    }
+    #farbkreisAktiv{
+        margin-left: 57vw;   
+    }
+    #blockWieGesamt{
+        width:auto;
+        margin-left: 0vw;
+    }
+    .textInfobutton{
+        font-size: 12pt;
+    }*/
+    footer{
+        margin-left: 0vw;
+        width: auto;
+    }
 }
 	
 	

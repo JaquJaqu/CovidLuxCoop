@@ -16,15 +16,16 @@
 <header>
     <div class="lilaWelle">Symptome</div>
     <div class="info">
-        <a href="info.html"><img alt="Info" src="img/info.png" width="25vw" height="25vw"></a>
+        <a href="info.html" onclick="saveHistory()"><img alt="Info" src="img/info.png" width="25vw" height="25vw"></a>
         </div>
         <div class="settings">
-        <a href="settings.html"><img alt="Settings" src="img/settings.png" width="25vw" height="25vw"></a>
+        <a href="settings.html" onclick="saveHistory()"><img alt="Settings" src="img/settings.png" width="25vw" height="25vw"></a>
         </div>
 </header>
      
      <div id ="mainwrapper">
 
+        <div id="Akkordeon">
         <button class="accordion">Die häufigsten Symptome</button>
         <div class="panel">
           <h2>Häufige Symptome</h2>
@@ -37,16 +38,30 @@
         
         <button class="accordion">Seltenere Symptome</button>
         <div class="panel">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <h2>Seltene Symptome</h2>
+          <ul>
+              <li>Gliederschmerzen</li>
+              <li>Halsschmerzen</li>
+              <li>Kopfschmerzen</li>
+              <li>Verlust des Geschmacks- oder Geruchsinns</li>
+          </ul>
         </div>
         
         <button class="accordion">Schwere Symptome</button>
         <div class="panel">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+         <h2>Schwere Symptome</h2>
+         <ul>
+             <li>Atembeschwerden</li>
+             <li>Kurzatmigkeit</li>
+             <li>Schmerzen im Brustbereich</li>
+             <li>Verlust der Sprach- oder Bewegungsfähigkeit</li>
+         </ul>
         </div>     
   
-        <p>Datenquelle: <a id="Quelle">who.int</a></p>
+        <p id="DataSymptome">Datenquelle: <a href="https://www.who.int/" target="_blank" id="Quelle">who.int</a></p>
         <h1 id="Wastun">Ich glaube ich bin infiziert. Was nun?</h1>
+
+        </div>
 
         <div id="RectSymptome"></div>
     

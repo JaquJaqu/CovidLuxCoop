@@ -6,7 +6,7 @@ var arrLänge = 0;
 const url = 'https://corona-ampel.gv.at/sites/corona-ampel.gv.at/files/assets/Warnstufen_Corona_Ampel_aktuell.json';
 const corsFix = 'https://cors-anywhere.herokuapp.com/';
 
-
+sessionStorage.setItem("store", false);
 
 //__NEU--> DEFAULT FARBKREIS
 farbkreisPH = document.getElementById("farbkreisPH");
@@ -141,6 +141,7 @@ function getBezirk(){
                 bezirk = "Wels(Stadt)";
             }
             document.getElementById('bezirk').innerHTML = bezirk;
+            sessionStorage.setItem("storeBezirk",bezirk);
             getBezirk();
             getAmpel();
              //console.log(bezirk);
@@ -148,6 +149,8 @@ function getBezirk(){
              //Bundesland
              document.getElementById('bundesland').innerHTML = data.principalSubdivision;
              bundesland = data.principalSubdivision;
+             sessionStorage.setItem("storeBundesland",bundesland);
+             console.log(sessionStorage.getItem("storeBundesland"));
              //console.log(bundesland);
             }
         
@@ -162,33 +165,48 @@ function getBezirk(){
 
 //Bekomme Ampelwarnstufe von jsonFile
 function getAmpel(){
-loadJSON(corsFix+url, function(data){for(i=0; i<data[0].Warnstufen.length; i++){ 
-    if(data[0].Warnstufen[i].Region == 'Bezirk'){
+loadJSON(corsFix+url, function(data){for(i=0; i<data[3].Warnstufen.length; i++){ 
+    if(data[3].Warnstufen[i].Region == 'Bezirk'){
        
-        if(data[0].Warnstufen[i].Name == bezirk){
+        if(data[3].Warnstufen[i].Name == bezirk){
             console.log(bezirk);
-            console.log("Ampelstufe: "+data[0].Warnstufen[i].Warnstufe);
-            ampelStufe = data[0].Warnstufen[i].Warnstufe;
+            console.log("Ampelstufe: "+data[3].Warnstufen[i].Warnstufe);
+            ampelStufe = data[3].Warnstufen[i].Warnstufe;
 
-         
 
             //document.getElementById("farbkreis").style.backgroundColor = "rgb(168, 168, 168)";
             if(ampelStufe == 1){
                 document.getElementById("farbkreis").style.backgroundColor = "#60B564";
                 document.getElementById("WarnstufeGeschrieben").innerHTML = "GRÜN <br/> geringes Risiko";
                 document.getElementById("farbkreisAktiv").style.border = "1px solid #60B564";
+                document.getElementById("ringerlYeOr").style.display = "none";
+                document.getElementById("ringerlReGr").style.display = "block";
+                document.getElementById("ringerlReGr").style.marginLeft = "-3.5vw";
+                document.getElementById("ringerlReGr").style.marginTop = "-0.2vh";
                 }else if(ampelStufe == 2){
                     document.getElementById("farbkreis").style.backgroundColor = "#FED500";
                     document.getElementById("WarnstufeGeschrieben").innerHTML = "GELB <br/> mittleres Risiko";
                     document.getElementById("farbkreisAktiv").style.border = "1px solid #FED500";
+                    document.getElementById("ringerlReGr").style.display = "none";
+                    document.getElementById("ringerlYeOr").style.display = "block";
+                    document.getElementById("ringerlYeOr").style.marginLeft = "3vw";
+                    document.getElementById("ringerlYeOr").style.marginTop = "-0.2vh";
                 }else if(ampelStufe == 3){
                     document.getElementById("farbkreis").style.backgroundColor = "#F59C00";
                     document.getElementById("WarnstufeGeschrieben").innerHTML = "ORANGE <br/> hohes Risiko";
                     document.getElementById("farbkreisAktiv").style.border = "1px solid #F59C00";
+                    document.getElementById("ringerlReGr").style.display = "none";
+                    document.getElementById("ringerlYeOr").style.display = "block";
+                    document.getElementById("ringerlYeOr").style.marginLeft = "11vw";
+                    document.getElementById("ringerlYeOr").style.marginTop = "-0.2vh";
                 }else if(ampelStufe == 4){
                     document.getElementById("farbkreis").style.backgroundColor = "#CB0538";
                     document.getElementById("WarnstufeGeschrieben").innerHTML = "ROT <br/> sehr hohes Risiko";
                     document.getElementById("farbkreisAktiv").style.border = "1px solid #CB0538";
+                    document.getElementById("ringerlYeOr").style.display = "none";
+                    document.getElementById("ringerlReGr").style.display = "block";
+                    document.getElementById("ringerlReGr").style.marginLeft = "18vw";
+                    document.getElementById("ringerlReGr").style.marginTop = "-0.2vh";
                 }
         }
     }
@@ -272,12 +290,49 @@ for(i=0; i<arrLänge;i++){
     textnode = document.createTextNode(element.Name);
     htmlToAppend.appendChild(textnode);
     htmlToAppend.setAttribute('value', element.Name);
-    dropdownContent.appendChild(htmlToAppend);  
+    dropdownContent.appendChild(htmlToAppend); 
+  
 }
 sortListDir();
+
+/*
+for(i=0; i<arrLänge;i++){
+    if(res[0].Warnstufen[i].Region =="Bezirk"){
+    allebezirknamenstatistik = res[0].Warnstufen[i];
+    }
+
+
+    variable = allebezirknamenstatistik;
+    dropdownContentbezirk = document.getElementById('myDropdown_bezirk');
+    htmlToAppendbezirk = document.createElement('LI');
+    
+    htmlToAppendbezirk.setAttribute('onclick', 'changeText(this)');
+    textnodebezirk = document.createTextNode(variable.Name);
+    htmlToAppendbezirk.appendChild(textnodebezirk);
+    htmlToAppendbezirk.setAttribute('value', variable.Name);
+    dropdownContentbezirk.appendChild(htmlToAppendbezirk); 
+  
+}
+
+for(i=0; i<9;i++){
+    if(res[0].Warnstufen[i].Region =="Bundesland"){
+    allebundeslandnamen = res[0].Warnstufen[i];
+    }
+
+
+    object = allebundeslandnamen;
+    dropdownContentbundesland = document.getElementById('myDropdown_bundesland');
+    htmlToAppendbundesland = document.createElement('LI');
+    
+    htmlToAppendbundesland.setAttribute('onclick', 'changeText(this)');
+    textnodebundesland= document.createTextNode(object.Name);
+    htmlToAppendbundesland.appendChild(textnodebundesland);
+    htmlToAppendbundesland.setAttribute('value', object.Name);
+    dropdownContentbundesland.appendChild(htmlToAppendbundesland); 
+  
+}*/
+
 });
-
-
 
 
 //__TOGGLE FUNKTION______
@@ -303,6 +358,10 @@ function myLocation() {
             document.getElementById("bezirk").innerHTML = bezirk;
             infoText.setAttribute('display', 'none');
 
+            sessionStorage.setItem("storeToggleTrue", true);
+            sessionStorage.removeItem("storeToggleFalse");
+            sessionStorage.setItem("storeBezirk",bezirk);
+
             bezirk=document.getElementById("bezirk").innerHTML;
             document.getElementById("infoText").innerText = "das ist nicht dein aktueller Standort";
            
@@ -313,6 +372,10 @@ function myLocation() {
             document.getElementById("bezirk").innerHTML = bezirk;
             let infoText = document.getElementById("infoText");
             infoText.setAttribute('display', 'inline-block');
+
+            sessionStorage.setItem("storeToggleFalse", false);
+            sessionStorage.removeItem("storeToggleTrue");
+            sessionStorage.setItem("storeBezirk",bezirk);
 
             document.getElementById("infoText").innerText = "dein derzeitiger Standort wird angezeigt";
             document.getElementById("infoText2").style.display= "none";
@@ -334,6 +397,9 @@ function changeText(elm){
     //NEU: Anderer Berzirk ausgewählt, Standort wird deaktiviert
     document.getElementById("switchValue").checked= true;
 
+    sessionStorage.setItem("storeBezirk",bezirk);
+    sessionStorage.setItem("storeToggleTrue", true);
+    sessionStorage.removeItem("storeToggleFalse");
   }
 
 
@@ -359,7 +425,6 @@ function filterFunction() {
   function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
    }
-
   
 
   function sortListDir() {
@@ -403,6 +468,30 @@ function filterFunction() {
       }
     }
   }
+
+
+  function onload_index(){
+    bezirkStorage = sessionStorage.getItem("storeBezirk");
+    toggleStorageTrue = sessionStorage.getItem("storeToggleTrue");
+    toggleStorageFalse = sessionStorage.getItem("storeToggleFalse");
+
+    console.log(sessionStorage.getItem("storeToggleTrue"));
+    console.log(sessionStorage.getItem("storeToggleFalse"));
+  
+    if(bezirkStorage != null){
+        document.getElementById("bezirk").innerHTML = bezirkStorage;
+        bezirk = bezirkStorage;
+        document.getElementById("infoText2").style.display = "none";
+        getAmpel();
+    }
+    if(toggleStorageTrue != null){
+          document.getElementById("switchValue").checked = true;
+        }
+    if(toggleStorageFalse != null){
+          document.getElementById("switchValue").checked = false;
+        }
+  }
+
 
 
 

@@ -12,15 +12,15 @@
         <script src='https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js'></script>
         
     </head>
-    <body>
+    <body onload="onload_index()"> 
 
 <header>
     <div class="lilaWelle"></div>
     <div class="info">
-        <a href="info.html"><img alt="Info" src="img/info.png" width="25vw" height="25vw"></a>
+        <a href="info.html" onclick="saveHistory()"><img alt="Info" src="img/info.png" width="25vw" height="25vw"></a>
         </div>
         <div class="settings">
-        <a href="settings.html"><img alt="Settings" src="img/settings.png" width="25vw" height="25vw"></a>
+        <a href="settings.html" onclick="saveHistory()"><img alt="Settings" src="img/settings.png" width="25vw" height="25vw"></a>
         </div>
 </header>
 
@@ -56,13 +56,17 @@
         
     <div id="farbkreiswrap">
         <div id="farbkreiswrapGrRe">
+            <div id="ringerlReGr"></div>
             <div class = "farbkreiseklein" id="farbkreisgreen"></div>
             <div class = "farbkreiseklein" id="farbkreisred"></div>
+            
         </div>
         <div id="farbkreiswrapYeOr"></div>
+        <div id="ringerlYeOr"></div>
             <div class = "farbkreiseklein" id="farbkreisyellow"></div>
             <div class = "farbkreiseklein" id="farbkreisorange"></div>
       </div>
+      
       <h1 id="WarnstufeGeschrieben"></h1>
       <p id="FälleHome">*aktuell positive Fälle</p>
 
