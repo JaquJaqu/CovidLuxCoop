@@ -124,8 +124,12 @@ function getLocation(latitude, longitude) {
 
 //Bekomme Ampelwarnstufe von jsonFile
 function getAmpel(){
-loadJSON(corsFix+url, function(data){for(i=0; i<data[3].Warnstufen.length; i++){ 
-    if(data[3].Warnstufen[i].Region == 'Bezirk'){
+loadJSON(corsFix+url, function(data){
+    
+    downloadTextFile(data); //UHRZEIT 
+    
+    for(i=0; i<data[3].Warnstufen.length; i++){ 
+      if(data[3].Warnstufen[i].Region == 'Bezirk'){
        
         if(data[3].Warnstufen[i].Name == bezirk){
             console.log(bezirk);
@@ -171,6 +175,126 @@ loadJSON(corsFix+url, function(data){for(i=0; i<data[3].Warnstufen.length; i++){
 }, function(xhr){console.error(xhr);});
 }
 
+
+//--------------------NEU----------------------------
+
+function downloadTextFile(data) {
+    //  require(['fs'], function (fs) {
+    //         //fs is now loaded.
+    //  });
+      //Error?    
+             //nur Daten von letzten Datum 
+             //let lastData = data[0];
+             //var items_json = JSON.stringify(lastData,'data3');
+             //localStorage.setItem('gesamteJson', items_json);
+            
+    
+            //Derzeitiges Datum/Urzeit in File speichern 
+            //???get timestamp of localstorage without loading whole file from Browser??
+            //NICHT GET REQUEST --> HEAD REQUEST mit LAST MODIFIED
+            
+            let lastData = data[0];
+            var items_json = JSON.stringify(lastData);
+            localStorage.setItem("updateDate3", JSON.stringify(ampelDatatrue));
+            
+            
+            var date = new Date();
+            var updateDate = date.toISOString(); //"2011-12-19T15:28:46.493Z" --> Gibt mir die jetzige Uhrzeit im Format das lastModiefied Header Req auch hat
+            var ampelDatatrue = {updateDate: updateDate, items_json};
+            console.log('Einmal die Uhrzeit bitte', updateDate); //im Code bei getAmpel. Such mich mif Strg+F: UHRZEIT 
+    }
+        
+    
+    function read_from_local_json() {
+         
+           //var items_json = localStorage.getItem('updateDate3');
+           var items_json = localStorage.getItem('data3');
+           items = JSON.parse(items_json);
+           console.log('kurze Daten',items_json);
+    
+         
+            if (!items) {
+                items = [];
+            }
+        }      
+        read_from_local_json();
+    
+    // //-----------------------------------LAST MODIFIED VERSUCH---------------------------------
+// ___________VERSUCH 1:  Preflighted requests 
+// let path2 = corsFix+url;
+// loadcheckJSON(path2);
+//     function loadcheckJSON(path2)
+// {
+//     const xhr = new XMLHttpRequest();
+// xhr.open('POST', path2);
+// xhr.setRequestHeader('Content-Type', 'application/json');
+// xhr.onreadystatechange;
+// xhr.send();
+
+//     //var headers = req.getResponseHeader('Last-Modified');
+//     //var headers = req.getAllResponseHeaders().toLowerCase();
+//     var lastModified = xhr.lastModified();
+  
+// //console.log('Last',headers);
+// console.log('Last Modified',lastModified);
+// }
+
+//_______________Versuch 2: Normaler Request
+
+    //'loadcheckJSON(corsFix+url, function(data){})'
+
+// let path2 = corsFix+url;
+// loadcheckJSON(path2);
+
+// function loadcheckJSON(path2)
+// {
+//     var req = new XMLHttpRequest();
+//     req.onreadystatechange;
+  
+    
+//     req.open("HEAD", path2, true);
+//     req.send();
+
+//     //var headers = req.getResponseHeader('Last-Modified');
+//     //var headers = req.getAllResponseHeaders().toLowerCase();
+//     var lastModified = req.lastModified();
+  
+// //console.log('Last',headers);
+// console.log('Last Modified',lastModified);
+// }
+
+//______________________Versuch 3: Normaler Request
+
+let path2 = corsFix+url;
+loadcheckJSON(path2);
+
+function loadcheckJSON(path2)
+{
+    var req = new XMLHttpRequest();
+    req.onreadystatechange;
+    req.open("HEAD", path2, true);
+    req.send();
+
+    // var req2 = new XMLHttpRequest();
+    // var req3 = req2.responseURL;
+    // req3.onreadystatechange; 
+    // req3.open("HEAD", path2, true);
+    // req3.send();
+
+    // req2.open("HEAD", path, true);
+    // req2.send();
+
+    var headers = req.getResponseHeader('Last-Modified'); //sollte nicht NUll sein.. Cross-ORIGIN Request????
+    //var headers = req.getAllResponseHeaders().toLowerCase();
+    //var lastModified = req.lastModified();
+  
+console.log('Headers:',headers);
+//console.log('Last Modified',lastModified);
+}
+
+
+//-----------------------------------LAST MODIFIED VERSUCH ende---------------------------------
+//--------------------ENDE NEU----------------------------
 
 function loadJSON(path, success, error)
 {
