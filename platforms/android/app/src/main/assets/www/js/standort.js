@@ -3,10 +3,6 @@ let bezirk;
 let bundesland;
 let ampelStufe;
 var arrLänge = 0;
-const url = 'https://corona-ampel.gv.at/sites/corona-ampel.gv.at/files/assets/Warnstufen_Corona_Ampel_aktuell.json';
-const corsFix = 'https://cors-anywhere.herokuapp.com/';
-
-sessionStorage.setItem("store", false);
 
 //__NEU--> DEFAULT FARBKREIS
 farbkreisPH = document.getElementById("farbkreisPH");
@@ -16,47 +12,13 @@ farbkreisPH = document.getElementById("farbkreisPH");
             farbkreisPH.appendChild(farbkreis);
             
 
-
+//Zugriff auf API
 function getLocation(latitude, longitude) {
     var apiString = 'https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=' 
     + latitude + '&longitude=' + longitude + '&localityLanguage=de' ;
+ 
 
-
-//============================================Testdaten===========================================================
-// Urfahr längen und Breitengrad
-// Urfahr Breitengrad :   48.439299
-// Urfahr Längengrad :   14.236832
-
-
-// Steyr-Land längen und Breitengrad
-// Steyr-Land Breitengrad :   47.915987
-// Steyr-Land Längengrad :   14.522420
-
-
-//________Salzburg-Land______________:
-// Fuschl längen und Breitengrad
-// Breitengrad von Fuschl	47.796566
-// Längengrad von Fuschl	13.303364
-// Anif längen und Breitengrad --> Eig Salzburg-Umgebung wird aber als Salzburg gekennzeichnet!
-// //Breitengrad: 47.7500000
-// Längengrad: 13.0666700
-
-// GPS-Koordinaten von Bergheim
-// Breitengrad : 47.836
-// Längengrad : 13.0426
-
-//Teststring
-// var apiString = 'https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=' 
-// +  47.7500000 + '&longitude=' + 13.0666700 + '&localityLanguage=de' ;
-// console.log(apiString);
-//=============================================================================================
-
-function getBezirk(){  
-    lokationbezirk = bezirk;
-    console.log('Du befindest dich im Bezirk: ', lokationbezirk);
-}
-    
-//Bekomme Standort von API
+    //Bekomme Standort von API
     loadJSON(apiString,
         function(data) {for(i=0; i<data.localityInfo.administrative.length; i++){ 
             
@@ -140,27 +102,24 @@ function getBezirk(){
             if(bezirk == "Wels"){
                 bezirk = "Wels(Stadt)";
             }
+
+            //Output
             document.getElementById('bezirk').innerHTML = bezirk;
             sessionStorage.setItem("storeBezirk",bezirk);
-            getBezirk();
+            console.log('Du befindest dich im Bezirk: ', bezirk)
             getAmpel();
-             //console.log(bezirk);
              }
              //Bundesland
              document.getElementById('bundesland').innerHTML = data.principalSubdivision;
              bundesland = data.principalSubdivision;
              sessionStorage.setItem("storeBundesland",bundesland);
              console.log(sessionStorage.getItem("storeBundesland"));
-             //console.log(bundesland);
             }
         
              console.log(data); },
          function(xhr) { console.error(xhr); }
 );
 }
-
-
-
 
 
 //Bekomme Ampelwarnstufe von jsonFile
@@ -173,8 +132,6 @@ loadJSON(corsFix+url, function(data){for(i=0; i<data[3].Warnstufen.length; i++){
             console.log("Ampelstufe: "+data[3].Warnstufen[i].Warnstufe);
             ampelStufe = data[3].Warnstufen[i].Warnstufe;
 
-
-            //document.getElementById("farbkreis").style.backgroundColor = "rgb(168, 168, 168)";
             if(ampelStufe == 1){
                 document.getElementById("farbkreis").style.backgroundColor = "#60B564";
                 document.getElementById("WarnstufeGeschrieben").innerHTML = "GRÜN <br/> geringes Risiko";
@@ -256,9 +213,8 @@ function readUserLocation(){
 navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError, { enableHighAccuracy: true });
 }
 
-// METHOD 2
+// Dropdown erstellen
 d3.json(corsFix + url).then(res => {
-
 
 //Gib mir alle Bezirknamen
     for(i=0; i<res[0].Warnstufen.length; i++){
@@ -266,12 +222,8 @@ d3.json(corsFix + url).then(res => {
         bezirkname = res[0].Warnstufen[i].Name;
         ampelwarnstufe = res[0].Warnstufen[i].Warnstufe;
         arrLänge= arrLänge + 1;
-        //console.log("arrlänge:",arrLänge);
     }
    }
-
-
-
 
 //DROP DOWN__
 //Alle Berzirknamen im Json File vom letzten Datum 
@@ -293,58 +245,18 @@ for(i=0; i<arrLänge;i++){
     dropdownContent.appendChild(htmlToAppend); 
   
 }
-sortListDir();
-
-for(i=0; i<arrLänge;i++){
-    if(res[0].Warnstufen[i].Region =="Bezirk"){
-    allebezirknamenstatistik = res[0].Warnstufen[i];
-    }
-
-
-    variable = allebezirknamenstatistik;
-    dropdownContentbezirk = document.getElementById('myDropdown_bezirk');
-    htmlToAppendbezirk = document.createElement('LI');
-    
-    htmlToAppendbezirk.setAttribute('onclick', 'changeText(this)');
-    textnodebezirk = document.createTextNode(variable.Name);
-    htmlToAppendbezirk.appendChild(textnodebezirk);
-    htmlToAppendbezirk.setAttribute('value', variable.Name);
-    dropdownContentbezirk.appendChild(htmlToAppendbezirk); 
-  
-}
-
-for(i=0; i<9;i++){
-    if(res[0].Warnstufen[i].Region =="Bundesland"){
-    allebundeslandnamen = res[0].Warnstufen[i];
-    }
-
-
-    object = allebundeslandnamen;
-    dropdownContentbundesland = document.getElementById('myDropdown_bundesland');
-    htmlToAppendbundesland = document.createElement('LI');
-    
-    htmlToAppendbundesland.setAttribute('onclick', 'changeText(this)');
-    textnodebundesland= document.createTextNode(object.Name);
-    htmlToAppendbundesland.appendChild(textnodebundesland);
-    htmlToAppendbundesland.setAttribute('value', object.Name);
-    dropdownContentbundesland.appendChild(htmlToAppendbundesland); 
-  
-}
+sortListDir("myDropdown");
 
 });
 
 
-
-/*sessionStorage.setItem("storeToggle", false);*/
 //__TOGGLE FUNKTION______
   function myToggle(){
     let isChecked=document.getElementById("switchValue");
     if(isChecked.checked){
         checkBool = true; //true = Standort deaktiviert! ==> DEFAULT
-        //console.log('checkbool',checkBool);
     }else{
         checkBool = false; //false = Standort deaktiviert!
-        //console.log('checkbool',checkBool);
     }
 }
 
@@ -384,7 +296,9 @@ function myLocation() {
         }
 }
 
-
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+   }
 //Auswählen des Bezirks im Drop Down - Text
 function changeText(elm){
     bezirk = elm.getAttribute('value');
@@ -402,83 +316,6 @@ function changeText(elm){
     sessionStorage.setItem("storeToggleTrue", true);
     sessionStorage.removeItem("storeToggleFalse");
   }
-
-
-
-//____DROP DOWN_____
-
-function filterFunction() {
-    var input, filter, ul, li, a, i;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    div = document.getElementById("myDropdown");
-    a = div.getElementsByTagName("li");
-    for (i = 0; i < a.length; i++) {
-      txtValue = a[i].textContent || a[i].innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        a[i].style.display = "";
-      } else {
-        a[i].style.display = "none";
-      }
-    }
-  }
-
-  function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-   }
-
-   function myFunctionbezirk(){
-    document.getElementById("myDropdown_bezirk").classList.toggle("show");
-   }
-
-   function myFunctionbundesland(){
-    document.getElementById("myDropdown_bundesland").classList.toggle("show");
-   }
-
-  
-
-  function sortListDir() {
-    var list, i, switching, b, shouldSwitch, dir, switchcount = 0;
-    list = document.getElementById("myDropdown");
-    switching = true;
-    // Set the sorting direction to ascending:
-    dir = "asc";
-    // Make a loop that will continue until no switching has been done:
-    while (switching) {
-      // Start by saying: no switching is done:
-      switching = false;
-      b = list.getElementsByTagName("LI");
-      // Loop through all list-items:
-      for (i = 0; i < (b.length - 1); i++) {
-        // Start by saying there should be no switching:
-        shouldSwitch = false;
-        if (dir == "asc") {
-          if (b[i].innerHTML.toLowerCase() > b[i + 1].innerHTML.toLowerCase()) {
-           shouldSwitch = true;
-            break;
-          }
-        } else if (dir == "desc") {
-          if (b[i].innerHTML.toLowerCase() < b[i + 1].innerHTML.toLowerCase()) {
-            shouldSwitch= true;
-            break;
-          }
-        }
-      }
-      if (shouldSwitch) {
-        b[i].parentNode.insertBefore(b[i + 1], b[i]);
-        switching = true;
-        // Each time a switch is done, increase switchcount by 1:
-        switchcount ++;
-      } else {
-       
-       if (switchcount == 0 && dir == "asc") {
-          dir = "desc";
-          switching = true;
-        }
-      }
-    }
-  }
-
 
   function onload_index(){
     bezirkStorage = sessionStorage.getItem("storeBezirk");

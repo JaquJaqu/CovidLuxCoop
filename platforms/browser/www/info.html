@@ -10,58 +10,59 @@
         <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
         <script src="https://d3js.org/d3-fetch.v2.min.js"></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js'></script>
-        
+
     </head>
-    <body>
+    <body onload="onload_info()">
 
 <header>
     <div class="lilaWelle">Wie funktioniert es?</div>
     <div class="info">
-        <a href="javascript:history.back()"><img alt="Back" src="img/back.png" width="25vw" height="25vw"></a>
+        <a id="back2"><img alt="Back" src="img/back.png" width="25vw" height="25vw"></a>
         </div>
-
 </header>
 
-<div id="blockWieGesamt">
-    <div class="blockWie">
-        <div class="flexboxwie">
-            <div class="flexbloxwietext">
-                <h3>Startseite</h3>
-                <p>Hier finden Sie die aktuelle Ampelfarbe Ihres derzeitigen Standortes und können ebenfalls die Ampelfarbe anderer Bezirke einsehen.</p>
+        <div id="blockWieGesamt">
+            <div class="blockWie">
+                <div class="flexboxwie">
+                    <div class="flexbloxwietext">
+                        <h3>Startseite</h3>
+                        <p class="textInfobutton">Hier finden Sie die aktuelle Ampelfarbe Ihres derzeitigen Standortes und können ebenfalls die Ampelfarbe anderer Bezirke einsehen.</p>
+                    </div>
+                    <div class="flexboxwiebild">
+                        <img alt="Ampel" src="img/ampel.png" width="80vw" height="80vw">
+                    </div>
+                </div>
             </div>
-            <div class="flexboxwiebild">
-        <img alt="Ampel" src="img/ampel.png" width="80vw" height="80vw">
+
+            <div class="blockWie">
+                <div class="flexboxwie">
+                    <div class="flexbloxwietext">
+                        <h3>Statistiken</h3>
+                        <p class="textInfobutton">Lorem ipsum weiß nicht wies weiter geht. Ach egal ich schreibe einfach was mir in den Sinn kommt. Die Statistiken zeigen coole Grafiken mit D3 gemacht!</p>
+                    </div>
+                    <div class="flexboxwiebild">
+                        <img alt="Graph-Bar" src="img/graph-bar.png" width="80vw" height="80vw">
+                    </div>
+                </div>
+            </div>
+
+            <div class="blockWie">
+                <div class="flexboxwie">
+                    <div class="flexbloxwietext">
+                        <h3>Maßnahmen und Symptome</h3>
+                        <p class="textInfobutton">Hier können Sie sich einen Überblick über geltende Maßnahmen oder auch häufige Symptome einer Covid-19 Infektion verschaffen.</p>
+                    </div>
+                    <div class="flexboxwiebild">
+                        <img alt="Sneeze" src="img/sneeze.png" width="80vw" height="80vw">
+                    </div>
+                </div>
+            </div>
         </div>
-        </div>
-    </div>
 
-<div class="blockWie">
-    <div class="flexboxwie">
-    <div class="flexblockwietext">
-        <h3>Statistiken</h3>
-        <p>Lorem ipsum weiß nicht wies weiter geht. Ach egal ich schreibe einfach was mir in den Sinn kommt. Die Statistiken zeigen coole Grafiken mit D3 gemacht!</p>
-    </div>
-    <div class="flexboxwiebild">
-    <img alt="Graph-Bar" src="img/graph-bar.png" width="80vw" height="80vw">
-</div>
-</div>
-</div>
-
-<div class="blockWie">
-    <div class="flexboxwie">
-        <div class="flexblockwietext">
-<h3>Maßnahmen und Symptome</h3>
-<p>Hier können Sie sich einen Überblick über geltende Maßnahmen oder auch häufige Symptome einer Covid-19 Infektion verschaffen.</p>
-</div>
-<div class="flexboxwiebild">
-<img alt="Sneeze" src="img/sneeze.png" width="80vw" height="80vw">
-</div>
-</div>
-</div>
-</div>
-
-<script src="cordova.js"></script>
-<!--<script src="js/dashboarddata.js"></script>-->
+        <script src="cordova.js"></script>
+        <script src="js/functions.js"></script>
+        <script src="js/info.js"></script>
+        <!--<script src="js/dashboarddata.js"></script>-->
 
 
 </body>

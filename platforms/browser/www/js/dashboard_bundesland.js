@@ -1,3 +1,4 @@
+var arrLänge_bundesland = 0;
 const arrBundesland = [];
 
 function onload_bundesland(){
@@ -15,26 +16,30 @@ d3.json(corsFix + url).then(res => {
     //Gib mir alle Bezirknamen
         for(i=0; i<res[0].Warnstufen.length; i++){
             if(res[0].Warnstufen[i].Region =="Bundesland"){
+            arrLänge_bundesland= arrLänge_bundesland + 1;
             arrBundesland.push(res[0].Warnstufen[i].Name);
         }
        }
+    console.log(arrBundesland);
     //DROP DOWN__
-    for(i=0; i<arrBundesland.length;i++){
-
+    for(i=0; i<res[0].Warnstufen.length;i++){
+        if(res[0].Warnstufen[i].Region =="Bundesland"){
+        allebezirknamen = res[0].Warnstufen[i];
+        }
+    
+    
+        element = allebezirknamen;
         dropdownContent = document.getElementById('myDropdown_bundesland');
         htmlToAppend = document.createElement('LI');
         
-        htmlToAppend.setAttribute('onclick', 'changeText_bundesland(this)');
-        textnode = document.createTextNode(arrBundesland[i]);
+        htmlToAppend.setAttribute('onclick', 'changeText(this)');
+        textnode = document.createTextNode(element.Name);
         htmlToAppend.appendChild(textnode);
-        htmlToAppend.setAttribute('value', arrBundesland[i]);
+        htmlToAppend.setAttribute('value', element.Name);
         dropdownContent.appendChild(htmlToAppend); 
       
     }
-    });
 
-    function changeText_bundesland(elm){
-        bundesland = elm.getAttribute('value');
-        myFunction_bundesland();
-        document.getElementById("dropbtn_bundesland").innerHTML = bundesland;
-      }
+    sortListDir("myDropdown_bundesland");
+    
+    });

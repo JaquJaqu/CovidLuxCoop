@@ -494,6 +494,7 @@ footer li{
   #Navi{
     height: 10vh;
     width: 100vw;
+    padding-bottom: 2.5vh;
 }
 
   #Navi ul{
@@ -512,7 +513,6 @@ footer li{
 }
 #Österreich{
     text-align: center;
-    margin-top: 5vh;
 }
 
 /************************************************__SYMPTOME__*********************************/

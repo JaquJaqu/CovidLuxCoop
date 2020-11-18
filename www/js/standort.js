@@ -296,7 +296,9 @@ function myLocation() {
         }
 }
 
-
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+   }
 //Auswählen des Bezirks im Drop Down - Text
 function changeText(elm){
     bezirk = elm.getAttribute('value');

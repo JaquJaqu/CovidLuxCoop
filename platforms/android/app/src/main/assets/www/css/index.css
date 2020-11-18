@@ -44,168 +44,27 @@ body {
     }
 }
 
-#bezirk {
-    font-size:4vh;
-    font-weight:500;
-    margin:0;
-    overflow:visible;
-    padding:0;
+/**************************************************__ALLGEMEIN__ *****************************/
+.lilaWelle{
+    background-color: #5E5C97;
+    color: white;
+    font-size: 16pt;
     text-align:center;
-    text-transform: uppercase;
+    vertical-align: middle;
+    padding-top: 5vh;
+    height: 10vh;
 }
-
+.info{
+    margin-top:-9.5vh;
+    margin-left: 10vw;
+}
+.settings{
+    margin-left:85vw;
+    margin-top: -4.5vh;
+}
 h2{
     text-align:center;
 }
-
-#FälleHome{
-    color: #ADADB9;
-    text-align:center;
-}
-
-.event {
-    border-radius:4px;
-    color:#FFFFFF;
-    font-size:12px;
-    margin:0px 30px;
-    padding:2px 0px;
-}
-
-.event.listening {
-    background-color:#333333;
-    display:block;
-}
-
-.event.received {
-    background-color:#4B946A;
-    display:none;
-}
-
-#deviceready.ready .event.listening { display: none; }
-#deviceready.ready .event.received { display: block; }
-
-@keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
-}
-
-.blink {
-    animation:fade 3000ms infinite;
-    -webkit-animation:fade 3000ms infinite;
-}
-
-
-#farbkreiswrap{
-    margin-left:40vw;
-    margin-top:-1vh;
-    display: block;
-   }
-
-#farbkreiswrapGrRe{
-    margin:0;
-    display: block;
-   }
-
-   #farbkreiswrapYeOr{
-    margin-top:0;
-    display: block;
-   }
-
-#farbkreis{
-    margin-top: 5vh;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: auto;
-    border-radius: 100vw;
-    width:100px;
-    height:100px;
-    display: block;
-    background-color: rgb(61, 61, 61);
-}
-
-#farbkreisAktiv{
-    margin-top: 4vh;
-    margin-left: 57vw;
-    margin-right: auto;
-    position: absolute;
-    border-radius: 100vw;
-    width:50px;
-    height:50px;
-    display: block;
-    background-color: white;
-    border:1px solid rgb(61, 61, 61);
-}
-
-#ringerlReGr{
-    position: absolute;
-    border-radius: 100vw;
-    width:16px;
-    height:16px;
-    /*margin-left: -3.5vw;
-    margin-top: -0.2vh;*/
-    background-color: white;
-    border:1.5px solid rgb(61, 61, 61);
-    display:none;
-}
-#ringerlYeOr{
-    position: absolute;
-    border-radius: 100vw;
-    width:16px;
-    height:16px;
-    /*margin-left: 9.5vw;
-    margin-top: -0.2vh;*/
-    background-color: white;
-    border:1.5px solid rgb(61, 61, 61);
-    display:none;
-}
-
-
-
-.farbkreiseklein{
-    
-    /* margin-right: 20%; */
-    
-    border-radius: 100vw;
-    width:10px;
-    height:10px;
-    background-color: #CB0538;
-    display: inline-block;
-    position:relative;
-    align-items: center;
-
-}
-
-#farbkreisgreen{
-    
-    background-color: #60B564;
-    margin-left: -2.5vw;
-}
-
-#farbkreisred{
-    /* margin-left: px;
-    margin-top: -51px; */
-    background-color: #CB0538;
-    margin-left: 19vw;
-}
-
-#farbkreisyellow{
-    /* margin-left: 10px;
-    margin-top: 10px; */
-    background-color: #FED500;
-    margin-left: 6vw;
-}
-
-#farbkreisorange{
-    /* margin-left: 10px;
-    margin-top: 10px; */
-    background-color: #F59C00;
-    margin-top:0;
-    margin-left: 3vw;
-}
-
-
-
 
 header {
     background-color: white;
@@ -291,6 +150,133 @@ a {
       color: #211F77;
   }
 
+  ul {
+    list-style:none;
+    margin:0;
+    padding:0
+}
+
+/************************************************__INDEX__************************/
+#bezirk {
+    font-size:4vh;
+    font-weight:500;
+    margin:0;
+    overflow:visible;
+    padding:0;
+    text-align:center;
+    text-transform: uppercase;
+}
+
+#FälleHome{
+    color: #ADADB9;
+    text-align:center;
+}
+
+#farbkreiswrap{
+    margin-left:40vw;
+    margin-top:-1vh;
+    display: block;
+   }
+
+#farbkreiswrapGrRe{
+    margin:0;
+    display: block;
+   }
+
+   #farbkreiswrapYeOr{
+    margin-top:0;
+    display: block;
+   }
+
+#farbkreis{
+    margin-top: 5vh;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    border-radius: 100vw;
+    width:100px;
+    height:100px;
+    display: block;
+    background-color: rgb(61, 61, 61);
+}
+
+#farbkreisAktiv{
+    margin-top: 4vh;
+    margin-left: 57vw;
+    margin-right: auto;
+    position: absolute;
+    border-radius: 100vw;
+    width:50px;
+    height:50px;
+    display: block;
+    background-color: white;
+    border:1px solid rgb(61, 61, 61);
+}
+
+#ringerlReGr{
+    position: absolute;
+    border-radius: 100vw;
+    width:16px;
+    height:16px;
+    /*margin-left: -3.5vw;
+    margin-top: -0.2vh;*/
+    background-color: white;
+    border:1.5px solid rgb(61, 61, 61);
+    display:none;
+}
+#ringerlYeOr{
+    position: absolute;
+    border-radius: 100vw;
+    width:16px;
+    height:16px;
+    /*margin-left: 9.5vw;
+    margin-top: -0.2vh;*/
+    background-color: white;
+    border:1.5px solid rgb(61, 61, 61);
+    display:none;
+}
+
+.farbkreiseklein{
+    
+    /* margin-right: 20%; */
+    
+    border-radius: 100vw;
+    width:10px;
+    height:10px;
+    background-color: #CB0538;
+    display: inline-block;
+    position:relative;
+    align-items: center;
+
+}
+
+#farbkreisgreen{
+    
+    background-color: #60B564;
+    margin-left: -2.5vw;
+}
+
+#farbkreisred{
+    /* margin-left: px;
+    margin-top: -51px; */
+    background-color: #CB0538;
+    margin-left: 19vw;
+}
+
+#farbkreisyellow{
+    /* margin-left: 10px;
+    margin-top: 10px; */
+    background-color: #FED500;
+    margin-left: 6vw;
+}
+
+#farbkreisorange{
+    /* margin-left: 10px;
+    margin-top: 10px; */
+    background-color: #F59C00;
+    margin-top:0;
+    margin-left: 3vw;
+}
 
 
 footer {
@@ -350,46 +336,13 @@ footer li{
 /*body, html {
     width:100%;
 }*/
-ul {
-    list-style:none;
-    margin:0;
-    padding:0
-}
 
-
-#menu > li {
-    display:block;
-    border:1px solid grey;
-    position:relative;
-    width:200px;
-    margin-left:20%;
-    text-align:center;
-    
-}
-#menu li ul {
-    position:absolute;
-    border:1px solid grey;
-    width:100%;
-    max-height:0;
-    overflow:hidden;
-    /*-moz-transition: 1s;
-    -ms-transition: 1s;
-    -o-transition: 1s;
-    -webkit-transition: 1s;
-    transition: 1s;*/
-    background-color: white;
-}
-#menu li:hover ul {
-    overflow:auto;
-    max-height:150px;
-    
-}
 #WarnstufeGeschrieben{
     text-align:center;
     font-weight: 500;
     margin-top: 5%;
 }
-/* Dropdown Button */
+
 .dropbtn {
     color: #211F77;
     background-color: white;
@@ -408,9 +361,7 @@ ul {
     margin-top: -0.5vh;
   }
   
-  /* Dropdown button on hover & focus */
-  /* The search field */
-  #myInput {
+  #myInput, #myInput_bezirk, #myInput_bundesland {
     box-sizing: border-box;
     background-position: 14px 12px;
     background-repeat: no-repeat;
@@ -423,49 +374,16 @@ ul {
     border-bottom: 1px solid #ddd;
   }
   
-  /* The search field when it gets focus/clicked on */
-  #myInput:focus {outline: 3px solid #ddd;}
+  #myInput:focus, #myInput_bezirk:focus, #myInput_bundesland:focus {outline: 3px solid #ddd;}
+  
 
-  #myInput_bezirk {
-    box-sizing: border-box;
-    background-position: 14px 12px;
-    background-repeat: no-repeat;
-    font-size: 16px;
-    padding: 14px 20px 12px 45px;
-    border: none;
-    width: 100%;
-    background-color: #D7D7D9;
-    color: black;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  /* The search field when it gets focus/clicked on */
-  #myInput_bezirk:focus {outline: 3px solid #ddd;}
-
-  #myInput_bundesland {
-    box-sizing: border-box;
-    background-position: 14px 12px;
-    background-repeat: no-repeat;
-    font-size: 16px;
-    padding: 14px 20px 12px 45px;
-    border: none;
-    width: 100%;
-    background-color: #D7D7D9;
-    color: black;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  /* The search field when it gets focus/clicked on */
-  #myInput_bundesland:focus {outline: 3px solid #ddd;}
-  
-  /* The container <div> - needed to position the dropdown content */
   .dropdown {
     position: relative;
     display: block;
     text-align:center;
   }
   
-  /* Dropdown Content (Hidden by Default) */
+
   .dropdown-content {
     display: none;
     position: absolute;
@@ -480,7 +398,7 @@ ul {
     z-index: 1;
   }
   
-  /* Links inside the dropdown */
+ 
   .dropdown-content li {
     color: black;
     font-size: 14pt;
@@ -490,14 +408,9 @@ ul {
     visibility: visible;
   }
   
-  /* Change color of dropdown links on hover */
   .dropdown-content li:hover {background-color: #f1f1f1}
   
-  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
   .show {display:block;}
-
-
-  /*_Toggle__*/
 
   #Standortbox{
       display:flex;
@@ -536,9 +449,6 @@ ul {
     border: 1px solid #211F77;
     -webkit-transition: .4s;
     transition: .4s;
-    
-
-  
   }
   
   .slider:before {
@@ -557,13 +467,11 @@ ul {
   }
   
   input:checked + .slider {
-    background-color: white;
-    
+    background-color: white; 
   }
   
   input:focus + .slider {
-    box-shadow: 1 4 1px #211F77;
-    
+    box-shadow: 1 4 1px #211F77; 
   }
   
   input:checked + .slider:before {
@@ -582,6 +490,7 @@ ul {
     border-radius: 15%;
   }
 
+/*************************************************__DASHBOARDS__********************************/
   #Navi{
     height: 10vh;
     width: 100vw;
@@ -601,6 +510,12 @@ ul {
     font-weight: 500;
     
 }
+#Österreich{
+    text-align: center;
+    margin-top: 5vh;
+}
+
+/************************************************__SYMPTOME__*********************************/
 #Akkordeon{
     margin-top: 7vh;
 }
@@ -668,27 +583,11 @@ p{
     font-weight: 500;
     text-decoration: underline;
 }
-#Österreich{
-    text-align: center;
-    margin-top: 5vh;
-}
-.lilaWelle{
-    background-color: #5E5C97;
-    color: white;
-    font-size: 16pt;
+#DataSymptome{
     text-align:center;
-    vertical-align: middle;
-    padding-top: 5vh;
-    height: 10vh;
 }
-.info{
-    margin-top:-9.5vh;
-    margin-left: 10vw;
-}
-.settings{
-    margin-left:85vw;
-    margin-top: -4.5vh;
-}
+
+/*****************************************************__INFO__****************************/
 .blockWie{
     background-color: rgba(173, 173, 185, 0.2);
     color: black;
@@ -716,9 +615,8 @@ h3{
 .textInfobutton{
     font-size:2.3vh;
 }
-#DataSymptome{
-    text-align:center;
-}
+
+/***********************************************__EINSTELLUNGEN__***************************/
 #einstellungen{
     margin-top: 7vh;
 }

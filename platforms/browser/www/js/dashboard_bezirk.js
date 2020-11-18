@@ -26,11 +26,12 @@ d3.json(corsFix + url).then(res => {
         allebezirknamen = res[0].Warnstufen[i];
         }
     
+        console.log(allebezirknamen);
         element = allebezirknamen;
         dropdownContent = document.getElementById('myDropdown_bezirk');
         htmlToAppend = document.createElement('LI');
         
-        htmlToAppend.setAttribute('onclick', 'changeText_bezirk(this)');
+        htmlToAppend.setAttribute('onclick', 'changeText(this)');
         textnode = document.createTextNode(element.Name);
         htmlToAppend.appendChild(textnode);
         htmlToAppend.setAttribute('value', element.Name);
@@ -40,8 +41,19 @@ d3.json(corsFix + url).then(res => {
     sortListDir("myDropdown_bezirk");    
     });
 
-    function changeText_bezirk(elm){
+    function changeText(elm){
         bezirk = elm.getAttribute('value');
-        myFunction_bezirk();
-        document.getElementById("dropbtn_bezirk").innerHTML = bezirk;
+        myFunction();
+        document.getElementById("bezirk").innerHTML = bezirk;
+        getAmpel();
+    
+        //NEU: Für Toggle funktionalität
+        document.getElementById("infoText").innerText = "Das ist nicht dein Standort, du hast dir selbst einen Bezirk gewählt";
+        document.getElementById("infoText2").style.display= "none"; 
+        //NEU: Anderer Berzirk ausgewählt, Standort wird deaktiviert
+        document.getElementById("switchValue").checked= true;
+    
+        sessionStorage.setItem("storeBezirk",bezirk);
+        sessionStorage.setItem("storeToggleTrue", true);
+        sessionStorage.removeItem("storeToggleFalse");
       }
