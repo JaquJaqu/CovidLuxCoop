@@ -1,16 +1,32 @@
-//TO DO: Check internet Connection --PAsst fast gehört noch ausgebessert
-// Last Modified Header Bekommen --- PASST
-//Datum in Lokal FIle Speicher --- PASST
 
-//LAst Modified undDaten im Local File Speicher vergleichen --> Passt aber komisch BUG FIX
-//MAch es möglich mit Lokalen Daten zu arbeiten-- PASST
+/*
+__!!_____Was getan wurde: 
+-) Check internet Connection
+-) Datum in Lokal FIle Speicher
+-) Last Modified Header vom Browser Bekommen 
+-) zu LokalStorage Daten Speicherdatum dazu speichern
+-) Last Modified und Daten im Local File Speicher vergleichen --> Passt aber komisch BUG FIX
+-) Mit lokalen Daten (und online) daten arbeiten 
 
-//Speichere LokationLokal
-//Mach es möglich mit Lokalen Daten zu arbeiten-- PASST
 
-//Speichere LokationLokal
-//Lokaldaten updaten
-//Lokaldaten mit lokaldaten offline arbeiten
+
+__!!_____TO DO:
+-) Wenn man online war und dann offline geht ist der Standort immer noch als Markiert getoggled --> Stimmt ja dann nicht weil kein Internet
+-) Daten lieber immer vom LokalStorage nehmen!: Spart Bandbreite und code: 
+--> Implementierung/Checken das die Daten immer vom lokal Storage genommen werden.
+--> Regelmäßig nach Updates prüfen (zB immer wenn eine Internetconnection ist) 
+
+-) Problem1: Beim Switchen von Online/Zu Offline und umgekehrt Spackt das Dropdown
+-) Problem2: Toggle funktion is weird..
+-) Problem3: Datumsvergleich vom lokalstorage unlogisch: überlegen warum
+-) Problem: Fehlermedlung wenn connection is off: "standort.js:485 Uncaught (in promise) TypeError: Cannot read property 'Region' of undefined"
+  sollt aber ned zu tragisch sein 
+
+Weitere To do: 
+-) Speichere LokationLokal
+-) Lokaldaten updaten
+-) Lokaldaten mit lokaldaten offline arbeiten
+*/
 
 let bezirk;
 let bundesland;
@@ -18,40 +34,50 @@ let ampelStufe;
 var arrLänge = 0;
 let path2 = corsFix + url;
 //let path2;
-let pathbool = true; //true --> JSON ausm Internet wird verwenden, False sollte lokale Json verwenden, geht noch nicht!
+let pathbool; //true --> JSON ausm Internet wird verwenden, False lokales JSOn wird verwendet
+//downloadTextFile(); //wenn noch nie vorher gedownloaded wurde und es wegen irgend einem grund ned automatisch geht.. 
 
-//__NEU--> DEFAULT FARBKREIS
 farbkreisPH = document.getElementById("farbkreisPH");
 farbkreis = document.createElement("div");
 farbkreis.setAttribute("id", "farbkreis");
 farbkreisPH.appendChild(farbkreis);
 
 
-//___Checkif Onlone
+//___Checkif Online
 read_from_local_json();
 const checkOnlineStatus = async () => {
   try {
-    const online = await fetch(path2); //schau ob ich auf die Ressource zugreifen kann
+    const online = await fetch(corsFix); //schau ob ich auf die Ressource zugreifen kann
+    checkIfJsonNeedsUPDATE(); //Brauchen die lokalen Daten ein Update?
     return online.status >= 200 && online.status < 300; // either true or false
     /*HTTP response codes between 200 and 299 indicate success, and we’ll return the result of the status code comparison. This will be true if the response status is from 200 to 299 and false otherwise.*/
-  } catch (err) {
+  
+} catch (err) {
+  
     return false; // definitely offline
   }
+  
 };
+
+
+//Intervall das Connection Prüft, setzt pathbool
 setInterval(async () => {
+  
   const connectionBool = await checkOnlineStatus();
   const statusDisplay = document.getElementById("status");
   console.log("Connection Bool:", connectionBool);
   statusDisplay.textContent = connectionBool ? "Online" : "OFFline";
-
   //bin ich Online und brauchts ein Update der Daten?
   if (connectionBool == true) {
-    checkIfJsonNeedsUPDATE();
+    pathbool = true;
     console.log("bist eh online");
   } else if (connectionBool == false) {
+    pathbool = false;
+    getAmpel();
     console.log("boi du bist sowieso offline, kein update für dich..");
   }
 }, 3000); // probably too often, try 30000 for every 30 seconds
+
 
 //Zugriff auf API
 function getLocation(latitude, longitude) {
@@ -170,21 +196,25 @@ function getLocation(latitude, longitude) {
   );
 }
 
+//Händelt Online und Offline verhalten im detail (mit der loadJson methode)
 function getAmpelinside(data) {
   if (pathbool == true) {
-    for (i = 0; i < data[3].Warnstufen.length; i++) {
-      if (data[3].Warnstufen[i].Region == "Bezirk") {
-        if (data[3].Warnstufen[i].Name == bezirk) {
+    for (i = 0; i < data[0].Warnstufen.length; i++) {
+
+      console.log('data[0]',data[0]);
+      if (data[0].Warnstufen[i].Region == "Bezirk") {
+        if (data[0].Warnstufen[i].Name == bezirk) {
           console.log(bezirk);
           //console.log("Ampelstufe: "+data[3].Warnstufen[i].Warnstufe);
-          ampelStufe = data[3].Warnstufen[i].Warnstufe;
-
+          ampelStufe = data[0].Warnstufen[i].Warnstufe;
           drawIllustration(ampelStufe);
+          dropdownData = data[0];
+          createDropdown(); 
         }
       }
     }
   } else if (pathbool == false) {
-    console.log("Test", data.Warnstufen.length); //HIER WEITER MACHEN
+    //console.log("Test", data.Warnstufen.length); //HIER WEITER MACHEN
 
     for (i = 0; i < dataOffline.Warnstufen.length; i++) {
       if (dataOffline.Warnstufen[i].Region == "Bezirk") {
@@ -193,6 +223,7 @@ function getAmpelinside(data) {
           //console.log("Ampelstufe: "+dataOffline.Warnstufen[i].Warnstufe);
           ampelStufe = dataOffline.Warnstufen[i].Warnstufe;
           drawIllustration(ampelStufe);
+          dropdownData = dataOffline;
         }
        }
      }
@@ -248,9 +279,7 @@ function drawIllustration(ampelStufe){
         document.getElementById("ringerlReGr").style.marginTop = "-0.2vh";
       }
 }
-
-
-//Bekomme Ampelwarnstufe von jsonFile
+//getAmpel für generelles online und offline Handling
 function getAmpel() {
   if (pathbool == true) {
     path2 = corsFix + url;
@@ -267,8 +296,8 @@ function getAmpel() {
     path2 = dataOffline;
     data = dataOffline;
     console.log("Offline Data", dataOffline);
-    console.log("pathoffline", dataOffline);
     getAmpelinside(dataOffline);
+    createDropdown();
   }
 }
 
@@ -294,7 +323,7 @@ function read_from_local_json() {
   items2 = JSON.stringify(items_json);
   // console.log('alle Daten außer Zeitstempel',items.length);//JSON object
   // console.log('alle Daten außer Zeitstempel',items_json[0]);//string
-  console.log("alle Daten außer Zeitstempel2", items.items_json.Warnstufen.length); //string
+  //console.log("alle Daten außer Zeitstempel2", items.items_json.Warnstufen.length); //string
 
   dataOffline = items.items_json;
   //dataOffline = items.items_json.Warnstufen.length;
@@ -302,7 +331,6 @@ function read_from_local_json() {
   var savedDate = localStorage.getItem("Ampeldaten2");
   savedDateValue = JSON.parse(savedDate);
   getSavedDate = savedDateValue.updateDate;
-
   //console.log('Zuletzt im localStorage gespeichert am:',getSavedDate);
   if (!items) {
     items = [];
@@ -310,7 +338,6 @@ function read_from_local_json() {
 }
 
 //_____CHECK IF UPDATE IS NEEDED --> LAST MODIFIED-
-
 function checkIfJsonNeedsUPDATE() {
   read_from_local_json(); //Les mir das Objekt im Lokalstorage aus (brauche das Speicherdatum "updateDate" )
   var client = new XMLHttpRequest(); //mach eine Verbindung zur Resource
@@ -393,6 +420,7 @@ function readUserLocation() {
   });
 }
 
+
 //__TOGGLE FUNKTION______
 function myToggle() {
   let isChecked = document.getElementById("switchValue");
@@ -440,15 +468,55 @@ function myLocation() {
   }
 }
 
+
+//DROP DOWN 
+function createDropdown(){
+  //Gib mir alle Bezirknamen
+for(i=0; i<dropdownData.Warnstufen.length; i++){
+  if(dropdownData.Warnstufen[i].Region =="Bezirk"){
+  bezirkname = dropdownData.Warnstufen[i].Name;
+  ampelwarnstufe = dropdownData.Warnstufen[i].Warnstufe;
+  arrLänge= arrLänge + 1;
+  //console.log('bezirknamen', bezirknamen);
+  //console.log("arrlänge:",arrLänge);
+}
+}
+
+//DROP DOWN__
+//Alle Berzirknamen im Json File vom letzten Datum 
+for(i=0; i<arrLänge;i++){
+if(dropdownData.Warnstufen[i].Region =="Bezirk"){
+allebezirknamen = dropdownData.Warnstufen[i].Name;
+//console.log('allebezirknamen', allebezirknamen);
+}
+
+element = allebezirknamen;
+dropdownContent = document.getElementById('myDropdown');
+htmlToAppend = document.createElement('LI');
+
+htmlToAppend.setAttribute('onclick', 'changeText(this)');
+textnode = document.createTextNode(element);
+htmlToAppend.appendChild(textnode);
+htmlToAppend.setAttribute('value', element);
+dropdownContent.appendChild(htmlToAppend);  
+}
+sortListDir();
+
+}
+
+
 function myFunction() {
   document.getElementById("myDropdown").classList.toggle("show");
 }
+
+
 //Auswählen des Bezirks im Drop Down - Text
 function changeText(elm) {
   bezirk = elm.getAttribute("value");
   myFunction();
   document.getElementById("bezirk").innerHTML = bezirk;
   getAmpel();
+  getAmpelinside();
 
   //NEU: Für Toggle funktionalität
   document.getElementById("infoText").innerText =
