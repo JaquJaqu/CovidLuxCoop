@@ -9,7 +9,7 @@ function myFunction_bundesland() {
    }
 
 
-d3.json(corsFix + url).then(res => {
+d3.json(corsFix+url).then(res => {
 
 
     //Gib mir alle Bezirknamen
