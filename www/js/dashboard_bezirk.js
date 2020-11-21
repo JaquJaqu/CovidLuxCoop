@@ -8,13 +8,9 @@ function myFunction_bezirk() {
     document.getElementById("myDropdown_bezirk").classList.toggle("show");
    }
 
-
-getBezirkDropdown();
-
-function getBezirkDropdown(){
 d3.json(corsFix + url).then(res => {
 
-console.log('something');
+
     //Gib mir alle Bezirknamen
         for(i=0; i<res[0].Warnstufen.length; i++){
             if(res[0].Warnstufen[i].Region =="Bezirk"){
@@ -43,8 +39,6 @@ console.log('something');
     }
     sortListDir("myDropdown_bezirk");    
     });
-} 
-
 
     function changeText_bezirk(elm){
         bezirk = elm.getAttribute('value');
