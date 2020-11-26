@@ -7,76 +7,95 @@ __!!_____Was getan wurde:
 -) zu LokalStorage Daten Speicherdatum dazu speichern
 -) Last Modified und Daten im Local File Speicher vergleichen --> Passt aber komisch BUG FIX
 -) Mit lokalen Daten (und online) daten arbeiten 
-
-
-
-__!!_____TO DO:
--) Wenn man online war und dann offline geht ist der Standort immer noch als Markiert getoggled --> Stimmt ja dann nicht weil kein Internet
--) Daten lieber immer vom LokalStorage nehmen!: Spart Bandbreite und code: 
---> Implementierung/Checken das die Daten immer vom lokal Storage genommen werden.
---> Regelmäßig nach Updates prüfen (zB immer wenn eine Internetconnection ist) 
-
--) Problem1: Beim Switchen von Online/Zu Offline und umgekehrt Spackt das Dropdown
--) Problem2: Toggle funktion is weird..
--) Problem3: Datumsvergleich vom lokalstorage unlogisch: überlegen warum
--) Problem: Fehlermedlung wenn connection is off: "standort.js:485 Uncaught (in promise) TypeError: Cannot read property 'Region' of undefined"
-  sollt aber ned zu tragisch sein 
-
-Weitere To do: 
+-) Daten lieber immer vom LokalStorage nehmen!: Spart Bandbreite und code:
 -) Speichere LokationLokal
 -) Lokaldaten updaten
--) Lokaldaten mit lokaldaten offline arbeiten
+-) mit lokaldaten offline arbeiten
+
+__!!_____TO DO:  
+--> Checken Lokationsdaten immer offline genommen werden
+--> beim einschalten der App wird keine Farbe angezeigt wenn Standort = offline
+--> Speichern der Lokationsdaten wenn sie noch nie vorher im local storage gespeichert wurden checken/schaun obs wirklich geht! 
+--> Zusatz zum Regelmäßig nach Updates prüfen:
+   derzeit alle paar sekunden gibt es einen trigger der zurück gibt ob Internet aktiviert wurde? 
+-) Wenn man online war und dann offline geht ist der Standort immer noch als Markiert getoggled --> Stimmt ja dann nicht weil kein Internet?? Wie lösen? 
+
+
+PROBLEME:
+-) Problem1: 
+    Drop down muss noch statisch gelöst weren!!! sonst funktioniert das drop down erst wenn manden Standort einmal aktiviert hat! 
+    Derzeit wirds noch in getAmpel() aufgerufen!
+
+Probleme die durch das implementieren der lokalen JSOn Datei für die Berzirke behoben werden sollten:
+-) Problem2: 
+    Beim Switchen von Online/Zu Offline und umgekehrt Spackt das Dropdown --> muss noch mit lokaler JSON Gemached werden, wird derzeit noch automatisch generiert
+-) Problem3: 
+    Fehlermedlung wenn connection is off: "standort.js:485 Uncaught (in promise) TypeError: Cannot read property 'Region' of undefined"
+    sollt aber ned zu tragisch sein
+
+Anderes Problem:
+-) Problem3: Datumsvergleich vom lokalstorage unlogisch: überlegen warum
 */
 
 let bezirk;
 let bundesland;
 let ampelStufe;
+let lokalstorageBezirk;
+let lokalstorageBundesland;
+
+let checkBool; //checkt Standort wenn false = Standort AN
+let connBool; //checkt Internet wenn true= Internet AN
+let accessBool = true; //checkt of ampelfile online geladen werden soll, wenn true = AN
+let pathbool; //Checkt ob Ampfelfile online angefragt werden kann wenn true = MÖGLICH
+//downloadAmpelFile(); //wenn noch nie vorher gedownloaded wurde und es wegen irgend inem grund ned automatisch geht.. 
+
+
 var arrLänge = 0;
 let path2 = corsFix + url;
-//let path2;
-let pathbool; //true --> JSON ausm Internet wird verwenden, False lokales JSOn wird verwendet
-//downloadTextFile(); //wenn noch nie vorher gedownloaded wurde und es wegen irgend einem grund ned automatisch geht.. 
+
 
 farbkreisPH = document.getElementById("farbkreisPH");
 farbkreis = document.createElement("div");
 farbkreis.setAttribute("id", "farbkreis");
 farbkreisPH.appendChild(farbkreis);
+read_from_local_storage();
+//createDropdown(); --> standort.js:527 Uncaught TypeError: Failed to execute 'getCurrentPosition' on 'Geolocation': parameter 1 is not of type 'Function'.
+
+//Drop down muss noch statisch gelöst weren!!! sonst funktioniert das drop down erst wenn manden Standort einmal aktiviert hat! 
+//Derzeit wirds noch in getAmpel() aufgerufen!
 
 
-//___Checkif Online
-read_from_local_json();
+
 const checkOnlineStatus = async () => {
   try {
-    const online = await fetch(corsFix); //schau ob ich auf die Ressource zugreifen kann
-    checkIfJsonNeedsUPDATE(); //Brauchen die lokalen Daten ein Update?
+    const online = await fetch('https://ipv4.icanhazip.com/'); //schau ob ich auf die Ressource zugreifen kann
+    //pathbool == true;
     return online.status >= 200 && online.status < 300; // either true or false
     /*HTTP response codes between 200 and 299 indicate success, and we’ll return the result of the status code comparison. This will be true if the response status is from 200 to 299 and false otherwise.*/
-  
 } catch (err) {
-  
     return false; // definitely offline
   }
-  
 };
 
 
-//Intervall das Connection Prüft, setzt pathbool
+//Intervall das Connection Prüft, setzt connBool
 setInterval(async () => {
   
   const connectionBool = await checkOnlineStatus();
   const statusDisplay = document.getElementById("status");
-  console.log("Connection Bool:", connectionBool);
+  console.log("Connection Bool:", connectionBool, "du hast kein Internet");
+  console.log("Path Bool:", pathbool, "online zugriff auf Ampeldaten verweigert");
   statusDisplay.textContent = connectionBool ? "Online" : "OFFline";
   //bin ich Online und brauchts ein Update der Daten?
   if (connectionBool == true) {
-    pathbool = true;
+    connBool = true;
+    checkForUpdate(); //Brauchen die lokalen Daten ein Update?
     console.log("bist eh online");
   } else if (connectionBool == false) {
-    pathbool = false;
-    getAmpel();
+    connBool = false;
     console.log("boi du bist sowieso offline, kein update für dich..");
   }
-}, 3000); // probably too often, try 30000 for every 30 seconds
+}, 15000); // probably too often, try 30000 for every 30 seconds
 
 
 //Zugriff auf API
@@ -174,15 +193,22 @@ function getLocation(latitude, longitude) {
             bezirk = "Wels(Stadt)";
           }
 
+          lokalstorageBezirk = bezirk;
+          
+
           //Output
           document.getElementById("bezirk").innerHTML = bezirk;
+
+
+
           sessionStorage.setItem("storeBezirk", bezirk);
           //console.log('Du befindest dich im Bezirk: ', bezirk)
-          getAmpel();
+          getAmpel(dataOffline);
         }
+        lokalstorageBundesland = bundesland;
+
         //Bundesland
-        document.getElementById("bundesland").innerHTML =
-          data.principalSubdivision;
+        document.getElementById("bundesland").innerHTML = data.principalSubdivision;
         bundesland = data.principalSubdivision;
         sessionStorage.setItem("storeBundesland", bundesland);
         //console.log(sessionStorage.getItem("storeBundesland"));
@@ -196,39 +222,11 @@ function getLocation(latitude, longitude) {
   );
 }
 
-//Händelt Online und Offline verhalten im detail (mit der loadJson methode)
+
 function getAmpelinside(data) {
-  if (pathbool == true) {
-    for (i = 0; i < data[0].Warnstufen.length; i++) {
-
-      console.log('data[0]',data[0]);
-      if (data[0].Warnstufen[i].Region == "Bezirk") {
-        if (data[0].Warnstufen[i].Name == bezirk) {
-          console.log(bezirk);
-          //console.log("Ampelstufe: "+data[3].Warnstufen[i].Warnstufe);
-          ampelStufe = data[0].Warnstufen[i].Warnstufe;
-          drawIllustration(ampelStufe);
-          dropdownData = data[0];
-          createDropdown(); 
-        }
-      }
-    }
-  } else if (pathbool == false) {
-    //console.log("Test", data.Warnstufen.length); //HIER WEITER MACHEN
-
-    for (i = 0; i < dataOffline.Warnstufen.length; i++) {
-      if (dataOffline.Warnstufen[i].Region == "Bezirk") {
-        if (dataOffline.Warnstufen[i].Name == bezirk) {
-          //console.log(bezirk);
-          //console.log("Ampelstufe: "+dataOffline.Warnstufen[i].Warnstufe);
-          ampelStufe = dataOffline.Warnstufen[i].Warnstufe;
-          drawIllustration(ampelStufe);
-          dropdownData = dataOffline;
-        }
-       }
-     }
+    
    }
- }
+
 
 
 function drawIllustration(ampelStufe){
@@ -279,108 +277,158 @@ function drawIllustration(ampelStufe){
         document.getElementById("ringerlReGr").style.marginTop = "-0.2vh";
       }
 }
-//getAmpel für generelles online und offline Handling
-function getAmpel() {
-  if (pathbool == true) {
-    path2 = corsFix + url;
-    console.log("pathonline", path2);
-    loadJSON(path2,function (data) {
-        getAmpelinside(data);
-      },
-      function (xhr) {
-        console.error(xhr);
-      }
-    );
-  } else if (pathbool == false) {
-    read_from_local_json();
+
+
+
+
+function getAmpel(data) {
     path2 = dataOffline;
     data = dataOffline;
     console.log("Offline Data", dataOffline);
-    getAmpelinside(dataOffline);
+    for (i = 0; i < dataOffline.Warnstufen.length; i++) {
+      if (dataOffline.Warnstufen[i].Region == "Bezirk") {
+        if (dataOffline.Warnstufen[i].Name == bezirk) {
+          //console.log(bezirk);
+          //console.log("Ampelstufe: "+dataOffline.Warnstufen[i].Warnstufe);
+          ampelStufe = dataOffline.Warnstufen[i].Warnstufe;
+          drawIllustration(ampelStufe);
+        }
+       }
+     }
     createDropdown();
-  }
 }
 
-//______downloadTextFile()
-function downloadTextFile() {//Speichern der Daten im LocalStorage + Hinzufügen derderzeitigen Zeit
+//Speichern der AMPELDaten im LocalStorage + Hinzufügen der Zeit und Datum des Downloads
+function downloadAmpelFile(path2) {
+  if(pathbool==true && connBool ==true){ //wenn ich internet hab und auf die Ampedaten zugreifen darf dann..
   loadJSON(path2, function (data) {
     let items_json = data[0];
     //console.log(items_json);
-
     var date = new Date();//var updateDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
-    
-    var updateDate = date.toGMTString(); // Tue, 17 Nov 2020 14:16:29 GMT --> Gibt mir die jetzige Uhrzeit im Format das lastModiefied Header Req auch hat
+        var updateDate = date.toGMTString(); // Tue, 17 Nov 2020 14:16:29 GMT --> Gibt mir die jetzige Uhrzeit im Format das lastModiefied Header Request auch hat
     var ampelDatatrue = { updateDate: updateDate, items_json };
     //console.log('Einmal die Uhrzeit bitte', updateDate); //Derzeitige Uhrzeit in GMT
-    localStorage.setItem("Ampeldaten2", JSON.stringify(ampelDatatrue));
+    localStorage.setItem("Ampeldaten3", JSON.stringify(ampelDatatrue));
   });
+}else{ 
+  pathbool=false; //verweiere zugriff auf ampeldaten online auch wenn ich internet hab
+}
+}
+
+//Speichern der LOKATION Daten im LocalStorage + Hinzufügen der Zeit und Datum des Downloads
+function downloadLokation() {
+   console.log('DEIN BEZIRK:', lokalstorageBezirk );
+    var lokationobjecttrue = {bezirksObject:lokalstorageBezirk, bundeslandObject:lokalstorageBundesland};
+    localStorage.setItem("Lokationsdaten", JSON.stringify(lokationobjecttrue));
 }
 
 
-function read_from_local_json() {
-  var items_json = localStorage.getItem("Ampeldaten2");
+
+
+
+function read_from_local_storage() { //gib mir die Datem aus dem localStorage
+
+  //LOKATION
+  var savedLokation = localStorage.getItem("Lokationsdaten");
+  savedLokationValue = JSON.parse(savedLokation);
+  
+  getbezirkLocalS = savedLokationValue.bezirksObject;
+  getbundeslandLocalS = savedLokationValue.bundeslandObject;
+
+  console.log('Lokal gespeicherter Bezirk: ',getbezirkLocalS);
+  console.log('Lokal gespeichertes Bundesland: ',getbundeslandLocalS);
+
+
+  //AMPELDATEN
+
+
+  var items_json = localStorage.getItem("Ampeldaten3");
+
+  if(items_json !=null){ //check of es diese Daten im localstorage gibt
+    accessBool = false; 
   items = JSON.parse(items_json);
   items2 = JSON.stringify(items_json);
-  // console.log('alle Daten außer Zeitstempel',items.length);//JSON object
-  // console.log('alle Daten außer Zeitstempel',items_json[0]);//string
-  //console.log("alle Daten außer Zeitstempel2", items.items_json.Warnstufen.length); //string
-
   dataOffline = items.items_json;
   //dataOffline = items.items_json.Warnstufen.length;
 
-  var savedDate = localStorage.getItem("Ampeldaten2");
+  var savedDate = localStorage.getItem("Ampeldaten3");
   savedDateValue = JSON.parse(savedDate);
   getSavedDate = savedDateValue.updateDate;
   //console.log('Zuletzt im localStorage gespeichert am:',getSavedDate);
   if (!items) {
     items = [];
   }
+} else{
+  accessBool = true; //Wenn es die Daten nicht gibt dann starte den zugriff auf die online-Daten 
+  pathbool = true; 
+  downloadAmpelFile(path2);
 }
 
-//_____CHECK IF UPDATE IS NEEDED --> LAST MODIFIED-
-function checkIfJsonNeedsUPDATE() {
-  read_from_local_json(); //Les mir das Objekt im Lokalstorage aus (brauche das Speicherdatum "updateDate" )
+}
+
+
+function checkForUpdate() {
+  read_from_local_storage(); //Les mir das Objekte vom Lokalstorage aus (brauche "updateDate", "lokalstorageBezirk" )
+  try{
+  console.log('Speicherdatum vom local storage:', getSavedDate);
+  }catch(error){
+  console.log(error);
+}  
+//schau ob die lokalen Ampel und Lokationsdaten Speicherdaten geupdated gehören
+if(checkBool == false){ //Standort ist aktiviert wenn checkBool==false
+      //Schau ob die Standortdaten upgedated gehören wenn Internet vorhanden und der Standort aktiviert ist,
+      if(getbezirkLocalS != lokalstorageBezirk){
+         downloadLokation();
+      }else{
+        console.log('Standort ist seit letztem check unverändert');
+      }
+    }
+if(connBool == true && accessBool == true){ //wenn es eine Internetverbindung ist und dder online zugriff auf die Ampeldaten gestattet dann
   var client = new XMLHttpRequest(); //mach eine Verbindung zur Resource
+  try{
   client.open("GET", path2, true);
   client.send();
-
-  client.onreadystatechange = function () {
-    if (this.readyState == this.HEADERS_RECEIVED) {
-      //gibt mir alle HEaders von alles Requests aus
-      var lastModifiedResponse = client.getResponseHeader("Last-Modified");
+   client.onreadystatechange = function () {
+    
+    if (this.readyState == this.HEADERS_RECEIVED) {//gibt mir alle Headers von allen Requests aus
+            var lastModifiedResponse = client.getResponseHeader("Last-Modified");
       var contentTypeResponse = client.getResponseHeader("Content-Type");
       if (contentTypeResponse != "application/json") {
         client.abort();
       } else {
-        //Wenn es sich um eine JSOn Datei handelt dann gib mir den Last-Modified Header derWeb Resource
-        console.log(
-          "Zuletzt am Server gspeichert am (Last-Modified):",
-          lastModifiedResponse
+        //Wenn es sich um eine JSOn Datei handelt dann gib mir den Last-Modified Header der Web Resource
+        console.log("Zuletzt am Server gspeichert am (Last-Modified):",lastModifiedResponse
         );
 
         if (lastModifiedResponse < getSavedDate) {
           //Wenn der das Speicherdatum der Datei(Lastmodified) älter ist als das letzte Speicherdatum im lokal Storage dann ist es am neusten Stand
-          //console.log('your Data is up-to-date');
+          console.log('your Data is up-to-date');
+          pathbool = false;
           /*FRAGE: 
              Datum im Lokal Storage ist doch größer, als Speicherdatum der JSOn Datei. Warum ist es nicht "up - to - date"???
              */
         } else {
+          pathbool = true; 
           console.log(
             "your Data is not up-to-date, it gets now downloaded from the resource and saved in your local storage"
-          );
-          downloadTextFile(path2);
+         );
+         downloadAmpelFile(path2);
         }
       }
     }
   };
+  }catch(error){
+    console.error(error);
+    }
+  }
+  pathbool = false; 
 }
+
 
 /* INFO: ALTERNATIVE
 The Last-Modified response header specifies the last time a change was made in the returned content, in the form of a time stamp. 
 ETag values are unique identifiers generated by the server and changed every time the object is modified. Either can be used to determine if cached content is up to date.
-
 ETags: This tag is useful when for when the last modified date is difficult to determine.
-
 */
 
 function loadJSON(path, success, error) {
@@ -406,18 +454,18 @@ var onLocationSuccess = function (position) {
 };
 
 // Error callback
-
 function onLocationError(error) {
   console.log(
     "code: " + error.code + "\n" + "message: " + error.message + "\n"
   );
 }
 
-//NEU__FUNKTION ZUM STANDORT LESEN
+
 function readUserLocation() {
   navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError, {
     enableHighAccuracy: true,
-  });
+  }
+  );
 }
 
 
@@ -434,8 +482,9 @@ function myToggle() {
 //______STANDORT verwenden mit Toggle________
 function myLocation() {
   let isChecked = document.getElementById("switchValue");
+  
   myToggle(isChecked); //Toggle Mechanismus: true = Standort deaktiviert!
-
+  
   //Manuelle Lokation
   if (checkBool == true) {
     document.getElementById("bezirk").innerHTML = bezirk;
@@ -452,7 +501,7 @@ function myLocation() {
     //Standortbasierte Lokation
   } else if (checkBool == false) {
     readUserLocation(); //Standort abfragen
-
+    downloadLokation();
     document.getElementById("bezirk").innerHTML = bezirk;
     let infoText = document.getElementById("infoText");
     infoText.setAttribute("display", "inline-block");
@@ -471,7 +520,9 @@ function myLocation() {
 
 //DROP DOWN 
 function createDropdown(){
+  console.log('der fehler macht nix weil die Namen lokal als JSOn gepeichert werden, wird noch gemerged');
   //Gib mir alle Bezirknamen
+  dropdownData = dataOffline;
 for(i=0; i<dropdownData.Warnstufen.length; i++){
   if(dropdownData.Warnstufen[i].Region =="Bezirk"){
   bezirkname = dropdownData.Warnstufen[i].Name;
@@ -501,7 +552,6 @@ htmlToAppend.setAttribute('value', element);
 dropdownContent.appendChild(htmlToAppend);  
 }
 sortListDir();
-
 }
 
 
@@ -515,8 +565,8 @@ function changeText(elm) {
   bezirk = elm.getAttribute("value");
   myFunction();
   document.getElementById("bezirk").innerHTML = bezirk;
-  getAmpel();
-  getAmpelinside();
+  getAmpel(dataOffline);
+  //getAmpelinside();
 
   //NEU: Für Toggle funktionalität
   document.getElementById("infoText").innerText =
@@ -542,7 +592,7 @@ function onload_index() {
     document.getElementById("bezirk").innerHTML = bezirkStorage;
     bezirk = bezirkStorage;
     document.getElementById("infoText2").style.display = "none";
-    //getAmpel();
+    //getAmpel(dataOffline);
   }
   if (toggleStorageTrue != null) {
     document.getElementById("switchValue").checked = true;
