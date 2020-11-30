@@ -7,10 +7,10 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-geolocation": {
+    "cordova-plugin-device": {
       "PACKAGE_NAME": "com.example.covidlux"
     },
-    "cordova-plugin-whitelist": {
+    "cordova-plugin-geolocation": {
       "PACKAGE_NAME": "com.example.covidlux"
     },
     "cordova-plugin-network-information": {
@@ -19,7 +19,7 @@
     "cordova-plugin-request-location-accuracy": {
       "PACKAGE_NAME": "com.example.covidlux"
     },
-    "cordova-plugin-device": {
+    "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.example.covidlux"
     }
   },

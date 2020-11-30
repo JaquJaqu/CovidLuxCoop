@@ -37,6 +37,22 @@ Anderes Problem:
 -) Problem3: Datumsvergleich vom lokalstorage unlogisch: überlegen warum
 */
 
+
+/*_____________________NEU__________________
+ * -) Code wurde gemergt
+ * -) Die index heißt jz home.html und die index.html ist der erste Screen vom Walkthrough.
+ * -) InternetConnection wird angezeigt wenn sie geändert wird und alle anderen Variablen auch (also setInterval is weg)
+ *    funktioniert auch gut für Android
+ * -) Alle Parts mit CORDOVA-CODE sind für später angelegt: auf Android und iOS wird Lokation automatisch aktiviert
+ *    wenn ToggleButton angeschalten wird (für Android getestet), für Browser anderer Code || Damit das Testen jz leichter
+ *    und mit dem GoLive-Plugin funktioniert sind die Teile jz auskommentiert.
+ * 
+ * ______________WICHTIG FÜRS TESTEN___________________
+ * -) Erst seit den letzten 3, 4 Ampelfile Versionen sind die Bezirke von Vorarlberg auch wirklich als Bezirke
+ *    angeführt. Wenn mit älteren Versionen getestet wird kann es also sein das Bregenz, Bludenz, Dornbirn
+ *    oder Feldkirch nicht funktionieren.
+ */
+
 let bezirk;
 let bundesland;
 let ampelStufe;
@@ -56,13 +72,14 @@ let pathbool; //Checkt ob Ampfelfile online angefragt werden kann wenn true = M�
 var arrLänge = 0;
 let path2 = corsFix + url;
 
+/*__CORDOVA-CODE___
 var platform = null;
 
 document.addEventListener("deviceready", onDeviceReady, false);
         function onDeviceReady() {
           platform = device.platform;
         }
-
+*/
 
 
 farbkreisPH = document.getElementById("farbkreisPH");
@@ -516,16 +533,16 @@ function myLocation() {
 
     //Standortbasierte Lokation
   } else if (checkBool == false) {
-    console.log(connBool);
-    console.log(platform);
     if(connBool == true){
+      /*___CORDOVA-CODE___
       if(platform != null){
       if(platform ==="Android" || platform ==="iOS"){
     getStandort();
       }else if(platform ==="browser"){
         readUserLocation();
       }
-    }
+    }*/
+    readUserLocation();
     document.getElementById("standortText").innerHTML = "derzeitiger Standort";
    //Standort abfragen
     }else if (connBool == false){

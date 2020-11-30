@@ -37,6 +37,22 @@ Anderes Problem:
 -) Problem3: Datumsvergleich vom lokalstorage unlogisch: überlegen warum
 */
 
+
+/*_____________________NEU__________________
+ * -) Code wurde gemergt
+ * -) Die index heißt jz home.html und die index.html ist der erste Screen vom Walkthrough.
+ * -) InternetConnection wird angezeigt wenn sie geändert wird und alle anderen Variablen auch (also setInterval is weg)
+ *    funktioniert auch gut für Android
+ * -) Alle Parts mit CORDOVA-CODE sind für später angelegt: auf Android und iOS wird Lokation automatisch aktiviert
+ *    wenn ToggleButton angeschalten wird (für Android getestet), für Browser anderer Code || Damit das Testen jz leichter
+ *    und mit dem GoLive-Plugin funktioniert sind die Teile jz auskommentiert.
+ * 
+ * ______________WICHTIG FÜRS TESTEN___________________
+ * -) Erst seit den letzten 3, 4 Ampelfile Versionen sind die Bezirke von Vorarlberg auch wirklich als Bezirke
+ *    angeführt. Wenn mit älteren Versionen getestet wird kann es also sein das Bregenz, Bludenz, Dornbirn
+ *    oder Feldkirch nicht funktionieren.
+ */
+
 let bezirk;
 let bundesland;
 let ampelStufe;
@@ -44,6 +60,7 @@ let lokalstorageBezirk;
 let lokalstorageBundesland;
 let getbezirkLocalS;
 const arrBezirke = [];
+
 
 let checkBool; //checkt Standort wenn false = Standort AN
 let connBool; //checkt Internet wenn true= Internet AN
@@ -54,6 +71,15 @@ let pathbool; //Checkt ob Ampfelfile online angefragt werden kann wenn true = M�
 
 var arrLänge = 0;
 let path2 = corsFix + url;
+
+/*__CORDOVA-CODE___
+var platform = null;
+
+document.addEventListener("deviceready", onDeviceReady, false);
+        function onDeviceReady() {
+          platform = device.platform;
+        }
+*/
 
 
 farbkreisPH = document.getElementById("farbkreisPH");
@@ -304,7 +330,7 @@ function getAmpel(data) {
 function downloadAmpelFile(path2) {
   if(pathbool==true && connBool ==true){ //wenn ich internet hab und auf die Ampedaten zugreifen darf dann..
   loadJSON(path2, function (data) {
-    let items_json = data[5];
+    let items_json = data[6];
     //console.log(items_json);
     var date = new Date();//var updateDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
         var updateDate = date.toGMTString(); // Tue, 17 Nov 2020 14:16:29 GMT --> Gibt mir die jetzige Uhrzeit im Format das lastModiefied Header Request auch hat
@@ -507,9 +533,16 @@ function myLocation() {
 
     //Standortbasierte Lokation
   } else if (checkBool == false) {
-    console.log(connBool);
     if(connBool == true){
+      /*___CORDOVA-CODE___
+      if(platform != null){
+      if(platform ==="Android" || platform ==="iOS"){
     getStandort();
+      }else if(platform ==="browser"){
+        readUserLocation();
+      }
+    }*/
+    readUserLocation();
     document.getElementById("standortText").innerHTML = "derzeitiger Standort";
    //Standort abfragen
     }else if (connBool == false){
