@@ -1,45 +1,47 @@
-var arrLänge_bundesland = 0;
 const arrBundesland = [];
 
 function onload_bundesland(){
+    if(sessionStorage.getItem("storeBundesland") != null){
     document.getElementById("dropbtn_bundesland").innerHTML = sessionStorage.getItem("storeBundesland");
+    }
+    if(sessionStorage.getItem("storeBezirk") != null){
+        bezirkTemp = sessionStorage.getItem("storeBezirk");
+        loadJSON("bundesland_dropdown.json", function(data){
+            for(i=0; i<data[0].Bezirke.length; i++){
+                if(data[0].Bezirke[i].Bezirk == bezirkTemp){
+                document.getElementById("dropbtn_bundesland").innerHTML = data[0].Bezirke[i].Bundesland;
+            }
+        }
+        }, function(xhr){console.error(xhr);});
+}
 }
 
 function myFunction_bundesland() {
     document.getElementById("myDropdown_bundesland").classList.toggle("show");
    }
 
-
-d3.json(corsFix + url).then(res => {
-
-
-    //Gib mir alle Bezirknamen
-        for(i=0; i<res[0].Warnstufen.length; i++){
-            if(res[0].Warnstufen[i].Region =="Bundesland"){
-            arrLänge_bundesland= arrLänge_bundesland + 1;
-            arrBundesland.push(res[0].Warnstufen[i].Name);
+   loadJSON("bundesland_dropdown.json", function(data){
+    for(i=0; i<data[0].Bezirke.length; i++){ 
+        if(!arrBundesland.includes(data[0].Bezirke[i].Bundesland)){
+            arrBundesland.push(data[0].Bezirke[i].Bundesland);
         }
-       }
-    console.log(arrBundesland);
-    //DROP DOWN__
-    for(i=0; i<res[0].Warnstufen.length;i++){
-        if(res[0].Warnstufen[i].Region =="Bundesland"){
-        allebezirknamen = res[0].Warnstufen[i];
-        }
-    
-    
-        element = allebezirknamen;
+    }
+    for(i=0; i<arrBundesland.length;i++){
+
         dropdownContent = document.getElementById('myDropdown_bundesland');
         htmlToAppend = document.createElement('LI');
         
-        htmlToAppend.setAttribute('onclick', 'changeText(this)');
-        textnode = document.createTextNode(element.Name);
+        htmlToAppend.setAttribute('onclick', 'changeText_bundesland(this)');
+        textnode = document.createTextNode(arrBundesland[i]);
         htmlToAppend.appendChild(textnode);
-        htmlToAppend.setAttribute('value', element.Name);
+        htmlToAppend.setAttribute('value', arrBundesland[i]);
         dropdownContent.appendChild(htmlToAppend); 
       
     }
+}, function(xhr){console.error(xhr);});
 
-    sortListDir("myDropdown_bundesland");
-    
-    });
+    function changeText_bundesland(elm){
+        bundesland = elm.getAttribute('value');
+        myFunction_bundesland();
+        document.getElementById("dropbtn_bundesland").innerHTML = bundesland;
+      }

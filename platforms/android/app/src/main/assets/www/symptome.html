@@ -6,79 +6,105 @@
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="css/index.css">
+        <link rel="icon" href="img/Logo_CovidLux.png">
         <title>CovidLux</title>
         <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
         <script src="https://d3js.org/d3-fetch.v2.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js'></script>
     </head>
     <body>
 
 <header>
-    <div class="lilaWelle">Symptome</div>
     <div class="info">
         <a href="info.html" onclick="saveHistory()"><img alt="Info" src="img/info.png" width="25vw" height="25vw"></a>
-        </div>
-        <div class="settings">
+    </div>
+    <h1>Symptome</h1>
+    <div class="settings">
         <a href="settings.html" onclick="saveHistory()"><img alt="Settings" src="img/settings.png" width="25vw" height="25vw"></a>
-        </div>
+    </div> 
 </header>
      
-     <div id ="mainwrapper">
+     <div class ="mainwrapper">
 
         <div id="Akkordeon">
         <button class="accordion">Die häufigsten Symptome</button>
         <div class="panel">
-          <h2>Häufige Symptome</h2>
-          <ul>
-              <li>Fieber</li>
-              <li>Trockener Husten</li>
-              <li>Müdigkeit</li>
-          </ul>
+            <div class="panel_links">
+                <h2>Häufige Symptome</h2>
+                <ul>
+                    <li>Fieber</li>
+                    <li>Trockener Husten</li>
+                    <li>Müdigkeit</li>
+                </ul>
+            </div>
+            <div class="panel_rechts">
+                <img src="img/sneeze.png" width="80vw" height="80vh">
+            </div>
         </div>
         
         <button class="accordion">Seltenere Symptome</button>
         <div class="panel">
-          <h2>Seltene Symptome</h2>
-          <ul>
-              <li>Gliederschmerzen</li>
-              <li>Halsschmerzen</li>
-              <li>Kopfschmerzen</li>
-              <li>Verlust des Geschmacks- oder Geruchsinns</li>
-          </ul>
+            <div class="panel_links">
+                <h2>Seltene Symptome</h2>
+                <ul>
+                    <li>Gliederschmerzen</li>
+                    <li>Halsschmerzen</li>
+                    <li>Kopfschmerzen</li>
+                    <li>Verlust des Geschmacks- oder Geruchsinns</li>
+                </ul>
+            </div>
+            <div class="panel_rechts">
+                <img src="img/sneeze.png" width="80vw" height="80vh">
+            </div>
         </div>
         
         <button class="accordion">Schwere Symptome</button>
         <div class="panel">
-         <h2>Schwere Symptome</h2>
-         <ul>
-             <li>Atembeschwerden</li>
-             <li>Kurzatmigkeit</li>
-             <li>Schmerzen im Brustbereich</li>
-             <li>Verlust der Sprach- oder Bewegungsfähigkeit</li>
-         </ul>
+            <div class="panel_links">
+                <h2>Schwere Symptome</h2>
+                <ul>
+                    <li>Atembeschwerden</li>
+                    <li>Kurzatmigkeit</li>
+                    <li>Schmerzen im Brustbereich</li>
+                    <li>Verlust der Sprach- oder Bewegungsfähigkeit</li>
+                </ul>
+            </div>
+            <div class="panel_rechts">
+                <img src="img/sneeze.png" width="80vw" height="80vh">
+            </div>
         </div>     
   
         <p id="DataSymptome">Datenquelle: <a href="https://www.who.int/" target="_blank" id="Quelle">who.int</a></p>
-        <h1 id="Wastun">Ich glaube ich bin infiziert. Was nun?</h1>
+        <h1 id="Wastun" onclick="startOverlay()">Ich glaube ich bin infiziert. Was nun?</h1>
 
+        <div id=overlay onclick="endOverlay()">
+            <div id="overlay_flex">
+                <img src="img/sneeze.png" id="overlay_img" width="80vw" height="80vh">
+            <p>Solltest du die beschriebenen Krankheitssymptome aufweisen, bleibe bitte zu Hause und kontaktiere
+                die 24h-Hotline <b>1450</b> !
+            </p>
+            <p>Solltest du allgemeine Fragen zum Corona Virus haben, kannst du dich an die Infoline 
+                <b>0800 555 621</b>(täglich von 7:00 bis 20:00) wenden. Hier wird dir gerne eine Auskunft gegeben.
+            </p>
+            </div>
         </div>
-
-        <div id="RectSymptome"></div>
-    
+        </div>
     </div>   
     
 
 
     <footer>
         <nav>
+            <div id="RectSymptome"></div>
             <div id="icons">
-                <a href="index.html"><img alt="Home" src="img/home_grau.png" width="30vw" height="30vw"></a>
+                <a href="home.html"><img alt="Home" src="img/home_grau.png" width="30vw" height="30vw"></a>
                 <a href="dashboard_bezirk.html"><img alt="Statistik" src="img/statistics_grau.png" width="30vw" height="30vw"></a>
                 <a href="maßnahmen.html"><img alt="Maßnahmen" src="img/maske_grau.png" width="30vw" height="30vw"></a>
                 <a href="symptome.html"><img alt="Symptome" src="img/fieber_blau.png" width="30vw" height="30vw"></a>
             </div>
              <ul>
-                 <li><a href="index.html">Home</a></li>
+                 <li><a href="home.html">Home</a></li>
                  <li><a href="dashboard_bezirk.html">Statistik</a></li>
                  <li><a href="maßnahmen.html">Maßnahmen</a></li>
                  <li><a href="symptome.html" class="aktiv">Symptome</a></li>

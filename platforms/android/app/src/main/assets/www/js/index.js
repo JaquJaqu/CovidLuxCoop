@@ -1,56 +1,27 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
+function onload_walk(){
+    /*essionStorage.setItem("walkthrough", true);*/
+    sessionStorage.removeItem("walkthrough");
 
-// Wait for the deviceready event before using any of Cordova's device APIs.
-// See https://cordova.apache.org/docs/en/latest/cordova/events/events.html#deviceready
-// document.addEventListener('deviceready', onDeviceReady, false);
+    if(sessionStorage.getItem("splash") == null){
+        setTimeout(function(){
+                document.getElementById("logo_covidlux").style.visibility = "visible";
+        },2000);
+        $("#splash").delay(5000).fadeOut();
+    }else{
+        document.getElementById("splash").style.display = "none";
+    }
 
-// function onDeviceReady() {
-//     // Cordova is now initialized. Have fun!
+    setTimeout(function(){
+        if(sessionStorage.getItem("walkthrough") != null){
+            window.location.replace("home.html");
+        }
+    },4000);
 
-//     console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
-//     document.getElementById('deviceready').classList.add('ready');
-// }
+}
 
-// const sourceFile = require('./ampelcolor.js');
-// console.log(sourceFile.allebezirknamen);
-
-
-
-// //allebezirke = document.getElementById('bezirkname').innerHTML;
-//  dropdownContent = document.querySelector('.dropdown-content');
-
-// for (i = 0; i < res[0].Warnstufen.length; i++) {
-//     if(res[0].Warnstufen[i].Region =="Bezirk"){
-//         bezirkname = res[0].Warnstufen[i];
-//     }
-//    element = bezirkname;
-
-//    htmlToAppend = document.createElement('li');
-//   htmlToAppend.innerHTML = element.Name;
-//   //htmlToAppend.href = element.C;
-  
-//   dropdownContent.appendChild(htmlToAppend);
-// console.log(element);
-// }
-
-
-//import { firstHelper, secondHelper } from './ampelcolor.js'; 
+function storeSplash(){
+    /*sessionStorage.setItem("splash", true);*/
+    sessionStorage.removeItem("splash");
+}
  
 

@@ -351,6 +351,7 @@ dependencies {
 
     // SUB-PROJECT DEPENDENCIES START
     implementation(project(path: ":CordovaLib"))
+    implementation "com.google.android.gms:play-services-location:16.+"
     // SUB-PROJECT DEPENDENCIES END
 }
 

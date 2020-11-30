@@ -6,6 +6,7 @@
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="css/index.css">
+        <link rel="icon" href="img/Logo_CovidLux.png">
         <title>CovidLux</title>
         <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
         <script src="https://d3js.org/d3-fetch.v2.min.js"></script>
@@ -15,17 +16,21 @@
     <body>
 
 <header>
-    <div class="lilaWelle">Einstellungen</div>
     <div class="info">
         <a id="back1"><img alt="Back" src="img/back.png" width="25vw" height="25vw"></a>
         </div>
-
+    <h1>Einstellungen</h1>
+   <div></div>
 </header>
 <body onload="onload_settings()">
 
-    <div id="mainwrapper">
+    <div class="mainwrapper">
         <div id="einstellungen">
-            <div class="einstellungen_header">Berechtigungen</div>
+            
+            <div class="einstellungen_header">
+                <img alt="Ampel" src="img/ampel.png" width="20vw" height="20vw">
+                <h2>Berechtigungen</h2>
+            </div>
             <div class="einstellungen_content">
                 <h3>Standort</h3>
                 <label class="switch">
@@ -36,14 +41,24 @@
                     derzeitigen Aufenthaltspunkt anzuzeigen</p>
             </div>
 
-            <div class="einstellungen_header">Datenschutz</div>
+            
+            <div class="einstellungen_header">
+                <img alt="Ampel" src="img/ampel.png" width="20vw" height="20vw">
+                <h2>Datenschutz</h2>
+            </div>
             <div class="einstellungen_content">
                 <button class="einstellungen_buttons">Datenschutzerklärung</button>
             </div>
 
-            <div class="einstellungen_header">Mehr</div>
+            
+            <div class="einstellungen_header">
+                <img alt="Ampel" src="img/ampel.png" width="20vw" height="20vw">
+                <h2>Mehr</h2>
+            </div>
             <div class="einstellungen_content">
                 <button class="einstellungen_buttons">Impressum</button>
+            </div>
+            <div class="einstellungen_content" id="Link">
                 <button class="einstellungen_buttons">Weiterführende Links</button>
             </div>
         </div>

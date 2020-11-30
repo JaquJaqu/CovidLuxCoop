@@ -11,9 +11,9 @@ body {
     /*background-image:linear-gradient(to bottom, #A7A7A7 0%, #E4E4E4 51%);*/
     font-family: system-ui, -apple-system, -apple-system-font, 'Inter UI', 'regular';
     font-size:12px;
-    height:105vh;
-    margin:0px;
-    padding:0px;
+    height:auto;
+    margin:0;
+    padding:0;
     /* Padding to avoid the "unsafe" areas behind notches in the screen */
     padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
     /*text-transform:uppercase;*/
@@ -22,7 +22,7 @@ body {
 
 /* Portrait layout (default) */
 .app {
-    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
+    background:url(../img/Logo_CovidLux.png) no-repeat center top; /* 170px x 200px */
     position:absolute;             /* position in the center of the screen */
     left:50%;
     top:50%;
@@ -45,37 +45,27 @@ body {
 }
 
 /**************************************************__ALLGEMEIN__ *****************************/
-.lilaWelle{
-    background-color: #5E5C97;
-    color: white;
-    font-size: 16pt;
-    text-align:center;
-    vertical-align: middle;
-    padding-top: 5vh;
-    height: 10vh;
-}
-.info{
-    margin-top:-9.5vh;
-    margin-left: 10vw;
-}
-.settings{
-    margin-left:85vw;
-    margin-top: -4.5vh;
-}
+
 h2{
     text-align:center;
 }
 
 header {
-    background-color: white;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 80px;
+    background-color: #5E5C97;
     width: 100vw;
-    display: inline-block;
+    display:flex;
+    flex-direction: row;
     align-items: center;
+    justify-content: space-around;
+    color: white;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    height: 10vh;
+}
+header h1{
+    font-size: 16pt;
+    font-weight: 400;
+    line-height: 2vh;
 }
 
 #RectHome{
@@ -98,44 +88,47 @@ header {
 
 #RectMaßnahmen{
     position:fixed;
-    top: 85vh;
+    top: 84vh;
     left: 50vw;
-    width: 15vw;
+    width: 18vw;
     height:0.3vh;
     background-color: #211F77;
 }
 
 #RectSymptome{
     position:fixed;
-    top: 85vh;
-    left: 80vw;
-    width: 11vw;
+    top: 84vh;
+    left: 78vw;
+    width: 15vw;
     height:0.3vh;
     background-color: #211F77;
 }
 
 #RectDashboard_Österreich{
-    position:fixed;
-    top:24vh;
-    left: 65vw;
+    display: inline-block;
+    margin-top: 5vh;
+    margin-left: 65vw;
     width: 28vw;
     height:0.3vh;
     background-color: #211F77;
 }
 #RectDashboard_Bezirk{
-    position:fixed;
-    top:24vh;
-    left: 7vw;
+    display:inline-block;
+    margin-top:5vh;
+    margin-left: 7vw;
     width: 20vw;
     height:0.3vh;
     background-color: #211F77;
 }
-#RectDashboard_Bundesland{
-    position:fixed;
-    top:24vh;
-    left: 32vw;
-    width: 30vw;
+#RectDashboard_Bundesland{ 
+    display:inline-block;
+    margin-top: 5vh;
+    /*left: 30%;*/
+    width: 120px;
     height:0.3vh;
+    margin-left: 30vw;
+    /*margin-right: auto;
+    text-align:center;*/
     background-color: #211F77;
 }
 
@@ -155,8 +148,89 @@ a {
     margin:0;
     padding:0
 }
-
-/************************************************__INDEX__************************/
+/**********************************************__INDEX__**************************/
+.walk_kreis{
+    background-color: #ADADB9;
+    border-radius: 100vw;
+    width:15px;
+    height:15px;
+}
+.walk_kreis_aktiv{
+    background-color: #211F77;
+    border-radius: 100vw;
+    width:15px;
+    height:15px;
+}
+.walk_button_links{
+    color: #211F77;
+    font-weight: 700;
+    font-size: 14pt;
+    background-color: white;
+    border: none;
+    margin-right: 5vw;
+    margin-top: -1vh;
+}
+.walk_button_rechts{
+    color: #211F77;
+    font-weight: 700;
+    font-size: 14pt;
+    background-color: white;
+    border: none;
+    margin-left: 5vw;
+    margin-top: -1vh;
+}
+#walk_kreise{
+    display:flex;
+    justify-content: space-around;
+    width: 85vw;
+    margin-left: 7vw;
+}
+#walk_kreise_start{
+    display:flex;
+    justify-content: space-around;
+    width: 55vw;
+    margin-left: 37vw;
+}
+.walk_erklärung{
+    text-align:center;
+}
+.walk_erklärung_index{
+    text-align:center;
+}
+#splash {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: white;
+    text-align: center;
+    color: #211F77;
+ }
+ #splash_inner{
+     margin-top: 35vh;
+ }
+ #logo_covidlux{
+     text-align: center;
+     visibility: hidden;
+ }
+ .footer_walk{
+    background-color: white;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 10vh;
+    width: 80vw;
+    margin-top: -10vw;
+    margin-left: 0vw;
+ }
+/************************************************__HOME__************************/
+#status{
+    text-align:center;
+    
+}
 #bezirk {
     font-size:4vh;
     font-weight:500;
@@ -165,39 +239,34 @@ a {
     padding:0;
     text-align:center;
     text-transform: uppercase;
+    width: 100vw;
 }
+#infoText{
+    font-size:16pt;
+    font-weight: 500;
+    margin-top: -0.5vh;
 
-#FälleHome{
-    color: #ADADB9;
-    text-align:center;
 }
-
+#standortText{
+    font-weight: 500;
+    font-size: 10pt;
+    margin-top: -0.2vh;
+}
 #farbkreiswrap{
-    margin-left:40vw;
     margin-top:-1vh;
-    display: block;
+    display: flex;
+    justify-content: center;
    }
-
-#farbkreiswrapGrRe{
-    margin:0;
-    display: block;
-   }
-
-   #farbkreiswrapYeOr{
-    margin-top:0;
-    display: block;
-   }
-
 #farbkreis{
     margin-top: 5vh;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: auto;
     border-radius: 100vw;
-    width:100px;
-    height:100px;
+    width:150px;
+    height:150px;
     display: block;
-    background-color: rgb(61, 61, 61);
+    background-color: #ADADB9;
 }
 
 #farbkreisAktiv{
@@ -208,23 +277,11 @@ a {
     border-radius: 100vw;
     width:50px;
     height:50px;
-    display: block;
+    display: none;
     background-color: white;
-    border:1px solid rgb(61, 61, 61);
+    border:1px solid #ADADB9;
 }
-
-#ringerlReGr{
-    position: absolute;
-    border-radius: 100vw;
-    width:16px;
-    height:16px;
-    /*margin-left: -3.5vw;
-    margin-top: -0.2vh;*/
-    background-color: white;
-    border:1.5px solid rgb(61, 61, 61);
-    display:none;
-}
-#ringerlYeOr{
+#ringerl{
     position: absolute;
     border-radius: 100vw;
     width:16px;
@@ -234,6 +291,7 @@ a {
     background-color: white;
     border:1.5px solid rgb(61, 61, 61);
     display:none;
+    z-index: -1;
 }
 
 .farbkreiseklein{
@@ -244,40 +302,46 @@ a {
     width:10px;
     height:10px;
     background-color: #CB0538;
-    display: inline-block;
-    position:relative;
-    align-items: center;
-
+    /*display: inline-block;*/
 }
 
 #farbkreisgreen{
     
     background-color: #60B564;
-    margin-left: -2.5vw;
+    margin-left: 0vw;
+    margin-top: 2vh;
 }
 
 #farbkreisred{
     /* margin-left: px;
     margin-top: -51px; */
     background-color: #CB0538;
-    margin-left: 19vw;
+    margin-left: 2vw;
+    margin-top: 2vh;
 }
 
 #farbkreisyellow{
     /* margin-left: 10px;
     margin-top: 10px; */
     background-color: #FED500;
-    margin-left: 6vw;
+    margin-left: 2vw;
+    margin-top: 3vh;
 }
 
 #farbkreisorange{
     /* margin-left: 10px;
     margin-top: 10px; */
     background-color: #F59C00;
-    margin-top:0;
-    margin-left: 3vw;
+    margin-left: 2vw;
+    margin-top: 3vh;
 }
-
+#info_start{
+    font-size: 14pt;
+    font-weight: 500;
+    width: 75vw;
+    text-align: center;
+    margin-left: 12vw;
+}
 
 footer {
     background-color: white;
@@ -285,7 +349,7 @@ footer {
     bottom: 0;
     right: 0;
     left: 0;
-    height: 13vh;
+    height: 18vh;
     width: 80vw;
     margin-top: -10vw;
     margin-left: 10vw;
@@ -311,7 +375,7 @@ footer li{
 #icons{
     margin:auto;
     width: auto;
-    top: 5vh;
+    margin-top: 5vh;
 }
 #icons a{
     padding-inline-start: 7vw;
@@ -322,21 +386,21 @@ footer li{
     display:none;
 }
 
-#mainwrapper{
+.mainwrapper{
     position: absolute;
     top: 80px;
     left: 0;
     right: 0;
+    padding-bottom: 20vh;
     /*height: 80px;
     /*width:50%;*/
     width: 100vw;
     display: block;
 }
 
-/*body, html {
-    width:100%;
-}*/
-
+#content_home{
+    margin-top: 5vh;
+}
 #WarnstufeGeschrieben{
     text-align:center;
     font-weight: 500;
@@ -388,12 +452,12 @@ footer li{
     display: none;
     position: absolute;
     /*top: 70%;*/
-    left: 54%;
-    margin-right: -60%;
-    transform: translate(-60%, -0%);
+    left: 55%;
+    margin-right: -45%;
+    transform: translate(-57%, -0%);
     background-color: white;
-    min-width: 130px;
-    width: 53%;
+    min-width: 50vw;
+    width: 65vw;
     border: 1px solid #ddd;
     z-index: 1;
   }
@@ -420,13 +484,13 @@ footer li{
       width: 180px;
         margin-left:auto;
         margin-right: auto;
-        margin-top: -1vh;
+        margin-top: 1vh;
   }
 
 .switch {
     position: relative;
     display: inline-block;
-    width: 68px;
+    width: 70px;
     height: 30px;
     margin-top: 1.5vh;
   }
@@ -448,15 +512,14 @@ footer li{
     background-color: white;
     border: 1px solid #211F77;
     -webkit-transition: .4s;
-    transition: .4s;
+    transition: .4s; 
   }
   
   .slider:before {
     position: absolute;
-    content: "";
     height: 29px;
     width: 35px;
-    left: 32px;
+    left: 33px;
     background-color: #211F77;
     color: white;
     -webkit-transition: .4s;
@@ -475,11 +538,29 @@ footer li{
   }
   
   input:checked + .slider:before {
-    -webkit-transform: translateX(-32px);
-    -ms-transform: translateX(-32px);
-    transform: translateX(-32px);
+    -webkit-transform: translateX(-33px);
+    -ms-transform: translateX(-33px);
+    transform: translateX(-33px);
     content: "AUS"
   }
+  .slider:after
+{
+ content:'AUS';
+ color: #211F77;;
+ display: block;
+ position: absolute;
+ transform: translate(-50%,-50%);
+ top: 12px;
+ left: 16px;
+ font-size: 10pt;
+}
+
+input:checked + .slider:after
+{  
+top: 12px;
+ left: 50px;
+  content:'AN';
+}
   
   /* Rounded sliders */
   .slider.round {
@@ -491,16 +572,16 @@ footer li{
   }
 
 /*************************************************__DASHBOARDS__********************************/
-  #Navi{
+#Navi{
     height: 10vh;
     width: 100vw;
+    margin-top: 7vh;
 }
 
-  #Navi ul{
+#Navi ul{
     display: flex;
     flex-direction: row;
     position:absolute;
-    margin-top:7vh;
     width: 92vw;
     text-align: center;
     justify-content: center;
@@ -512,16 +593,115 @@ footer li{
 }
 #Österreich{
     text-align: center;
-    margin-top: 5vh;
+    margin-top: -1vh;
 }
-
+#dropbtn_bezirk, #dropbtn_bundesland{
+    font-size: 18pt;
+}
+.dropdown_dash {
+    position: relative;
+    display: block;
+    text-align:center;
+    margin-top:-3vh;
+    width: 75vw;
+    margin-left: 12.5vw;
+  }
+/************************************************__MASSNAHMEN__********************************/
+#header_maßnahmen{
+    text-align:center;
+    margin-top: 7vh;
+    text-transform: uppercase;
+    font-size: 20pt;
+    font-weight: 500;
+}
+#sub_maßnahmen{
+    width: 70vw;
+    text-align:center;
+    margin-left: 15vw;
+    margin-top: -2vh;
+    font-weight: 500;
+}
+.panel_maßnahmen_links{
+    text-align: left;
+    border-top: 1px solid #ADADB9;
+    display: flex;
+    align-items: center;
+    /*justify-content: space-between;*/
+    padding-left: 9%;
+    padding-right: 0%;
+    padding-bottom: 4%;
+    line-height: 3vh;
+}
+.panel_maßnahmen_links p{
+    width: 49vw;
+    margin-left: 2vw;
+    margin-top: 3vh;
+}
+.panel_maßnahmen_links img{
+    margin-left: 3vw;
+    margin-top: 2vh;
+}
+.panel_maßnahmen_rechts{
+    text-align: right;
+    height: auto;
+    border-top: 1px solid #ADADB9;
+    display: flex;
+    align-items: center;
+    /*justify-content: space-between;*/
+    padding-left: 9%;
+    padding-right: 0%;
+    padding-bottom: 4%;
+    line-height: 3vh;
+}
+.panel_maßnahmen_rechts p{
+    width: 49vw;
+    margin-left: 5vw;
+    margin-top: 3vh;
+}
+.panel_maßnahmen_rechts img{
+    margin-left: 0vw;
+    margin-top: 2vh;
+}
+.panel_maßnahmen_start{
+    text-align: right;
+    margin-top: 5vh;
+    display: flex;
+    /*justify-content: space-between;*/
+    padding-left: 9%;
+    padding-right: 0%;
+    line-height: 3vh;
+}
+.panel_maßnahmen_start p{
+    width: 50vw;
+    margin-left: 5vw;
+}
+.panel_maßnahmen_start img{
+    margin-top: 2vh;
+}
+.panel_weitere_maßnahmen{
+    background-color: #BFBAD1;
+    text-align: center;
+    padding-left: 7%;
+    padding-right: 7%;
+    padding-top: 8%;
+    padding-bottom: 20%;
+    margin-top: 4vh;
+}
+.panel_weitere_maßnahmen h3{
+    font-weight: 500;
+}
+.panel_weitere_maßnahmen a{
+    color: #211F77;
+    text-decoration: underline;
+    font-size: 12pt;
+}
 /************************************************__SYMPTOME__*********************************/
 #Akkordeon{
-    margin-top: 7vh;
+    margin-top: 9vh;
 }
 .accordion {
     background-color: white;
-    color: #444;
+    color: #504F95;
     cursor: pointer;
     padding: 18px;
     width: 100%;
@@ -529,23 +709,26 @@ footer li{
     text-align: left;
     outline: none;
     font-size: 15px;
+    font-weight: 550;
+    text-transform: uppercase;
     transition: 0.4s;
   }
   
   .active, .accordion:hover {
-    background-color: white;
+    background-color:#504F95;
+    color: white;
   }
   
   .accordion:after {
-    content: '\2BC6';
-    color: #ADADB9;
+    content: '\2BC8';
+    color: #504F95;
     font-weight: bold;
     float: right;
-    margin-right: 35vw;
   }
   
   .active:after {
     content: "\2BC6";
+    color: white;
   }
   
   .panel {
@@ -553,25 +736,42 @@ footer li{
     background-color:rgba(173, 173, 185, 0.2);
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.2s ease-out;
+    transition: max-height 0.5s ease-out;
+    text-transform: uppercase;
     text-align: left;
+    display: flex;
   }
-.panel ul{
+  
+  .panel_links h2{
+      text-align:left;
+      margin-left: 3vw;
+      padding-top: 10%;
+  }
+.panel_links ul{
     list-style: disc;     
-    font-size: 14pt;
-    margin-left: 5%;
-    padding-bottom: 5%;
+    font-size: 12pt;
+    text-transform: none;
+    margin-left: 9vw;
+    padding-bottom: 15%;
+
+}
+.panel_rechts{
+    margin-left: 10vw;
+    display:flex;
+    align-items: center;
 }
 #Wastun{
     color:white;
-    background-color: #211F77;
+    background-color: #221F78;
     width: 80%;
     height: 100%;
     text-align: center;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    margin-left: 10%;
+    /*padding-top: 2%;
+    padding-bottom: 2%;*/
+    padding: 2%;
+    margin-left: 8%;
     border-radius: 15px;
+    margin-top: 6vh;
 }
 p{
     color: black;
@@ -579,12 +779,44 @@ p{
     font-weight: 500;
 }
 #Quelle{
-    color: #211F77;
+    color: #504F95;
     font-weight: 500;
     text-decoration: underline;
 }
 #DataSymptome{
     text-align:center;
+    margin-top: 5vh;
+}
+#overlay{
+    background-color: #221F78;
+    display: none;
+    top: 0;
+    left: 0;
+    margin-top: 8vh; /*5vh*/
+    border-radius: 15px;
+    z-index: 1;
+    height: 80vh;
+    width: 100vw;
+    position: absolute;  
+}
+#overlay p{
+    color: white;
+    font-weight: 300;
+    font-size: 15pt; /*15pt*/
+}
+#overlay b{
+    font-weight: 500;
+}
+#overlay_flex{
+    width: 90vw;
+    margin-left: 7vw;
+    margin-top: 18vh; /*10vh*/
+}
+#overlay_img{
+ float:right;
+ margin-top: -5vh;
+ padding:2%;
+ padding-right: 10%;
 }
 
 /*****************************************************__INFO__****************************/
@@ -596,7 +828,7 @@ p{
     padding-left: 6vw;
 }
 #blockWieGesamt{
-    margin-top: 20vh;
+    margin-top: 5vh;
     width: 100vw;
 }
 h3{
@@ -624,26 +856,34 @@ h3{
     background-color: white;
     color: #444;
     cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    text-align: left;
+    padding-top: 2vh;
+    margin-left: 5vw;
+    display:flex;
+    align-items: center;
+
+  }
+  .einstellungen_header h2{
     font-size: 15px;
     font-weight: 500;
     text-transform: uppercase;
+    text-align: left;
+    margin-left: 2vw;
   }
-  
   .einstellungen_content{
-    padding: 8px;
+    padding: 5%;
     background-color:rgba(173, 173, 185, 0.2);
     text-align: left;
   }
   .einstellungen_content p{
       font-size: 10pt;
   }
+  .einstellungen_content h3{
+      color: #504F95;
+  }
   .einstellungen_buttons {
-    color: black;
+    color: #504F95;
+    background-color: none;
     cursor: pointer;
-    padding: 6px;
     width: 100%;
     font-weight: 700;
     text-align: left;
@@ -652,7 +892,7 @@ h3{
   }
   .einstellungen_buttons:after {
     content: '\2BC8';
-    color: black;
+    color: #504F95;
     font-weight: bold;
     float: right;
     margin-right: 2vw;
@@ -661,6 +901,9 @@ h3{
       float:right;
       margin-top: -7vh;
       margin-right: 3vw;
+  }
+  #Link{
+      border-top: 1px solid rgba(80,79,149,0.25);
   }
 
 

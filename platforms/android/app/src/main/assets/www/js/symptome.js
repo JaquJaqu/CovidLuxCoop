@@ -14,3 +14,11 @@ for (i = 0; i < acc.length; i++) {
     } 
   });
 }
+
+function startOverlay(){ 
+  $("#overlay").fadeIn(700);
+}
+
+function endOverlay(){
+  $("#overlay").fadeOut(700);
+}

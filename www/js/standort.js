@@ -37,11 +37,30 @@ Anderes Problem:
 -) Problem3: Datumsvergleich vom lokalstorage unlogisch: überlegen warum
 */
 
+
+/*_____________________NEU__________________
+ * -) Code wurde gemergt
+ * -) Die index heißt jz home.html und die index.html ist der erste Screen vom Walkthrough.
+ * -) InternetConnection wird angezeigt wenn sie geändert wird und alle anderen Variablen auch (also setInterval is weg)
+ *    funktioniert auch gut für Android
+ * -) Alle Parts mit CORDOVA-CODE sind für später angelegt: auf Android und iOS wird Lokation automatisch aktiviert
+ *    wenn ToggleButton angeschalten wird (für Android getestet), für Browser anderer Code || Damit das Testen jz leichter
+ *    und mit dem GoLive-Plugin funktioniert sind die Teile jz auskommentiert.
+ * 
+ * ______________WICHTIG FÜRS TESTEN___________________
+ * -) Erst seit den letzten 3, 4 Ampelfile Versionen sind die Bezirke von Vorarlberg auch wirklich als Bezirke
+ *    angeführt. Wenn mit älteren Versionen getestet wird kann es also sein das Bregenz, Bludenz, Dornbirn
+ *    oder Feldkirch nicht funktionieren.
+ */
+
 let bezirk;
 let bundesland;
 let ampelStufe;
 let lokalstorageBezirk;
 let lokalstorageBundesland;
+let getbezirkLocalS;
+const arrBezirke = [];
+
 
 let checkBool; //checkt Standort wenn false = Standort AN
 let connBool; //checkt Internet wenn true= Internet AN
@@ -53,18 +72,43 @@ let pathbool; //Checkt ob Ampfelfile online angefragt werden kann wenn true = M�
 var arrLänge = 0;
 let path2 = corsFix + url;
 
+/*__CORDOVA-CODE___
+var platform = null;
+
+document.addEventListener("deviceready", onDeviceReady, false);
+        function onDeviceReady() {
+          platform = device.platform;
+        }
+*/
+
 
 farbkreisPH = document.getElementById("farbkreisPH");
 farbkreis = document.createElement("div");
 farbkreis.setAttribute("id", "farbkreis");
 farbkreisPH.appendChild(farbkreis);
+
 read_from_local_storage();
+
+function onOnline(){
+  const statusDisplay = document.getElementById("status");
+  statusDisplay.textContent = "Du hast Internetzugriff!";
+  connBool = true;
+  checkForUpdate();
+  console.log("Connection Bool:", connBool, "du hast kein Internet");
+  console.log("Path Bool:", pathbool, "online zugriff auf Ampeldaten verweigert");
+}
+function onOffline(){
+  const statusDisplay = document.getElementById("status");
+  statusDisplay.textContent = "Du hast keinen Internetzugriff!";
+  connBool = false;
+  console.log("Connection Bool:", connBool, "du hast kein Internet");
+  console.log("Path Bool:", pathbool, "online zugriff auf Ampeldaten verweigert");
+}
+
 //createDropdown(); --> standort.js:527 Uncaught TypeError: Failed to execute 'getCurrentPosition' on 'Geolocation': parameter 1 is not of type 'Function'.
 
 //Drop down muss noch statisch gelöst weren!!! sonst funktioniert das drop down erst wenn manden Standort einmal aktiviert hat! 
 //Derzeit wirds noch in getAmpel() aufgerufen!
-
-
 
 const checkOnlineStatus = async () => {
   try {
@@ -79,24 +123,27 @@ const checkOnlineStatus = async () => {
 
 
 //Intervall das Connection Prüft, setzt connBool
+/*
 setInterval(async () => {
-  
   const connectionBool = await checkOnlineStatus();
   const statusDisplay = document.getElementById("status");
   console.log("Connection Bool:", connectionBool, "du hast kein Internet");
-  console.log("Path Bool:", pathbool, "online zugriff auf Ampeldaten verweigert");
+  
   statusDisplay.textContent = connectionBool ? "Online" : "OFFline";
   //bin ich Online und brauchts ein Update der Daten?
   if (connectionBool == true) {
     connBool = true;
     checkForUpdate(); //Brauchen die lokalen Daten ein Update?
-    console.log("bist eh online");
+    console.log("Du hast Internet!");
   } else if (connectionBool == false) {
     connBool = false;
-    console.log("boi du bist sowieso offline, kein update für dich..");
+    console.log("Du hast kein Internet!");
   }
-}, 15000); // probably too often, try 30000 for every 30 seconds
 
+  console.log("Path Bool:", pathbool, "online zugriff auf Ampeldaten verweigert");
+}, 15000); // probably too often, try 30000 for every 30 seconds
+*/
+getAmpel(dataOffline);
 
 //Zugriff auf API
 function getLocation(latitude, longitude) {
@@ -117,7 +164,8 @@ function getLocation(latitude, longitude) {
           if (data.localityInfo.administrative[i].adminLevel == "4") {
             bezirk = data.localityInfo.administrative[i].name;
             document.getElementById("bezirk").innerHTML = bezirk;
-            //console.log(bezirk);
+            lokalstorageBezirk = bezirk;
+            sessionStorage.setItem("storeBezirk", bezirk);
           }
 
           //Für alle anderen Bezirke
@@ -194,30 +242,20 @@ function getLocation(latitude, longitude) {
           }
 
           lokalstorageBezirk = bezirk;
-          
-
-          //Output
           document.getElementById("bezirk").innerHTML = bezirk;
-
-
-
           sessionStorage.setItem("storeBezirk", bezirk);
-          //console.log('Du befindest dich im Bezirk: ', bezirk)
+          localStorage.setItem("storeStandort", bezirk);
           getAmpel(dataOffline);
+
         }
         lokalstorageBundesland = bundesland;
-
-        //Bundesland
         document.getElementById("bundesland").innerHTML = data.principalSubdivision;
         bundesland = data.principalSubdivision;
         sessionStorage.setItem("storeBundesland", bundesland);
-        //console.log(sessionStorage.getItem("storeBundesland"));
       }
-
-      //console.log(data);
     },
     function (xhr) {
-      console.error(xhr);
+      console.log("Tut uns leid. Wir können deinen Standort leider nicht ermitteln :(");
     }
   );
 }
@@ -232,77 +270,67 @@ function getAmpelinside(data) {
 function drawIllustration(ampelStufe){
 
     if (ampelStufe == 1) {
-        document.getElementById("farbkreis").style.backgroundColor =
-          "#60B564";
-        document.getElementById("WarnstufeGeschrieben").innerHTML =
-          "GRÜN <br/> geringes Risiko";
-        document.getElementById("farbkreisAktiv").style.border =
-          "1px solid #60B564";
-        document.getElementById("ringerlYeOr").style.display = "none";
-        document.getElementById("ringerlReGr").style.display = "block";
-        document.getElementById("ringerlReGr").style.marginLeft = "-3.5vw";
-        document.getElementById("ringerlReGr").style.marginTop = "-0.2vh";
+      document.getElementById("farbkreis").style.backgroundColor = "#60B564";
+      document.getElementById("WarnstufeGeschrieben").innerHTML = "GRÜN <br/> geringes Risiko";
+      document.getElementById("farbkreisAktiv").style.border = "1px solid #60B564";
+      document.getElementById("ringerl").style.display = "block";
+      document.getElementById("ringerl").style.marginLeft = "-14vw";
+      document.getElementById("ringerl").style.marginTop = "1.5vh";
       } else if (ampelStufe == 2) {
-        document.getElementById("farbkreis").style.backgroundColor =
-          "#FED500";
-        document.getElementById("WarnstufeGeschrieben").innerHTML =
-          "GELB <br/> mittleres Risiko";
-        document.getElementById("farbkreisAktiv").style.border =
-          "1px solid #FED500";
-        document.getElementById("ringerlReGr").style.display = "none";
-        document.getElementById("ringerlYeOr").style.display = "block";
-        document.getElementById("ringerlYeOr").style.marginLeft = "3vw";
-        document.getElementById("ringerlYeOr").style.marginTop = "-0.2vh";
+        document.getElementById("farbkreis").style.backgroundColor = "#FED500";
+        document.getElementById("WarnstufeGeschrieben").innerHTML = "GELB <br/> mittleres Risiko";
+        document.getElementById("farbkreisAktiv").style.border = "1px solid #FED500";
+        document.getElementById("ringerl").style.display = "block";
+        document.getElementById("ringerl").style.marginLeft = "-5vw";
+        document.getElementById("ringerl").style.marginTop = "2.5vh";
       } else if (ampelStufe == 3) {
-        document.getElementById("farbkreis").style.backgroundColor =
-          "#F59C00";
-        document.getElementById("WarnstufeGeschrieben").innerHTML =
-          "ORANGE <br/> hohes Risiko";
-        document.getElementById("farbkreisAktiv").style.border =
-          "1px solid #F59C00";
-        document.getElementById("ringerlReGr").style.display = "none";
-        document.getElementById("ringerlYeOr").style.display = "block";
-        document.getElementById("ringerlYeOr").style.marginLeft = "11vw";
-        document.getElementById("ringerlYeOr").style.marginTop = "-0.2vh";
+        document.getElementById("farbkreis").style.backgroundColor = "#F59C00";
+        document.getElementById("WarnstufeGeschrieben").innerHTML = "ORANGE <br/> hohes Risiko";
+        document.getElementById("farbkreisAktiv").style.border = "1px solid #F59C00";
+        document.getElementById("ringerl").style.display = "block";
+        document.getElementById("ringerl").style.marginLeft = "5vw";
+        document.getElementById("ringerl").style.marginTop = "2.5vh";
       } else if (ampelStufe == 4) {
-        document.getElementById("farbkreis").style.backgroundColor =
-          "#CB0538";
-        document.getElementById("WarnstufeGeschrieben").innerHTML =
-          "ROT <br/> sehr hohes Risiko";
-        document.getElementById("farbkreisAktiv").style.border =
-          "1px solid #CB0538";
-        document.getElementById("ringerlYeOr").style.display = "none";
-        document.getElementById("ringerlReGr").style.display = "block";
-        document.getElementById("ringerlReGr").style.marginLeft = "18vw";
-        document.getElementById("ringerlReGr").style.marginTop = "-0.2vh";
+        document.getElementById("farbkreis").style.backgroundColor = "#CB0538";
+        document.getElementById("WarnstufeGeschrieben").innerHTML = "ROT <br/> sehr hohes Risiko";
+        document.getElementById("farbkreisAktiv").style.border = "1px solid #CB0538";
+        document.getElementById("ringerl").style.display = "block";
+        document.getElementById("ringerl").style.marginLeft = "14vw";
+        document.getElementById("ringerl").style.marginTop = "1.5vh";
       }
 }
-
-
-
 
 function getAmpel(data) {
     path2 = dataOffline;
     data = dataOffline;
     console.log("Offline Data", dataOffline);
+    storeBezirk = sessionStorage.getItem("storeBezirk");
     for (i = 0; i < dataOffline.Warnstufen.length; i++) {
+      if(storeBezirk == "Wien"){
+        if(dataOffline.Warnstufen[i].Name == storeBezirk){
+          console.log(storeBezirk);
+          console.log("Ampelstufe: "+dataOffline.Warnstufen[i].Warnstufe);
+          ampelStufe = dataOffline.Warnstufen[i].Warnstufe;
+          drawIllustration(ampelStufe);
+        }
+      }else{
       if (dataOffline.Warnstufen[i].Region == "Bezirk") {
-        if (dataOffline.Warnstufen[i].Name == bezirk) {
-          //console.log(bezirk);
-          //console.log("Ampelstufe: "+dataOffline.Warnstufen[i].Warnstufe);
+        if (dataOffline.Warnstufen[i].Name == storeBezirk) {
+          console.log(storeBezirk);
+          console.log("Ampelstufe: "+dataOffline.Warnstufen[i].Warnstufe);
           ampelStufe = dataOffline.Warnstufen[i].Warnstufe;
           drawIllustration(ampelStufe);
         }
        }
      }
-    createDropdown();
+    }
 }
 
 //Speichern der AMPELDaten im LocalStorage + Hinzufügen der Zeit und Datum des Downloads
 function downloadAmpelFile(path2) {
   if(pathbool==true && connBool ==true){ //wenn ich internet hab und auf die Ampedaten zugreifen darf dann..
   loadJSON(path2, function (data) {
-    let items_json = data[0];
+    let items_json = data[6];
     //console.log(items_json);
     var date = new Date();//var updateDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
         var updateDate = date.toGMTString(); // Tue, 17 Nov 2020 14:16:29 GMT --> Gibt mir die jetzige Uhrzeit im Format das lastModiefied Header Request auch hat
@@ -328,7 +356,9 @@ function downloadLokation() {
 
 function read_from_local_storage() { //gib mir die Datem aus dem localStorage
 
+  
   //LOKATION
+  if(localStorage.getItem("Lokationsdaten") != null){
   var savedLokation = localStorage.getItem("Lokationsdaten");
   savedLokationValue = JSON.parse(savedLokation);
   
@@ -337,10 +367,8 @@ function read_from_local_storage() { //gib mir die Datem aus dem localStorage
 
   console.log('Lokal gespeicherter Bezirk: ',getbezirkLocalS);
   console.log('Lokal gespeichertes Bundesland: ',getbundeslandLocalS);
-
-
+  }
   //AMPELDATEN
-
 
   var items_json = localStorage.getItem("Ampeldaten3");
 
@@ -355,15 +383,14 @@ function read_from_local_storage() { //gib mir die Datem aus dem localStorage
   savedDateValue = JSON.parse(savedDate);
   getSavedDate = savedDateValue.updateDate;
   //console.log('Zuletzt im localStorage gespeichert am:',getSavedDate);
-  if (!items) {
+  /*if (!items) {
     items = [];
-  }
+  }*/
 } else{
   accessBool = true; //Wenn es die Daten nicht gibt dann starte den zugriff auf die online-Daten 
   pathbool = true; 
   downloadAmpelFile(path2);
 }
-
 }
 
 
@@ -377,8 +404,12 @@ function checkForUpdate() {
 //schau ob die lokalen Ampel und Lokationsdaten Speicherdaten geupdated gehören
 if(checkBool == false){ //Standort ist aktiviert wenn checkBool==false
       //Schau ob die Standortdaten upgedated gehören wenn Internet vorhanden und der Standort aktiviert ist,
+      console.log(getbezirkLocalS);
+      console.log(lokalstorageBezirk);
+      if(getbezirkLocalS != null && lokalstorageBezirk != null){
       if(getbezirkLocalS != lokalstorageBezirk){
          downloadLokation();
+        }
       }else{
         console.log('Standort ist seit letztem check unverändert');
       }
@@ -431,20 +462,6 @@ ETag values are unique identifiers generated by the server and changed every tim
 ETags: This tag is useful when for when the last modified date is difficult to determine.
 */
 
-function loadJSON(path, success, error) {
-  var xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === XMLHttpRequest.DONE) {
-      if (xhr.status === 200) {
-        if (success) success(JSON.parse(xhr.responseText));
-      } else {
-        if (error) error(xhr);
-      }
-    }
-  };
-  xhr.open("GET", path, true);
-  xhr.send();
-}
 
 var onLocationSuccess = function (position) {
   Latitude = position.coords.latitude;
@@ -455,11 +472,29 @@ var onLocationSuccess = function (position) {
 
 // Error callback
 function onLocationError(error) {
-  console.log(
-    "code: " + error.code + "\n" + "message: " + error.message + "\n"
-  );
+  // console.log(
+  //   "code: " + error.code + "\n" + "message: " + error.message + "\n"
+  // );
+  console.log("Dein Standort konnte nicht gefunden werden");
+ alert("Dein Standort konnte nicht gefunden werden");
+  checkBool = true;
+  document.getElementById("switchValue").checked = true;
 }
 
+function getStandort(){
+cordova.plugins.locationAccuracy.request(
+  function() {
+    console.log("testhigh success");
+    setTimeout(function() {
+      readUserLocation();
+    }, 1500);
+  },
+  function() {
+    console.log("error");
+  },
+  cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY
+);
+}
 
 function readUserLocation() {
   navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError, {
@@ -488,71 +523,71 @@ function myLocation() {
   //Manuelle Lokation
   if (checkBool == true) {
     document.getElementById("bezirk").innerHTML = bezirk;
-    infoText.setAttribute("display", "none");
 
     sessionStorage.setItem("storeToggleTrue", true);
     sessionStorage.removeItem("storeToggleFalse");
     sessionStorage.setItem("storeBezirk", bezirk);
 
     bezirk = document.getElementById("bezirk").innerHTML;
-    document.getElementById("infoText").innerText =
-      "das ist nicht dein aktueller Standort";
+    document.getElementById("standortText").innerHTML = "zuletzt verwendeter Standort";
 
     //Standortbasierte Lokation
   } else if (checkBool == false) {
-    readUserLocation(); //Standort abfragen
-    downloadLokation();
-    document.getElementById("bezirk").innerHTML = bezirk;
-    let infoText = document.getElementById("infoText");
-    infoText.setAttribute("display", "inline-block");
+    if(connBool == true){
+      /*___CORDOVA-CODE___
+      if(platform != null){
+      if(platform ==="Android" || platform ==="iOS"){
+    getStandort();
+      }else if(platform ==="browser"){
+        readUserLocation();
+      }
+    }*/
+    readUserLocation();
+    document.getElementById("standortText").innerHTML = "derzeitiger Standort";
+   //Standort abfragen
+    }else if (connBool == false){
+      read_from_local_storage();
+       bezirk = getbezirkLocalS;
+       console.log(bezirk);
+       sessionStorage.setItem("storeBezirk", bezirk);
+       document.getElementById("standortText").innerHTML = "zuletzt verwendeter Standort";
+      getAmpel(dataOffline);
+    }
+      
+    if(lokalstorageBezirk != null){
+      downloadLokation();
+      }
+      document.getElementById("bezirk").innerHTML = bezirk;
 
     sessionStorage.setItem("storeToggleFalse", false);
     sessionStorage.removeItem("storeToggleTrue");
     sessionStorage.setItem("storeBezirk", bezirk);
 
-    document.getElementById("infoText").innerText =
-      "dein derzeitiger Standort wird angezeigt";
-    document.getElementById("infoText2").style.display = "none";
+    document.getElementById("infoText").style.display= "none";
+    document.getElementById("info_start").style.display= "none";
     //console.log(bezirk);
   }
 }
 
+loadJSON("bundesland_dropdown.json", function(data){
+  for(i=0; i<data[0].Bezirke.length; i++){ 
+  arrBezirke.push(data[0].Bezirke[i].Bezirk);
+  }
+  for(i=0; i<arrBezirke.length;i++){
 
-//DROP DOWN 
-function createDropdown(){
-  console.log('der fehler macht nix weil die Namen lokal als JSOn gepeichert werden, wird noch gemerged');
-  //Gib mir alle Bezirknamen
-  dropdownData = dataOffline;
-for(i=0; i<dropdownData.Warnstufen.length; i++){
-  if(dropdownData.Warnstufen[i].Region =="Bezirk"){
-  bezirkname = dropdownData.Warnstufen[i].Name;
-  ampelwarnstufe = dropdownData.Warnstufen[i].Warnstufe;
-  arrLänge= arrLänge + 1;
-  //console.log('bezirknamen', bezirknamen);
-  //console.log("arrlänge:",arrLänge);
-}
-}
+      dropdownContent = document.getElementById('myDropdown');
+      htmlToAppend = document.createElement('LI');
+      
+      htmlToAppend.setAttribute('onclick', 'changeText(this)');
+      textnode = document.createTextNode(arrBezirke[i]);
+      htmlToAppend.appendChild(textnode);
+      htmlToAppend.setAttribute('value', arrBezirke[i]);
+      dropdownContent.appendChild(htmlToAppend); 
+    
+  }
+  sortListDir("myDropdown");
 
-//DROP DOWN__
-//Alle Berzirknamen im Json File vom letzten Datum 
-for(i=0; i<arrLänge;i++){
-if(dropdownData.Warnstufen[i].Region =="Bezirk"){
-allebezirknamen = dropdownData.Warnstufen[i].Name;
-//console.log('allebezirknamen', allebezirknamen);
-}
-
-element = allebezirknamen;
-dropdownContent = document.getElementById('myDropdown');
-htmlToAppend = document.createElement('LI');
-
-htmlToAppend.setAttribute('onclick', 'changeText(this)');
-textnode = document.createTextNode(element);
-htmlToAppend.appendChild(textnode);
-htmlToAppend.setAttribute('value', element);
-dropdownContent.appendChild(htmlToAppend);  
-}
-sortListDir();
-}
+}, function(xhr){console.error(xhr);});
 
 
 function myFunction() {
@@ -564,40 +599,57 @@ function myFunction() {
 function changeText(elm) {
   bezirk = elm.getAttribute("value");
   myFunction();
+  //lokalstorageBezirk = bezirk;
   document.getElementById("bezirk").innerHTML = bezirk;
+  sessionStorage.setItem("storeBezirk", bezirk);
   getAmpel(dataOffline);
-  //getAmpelinside();
 
-  //NEU: Für Toggle funktionalität
-  document.getElementById("infoText").innerText =
-    "Das ist nicht dein Standort, du hast dir selbst einen Bezirk gewählt";
-  document.getElementById("infoText2").style.display = "none";
-  //NEU: Anderer Berzirk ausgewählt, Standort wird deaktiviert
+  document.getElementById("infoText").style.display= "none"; 
+  document.getElementById("standortText").innerHTML = "zuletzt gewählter Standort";
   document.getElementById("switchValue").checked = true;
 
-  sessionStorage.setItem("storeBezirk", bezirk);
+  sessionStorage.removeItem("storeBundesland");
+
+  sessionStorage.setItem("storeBezirk",bezirk);
   sessionStorage.setItem("storeToggleTrue", true);
   sessionStorage.removeItem("storeToggleFalse");
 }
 
-function onload_index() {
+function onload_home() {
   bezirkStorage = sessionStorage.getItem("storeBezirk");
   toggleStorageTrue = sessionStorage.getItem("storeToggleTrue");
   toggleStorageFalse = sessionStorage.getItem("storeToggleFalse");
+  standortStorage = localStorage.getItem("storeStandort");
 
+  if(navigator.onLine == true){
+    onOnline();
+  } else if (navigator.onLine == false){
+    onOffline();
+  }
   //console.log(sessionStorage.getItem("storeToggleTrue"));
   //console.log(sessionStorage.getItem("storeToggleFalse"));
 
   if (bezirkStorage != null) {
     document.getElementById("bezirk").innerHTML = bezirkStorage;
     bezirk = bezirkStorage;
-    document.getElementById("infoText2").style.display = "none";
-    //getAmpel(dataOffline);
+    document.getElementById("infoText").style.display = "none";
+    getAmpel(dataOffline);
   }
   if (toggleStorageTrue != null) {
     document.getElementById("switchValue").checked = true;
+    if(bezirkStorage == standortStorage){
+      document.getElementById("standortText").innerHTML = "zuletzt verwendeter Standort";
+      document.getElementById("info_start").style.display= "none";
+    }
+    else if (bezirkStorage != standortStorage){
+      document.getElementById("standortText").innerHTML = "zuletzt gewählter Standort";
+      document.getElementById("info_start").style.display= "none";
+    }
   }
   if (toggleStorageFalse != null) {
     document.getElementById("switchValue").checked = false;
+    myLocation();
+    document.getElementById("standortText").innerHTML = "derzeitiger Standort";
+    document.getElementById("info_start").style.display= "none";
   }
 }

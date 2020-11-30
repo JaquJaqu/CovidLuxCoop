@@ -1,59 +1,36 @@
-var arrLänge_bezirk = 0;
+const arrBezirk = [];
 
 function onload_bezirk(){
-    document.getElementById("dropbtn_bezirk").innerHTML = sessionStorage.getItem("storeBezirk");
+    if(sessionStorage.getItem("storeBezirk")!= null){
+        document.getElementById("dropbtn_bezirk").innerHTML = sessionStorage.getItem("storeBezirk");
+    }
 }
 
 function myFunction_bezirk() {
     document.getElementById("myDropdown_bezirk").classList.toggle("show");
    }
 
-d3.json(corsFix + url).then(res => {
-
-
-    //Gib mir alle Bezirknamen
-        for(i=0; i<res[0].Warnstufen.length; i++){
-            if(res[0].Warnstufen[i].Region =="Bezirk"){
-            arrLänge_bezirk= arrLänge_bezirk + 1;
-        }
-       }
-    
-    //DROP DOWN__
-    //Alle Berzirknamen im Json File vom letzten Datum 
-    
-    for(i=0; i<arrLänge_bezirk;i++){
-        if(res[0].Warnstufen[i].Region =="Bezirk"){
-        allebezirknamen = res[0].Warnstufen[i];
-        }
-    
-    
-        element = allebezirknamen;
+   loadJSON("bundesland_dropdown.json", function(data){
+    for(i=0; i<data[0].Bezirke.length; i++){ 
+    arrBezirk.push(data[0].Bezirke[i].Bezirk);
+    }
+    for(i=0; i<arrBezirk.length;i++){
         dropdownContent = document.getElementById('myDropdown_bezirk');
         htmlToAppend = document.createElement('LI');
         
-        htmlToAppend.setAttribute('onclick', 'changeText(this)');
-        textnode = document.createTextNode(element.Name);
+        htmlToAppend.setAttribute('onclick', 'changeText_bezirk(this)');
+        textnode = document.createTextNode(arrBezirk[i]);
         htmlToAppend.appendChild(textnode);
-        htmlToAppend.setAttribute('value', element.Name);
+        htmlToAppend.setAttribute('value', arrBezirk[i]);
         dropdownContent.appendChild(htmlToAppend); 
-      
     }
-    sortListDir("myDropdown_bezirk");    
-    });
-
-    function changeText(elm){
+    sortListDir("myDropdown_bezirk");
+  
+}, function(xhr){console.error(xhr);});
+  
+    function changeText_bezirk(elm){
         bezirk = elm.getAttribute('value');
-        myFunction();
-        document.getElementById("bezirk").innerHTML = bezirk;
-        getAmpel();
-    
-        //NEU: Für Toggle funktionalität
-        document.getElementById("infoText").innerText = "Das ist nicht dein Standort, du hast dir selbst einen Bezirk gewählt";
-        document.getElementById("infoText2").style.display= "none"; 
-        //NEU: Anderer Berzirk ausgewählt, Standort wird deaktiviert
-        document.getElementById("switchValue").checked= true;
-    
+        myFunction_bezirk();
+        document.getElementById("dropbtn_bezirk").innerHTML = bezirk;
         sessionStorage.setItem("storeBezirk",bezirk);
-        sessionStorage.setItem("storeToggleTrue", true);
-        sessionStorage.removeItem("storeToggleFalse");
       }

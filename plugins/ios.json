@@ -12,6 +12,15 @@
     },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.example.covidlux"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "com.example.covidlux"
+    },
+    "cordova-plugin-request-location-accuracy": {
+      "PACKAGE_NAME": "com.example.covidlux"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.example.covidlux"
     }
   },
   "dependent_plugins": {}
