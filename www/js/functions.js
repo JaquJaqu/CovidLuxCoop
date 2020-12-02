@@ -1,6 +1,8 @@
 const url = 'https://corona-ampel.gv.at/sites/corona-ampel.gv.at/files/assets/Warnstufen_Corona_Ampel_aktuell.json';
 const corsFix = 'https://cors-anywhere.herokuapp.com/';
 
+
+
 function saveHistory(){
   sessionStorage.setItem("pathname",location.pathname);
 }
@@ -75,7 +77,6 @@ function loadJSON(path, success, error)
     {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
-                if (success)
                     success(JSON.parse(xhr.responseText));
             } else {
                 if (error)
