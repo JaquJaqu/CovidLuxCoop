@@ -7,23 +7,17 @@
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="css/index.css">
         <link rel="icon" href="img/Logo_CovidLux.png">
-        <title>CovidLux</title>
-        <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
-        <script src="https://d3js.org/d3-fetch.v2.min.js"></script>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js'></script>
-        
+        <title>CovidLux</title>        
     </head>
     <body> 
 
-<header>
-    <h2>Wie funktioniert es?</h2>
-</header>
-
-     
-     <div class="mainwrapper">
-
+<div class="walk_wrapper">
+    <div>
+    <img src="img/2.png" id="walk_welle" max-width="100%" max-heigh="100%">
+</div>
+    <h2 id="walk_h2">Wie funktioniert es?</h2>
                     
-                    <h2>Dashboard</h2>
+                    <h2 class="walk_header">Dashboard</h2>
                     <p class="walk_erklärung">Es gibt unzählige Zahlen zum Coronavirus. Deshalb findest du auf
                         dem Dashboard nur die wichtigsten Zahlen. Das Dashboard ist aufgeteilt nach
                         Bezirk, Budnesland und Österreich.
@@ -35,9 +29,9 @@
         <nav>
             <div id="walk_kreise">
                 <a href="index.html"><button class="walk_button_links">Zurück</button></a>
-                <a href="index.html"><div class="walk_kreis"></div></a>
-                <a href="walk2.html"><div class="walk_kreis_aktiv"></div></a>
-                <a href="walk3.html"><div class="walk_kreis"></div></a>
+                <div class="walk_kreis"></div>
+                <div class="walk_kreis_aktiv"></div>
+                <div class="walk_kreis"></div>
              <a href="walk3.html"><button class="walk_button_rechts">Weiter</button></a>
             </div>
         </nav>

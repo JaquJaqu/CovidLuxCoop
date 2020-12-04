@@ -50,6 +50,7 @@ let lokalstorageBezirk;
 let lokalstorageBundesland;
 let getbezirkLocalS;
 let getETaglocalS;
+let dataOffline;
 const arrBezirke = [];
 
 
@@ -72,7 +73,6 @@ document.addEventListener("deviceready", onDeviceReady, false);
           platform = device.platform;
         }
 */
-
 createDropdown();
 farbkreisPH = document.getElementById("farbkreisPH");
 farbkreis = document.createElement("div");
@@ -80,34 +80,42 @@ farbkreis.setAttribute("id", "farbkreis");
 farbkreisPH.appendChild(farbkreis);
 
 read_from_local_storage();
-getAmpel(dataOffline);
+getAmpel();
 
 
 function onOnline(){
   const statusDisplay = document.getElementById("status");
   statusDisplay.textContent = "Du hast Internetzugriff!";
+  $("#status").fadeIn(800);
+  $("#status").delay(1500).fadeOut(700);
   connBool = true;
+  if(sessionStorage.getItem("Update") == null){
   checkForUpdate();
+  console.log("Yay");
+  sessionStorage.setItem("Update", true);
+  }
   console.log("Connection Bool:", connBool, "du hast kein Internet");
   console.log("Path Bool:", pathbool, "online zugriff auf Ampeldaten verweigert");
 }
 function onOffline(){
   const statusDisplay = document.getElementById("status");
   statusDisplay.textContent = "Du hast keinen Internetzugriff!";
+  $("#status").fadeIn(800);
+  $("#status").delay(1500).fadeOut(700);
   connBool = false;
   console.log("Connection Bool:", connBool, "du hast kein Internet");
   console.log("Path Bool:", pathbool, "online zugriff auf Ampeldaten verweigert");
 }
 
 
-
+/*
 const checkOnlineStatus = async () => {
   try {
     const online = await fetch('https://ipv4.icanhazip.com/'); //schau ob ich auf die Ressource zugreifen kann
     //pathbool == true;
     return online.status >= 200 && online.status < 300; // either true or false
     /*HTTP response codes between 200 and 299 indicate success, and we’ll return the result of the status code comparison. This will be true if the response status is from 200 to 299 and false otherwise.*/
-} catch (err) {
+/*} catch (err) {
     return false; // definitely offline
   }
 };
@@ -236,11 +244,10 @@ function getLocation(latitude, longitude) {
           document.getElementById("bezirk").innerHTML = bezirk;
           sessionStorage.setItem("storeBezirk", bezirk);
           localStorage.setItem("storeStandort", bezirk);
-          getAmpel(dataOffline);
+          getAmpel();
 
         }
         lokalstorageBundesland = bundesland;
-        document.getElementById("bundesland").innerHTML = data.principalSubdivision;
         bundesland = data.principalSubdivision;
         sessionStorage.setItem("storeBundesland", bundesland);
       }
@@ -288,10 +295,10 @@ function drawIllustration(ampelStufe){
       }
 }
 
-function getAmpel(data) {
+function getAmpel() {
 
   read_from_local_storage();
-  
+  if(dataOffline != null){
     path2 = dataOffline;
     data = dataOffline;
     console.log("Offline Data", dataOffline);
@@ -315,6 +322,7 @@ function getAmpel(data) {
        }
      }
     }
+  }
 }
 
 //Speichern der AMPELDaten im LocalStorage + Hinzufügen der Zeit und Datum des Downloads
@@ -331,6 +339,7 @@ function downloadAmpelFile(path2,eTagResponse) {
     //var ampelDatatrue = { updateDate: 'Tue, 17 Nov 2020 14:16:29 GMT', items_json };
     var ampelDatatrue = { updateDate: updateDate, items_json };
     console.log(eTagResponse,'eTAG');
+    console.log("File wird gedownloadet");
     //console.log('Einmal die Uhrzeit bitte', updateDate); //Derzeitige Uhrzeit in GMT
     localStorage.setItem("Ampeldaten3", JSON.stringify(ampelDatatrue));
 
@@ -341,8 +350,7 @@ function downloadAmpelFile(path2,eTagResponse) {
     //var eTag = {eTagTest};
     var eTag = {eTagResponse};
     localStorage.setItem("ETag", JSON.stringify(eTag));
-
-    getAmpel(dataOffline);
+    getAmpel();
 
   });
 }else{ 
@@ -387,6 +395,7 @@ function read_from_local_storage() { //gib mir die Datem aus dem localStorage
   dataOffline = items.items_json;
   //dataOffline = items.items_json.Warnstufen.length;
 
+  /*
   var savedDate = localStorage.getItem("Ampeldaten3");
   savedDateValue = JSON.parse(savedDate);
   getSavedDate = savedDateValue.updateDate;
@@ -401,31 +410,23 @@ function read_from_local_storage() { //gib mir die Datem aus dem localStorage
   //checkForUpdate();
 }
 
-
 //ETag
 
 if(localStorage.getItem("ETag") != null){
   var savedETag = localStorage.getItem("ETag");
   getETagLocalS = JSON.parse(savedETag);
-  
- 
-
   console.log('Lokal gespeicherter ETAG',getETagLocalS);
- 
   }
-
-
-
 }
 
 
 function checkForUpdate() {
   read_from_local_storage(); //Les mir das Objekte vom Lokalstorage aus (brauche "updateDate", "lokalstorageBezirk" )
-  try{
+  /*try{
   console.log('Speicherdatum vom local storage:', getSavedDate);
   }catch(error){
   console.log(error);
-}  
+} */ 
 //schau ob die lokalen Ampel und Lokationsdaten Speicherdaten geupdated gehören
 if(checkBool == false){ //Standort ist aktiviert wenn checkBool==false
       //Schau ob die Standortdaten upgedated gehören wenn Internet vorhanden und der Standort aktiviert ist,
@@ -491,7 +492,7 @@ ETags: This tag is useful when for when the last modified date is difficult to d
 */
 
 
-var onLocationSuccess = function (position) {
+function onLocationSuccess(position){ /*= function (position) {*/
   Latitude = position.coords.latitude;
   Longitude = position.coords.longitude;
 
@@ -579,7 +580,7 @@ function myLocation() {
        console.log(bezirk);
        sessionStorage.setItem("storeBezirk", bezirk);
        document.getElementById("standortText").innerHTML = "zuletzt verwendeter Standort";
-      getAmpel(dataOffline);
+      getAmpel();
     }
       
     if(lokalstorageBezirk != null){
@@ -632,7 +633,7 @@ function changeText(elm) {
   //lokalstorageBezirk = bezirk;
   document.getElementById("bezirk").innerHTML = bezirk;
   sessionStorage.setItem("storeBezirk", bezirk);
-  getAmpel(dataOffline);
+  getAmpel();
 
   document.getElementById("infoText").style.display= "none"; 
   document.getElementById("standortText").innerHTML = "zuletzt gewählter Standort";
@@ -663,7 +664,7 @@ function onload_home() {
     document.getElementById("bezirk").innerHTML = bezirkStorage;
     bezirk = bezirkStorage;
     document.getElementById("infoText").style.display = "none";
-    getAmpel(dataOffline);
+    getAmpel();
   }
   if (toggleStorageTrue != null) {
     document.getElementById("switchValue").checked = true;

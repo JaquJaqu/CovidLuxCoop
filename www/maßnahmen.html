@@ -8,10 +8,6 @@
         <link rel="stylesheet" href="css/index.css">
         <link rel="icon" href="img/Logo_CovidLux.png">
         <title>CovidLux</title>
-        <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
-        <script src="https://d3js.org/d3-fetch.v2.min.js"></script>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js'></script>
-
     </head>
     <body>
 
@@ -32,7 +28,7 @@
         <p id="sub_maßnahmen">so schützt du dich und deine Mitmenschen</p>
         
         <div class="panel_maßnahmen_start">
-            <img src="img/sneeze.png" width="100vw" height="100vh">
+            <img src="img/washing-hands.png" width="100vw" height="100vh">
             <p>Regelmäßig Hände mit Seife oder alkoholhaltigem Desinfektionsmittel waschen
             </p>
         </div>
@@ -41,11 +37,11 @@
             <p>Gesicht, vor allem Mund, Augen und Nase
                 nicht mit den Fingern berühren
             </p>
-            <img src="img/sneeze.png" width="100vw" height="100vh">
+            <img src="img/eyes.png" width="100vw" height="100vh">
         </div>
 
         <div class="panel_maßnahmen_rechts">
-            <img src="img/sneeze.png" width="100vw" height="100vh">
+            <img src="img/shake.png" width="100vw" height="100vh">
             <p>Händeschütteln und Umarmungen vermeiden
             </p>
         </div>
@@ -57,7 +53,7 @@
         </div>
 
         <div class="panel_maßnahmen_rechts">
-            <img src="img/sneeze.png" width="100vw" height="100vh">
+            <img src="img/distance.png" width="100vw" height="100vh">
             <p>1 bis 2 Meter Abstand halten
             </p>
         </div>
@@ -65,11 +61,11 @@
         <div class="panel_maßnahmen_links">
             <p>Räume regelmäßig lüften
             </p>
-            <img src="img/sneeze.png" width="100vw" height="100vh">
+            <img src="img/window.png" width="100vw" height="100vh">
         </div>
 
         <div class="panel_maßnahmen_rechts">
-            <img src="img/sneeze.png" width="100vw" height="100vh">
+            <img src="img/quarantine.png" width="100vw" height="100vh">
             <p>Bei Anzeichen von Krankheit zuhause bleiben
             </p>
         </div>
@@ -77,7 +73,7 @@
         <div class="panel_maßnahmen_links">
             <p>Falls nötig Mund-Nasen-Schutz tragen
             </p>
-            <img src="img/sneeze.png" width="100vw" height="100vh">
+            <img src="img/face-mask (2).png" width="100vw" height="100vh">
         </div>
 
         <div class="panel_weitere_maßnahmen">
@@ -87,25 +83,39 @@
             <a href="https://www.sozialministerium.at/Informationen-zum-Coronavirus.html" target="_blank">www.sozialministerium.at/Informationen-zum-Coronavirus</a>
         </div>
     
-    </div>   
+    </div>
     
 
 
     <footer>
         <nav>
-            <div id="RectMaßnahmen"></div>
-            <div id="icons">
-                <a href="home.html"><img alt="Home" src="img/home_grau.png" width="30vw" height="30vw"></a>
-                <a href="dashboard_bezirk.html"><img alt="Statistik" src="img/statistics_grau.png" width="30vw" height="30vw"></a>
-                <a href="maßnahmen.html"><img alt="Maßnahmen" src="img/maske_blau.png" width="35px" height="30vw"></a>
-                <a href="symptome.html"><img alt="Symptome" src="img/fieber_grau.png" width="30vw" height="30vw"></a>
-            </div>
-             <ul>
-                 <li><a href="home.html">Home</a></li>
-                 <li><a href="dashboard_bezirk.html">Statistik</a></li>
-                 <li><a href="maßnahmen.html" class="aktiv">Maßnahmen</a></li>
-                 <li><a href="symptome.html">Symptome</a></li>
-             </ul>
+            <ul>
+                <li>
+                   <div class="nav_element">
+                   <a href="home.html"><img alt="Home" src="img/home_grau.svg" width="30vw" height="30vw"></a>    
+                   <a href="home.html">Home</a>
+                   </div>                 
+               </li>
+               <li>
+                   <div class="nav_element">
+                   <a href="dashboard_bezirk.html"><img alt="Statistik" src="img/statistics_grau.svg" width="30vw" height="30vw"></a>
+                   <a href="dashboard_bezirk.html">Statistik</a>
+                   </div>
+               </li>
+               <li>
+                   <div class="nav_element">
+                    <div id="RectMaßnahmen"></div>
+                   <a href="maßnahmen.html"><img alt="Maßnahmen" src="img/maske_blau.svg" width="30vw" height="30vw"></a>
+                   <a href="maßnahmen.html" class="aktiv">Maßnahmen</a>
+                   </div>
+               </li>
+               <li>
+                   <div class="nav_element">
+                   <a href="symptome.html"><img alt="Symptome" src="img/fieber_grau.svg" width="30vw" height="30vw"></a>
+                   <a href="symptome.html">Symptome</a>
+                   </div>
+               </li>
+            </ul>
         </nav>
      </footer>
 

@@ -8,41 +8,40 @@
         <link rel="stylesheet" href="css/index.css">
         <link rel="icon" href="img/Logo_CovidLux.png">
         <title>CovidLux</title>
-        <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
-        <script src="https://d3js.org/d3-fetch.v2.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js'></script>
-        
+        <script src="js/jquery.min.js"></script>     
     </head>
     <body onload="onload_walk()"> 
 
-<header>
-    <h2>Wie funktioniert es?</h2>
-</header>
+        <div class="walk_wrapper">
+        <img src="img/1.png" id="walk_welle">
+        <h2 id="walk_h2">Wie funktioniert es?</h2>
+ 
 
-     
-     <div class="mainwrapper">
-
+       
                    <div id=splash>
                        <div id=splash_inner>
+                           <img src="img/wellen oben ohne viren.png" class="wellen_oben">
+                           <img src="img/wellen oben viren.png" id="wellen_oben_viren" class="wellen_oben">
                             <img src="img/Logo_CovidLux.png" id="logo_covidlux" alt="CovidLux" width="150vw" height="150vh">   
                             <h1>COVID LUX</h1>
+                            <img src="img/wellen unten ohne viren.png" class="wellen_unten">
+                            <img src="img/wellen unten viren.png" id="wellen_unten_viren" class="wellen_unten">
                          </div>
                     </div>
-                    <h2>aktuelle Ampelfarbe</h2>
+                    <h2 class="walk_header">aktuelle Ampelfarbe</h2>
                     <p class="walk_erklärung_index">auf der Startseite findest du die aktuelle Ampelfarbe
                         basierend auf deinem Standort. Außerdem hast du die Möglichkeit dir 
                         die Ampelfarben anderer Bezirke anzeigen zu lassen.
                     </p>
-    </div>
 
+                </div>
     
     <footer class="footer_walk">
         <nav>
             <div id="walk_kreise_start">
-                <a href="index.html"><div class="walk_kreis_aktiv"></div></a>
-                <a href="walk2.html"><div class="walk_kreis"></div></a>
-                <a href="walk3.html"><div class="walk_kreis"></div></a>
+                <div class="walk_kreis_aktiv"></div>
+                <div class="walk_kreis"></div>
+                <div class="walk_kreis"></div>
              <a href="walk2.html"><button class="walk_button_rechts" onclick="storeSplash()">Weiter</button></a>
             </div>
         </nav>

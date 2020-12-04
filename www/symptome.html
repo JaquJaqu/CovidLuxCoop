@@ -8,10 +8,7 @@
         <link rel="stylesheet" href="css/index.css">
         <link rel="icon" href="img/Logo_CovidLux.png">
         <title>CovidLux</title>
-        <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
-        <script src="https://d3js.org/d3-fetch.v2.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js'></script>
+        <script src="js/jquery.min.js"></script>
     </head>
     <body>
 
@@ -39,7 +36,7 @@
                 </ul>
             </div>
             <div class="panel_rechts">
-                <img src="img/sneeze.png" width="80vw" height="80vh">
+                <img src="img/fever.png" width="80vw" height="80vh">
             </div>
         </div>
         
@@ -55,7 +52,7 @@
                 </ul>
             </div>
             <div class="panel_rechts">
-                <img src="img/sneeze.png" width="80vw" height="80vh">
+                <img src="img/kopfschmerzen.png" width="80vw" height="80vh">
             </div>
         </div>
         
@@ -71,21 +68,22 @@
                 </ul>
             </div>
             <div class="panel_rechts">
-                <img src="img/sneeze.png" width="80vw" height="80vh">
+                <img src="img/lunge.png" width="80vw" height="80vh">
             </div>
         </div>     
   
         <p id="DataSymptome">Datenquelle: <a href="https://www.who.int/" target="_blank" id="Quelle">who.int</a></p>
         <h1 id="Wastun" onclick="startOverlay()">Ich glaube ich bin infiziert. Was nun?</h1>
 
-        <div id=overlay onclick="endOverlay()">
+        <div id=overlay>
             <div id="overlay_flex">
-                <img src="img/sneeze.png" id="overlay_img" width="80vw" height="80vh">
+                <button id="overlay_x" onclick="endOverlay()"><img src="img/X3_leer_grau.svg" width="35vw"></button>
+                <img src="img/notruf.png" id="overlay_img" width="100vw" height="100vh">
             <p>Solltest du die beschriebenen Krankheitssymptome aufweisen, bleibe bitte zu Hause und kontaktiere
                 die 24h-Hotline <b>1450</b> !
             </p>
             <p>Solltest du allgemeine Fragen zum Corona Virus haben, kannst du dich an die Infoline 
-                <b>0800 555 621</b>(täglich von 7:00 bis 20:00) wenden. Hier wird dir gerne eine Auskunft gegeben.
+                <b>0800 555 621</b> (täglich von 7:00 bis 20:00) wenden. Hier wird dir gerne eine Auskunft gegeben.
             </p>
             </div>
         </div>
@@ -96,18 +94,32 @@
 
     <footer>
         <nav>
-            <div id="RectSymptome"></div>
-            <div id="icons">
-                <a href="home.html"><img alt="Home" src="img/home_grau.png" width="30vw" height="30vw"></a>
-                <a href="dashboard_bezirk.html"><img alt="Statistik" src="img/statistics_grau.png" width="30vw" height="30vw"></a>
-                <a href="maßnahmen.html"><img alt="Maßnahmen" src="img/maske_grau.png" width="30vw" height="30vw"></a>
-                <a href="symptome.html"><img alt="Symptome" src="img/fieber_blau.png" width="30vw" height="30vw"></a>
-            </div>
              <ul>
-                 <li><a href="home.html">Home</a></li>
-                 <li><a href="dashboard_bezirk.html">Statistik</a></li>
-                 <li><a href="maßnahmen.html">Maßnahmen</a></li>
-                 <li><a href="symptome.html" class="aktiv">Symptome</a></li>
+                 <li>
+                    <div class="nav_element">
+                    <a href="home.html"><img alt="Home" src="img/home_grau.svg" width="30vw" height="30vw"></a>    
+                    <a href="home.html">Home</a>
+                    </div>                 
+                </li>
+                <li>
+                    <div class="nav_element">
+                    <a href="dashboard_bezirk.html"><img alt="Statistik" src="img/statistics_grau.svg" width="30vw" height="30vw"></a>
+                    <a href="dashboard_bezirk.html">Statistik</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav_element">
+                    <a href="maßnahmen.html"><img alt="Maßnahmen" src="img/maske_grau.svg" width="30vw" height="30vw"></a>
+                    <a href="maßnahmen.html">Maßnahmen</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav_element">
+                    <div id="RectSymptome"></div>
+                    <a href="symptome.html"><img alt="Symptome" src="img/fieber_blau.svg" width="30vw" height="30vw"></a>
+                    <a href="symptome.html" class="aktiv">Symptome</a>
+                    </div>
+                </li>
              </ul>
         </nav>
      </footer>
