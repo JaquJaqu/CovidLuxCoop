@@ -86,8 +86,12 @@ getAmpel();
 function onOnline(){
   const statusDisplay = document.getElementById("status");
   statusDisplay.textContent = "Du hast Internetzugriff!";
+  if(sessionStorage.getItem("online") == null){
   $("#status").fadeIn(800);
   $("#status").delay(1500).fadeOut(700);
+  sessionStorage.setItem("online", true);
+  sessionStorage.removeItem("offline");  
+  }
   connBool = true;
   if(sessionStorage.getItem("Update") == null){
   checkForUpdate();
@@ -100,8 +104,12 @@ function onOnline(){
 function onOffline(){
   const statusDisplay = document.getElementById("status");
   statusDisplay.textContent = "Du hast keinen Internetzugriff!";
+  if(sessionStorage.getItem("offline") == null){
   $("#status").fadeIn(800);
   $("#status").delay(1500).fadeOut(700);
+  sessionStorage.setItem("offline", true);
+  sessionStorage.removeItem("online");  
+  }
   connBool = false;
   console.log("Connection Bool:", connBool, "du hast kein Internet");
   console.log("Path Bool:", pathbool, "online zugriff auf Ampeldaten verweigert");
@@ -248,6 +256,7 @@ function getLocation(latitude, longitude) {
 
         }
         lokalstorageBundesland = bundesland;
+
         bundesland = data.principalSubdivision;
         sessionStorage.setItem("storeBundesland", bundesland);
       }
@@ -257,10 +266,6 @@ function getLocation(latitude, longitude) {
     }
   );
 }
-
-
-
-
 
 function drawIllustration(ampelStufe){
 
