@@ -8,10 +8,11 @@
         <link rel="stylesheet" href="css/index.css">
         <link rel="icon" href="img/Logo_CovidLux.png">
         <title>CovidLux</title>
+        <script src="js/jquery.min.js"></script> 
     </head>
-    <body>
+    <body ononline="onOnline()" onoffline="onOffline()">
 
-<header>   
+<header>  
     <div class="info">
         <a href="info.html" onclick="saveHistory()"><img alt="Info" src="img/info.png" width="25vw" height="25vw"></a>
     </div>
@@ -22,7 +23,7 @@
 </header>
      
      <div class="mainwrapper">
-
+        <div id="status"></div>
                     
         <h1 id="header_maßnahmen">Verhaltenstipps</h1>
         <p id="sub_maßnahmen">so schützt du dich und deine Mitmenschen</p>

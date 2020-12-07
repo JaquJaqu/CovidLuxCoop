@@ -7,9 +7,10 @@
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="css/index.css">
         <link rel="icon" href="img/Logo_CovidLux.png">
-        <title>CovidLux</title>        
+        <title>CovidLux</title>
+        <script src="js/jquery.min.js"></script>         
     </head>
-    <body>
+    <body ononline="onOnline()" onoffline="onOffline()">
 
 <header>
     <div class="info">
@@ -21,6 +22,7 @@
 <body onload="onload_settings()">
 
     <div class="mainwrapper">
+        <div id="status"></div>
         <div id="einstellungen">
             
             <div class="einstellungen_header">

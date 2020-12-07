@@ -8,8 +8,9 @@
         <link rel="stylesheet" href="css/index.css">
         <link rel="icon" href="img/Logo_CovidLux.png">
         <title>CovidLux</title>
+        <script src="js/jquery.min.js"></script> 
     </head>
-    <body onload="onload_info()">
+    <body onload="onload_info()" ononline="onOnline()" onoffline="onOffline()">
 
 <header>
     <div class="info">
@@ -19,6 +20,7 @@
     <div></div>
 </header>
 
+<div id="status"></div>
         <div id="blockWieGesamt">
             <div class="blockWie">
                 <div class="flexboxwie">

@@ -8,27 +8,29 @@
         <link rel="stylesheet" href="css/index.css">
         <link rel="icon" href="img/Logo_CovidLux.png">
         <title>CovidLux</title>
-        <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
-        <script src="https://d3js.org/d3-fetch.v2.min.js"></script>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js'></script>
-        
+        <script src="js/jquery.min.js"></script>         
     </head>
-    <body>
+    <body ononline="onOnline()" onoffline="onOffline()">
 
 <header>
+    <div class="welle"></div>
+    <img src="img/wellen.png" id="img_wellen" width="100vw">
+    <div class="flexbox_header">
     <div class="info">
         <a id="back1"><img alt="Back" src="img/back.png" width="25vw" height="25vw"></a>
         </div>
     <h1>Einstellungen</h1>
    <div></div>
+   </div>
 </header>
 <body onload="onload_settings()">
 
     <div class="mainwrapper">
+        <div id="status"></div>
         <div id="einstellungen">
             
             <div class="einstellungen_header">
-                <img alt="Ampel" src="img/ampel.png" width="20vw" height="20vw">
+                <img alt="Ampel" src="img/lock.png" width="20vw" height="20vw">
                 <h2>Berechtigungen</h2>
             </div>
             <div class="einstellungen_content">
@@ -43,7 +45,7 @@
 
             
             <div class="einstellungen_header">
-                <img alt="Ampel" src="img/ampel.png" width="20vw" height="20vw">
+                <img alt="Ampel" src="img/secure.png" width="20vw" height="20vw">
                 <h2>Datenschutz</h2>
             </div>
             <div class="einstellungen_content">
@@ -52,7 +54,7 @@
 
             
             <div class="einstellungen_header">
-                <img alt="Ampel" src="img/ampel.png" width="20vw" height="20vw">
+                <img alt="Ampel" src="img/external_link.png" width="20vw" height="20vw">
                 <h2>Mehr</h2>
             </div>
             <div class="einstellungen_content">

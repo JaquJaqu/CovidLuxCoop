@@ -11,8 +11,9 @@
         <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
         <script src="https://d3js.org/d3-fetch.v2.min.js"></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js'></script>
+        <script src="js/jquery.min.js"></script> 
     </head>
-    <body>
+    <body ononline="onOnline()" onoffline="onOffline()">
 
 <header>
     <div class="info">
@@ -25,6 +26,7 @@
 </header>
      
      <div class ="mainwrapper">
+        <div id="status"></div>
         <nav id="Navi">
             <ul>
                 <li><a href="dashboard_bezirk.html" class="aktiv_lila">Bezirk</a></li>

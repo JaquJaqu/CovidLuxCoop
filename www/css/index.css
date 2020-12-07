@@ -51,7 +51,7 @@ h2{
 }
 
 header {
-    background-image: url("../img/wellen.png");
+    background-image: url("../img/wellen weißer hintergrund.png");
     display:flex;
     flex-direction: row;
     align-items: center;
@@ -264,18 +264,18 @@ footer ul {
 /************************************************__HOME__************************/
 #status{
     text-align:center;
-    
     z-index: 1;
-    background-color: #717179;
-    position: absolute;
-    font-size: 20pt;
-    width: 100vw;
-    height: 25vh;
+    background-color: white;
+    border: 2px solid #504F95;
+    position: absolute; 
+    font-size: 18pt; 
+    font-weight: 500;
+    width: 99vw;
+    height: 225px;
     margin-top: 8vh;
-    display:flex;
-    align-items: center;
-    justify-content: center;
     display:none;
+    align-self: center;
+    justify-content: center;
 }
 #bezirk {
     font-size:4vh;
@@ -390,7 +390,7 @@ footer ul {
 }
 .mainwrapper{
     position: absolute;
-    top: 120px;
+    top: 140px;
     left: 0;
     right: 0;
     padding-bottom: 20vh;
@@ -718,6 +718,7 @@ top: 12px;
 /************************************************__SYMPTOME__*********************************/
 #Akkordeon{
     margin-top: 7vh;
+    padding-bottom: 20vh;
 }
 .accordion {
     background-color: white;
@@ -785,19 +786,15 @@ top: 12px;
 #Wastun{
     color:white;
     background-color: #221F78;
-    width: 70%;
-    height: 100%;
     text-align: center;
     font-weight: 400;
-    /*padding-top: 2%;
-    padding-bottom: 2%;*/
     padding-left:7%;
     padding-right:7%;
     padding-top:4%;
     padding-bottom:4%;
-    margin-left: 8%;
     border-radius: 15px;
-    margin-top: 6vh;
+    position:fixed;
+    top: 60vh;
 }
 p{
     color: black;
@@ -816,14 +813,14 @@ p{
 #overlay{
     background-color: #221F78;
     display: none;
-    top: 0;
+    top: 15vh;
     left: 0;
     margin-top: 7vh; /*5vh*/
     border-radius: 15px;
     z-index: 1;
-    height: 80vh;
+    height: 78vh;
     width: 100vw;
-    position: absolute;  
+    position: fixed;  
 }
 #overlay p{
     color: white;
@@ -862,7 +859,7 @@ p{
     padding-left: 6vw;
 }
 #blockWieGesamt{
-    margin-top: 25vh;
+    margin-top: 20vh;
     width: 100vw;
 }
 h3{

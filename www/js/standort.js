@@ -53,13 +53,6 @@ let getETaglocalS;
 let dataOffline;
 const arrBezirke = [];
 
-
-let checkBool; //checkt Standort wenn false = Standort AN
-let connBool; //checkt Internet wenn true= Internet AN
-let accessBool = true; //checkt of ampelfile online geladen werden soll, wenn true = AN
-let pathbool; //Checkt ob Ampfelfile online angefragt werden kann wenn true = MÖGLICH
-
-
 var arrLänge = 0;
 let path2 = corsFix + url;
 let pathforUpdate = corsFix + url; //path2 ist nach dem Speicher ooflineData.. deswegen hab ich das im Moment noch dazu getan
@@ -81,40 +74,6 @@ farbkreisPH.appendChild(farbkreis);
 
 read_from_local_storage();
 getAmpel();
-
-
-function onOnline(){
-  const statusDisplay = document.getElementById("status");
-  statusDisplay.textContent = "Du hast Internetzugriff!";
-  if(sessionStorage.getItem("online") == null){
-  $("#status").fadeIn(800);
-  $("#status").delay(1500).fadeOut(700);
-  sessionStorage.setItem("online", true);
-  sessionStorage.removeItem("offline");  
-  }
-  connBool = true;
-  if(sessionStorage.getItem("Update") == null){
-  checkForUpdate();
-  console.log("Yay");
-  sessionStorage.setItem("Update", true);
-  }
-  console.log("Connection Bool:", connBool, "du hast kein Internet");
-  console.log("Path Bool:", pathbool, "online zugriff auf Ampeldaten verweigert");
-}
-function onOffline(){
-  const statusDisplay = document.getElementById("status");
-  statusDisplay.textContent = "Du hast keinen Internetzugriff!";
-  if(sessionStorage.getItem("offline") == null){
-  $("#status").fadeIn(800);
-  $("#status").delay(1500).fadeOut(700);
-  sessionStorage.setItem("offline", true);
-  sessionStorage.removeItem("online");  
-  }
-  connBool = false;
-  console.log("Connection Bool:", connBool, "du hast kein Internet");
-  console.log("Path Bool:", pathbool, "online zugriff auf Ampeldaten verweigert");
-}
-
 
 /*
 const checkOnlineStatus = async () => {

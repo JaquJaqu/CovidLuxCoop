@@ -10,7 +10,7 @@
         <title>CovidLux</title>
         <script src="js/jquery.min.js"></script>
     </head>
-    <body>
+    <body ononline="onOnline()" onoffline="onOffline()">
 
 <header>
     <div class="info">
@@ -23,7 +23,7 @@
 </header>
      
      <div class ="mainwrapper">
-
+        <div id="status"></div>
         <div id="Akkordeon">
         <button class="accordion">Die häufigsten Symptome</button>
         <div class="panel">

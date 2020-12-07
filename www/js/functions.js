@@ -1,6 +1,11 @@
 const url = 'https://corona-ampel.gv.at/sites/corona-ampel.gv.at/files/assets/Warnstufen_Corona_Ampel_aktuell.json';
 const corsFix = 'https://cors-anywhere.herokuapp.com/';
 
+let pathbool; //Checkt ob Ampfelfile online angefragt werden kann wenn true = MÖGLICH
+let connBool; //checkt Internet wenn true= Internet AN
+let checkBool; //checkt Standort wenn false = Standort AN
+let accessBool = true; //checkt of ampelfile online geladen werden soll, wenn true = AN
+
 
 
 function saveHistory(){
@@ -86,6 +91,38 @@ function loadJSON(path, success, error)
     };
     xhr.open("GET", path, true);
     xhr.send();
+}
+
+
+function onOnline(){
+  const statusDisplay = document.getElementById("status");
+  statusDisplay.textContent = "Du hast Internetzugriff! Alles funktioniert reibungslos.";
+  if(sessionStorage.getItem("online") == null){
+  $("#status").css({"display": "flex", "justify-content": "center", "align-items": "center"}).hide().fadeIn(800);
+  $("#status").delay(1500).fadeOut(700);
+  sessionStorage.setItem("online", true);
+  sessionStorage.removeItem("offline");  
+  }
+  connBool = true;
+  if(sessionStorage.getItem("Update") == null){
+  checkForUpdate();
+  sessionStorage.setItem("Update", true);
+  }
+  console.log("Connection Bool:", connBool, "du hast kein Internet");
+  console.log("Path Bool:", pathbool, "online zugriff auf Ampeldaten verweigert");
+}
+function onOffline(){
+  const statusDisplay = document.getElementById("status");
+  statusDisplay.textContent = "Du hast keinen Internetzugriff kannst aber trotzdem offline arbeiten!";
+  if(sessionStorage.getItem("offline") == null){
+  $("#status").css({"display": "flex", "justify-content": "center", "align-items": "center"}).hide().fadeIn(800);
+  $("#status").delay(1500).fadeOut(700);
+  sessionStorage.setItem("offline", true);
+  sessionStorage.removeItem("online");  
+  }
+  connBool = false;
+  console.log("Connection Bool:", connBool, "du hast kein Internet");
+  console.log("Path Bool:", pathbool, "online zugriff auf Ampeldaten verweigert");
 }
 
 

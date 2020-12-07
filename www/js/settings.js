@@ -1,6 +1,6 @@
 function onload_settings(){
-    toggleStorageTrue = localStorage.getItem("storeToggleTrue");
-    toggleStorageFalse = localStorage.getItem("storeToggleFalse");
+    toggleStorageTrue = sessionStorage.getItem("storeToggleTrue");
+    toggleStorageFalse = sessionStorage.getItem("storeToggleFalse");
 
     var name = sessionStorage.getItem("pathname");
     var link = document.getElementById("back1");
@@ -25,13 +25,13 @@ function checkToggle(){
      }
           //Manuelle Lokation
           if(checkBool == true){
-              localStorage.setItem("storeToggleTrue", true);
-              localStorage.removeItem("storeToggleFalse");
+              sessionStorage.setItem("storeToggleTrue", true);
+              sessionStorage.removeItem("storeToggleFalse");
   
           //Standortbasierte Lokation
           }else if(checkBool == false){
   
-              localStorage.setItem("storeToggleFalse", false);
-              localStorage.removeItem("storeToggleTrue");
+              sessionStorage.setItem("storeToggleFalse", false);
+              sessionStorage.removeItem("storeToggleTrue");
           }
   }

@@ -7,15 +7,15 @@
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="css/index.css">
         <link rel="icon" href="img/Logo_CovidLux.png">
-        <title>CovidLux</title>
-        <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
-        <script src="https://d3js.org/d3-fetch.v2.min.js"></script>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js'></script>
-        
+        <title>CovidLux</title>   
+        <script src="js/jquery.min.js"></script>  
     </head>
     <body onload="onload_home()" ononline="onOnline()" onoffline="onOffline()"> 
 
 <header>
+    <div class="welle"></div>
+    <img src="img/wellen.png" id="img_wellen" width="100vw">
+    <div class="flexbox_header">
     <div class="info">
         <a href="info.html" onclick="saveHistory()"><img alt="Info" src="img/info.png" width="25vw" height="25vw"></a>
     </div>
@@ -23,12 +23,13 @@
     <div class="settings">
         <a href="settings.html" onclick="saveHistory()"><img alt="Settings" src="img/settings.png" width="25vw" height="25vw"></a>
     </div> 
+    </div>
 </header>
 
      
      <div class ="mainwrapper">
         <div id="content_home">
-            <p id ="status"> </p>
+            <div id="status"></div>
                     <div class="dropdown" display="block">
                         <button onclick="myFunction()" class="dropbtn" id="dropbtn">anderen Bezirk wählen</button>
                         <div id="myDropdown" class="dropdown-content">
@@ -39,7 +40,6 @@
         <h2 id ="infoText">Es wird kein Bezirk angezeigt</h2>
         <h1 id="bezirk"></h1>
         <h2 id="standortText"></h2>
-        <h1 id="bundesland"></h1>
         <div id="farbkreisAktiv"></div>
         <div id="farbkreisPH"></div>  
         
@@ -71,19 +71,33 @@
     
     <footer>
         <nav>
-            <div id="RectHome"></div>
-            <div id="icons">
-                <a href="home.html"><img alt="Home" src="img/home_blau.png" width="30vw" height="30vw"></a>
-                <a href="dashboard_bezirk.html"><img alt="Statistik" src="img/statistics_grau.png" width="30vw" height="30vw"></a>
-                <a href="maßnahmen.html"><img alt="Maßnahmen" src="img/maske_grau.png" width="30vw" height="30vw"></a>
-                <a href="symptome.html"><img alt="Symptome" src="img/fieber_grau.png" width="30vw" height="30vw"></a>
-            </div>
-             <ul>
-                <li><a href="home.html" class="aktiv">Home</a></li>
-                <li><a href="dashboard_bezirk.html">Statistik</a></li>
-                <li><a href="maßnahmen.html">Maßnahmen</a></li>
-                <li><a href="symptome.html">Symptome</a></li>
-             </ul>
+            <ul>
+                <li>
+                   <div class="nav_element">
+                    <div id="RectHome"></div>
+                   <a href="home.html"><img alt="Home" src="img/home_blau.svg" width="30vw" height="30vw"></a>    
+                   <a href="home.html" class="aktiv">Home</a>
+                   </div>                 
+               </li>
+               <li>
+                   <div class="nav_element">
+                   <a href="dashboard_bezirk.html"><img alt="Statistik" src="img/statistics_grau.svg" width="30vw" height="30vw"></a>
+                   <a href="dashboard_bezirk.html">Statistik</a>
+                   </div>
+               </li>
+               <li>
+                   <div class="nav_element">
+                   <a href="maßnahmen.html"><img alt="Maßnahmen" src="img/maske_grau.svg" width="30vw" height="30vw"></a>
+                   <a href="maßnahmen.html">Maßnahmen</a>
+                   </div>
+               </li>
+               <li>
+                   <div class="nav_element">
+                   <a href="symptome.html"><img alt="Symptome" src="img/fieber_grau.svg" width="30vw" height="30vw"></a>
+                   <a href="symptome.html">Symptome</a>
+                   </div>
+               </li>
+            </ul>
         </nav>
      </footer>
 
