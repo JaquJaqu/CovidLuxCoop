@@ -1,4 +1,4 @@
-function onload_settings(){
+function onload_einstellungen(){
     toggleStorageTrue = sessionStorage.getItem("storeToggleTrue");
     toggleStorageFalse = sessionStorage.getItem("storeToggleFalse");
 

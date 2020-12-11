@@ -232,30 +232,38 @@ function drawIllustration(ampelStufe){
       document.getElementById("farbkreis").style.backgroundColor = "#60B564";
       document.getElementById("WarnstufeGeschrieben").innerHTML = "GRÜN <br/> geringes Risiko";
       document.getElementById("farbkreisAktiv").style.border = "1px solid #60B564";
+      document.getElementById("farbkreisAktiv").style.display = "block";
       document.getElementById("ringerl").style.display = "block";
-      document.getElementById("ringerl").style.marginLeft = "-14vw";
-      document.getElementById("ringerl").style.marginTop = "1.5vh";
+      document.getElementById("ringerl").style.gridColumn = "3/3";
+        document.getElementById("ringerl").style.gridRow = "5/6";
+        document.getElementById("ringerl").style.alignSelf = "center";
       } else if (ampelStufe == 2) {
         document.getElementById("farbkreis").style.backgroundColor = "#FED500";
         document.getElementById("WarnstufeGeschrieben").innerHTML = "GELB <br/> mittleres Risiko";
         document.getElementById("farbkreisAktiv").style.border = "1px solid #FED500";
+        document.getElementById("farbkreisAktiv").style.display = "block";
         document.getElementById("ringerl").style.display = "block";
-        document.getElementById("ringerl").style.marginLeft = "-5vw";
-        document.getElementById("ringerl").style.marginTop = "2.5vh";
+        document.getElementById("ringerl").style.gridColumn = "4/4";
+        document.getElementById("ringerl").style.gridRow = "6/7";
+        document.getElementById("ringerl").style.alignSelf = "center";
       } else if (ampelStufe == 3) {
         document.getElementById("farbkreis").style.backgroundColor = "#F59C00";
         document.getElementById("WarnstufeGeschrieben").innerHTML = "ORANGE <br/> hohes Risiko";
         document.getElementById("farbkreisAktiv").style.border = "1px solid #F59C00";
+        document.getElementById("farbkreisAktiv").style.display = "block";
         document.getElementById("ringerl").style.display = "block";
-        document.getElementById("ringerl").style.marginLeft = "5vw";
-        document.getElementById("ringerl").style.marginTop = "2.5vh";
+        document.getElementById("ringerl").style.gridColumn = "5/5";
+        document.getElementById("ringerl").style.gridRow = "6/7";
+        document.getElementById("ringerl").style.alignSelf = "center";
       } else if (ampelStufe == 4) {
         document.getElementById("farbkreis").style.backgroundColor = "#CB0538";
         document.getElementById("WarnstufeGeschrieben").innerHTML = "ROT <br/> sehr hohes Risiko";
         document.getElementById("farbkreisAktiv").style.border = "1px solid #CB0538";
+        document.getElementById("farbkreisAktiv").style.display = "block";
         document.getElementById("ringerl").style.display = "block";
-        document.getElementById("ringerl").style.marginLeft = "14vw";
-        document.getElementById("ringerl").style.marginTop = "1.5vh";
+        document.getElementById("ringerl").style.gridColumn = "6/6";
+        document.getElementById("ringerl").style.gridRow = "5/6";
+        document.getElementById("ringerl").style.alignSelf = "center";
       }
 }
 
@@ -293,7 +301,7 @@ function getAmpel() {
 function downloadAmpelFile(path2,eTagResponse) {
   if(pathbool==true && connBool ==true){ //wenn ich internet hab und auf die Ampedaten zugreifen darf dann..
   loadJSON(path2, function (data) {
-    let items_json = data[6];
+    let items_json = data[7];
     //console.log(items_json);
     var date = new Date();//var updateDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
         var updateDate = date.toGMTString(); // Tue, 17 Nov 2020 14:16:29 GMT --> Gibt mir die jetzige Uhrzeit im Format das lastModiefied Header Request auch hat
@@ -599,7 +607,8 @@ function changeText(elm) {
   sessionStorage.setItem("storeBezirk", bezirk);
   getAmpel();
 
-  document.getElementById("infoText").style.display= "none"; 
+  document.getElementById("infoText").style.display= "none";
+  document.getElementById("info_start").style.display= "none"; 
   document.getElementById("standortText").innerHTML = "zuletzt gewählter Standort";
   document.getElementById("switchValue").checked = true;
 
@@ -610,7 +619,7 @@ function changeText(elm) {
   sessionStorage.removeItem("storeToggleFalse");
 }
 
-function onload_home() {
+function onload_start() {
   bezirkStorage = sessionStorage.getItem("storeBezirk");
   toggleStorageTrue = sessionStorage.getItem("storeToggleTrue");
   toggleStorageFalse = sessionStorage.getItem("storeToggleFalse");

@@ -10,25 +10,21 @@
         <title>CovidLux</title>   
         <script src="js/jquery.min.js"></script>  
     </head>
-    <body onload="onload_home()" ononline="onOnline()" onoffline="onOffline()"> 
+    <body onload="onload_start()" ononline="onOnline()" onoffline="onOffline()"> 
 
 <header>
-    <div class="welle"></div>
-    <img src="img/wellen.png" id="img_wellen" width="100vw">
-    <div class="flexbox_header">
     <div class="info">
         <a href="info.html" onclick="saveHistory()"><img alt="Info" src="img/info.png" width="25vw" height="25vw"></a>
     </div>
     <div></div>
-    <div class="settings">
-        <a href="settings.html" onclick="saveHistory()"><img alt="Settings" src="img/settings.png" width="25vw" height="25vw"></a>
+    <div class="einstellungen">
+        <a href="einstellungen.html" onclick="saveHistory()"><img alt="Einstellungen" src="img/settings.png" width="25vw" height="25vw"></a>
     </div> 
-    </div>
 </header>
 
      
-     <div class ="mainwrapper">
-        <div id="content_home">
+     <div id="mainwrapper_start">
+
             <div id="status"></div>
                     <div class="dropdown" display="block">
                         <button onclick="myFunction()" class="dropbtn" id="dropbtn">anderen Bezirk wählen</button>
@@ -41,31 +37,26 @@
         <h1 id="bezirk"></h1>
         <h2 id="standortText"></h2>
         <div id="farbkreisAktiv"></div>
-        <div id="farbkreisPH"></div>  
-        
-    <div id="farbkreiswrap">
+        <div id="farbkreisPH"></div> 
+         
         <div id="ringerl"></div>
-            <div class = "farbkreiseklein" id="farbkreisgreen"></div>
-            <div class = "farbkreiseklein" id="farbkreisyellow"></div>
-            <div class = "farbkreiseklein" id="farbkreisorange"></div>
-            <div class = "farbkreiseklein" id="farbkreisred"></div>
-      </div>
-
+        <div class = "farbkreiseklein" id="farbkreisgreen"></div>
+        <div class = "farbkreiseklein" id="farbkreisyellow"></div>
+        <div class = "farbkreiseklein" id="farbkreisorange"></div>
+         <div class = "farbkreiseklein" id="farbkreisred"></div>
       
       <h1 id="WarnstufeGeschrieben"></h1>
       <h2 id="info_start">Aktiviere den Zugriff auf deinen Standort oder wähle einen Bezirk aus der Liste</h2>
 
-      <div id="Standortbox">
+    <div id="Standortbox">
         <h3>Standort</h3>
-        
-    <label class="switch">
-        <input type="checkbox" onclick="myLocation()"  checked ='true' id='switchValue'  name="disableLocation">
-        <span class="slider round"></span>
-      </label>
+        <label class="switch">
+            <input type="checkbox" onclick="myLocation()"  checked ='true' id='switchValue'  name="disableLocation">
+            <span class="slider round"></span>
+        </label>
     </div>
-        </div>
-        
-      
+
+          
 </div>
 
     
@@ -74,21 +65,21 @@
             <ul>
                 <li>
                    <div class="nav_element">
-                    <div id="RectHome"></div>
-                   <a href="home.html"><img alt="Home" src="img/home_blau.svg" width="30vw" height="30vw"></a>    
-                   <a href="home.html" class="aktiv">Home</a>
+                    <div id="RectStart"></div>
+                   <a href="start.html"><img alt="Start" src="img/home_blau.svg" width="30vw" height="30vw"></a>    
+                   <a href="start.html" class="aktiv">Start</a>
                    </div>                 
                </li>
                <li>
                    <div class="nav_element">
-                   <a href="dashboard_bezirk.html"><img alt="Statistik" src="img/statistics_grau.svg" width="30vw" height="30vw"></a>
-                   <a href="dashboard_bezirk.html">Statistik</a>
+                   <a href="dashboard_bezirk.html"><img alt="Zahlen" src="img/statistics_grau.svg" width="30vw" height="30vw"></a>
+                   <a href="dashboard_bezirk.html">Zahlen</a>
                    </div>
                </li>
                <li>
                    <div class="nav_element">
-                   <a href="maßnahmen.html"><img alt="Maßnahmen" src="img/maske_grau.svg" width="30vw" height="30vw"></a>
-                   <a href="maßnahmen.html">Maßnahmen</a>
+                   <a href="tipps.html"><img alt="Tipps" src="img/maske_grau.svg" width="30vw" height="30vw"></a>
+                   <a href="tipps.html">Tipps</a>
                    </div>
                </li>
                <li>

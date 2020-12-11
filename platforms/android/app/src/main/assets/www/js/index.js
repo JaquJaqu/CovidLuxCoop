@@ -15,7 +15,7 @@ function onload_walk(){
 
     setTimeout(function(){
         if(sessionStorage.getItem("walkthrough") != null){
-            window.location.replace("home.html");
+            window.location.replace("start.html");
         }
     },4000);
 
