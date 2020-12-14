@@ -22,6 +22,9 @@
 		6B6C2A352F8848BE9BA84A10 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FA8B88D6D8B4FEE98AF7D1A /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		9A3276C9DF8B45998248B309 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B8EA8EC0CF44B8794741A05 /* CoreTelephony.framework */; };
 		FD1225F9875B4CA78E2C8148 /* RequestLocationAccuracy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B671893D15544BDAFD72545 /* RequestLocationAccuracy.m */; };
+		A2ED4776B93743D6AA96B4E5 /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8B1EED1E6144BA95F10162 /* Toast+UIView.m */; };
+		949134EEA74D4FE9B9FDFB09 /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC9D1ED041C4CD3BEC8A57F /* Toast.m */; };
+		23F8E368B39E4C05A6FA9BDC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25B78C48BBC24A05904C26F4 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +85,11 @@
 		1B8EA8EC0CF44B8794741A05 /* CoreTelephony.framework */ = {isa = PBXFileReference; name = "CoreTelephony.framework"; path = "System/Library/Frameworks/CoreTelephony.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 		0B671893D15544BDAFD72545 /* RequestLocationAccuracy.m */ = {isa = PBXFileReference; name = "RequestLocationAccuracy.m"; path = "cordova-plugin-request-location-accuracy/RequestLocationAccuracy.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		4C90F36AE2CB4A7A8A998254 /* RequestLocationAccuracy.h */ = {isa = PBXFileReference; name = "RequestLocationAccuracy.h"; path = "cordova-plugin-request-location-accuracy/RequestLocationAccuracy.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		EF8B1EED1E6144BA95F10162 /* Toast+UIView.m */ = {isa = PBXFileReference; name = "Toast+UIView.m"; path = "cordova-plugin-x-toast/Toast+UIView.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		7FC9D1ED041C4CD3BEC8A57F /* Toast.m */ = {isa = PBXFileReference; name = "Toast.m"; path = "cordova-plugin-x-toast/Toast.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		6B33286C45F0412A9ABF8970 /* Toast+UIView.h */ = {isa = PBXFileReference; name = "Toast+UIView.h"; path = "cordova-plugin-x-toast/Toast+UIView.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		EE2BE9B5910F4F21A8A7ED2C /* Toast.h */ = {isa = PBXFileReference; name = "Toast.h"; path = "cordova-plugin-x-toast/Toast.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		25B78C48BBC24A05904C26F4 /* QuartzCore.framework */ = {isa = PBXFileReference; name = "QuartzCore.framework"; path = "System/Library/Frameworks/QuartzCore.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +101,7 @@
 				24452BDB08B2478B90E58CF3 /* CoreLocation.framework in Frameworks */,
 				6B6C2A352F8848BE9BA84A10 /* SystemConfiguration.framework in Frameworks */,
 				9A3276C9DF8B45998248B309 /* CoreTelephony.framework in Frameworks */,
+				23F8E368B39E4C05A6FA9BDC /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +175,7 @@
 				9628497124C046B7AF75E591 /* CoreLocation.framework */,
 				0FA8B88D6D8B4FEE98AF7D1A /* SystemConfiguration.framework */,
 				1B8EA8EC0CF44B8794741A05 /* CoreTelephony.framework */,
+				25B78C48BBC24A05904C26F4 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -202,6 +212,10 @@
 				7A12610C3E214274BC0AC7E2 /* CDVReachability.h */,
 				0B671893D15544BDAFD72545 /* RequestLocationAccuracy.m */,
 				4C90F36AE2CB4A7A8A998254 /* RequestLocationAccuracy.h */,
+				EF8B1EED1E6144BA95F10162 /* Toast+UIView.m */,
+				7FC9D1ED041C4CD3BEC8A57F /* Toast.m */,
+				6B33286C45F0412A9ABF8970 /* Toast+UIView.h */,
+				EE2BE9B5910F4F21A8A7ED2C /* Toast.h */,
 			);
 			name = Plugins;
 			path = "CovidLux/Plugins";
@@ -335,6 +349,8 @@
 				F22DB4E3BAFC471FB75AB45F /* CDVConnection.m in Sources */,
 				19A6691945F14E7182F846DB /* CDVReachability.m in Sources */,
 				FD1225F9875B4CA78E2C8148 /* RequestLocationAccuracy.m in Sources */,
+				A2ED4776B93743D6AA96B4E5 /* Toast+UIView.m in Sources */,
+				949134EEA74D4FE9B9FDFB09 /* Toast.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

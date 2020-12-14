@@ -11,57 +11,72 @@
         <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
         <script src="https://d3js.org/d3-fetch.v2.min.js"></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js'></script>
+        <script src="js/jquery.min.js"></script> 
 
     </head>
-    <body onload="onload_bundesland()">
+    <body onload="onload_bundesland()" ononline="onOnline()" onoffline="onOffline()">
 
 <header>
     <div class="info">
         <a href="info.html" onclick="saveHistory()"><img alt="Info" src="img/info.png" width="25vw" height="25vw"></a>
     </div>
-    <h1>Statistik</h1>
-    <div class="settings">
-        <a href="settings.html" onclick="saveHistory()"><img alt="Settings" src="img/settings.png" width="25vw" height="25vw"></a>
+    <h1>Zahlen</h1>
+    <div class="einstellungen">
+        <a href="einstellungen.html" onclick="saveHistory()"><img alt="Einstellungen" src="img/settings.png" width="25vw" height="25vw"></a>
     </div> 
 </header>
      
-     <div class ="mainwrapper">
+    <div class="wrapper_dash">
+        <div id="status"></div>
         <nav id="Navi">
             <ul>
-                <li><a href="dashboard_bezirk.html">Bezirk</a></li>
-                <li><a href="dashboard_bundesland.html" class="aktiv">Bundesland</a></li>
-                <li><a href="dashboard_österreich.html">Österreich</a></li>
+                <li><a href="dashboard_bezirk.html" class="aktiv_lila">Bezirk</a></li>
+                <li><a href="dashboard_bundesland.html" class="aktiv_small">Bundesland</a></li>
+                <li><a href="dashboard_österreich.html" class="aktiv_lila">Österreich</a></li>
             </ul>
-            <div id="RectDashboard_Bundesland"></div>
         </nav>
         
-
+        <div class ="mainwrapper_dash">
         <div class="dropdown_dash" display="block">
             <button onclick="myFunction_bundesland()" class="dropbtn" id="dropbtn_bundesland">Bundesland auswählen</button>
-            <div id="myDropdown_bundesland" class="dropdown-content">
+            <div id="myDropdown_bundesland" class="dropdown-content-dash">
             <!--<input type="text" placeholder="Suchen.." id="myInput_bundesland" onkeyup="filterFunction()">-->
           </div>
         </div>
 
     </div>   
-    
+    </div>
 
 
     <footer>
         <nav>
-            <div id="RectDashboard"></div>
-            <div id="icons">
-                <a href="home.html"><img alt="Home" src="img/home_grau.png" width="30vw" height="30vw"></a>
-                <a href="dashboard_bezirk.html"><img alt="Statistik" src="img/statistics_blau.png" width="30vw" height="30vw"></a>
-                <a href="maßnahmen.html"><img alt="Maßnahmen" src="img/maske_grau.png" width="30vw" height="30vw"></a>
-                <a href="symptome.html"><img alt="Symptome" src="img/fieber_grau.png" width="30vw" height="30vw"></a>
-            </div>
-             <ul>
-                 <li><a href="home.html">Home</a></li>
-                 <li><a href="dashboard_bezirk.html" class="aktiv">Statistik</a></li>
-                 <li><a href="maßnahmen.html">Maßnahmen</a></li>
-                 <li><a href="symptome.html">Symptome</a></li>
-             </ul>
+            <ul>
+                <li>
+                   <div class="nav_element">
+                   <a href="start.html"><img alt="Start" src="img/home_grau.svg" width="30vw" height="30vw"></a>    
+                   <a href="start.html">Start</a>
+                   </div>                 
+               </li>
+               <li>
+                   <div class="nav_element">
+                    <div id="RectDashboard"></div>
+                   <a href="dashboard_bezirk.html"><img alt="Zahlen" src="img/statistics_blau.svg" width="30vw" height="30vw"></a>
+                   <a href="dashboard_bezirk.html" class="aktiv">Zahlen</a>
+                   </div>
+               </li>
+               <li>
+                   <div class="nav_element">
+                   <a href="tipps.html"><img alt="Tipps" src="img/maske_grau.svg" width="30vw" height="30vw"></a>
+                   <a href="tipps.html">Tipps</a>
+                   </div>
+               </li>
+               <li>
+                   <div class="nav_element">
+                   <a href="symptome.html"><img alt="Symptome" src="img/fieber_grau.svg" width="30vw" height="30vw"></a>
+                   <a href="symptome.html">Symptome</a>
+                   </div>
+               </li>
+            </ul>
         </nav>
      </footer>
 

@@ -1032,7 +1032,15 @@ h3{
         width: 70vw;
     }
     header{
-        height: 70px;
+        height: 12vmin;
+        justify-content: space-evenly;
+    }
+    header h1{
+        font-size: 3.5vmin;
+    }
+    header img{
+        width: 4vmin;
+        height: 4vmin;
     }
     #mainwrapper_start{
         top:100px;
@@ -1136,10 +1144,10 @@ h3{
     /*********************************__ZAHLEN__********************/
 
     .wrapper_dash{
-        top: 0vmin;
+        top: 140px;
     }
     #Navi{
-        margin-top: "";
+        margin-top: 0;
         height: 9vmin;
     }
     #Navi ul{
@@ -1191,6 +1199,7 @@ h3{
         margin-top: -0vmin;
         width: 12vmin;
         height: 12vmin;
+        
     }
     .panel_tipps_start p{
         font-size: 2.2vmin;
@@ -1237,5 +1246,71 @@ h3{
     }
     .panel_weitere_tipps a{
         font-size: 2.5vmin;
+    }
+
+    /******************************************__SYMPTOME__*****************************/
+    #mainwrapper_symptome{
+        padding-bottom: 20vmin;
+    }
+    #Akkordeon{
+        width: 70vmin;
+        margin-left: 32%;
+        margin-top: 0;
+    }
+    .panel_links ul{
+        margin-left: 9vmin;
+        width: 30vmin;
+        font-size: 2.5vmin;
+    }
+    .panel_links h2{
+        margin-left: 5vmin;
+        font-size: 2.5vmin;
+    }
+    .panel_rechts{
+        margin-left: 6vmin;
+    }
+    .panel_rechts img{
+        width: 12vmin;
+        height: 12vmin;
+    }
+    .accordion{
+        font-size: 2vmin;
+        padding-left: 10vmin;
+        border-left: 0.2px solid gray;
+        border-right: 0.2px solid gray;
+    }
+    #Akkordeon > button:first-child{
+        border-top: 0.2px solid gray;
+    }
+    #DataSymptome{
+        font-size: 2.5vmin;
+    }
+    #Quelle{
+        font-size: 2.5vmin;
+    }
+    #Wastun{
+        font-size: 3vmin;
+        padding-left: 11vmin;
+        padding-right: 11vmin;
+        padding-top: 5vmin;
+        padding-bottom: 5vmin;
+        top: 60vmin;
+    }
+    #overlay{
+        width: 71vmin;
+        left: initial;
+        height: 84.5vmin;
+        margin-top: 0;
+    }
+    #overlay_flex{
+       width: 50vmin;
+        margin-left: 10vmin;
+    }
+    #overlay p{
+        font-size: 3vmin;
+    }
+    #overlay_img{
+        width: 15vmin;
+        height: 15vmin;
     }
 }

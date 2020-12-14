@@ -57,6 +57,7 @@ var arrLänge = 0;
 let path2 = corsFix + url;
 let pathforUpdate = corsFix + url; //path2 ist nach dem Speicher ooflineData.. deswegen hab ich das im Moment noch dazu getan
 
+localStorage.clear();
 
 /*__CORDOVA-CODE___
 var platform = null;
@@ -301,7 +302,7 @@ function getAmpel() {
 function downloadAmpelFile(path2,eTagResponse) {
   if(pathbool==true && connBool ==true){ //wenn ich internet hab und auf die Ampedaten zugreifen darf dann..
   loadJSON(path2, function (data) {
-    let items_json = data[6];
+    let items_json = data[7];
     //console.log(items_json);
     var date = new Date();//var updateDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
         var updateDate = date.toGMTString(); // Tue, 17 Nov 2020 14:16:29 GMT --> Gibt mir die jetzige Uhrzeit im Format das lastModiefied Header Request auch hat
@@ -637,6 +638,7 @@ function onload_start() {
     document.getElementById("bezirk").innerHTML = bezirkStorage;
     bezirk = bezirkStorage;
     document.getElementById("infoText").style.display = "none";
+    document.getElementById("info_start").style.display= "none";
     getAmpel();
   }
   if (toggleStorageTrue != null) {

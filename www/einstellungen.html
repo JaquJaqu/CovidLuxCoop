@@ -20,24 +20,26 @@
    <div></div>
 </header>
 <body onload="onload_einstellungen()">
-
+    <div id="unterstatus"></div>
+    <div id="status"></div>
     <div id="mainwrapper_einstellungen">
-        <div id="status"></div>
         <div id="einstellungen">
-            
             <div class="einstellungen_header">
                 <img alt="Ampel" src="img/lock.png" width="20vw" height="20vw">
                 <h2>Berechtigungen</h2>
             </div>
             <div class="einstellungen_content">
+                <div id="einstellungen_standorttext">
                 <h3>Standort</h3>
+                <p>Ihre aktuelle Position wird verwendet, um Ihnen alle relevanten Daten für ihren
+                    derzeitigen Aufenthaltspunkt anzuzeigen</p>
+                </div>
                 <label class="switch">
                     <input type="checkbox" onclick="checkToggle()"  checked ='true' id='switchValue_setting'  name="disableLocation">
                     <span class="slider round"></span>
-                  </label>
-                <p>Ihre aktuelle Position wird verwendet, um Ihnen alle relevanten Daten für ihren
-                    derzeitigen Aufenthaltspunkt anzuzeigen</p>
+                </label>        
             </div>
+
 
             
             <div class="einstellungen_header">
