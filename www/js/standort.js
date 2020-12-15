@@ -65,6 +65,7 @@ var platform = null;
 document.addEventListener("deviceready", onDeviceReady, false);
         function onDeviceReady() {
           platform = device.platform;
+          console.log(platform);
         }
 */
 createDropdown();
@@ -475,7 +476,7 @@ function myLocation() {
       /*___CORDOVA-CODE___
       if(platform != null){
       if(platform ==="Android" || platform ==="iOS"){
-    getStandort();
+        getStandort();
       }else if(platform ==="browser"){
         readUserLocation();
       }

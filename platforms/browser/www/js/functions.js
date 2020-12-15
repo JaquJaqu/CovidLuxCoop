@@ -100,6 +100,8 @@ function onOnline(){
   if(sessionStorage.getItem("online") == null){
   $("#status").css({"display": "flex", "justify-content": "center", "align-items": "center"}).hide().fadeIn(800);
   $("#status").delay(1500).fadeOut(700);
+  $("#unterstatus").fadeIn(800);
+  $("#unterstatus").delay(1500).fadeOut(700);
   sessionStorage.setItem("online", true);
   sessionStorage.removeItem("offline");  
   }
@@ -117,6 +119,8 @@ function onOffline(){
   if(sessionStorage.getItem("offline") == null){
   $("#status").css({"display": "flex", "justify-content": "center", "align-items": "center"}).hide().fadeIn(800);
   $("#status").delay(1500).fadeOut(700);
+  $("#unterstatus").fadeIn(800);
+  $("#unterstatus").delay(1500).fadeOut(700);
   sessionStorage.setItem("offline", true);
   sessionStorage.removeItem("online");  
   }
@@ -125,25 +129,18 @@ function onOffline(){
   console.log("Path Bool:", pathbool, "online zugriff auf Ampeldaten verweigert");
 }
 
-/*
-document.addEventListener("backbutton", function(e) {
-  var sPath= location.pathname;
-  var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
-  if(sPage == "start.html"){
-        e.preventDefault();
-         navigator.app.exitApp();
 
-        } else {
-            navigator.app.backHistory();
-        }
-}, false);*/
 
+//App schließt wenn zweimal auf zurück Button getappt wird
 var lastTimeBackPress=0;
 var timePeriodToExit=2000;
 
 function onBackKeyDown(e){
     e.preventDefault();
     e.stopPropagation();
+    var sPath= location.pathname;
+    var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
+  if(sPage == "start.html" || sPage == "index.html"){
     if(new Date().getTime() - lastTimeBackPress < timePeriodToExit){
         navigator.app.exitApp();
     }else{
@@ -154,11 +151,14 @@ function onBackKeyDown(e){
               position: "bottom",
               addPixelsY: -40  // added a negative value to move it up a bit (default 0)
             }
-          );
+          )
         
         lastTimeBackPress=new Date().getTime();
     }
-};
+}else {
+  navigator.app.backHistory();
+}
+}
 
 document.addEventListener("backbutton", onBackKeyDown, false);
 

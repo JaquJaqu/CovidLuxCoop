@@ -828,7 +828,7 @@ top: 14px;
     margin-right: 4vw;
   }
   
-  .active:after {
+  .active:after, .accordion:hover::after {
     content: url("../img/pfeil_weiß.png");
   }
   
@@ -1033,25 +1033,23 @@ h3{
 @media screen and (min-width:720px) {
     /**************************************__INDEX__********************************/
     #walk_welle{
-        margin-left: 75vmin;
         height: 60vmin
     }
     #walk_h2{
-        left: 80vmin;
+        left: unset;
         font-size: 3.5vmin;
     }
     .walk_erklärung_index{
-        width: 35vw;
-        margin-left: 60vmin;
+        width: 45vmin;
+        margin-left: unset;
         font-size: 2.1vmin;
     }
     .walk_erklärung{
-        width: 32vw;
-        margin-left: 65vmin;
+        width: 40vmin;
+        margin-left: unset;
         font-size: 2.1vmin;
     }
     .walk_header{
-        margin-left:85vmin;
         text-align: unset;
         font-size: 2.8vmin;
     }
@@ -1063,6 +1061,27 @@ h3{
         width: 45vw;
         margin-left: 27vw;
     }
+    .walk_wrapper{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .wellen_oben{
+        left: unset;
+        right: 0;
+        width: 60vmin;
+    }
+    .wellen_unten{
+        width: 60vmin;
+    }
+    #logo_covidlux{
+        width: 25vmin;
+        height: 25vmin;
+    }
+    #covidlux_text{
+        font-size: 3.8vmin;
+    }
+    
     /**************************************__START__********************************/
     footer{
         margin-left: 0vw;
@@ -1389,12 +1408,12 @@ h3{
         top: 14vmin;
     }
     .einstellungen_header{
-        margin-left: 300px;
-        justify-content: flex-start;
-        width: 610px;
+        justify-content: center;
+        margin-left: 0;
     }
     .einstellungen_header h2{
-        font-size: 2.5vmin;
+        font-size: 2vmin;
+        margin-left: 2vmin;
     }
     .einstellungen_header img{
         width: 3vmin;
@@ -1408,27 +1427,36 @@ h3{
     .einstellungen_content h3{
         justify-self: unset;
         align-self: unset;
-        font-size: 2.5vmin;
+        font-size: 2vmin;
     }
     .einstellungen_content .switch{
-        margin-top: -10vmin;
+        margin-top: -7vmin;
         margin-left: -12vmin;
         margin-right: 0;
     }
     .einstellungen_content p{
         width: 50vmin;
-        font-size: 2vmin;
+        font-size: 1.5vmin;
     }
     .einstellungen_buttons{
         width: 50vmin;
-        font-size: 2.5vmin;
+        font-size: 2vmin;
     }
     .einstellungen_buttons:after{
         float:unset;
         margin-left: 2vmin;
         margin-right: 0;
     }
-
-
-
+    #raumfueller1{
+        width: 20vmin;
+        height: 5vmin;
+    }
+    #raumfueller2{
+        width: 25vmin;
+        height: 5vmin;
+    }
+    #raumfueller3{
+        width: 35vmin;
+        height: 5vmin;
+    }
 }

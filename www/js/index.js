@@ -22,8 +22,8 @@ function onload_walk(){
 }
 
 function storeSplash(){
-    sessionStorage.setItem("splash", true);
-    /*sessionStorage.removeItem("splash");*/
+    /*sessionStorage.setItem("splash", true);*/
+    sessionStorage.removeItem("splash");
 }
  
 function storeWalk(){

@@ -1,5 +1,5 @@
 function onload_walk(){
-    /*essionStorage.setItem("walkthrough", true);*/
+    /*sessionStorage.setItem("walkthrough", true);*/
     sessionStorage.removeItem("walkthrough");
 
     if(sessionStorage.getItem("splash") == null){
@@ -26,4 +26,7 @@ function storeSplash(){
     sessionStorage.removeItem("splash");
 }
  
+function storeWalk(){
+    /*sessionStorage.setItem("walkthrough", true);*/
+}
 
