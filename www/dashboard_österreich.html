@@ -27,7 +27,8 @@
 
 <div id="unterstatus"></div>
 <div id="status"></div>
-     
+<div id="unterinfo" onclick="info_close()"></div>
+<div id="info_dash"></div>
     <div class="wrapper_dash">
         <nav id="Navi">
             <ul>
@@ -40,7 +41,37 @@
         
         <div class ="mainwrapper_dash">
         <h1 id="Österreich">Österreich</h1>
-   
+        <div class="Akkordeon_dash">
+            <button class="accordion">Aktive Fälle <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_aktiveFälle()"></button>
+            <div class="verlauf"></div>
+            <div class="panel">
+                <div class="panel_links">
+                    <h2>Schwere Symptome</h2>
+                </div>
+                <div class="panel_rechts">
+                </div>
+            </div>
+            
+            <button class="accordion">Neuerkrankungen <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_Neuerkrankungen()"></button>
+            <div class="verlauf"></div>
+            <div class="panel">
+                <div class="panel_links">
+                    <h2>Schwere Symptome</h2>
+                </div>
+                <div class="panel_rechts">
+                </div>
+            </div>
+            
+            <button class="accordion">Todesfälle <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_Todesfälle()"></button>
+            <div class="verlauf"></div>
+            <div class="panel">
+                <div class="panel_links">
+                    <h2>Schwere Symptome</h2>
+                </div>
+                <div class="panel_rechts">
+                </div>
+            </div>   
+        </div>
         
     </div>   
     </div>
@@ -81,6 +112,8 @@
 
         <script src="cordova.js"></script>
         <script src="js/functions.js"></script>
+        <script src="js/functions_dash.js"></script>
+        <script src="js/dashboard_österreich.js"></script>
         <!--<script src="js/dashboarddata.js"></script>-->
        
         

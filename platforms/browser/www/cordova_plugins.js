@@ -44,6 +44,14 @@ module.exports = [
         "clobbers": [
             "window.plugins.toast"
         ]
+    },
+    {
+        "file": "plugins/de.mayflower.cordova.android-scrollbar/www/androidscrollbar.js",
+        "id": "de.mayflower.cordova.android-scrollbar.AndroidScrollbar",
+        "pluginId": "de.mayflower.cordova.android-scrollbar",
+        "clobbers": [
+            "mayflower.AndroidScrollbar"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -54,7 +62,8 @@ module.exports.metadata =
     "cordova-plugin-network-information": "2.0.2",
     "cordova-plugin-request-location-accuracy": "2.3.0",
     "cordova-plugin-device": "2.0.3",
-    "cordova-plugin-x-toast": "2.7.2"
+    "cordova-plugin-x-toast": "2.7.2",
+    "de.mayflower.cordova.android-scrollbar": "0.2.1"
 }
 // BOTTOM OF METADATA
 });

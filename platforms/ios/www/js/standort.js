@@ -57,7 +57,7 @@ var arrLänge = 0;
 let path2 = corsFix + url;
 let pathforUpdate = corsFix + url; //path2 ist nach dem Speicher ooflineData.. deswegen hab ich das im Moment noch dazu getan
 
-localStorage.clear();
+//localStorage.clear();
 
 /*__CORDOVA-CODE___
 var platform = null;
@@ -65,6 +65,7 @@ var platform = null;
 document.addEventListener("deviceready", onDeviceReady, false);
         function onDeviceReady() {
           platform = device.platform;
+          console.log(platform);
         }
 */
 createDropdown();
@@ -75,41 +76,6 @@ farbkreisPH.appendChild(farbkreis);
 
 read_from_local_storage();
 getAmpel();
-
-/*
-const checkOnlineStatus = async () => {
-  try {
-    const online = await fetch('https://ipv4.icanhazip.com/'); //schau ob ich auf die Ressource zugreifen kann
-    //pathbool == true;
-    return online.status >= 200 && online.status < 300; // either true or false
-    /*HTTP response codes between 200 and 299 indicate success, and we’ll return the result of the status code comparison. This will be true if the response status is from 200 to 299 and false otherwise.*/
-/*} catch (err) {
-    return false; // definitely offline
-  }
-};
-
-
-//Intervall das Connection Prüft, setzt connBool
-/*
-setInterval(async () => {
-  const connectionBool = await checkOnlineStatus();
-  const statusDisplay = document.getElementById("status");
-  console.log("Connection Bool:", connectionBool, "du hast kein Internet");
-  
-  statusDisplay.textContent = connectionBool ? "Online" : "OFFline";
-  //bin ich Online und brauchts ein Update der Daten?
-  if (connectionBool == true) {
-    connBool = true;
-    checkForUpdate(); //Brauchen die lokalen Daten ein Update?
-    console.log("Du hast Internet!");
-  } else if (connectionBool == false) {
-    connBool = false;
-    console.log("Du hast kein Internet!");
-  }
-
-  console.log("Path Bool:", pathbool, "online zugriff auf Ampeldaten verweigert");
-}, 15000); // probably too often, try 30000 for every 30 seconds
-*/
 
 
 //Zugriff auf API
@@ -269,7 +235,6 @@ function drawIllustration(ampelStufe){
 }
 
 function getAmpel() {
-
   read_from_local_storage();
   if(dataOffline != null){
     path2 = dataOffline;
@@ -303,30 +268,31 @@ function downloadAmpelFile(path2,eTagResponse) {
   if(pathbool==true && connBool ==true){ //wenn ich internet hab und auf die Ampedaten zugreifen darf dann..
   loadJSON(path2, function (data) {
     let items_json = data[7];
-    //console.log(items_json);
     var date = new Date();//var updateDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
         var updateDate = date.toGMTString(); // Tue, 17 Nov 2020 14:16:29 GMT --> Gibt mir die jetzige Uhrzeit im Format das lastModiefied Header Request auch hat
     
 
     //FOR TESTING
-    //var ampelDatatrue = { updateDate: 'Tue, 17 Nov 2020 14:16:29 GMT', items_json };
     var ampelDatatrue = { updateDate: updateDate, items_json };
     console.log(eTagResponse,'eTAG');
     console.log("File wird gedownloadet");
-    //console.log('Einmal die Uhrzeit bitte', updateDate); //Derzeitige Uhrzeit in GMT
     localStorage.setItem("Ampeldaten3", JSON.stringify(ampelDatatrue));
 
 
 ////Speichern des ETAGS im LocalStorage
-//For TESTING
-    //var eTagTest= "11111-5b563e17cde40-gzip";
-    //var eTag = {eTagTest};
     var eTag = {eTagResponse};
     localStorage.setItem("ETag", JSON.stringify(eTag));
     getAmpel();
+    $("#loader_class").fadeOut(700);
 
+  }, function () {
+    document.getElementById("dataLoader").innerHTML = "Die Daten können momentan leider nicht heruntergeladen werden.";
+  $("#loader_class").fadeOut(700);
+  pathbool=false;
   });
 }else{ 
+  document.getElementById("dataLoader").innerHTML = "Die Daten können momentan leider nicht heruntergeladen werden.";
+  $("#loader_class").fadeOut(700);
   pathbool=false; //verweiere zugriff auf ampeldaten online auch wenn ich internet hab
 }
 }
@@ -366,19 +332,12 @@ function read_from_local_storage() { //gib mir die Datem aus dem localStorage
   items = JSON.parse(items_json);
   items2 = JSON.stringify(items_json);
   dataOffline = items.items_json;
-  //dataOffline = items.items_json.Warnstufen.length;
 
-  /*
-  var savedDate = localStorage.getItem("Ampeldaten3");
-  savedDateValue = JSON.parse(savedDate);
-  getSavedDate = savedDateValue.updateDate;
-  //console.log('Zuletzt im localStorage gespeichert am:',getSavedDate);
-  /*if (!items) {
-    items = [];
-  }*/
 } else{
   accessBool = true; //Wenn es die Daten nicht gibt dann starte den zugriff auf die online-Daten 
   pathbool = true; 
+  document.getElementById("dataLoader").innerHTML = "Die Daten werden geladen ...";
+  $("#loader_class").css({"display": "flex", "justify-content": "center", "align-items": "center", "flex-direction": "column"}).show().delay(1500);
   downloadAmpelFile(path2);
   //checkForUpdate();
 }
@@ -395,11 +354,7 @@ if(localStorage.getItem("ETag") != null){
 
 function checkForUpdate() {
   read_from_local_storage(); //Les mir das Objekte vom Lokalstorage aus (brauche "updateDate", "lokalstorageBezirk" )
-  /*try{
-  console.log('Speicherdatum vom local storage:', getSavedDate);
-  }catch(error){
-  console.log(error);
-} */ 
+
 //schau ob die lokalen Ampel und Lokationsdaten Speicherdaten geupdated gehören
 if(checkBool == false){ //Standort ist aktiviert wenn checkBool==false
       //Schau ob die Standortdaten upgedated gehören wenn Internet vorhanden und der Standort aktiviert ist,
@@ -445,7 +400,8 @@ if(connBool == true && accessBool == true){ //wenn es eine Internetverbindung is
         } else {
           pathbool = true; 
           console.log("your Data is not up-to-date, it gets now downloaded from the resource and saved in your local storage");
-         downloadAmpelFile(pathforUpdate,eTagResponse);
+          $("#loader_class").fadeIn(800);
+          downloadAmpelFile(pathforUpdate,eTagResponse);
         }
     }} 
   };
@@ -458,14 +414,7 @@ if(connBool == true && accessBool == true){ //wenn es eine Internetverbindung is
 }
 
 
-/* INFO: ALTERNATIVE
-The Last-Modified response header specifies the last time a change was made in the returned content, in the form of a time stamp. 
-ETag values are unique identifiers generated by the server and changed every time the object is modified. Either can be used to determine if cached content is up to date.
-ETags: This tag is useful when for when the last modified date is difficult to determine.
-*/
-
-
-function onLocationSuccess(position){ /*= function (position) {*/
+function onLocationSuccess(position){ 
   Latitude = position.coords.latitude;
   Longitude = position.coords.longitude;
 
@@ -474,9 +423,6 @@ function onLocationSuccess(position){ /*= function (position) {*/
 
 // Error callback
 function onLocationError(error) {
-  // console.log(
-  //   "code: " + error.code + "\n" + "message: " + error.message + "\n"
-  // );
   console.log("Dein Standort konnte nicht gefunden werden");
  alert("Dein Standort konnte nicht gefunden werden");
   checkBool = true;
@@ -539,7 +485,7 @@ function myLocation() {
       /*___CORDOVA-CODE___
       if(platform != null){
       if(platform ==="Android" || platform ==="iOS"){
-    getStandort();
+        getStandort();
       }else if(platform ==="browser"){
         readUserLocation();
       }
@@ -567,7 +513,6 @@ function myLocation() {
 
     document.getElementById("infoText").style.display= "none";
     document.getElementById("info_start").style.display= "none";
-    //console.log(bezirk);
   }
 }
 
@@ -603,7 +548,6 @@ function myFunction() {
 function changeText(elm) {
   bezirk = elm.getAttribute("value");
   myFunction();
-  //lokalstorageBezirk = bezirk;
   document.getElementById("bezirk").innerHTML = bezirk;
   sessionStorage.setItem("storeBezirk", bezirk);
   getAmpel();
@@ -631,8 +575,6 @@ function onload_start() {
   } else if (navigator.onLine == false){
     onOffline();
   }
-  //console.log(sessionStorage.getItem("storeToggleTrue"));
-  //console.log(sessionStorage.getItem("storeToggleFalse"));
 
   if (bezirkStorage != null) {
     document.getElementById("bezirk").innerHTML = bezirkStorage;

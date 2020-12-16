@@ -54,6 +54,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "window.plugins.toast"
       ]
+    },
+    {
+      "id": "de.mayflower.cordova.android-scrollbar.AndroidScrollbar",
+      "file": "plugins/de.mayflower.cordova.android-scrollbar/www/androidscrollbar.js",
+      "pluginId": "de.mayflower.cordova.android-scrollbar",
+      "clobbers": [
+        "mayflower.AndroidScrollbar"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -62,6 +70,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-network-information": "2.0.2",
     "cordova-plugin-request-location-accuracy": "2.3.0",
     "cordova-plugin-device": "2.0.3",
-    "cordova-plugin-x-toast": "2.7.2"
+    "cordova-plugin-x-toast": "2.7.2",
+    "de.mayflower.cordova.android-scrollbar": "0.2.1"
   };
 });

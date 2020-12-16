@@ -19,8 +19,61 @@ body {
     padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
     /*text-transform:uppercase;*/
     width:100%;
-    /*overflow: scroll;*/
+    overflow-y:scroll;
+    overflow-x: hidden;
 }
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+ }
+ 
+ ::-webkit-scrollbar:vertical {
+    width: 10px;
+ }
+ 
+ ::-webkit-scrollbar:horizontal {
+    height: 10px;
+ }
+ 
+ ::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+    border: 2px solid #eee;
+ }
+ 
+ ::-webkit-scrollbar-track { 
+    background-color: #eee; 
+ }
+ /*
+body::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+  }
+body::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .5);
+    -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+  }
+/*
+::-webkit-scrollbar {
+    width: 12px !important;
+ }
+
+::-webkit-scrollbar-track {
+   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3) !important;
+   -webkit-border-radius: 10px !important;
+   border-radius: 10px !important;
+ }
+
+ ::-webkit-scrollbar-thumb {
+   -webkit-border-radius: 10px !important;
+   border-radius: 10px !important;
+   background: #41617D !important; 
+   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5) !important; 
+
+ }
+ ::-webkit-scrollbar-thumb:window-inactive {
+   background: #41617D !important; 
+ }*/
 /* Portrait layout (default) */
 .app {
     background:url(../img/Logo_CovidLux.png) no-repeat center top; /* 170px x 200px */
@@ -286,8 +339,44 @@ footer ul {
     top: 0;
     display:none;
 }
+#loader_class{
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+    z-index: 5;
+    display:flex;
+    position: fixed;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    display:none;
+}
+#dataLoader{
+    z-index: 5;
+    margin-top: 5vh;
+}
+#loader{
+border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #211F77;
+  width: 120px;
+  height: 120px;
+  z-index: 5;
+  
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
 #bezirk {
-    font-size:4vh;
+    font-size:3vh;
     font-weight:500;
     margin:0;
     overflow:visible;
@@ -413,6 +502,7 @@ footer ul {
 
 #WarnstufeGeschrieben{
     text-align:center;
+    font-size: 3vh;
     font-weight: 500;
     grid-row: 7/7;
     grid-column: 2/8;
@@ -695,7 +785,7 @@ top: 14px;
     padding-bottom: 50vw;
     width: 100vw;
     display: grid;
-    justify-content: center;
+    justify-content: center; 
 }
 #header_tipps{
     text-align:center;
@@ -828,7 +918,7 @@ top: 14px;
     margin-right: 4vw;
   }
   
-  .active:after {
+  .active:after, .accordion:hover::after {
     content: url("../img/pfeil_weiß.png");
   }
   
@@ -1199,6 +1289,13 @@ h3{
     }
     #bezirk{
         font-size: 3vmin;
+    }
+    #dataLoader{
+        font-size: 2.5vmin;
+    }
+    #loader{
+        height:18vmin;
+        width: 18vmin;
     }
 
     /*********************************__ZAHLEN__********************/

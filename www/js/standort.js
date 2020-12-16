@@ -235,7 +235,6 @@ function drawIllustration(ampelStufe){
 }
 
 function getAmpel() {
-
   read_from_local_storage();
   if(dataOffline != null){
     path2 = dataOffline;
@@ -284,9 +283,15 @@ function downloadAmpelFile(path2,eTagResponse) {
     var eTag = {eTagResponse};
     localStorage.setItem("ETag", JSON.stringify(eTag));
     getAmpel();
-
+    $("#loader_class").css({"display": "flex", "justify-content": "center", "align-items": "center", "flex-direction": "column"}).fadeOut(700);
+  }, function () {
+    document.getElementById("dataLoader").innerHTML = "Die Daten können momentan leider nicht heruntergeladen werden.";
+    $("#loader_class").css({"display": "flex", "justify-content": "center", "align-items": "center", "flex-direction": "column"}).fadeOut(700);
+  pathbool=false;
   });
 }else{ 
+  document.getElementById("dataLoader").innerHTML = "Die Daten können momentan leider nicht heruntergeladen werden.";
+  $("#loader_class").css({"display": "flex", "justify-content": "center", "align-items": "center", "flex-direction": "column"}).fadeOut(700);
   pathbool=false; //verweiere zugriff auf ampeldaten online auch wenn ich internet hab
 }
 }
@@ -330,6 +335,8 @@ function read_from_local_storage() { //gib mir die Datem aus dem localStorage
 } else{
   accessBool = true; //Wenn es die Daten nicht gibt dann starte den zugriff auf die online-Daten 
   pathbool = true; 
+  document.getElementById("dataLoader").innerHTML = "Die Daten werden geladen ...";
+  $("#loader_class").css({"display": "flex", "justify-content": "center", "align-items": "center", "flex-direction": "column"}).show().delay(1500);
   downloadAmpelFile(path2);
   //checkForUpdate();
 }
@@ -392,7 +399,8 @@ if(connBool == true && accessBool == true){ //wenn es eine Internetverbindung is
         } else {
           pathbool = true; 
           console.log("your Data is not up-to-date, it gets now downloaded from the resource and saved in your local storage");
-         downloadAmpelFile(pathforUpdate,eTagResponse);
+          $("#loader_class").css({"display": "flex", "justify-content": "center", "align-items": "center", "flex-direction": "column"}).show().delay(1500);
+          downloadAmpelFile(pathforUpdate,eTagResponse);
         }
     }} 
   };

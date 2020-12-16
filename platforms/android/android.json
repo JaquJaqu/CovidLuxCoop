@@ -27,6 +27,10 @@
             {
               "xml": "<feature name=\"Toast\"><param name=\"android-package\" value=\"nl.xservices.plugins.Toast\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"AndroidScrollbar\"><param name=\"android-package\" value=\"de.mayflower.cordova.androidscrollbar.AndroidScrollbar\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -83,6 +87,9 @@
       "PACKAGE_NAME": "com.example.covidlux"
     },
     "cordova-plugin-x-toast": {
+      "PACKAGE_NAME": "com.example.covidlux"
+    },
+    "de.mayflower.cordova.android-scrollbar": {
       "PACKAGE_NAME": "com.example.covidlux"
     }
   },
@@ -142,6 +149,14 @@
       "clobbers": [
         "window.plugins.toast"
       ]
+    },
+    {
+      "id": "de.mayflower.cordova.android-scrollbar.AndroidScrollbar",
+      "file": "plugins/de.mayflower.cordova.android-scrollbar/www/androidscrollbar.js",
+      "pluginId": "de.mayflower.cordova.android-scrollbar",
+      "clobbers": [
+        "mayflower.AndroidScrollbar"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -150,6 +165,7 @@
     "cordova-plugin-network-information": "2.0.2",
     "cordova-plugin-request-location-accuracy": "2.3.0",
     "cordova-plugin-device": "2.0.3",
-    "cordova-plugin-x-toast": "2.7.2"
+    "cordova-plugin-x-toast": "2.7.2",
+    "de.mayflower.cordova.android-scrollbar": "0.2.1"
   }
 }

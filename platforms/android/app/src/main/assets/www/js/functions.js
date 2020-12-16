@@ -6,8 +6,6 @@ let connBool; //checkt Internet wenn true= Internet AN
 let checkBool; //checkt Standort wenn false = Standort AN
 let accessBool = true; //checkt of ampelfile online geladen werden soll, wenn true = AN
 
-
-
 function saveHistory(){
   sessionStorage.setItem("pathname",location.pathname);
 }
