@@ -1,5 +1,7 @@
 const arrBezirk = [];
 
+getAkkordeon_dash();
+
 function onload_bezirk(){
     if(sessionStorage.getItem("storeBezirk")!= null){
         document.getElementById("dropbtn_bezirk").innerHTML = sessionStorage.getItem("storeBezirk");
@@ -34,3 +36,8 @@ function myFunction_bezirk() {
         document.getElementById("dropbtn_bezirk").innerHTML = bezirk;
         sessionStorage.setItem("storeBezirk",bezirk);
       }
+
+      /*
+      function scrollTo(){
+          window.scrollTo(0,500);
+      }*/

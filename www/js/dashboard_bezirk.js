@@ -36,3 +36,8 @@ function myFunction_bezirk() {
         document.getElementById("dropbtn_bezirk").innerHTML = bezirk;
         sessionStorage.setItem("storeBezirk",bezirk);
       }
+
+      /*
+      function scrollTo(){
+          window.scrollTo(0,500);
+      }*/

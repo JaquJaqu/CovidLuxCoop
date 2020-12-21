@@ -16,69 +16,71 @@
     </head>
     <body onload="onload_bundesland()" ononline="onOnline()" onoffline="onOffline()">
 
-<header>
-    <div class="info">
-        <a href="info.html" onclick="saveHistory()"><img alt="Info" src="img/info.png" width="25vw" height="25vw"></a>
-    </div>
-    <h1>Zahlen</h1>
-    <div class="einstellungen">
-        <a href="einstellungen.html" onclick="saveHistory()"><img alt="Einstellungen" src="img/settings.png" width="25vw" height="25vw"></a>
-    </div> 
-</header>
+        <div id="scrollbar">
+
+            <header>
+                <div class="info">
+                    <a href="info.html" onclick="saveHistory()"><img alt="Info" src="img/info.png" width="25vw" height="25vw"></a>
+                </div>
+                <h1>Zahlen</h1>
+                <div class="einstellungen">
+                    <a href="einstellungen.html" onclick="saveHistory()"><img alt="Einstellungen" src="img/settings.png" width="25vw" height="25vw"></a>
+                </div> 
+            </header>
      
-<div id="unterstatus"></div>
-<div id="status"></div>
-<div id="unterinfo" onclick="info_close()"></div>
-<div id="info_dash"></div>
-    <div class="wrapper_dash">
-        <nav id="Navi">
-            <ul>
-                <li><a href="dashboard_bezirk.html" class="aktiv_lila">Bezirk</a></li>
-                <li><a href="dashboard_bundesland.html" class="aktiv_small">Bundesland</a></li>
-                <li><a href="dashboard_österreich.html" class="aktiv_lila">Österreich</a></li>
-            </ul>
-        </nav>
-        
-        <div class ="mainwrapper_dash">
-        <div class="dropdown_dash" display="block">
-            <button onclick="myFunction_bundesland()" class="dropbtn" id="dropbtn_bundesland">Bundesland auswählen</button>
-            <div id="myDropdown_bundesland" class="dropdown-content-dash">
-            <!--<input type="text" placeholder="Suchen.." id="myInput_bundesland" onkeyup="filterFunction()">-->
-          </div>
-        </div>
-        <div class="Akkordeon_dash">
-            <button class="accordion">Aktive Fälle <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_aktiveFälle()"></button>
-            <div class="verlauf"></div>
-            <div class="panel">
-                <div class="panel_links">
-                    <h2>Schwere Symptome</h2>
+            <div id="unterstatus"></div>
+            <div id="status"></div>
+            <div id="unterinfo" onclick="info_close()"></div>
+            <div id="info_dash"></div>
+                <div class="wrapper_dash">
+                    <nav id="Navi">
+                        <ul>
+                            <li><a href="dashboard_bezirk.html" class="aktiv_lila">Bezirk</a></li>
+                            <li><a href="dashboard_bundesland.html" class="aktiv_small">Bundesland</a></li>
+                            <li><a href="dashboard_österreich.html" class="aktiv_lila">Österreich</a></li>
+                        </ul>
+                    </nav>
+                    
+                    <div class ="mainwrapper_dash">
+                    <div class="dropdown_dash" display="block">
+                        <button onclick="myFunction_bundesland()" class="dropbtn" id="dropbtn_bundesland">Bundesland auswählen</button>
+                        <div id="myDropdown_bundesland" class="dropdown-content-dash">
+                        <!--<input type="text" placeholder="Suchen.." id="myInput_bundesland" onkeyup="filterFunction()">-->
+                    </div>
+                    </div>
+                    <div class="Akkordeon_dash">
+                        <button class="accordion">Aktive Fälle <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_aktiveFälle()"></button>
+                        <div class="verlauf"></div>
+                        <div class="panel">
+                            <div class="panel_links">
+                                <h2>Schwere Symptome</h2>
+                            </div>
+                            <div class="panel_rechts">
+                            </div>
+                        </div>
+                        
+                        <button class="accordion">Neuerkrankungen <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_Neuerkrankungen()"></button>
+                        <div class="verlauf"></div>
+                        <div class="panel">
+                            <div class="panel_links">
+                                <h2>Schwere Symptome</h2>
+                            </div>
+                            <div class="panel_rechts">
+                            </div>
+                        </div>
+                        
+                        <button class="accordion">Todesfälle <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_Todesfälle()"></button>
+                        <div class="verlauf"></div>
+                        <div class="panel">
+                            <div class="panel_links">
+                                <h2>Schwere Symptome</h2>
+                            </div>
+                            <div class="panel_rechts">
+                            </div>
+                        </div>   
+                    </div>
+                </div>   
                 </div>
-                <div class="panel_rechts">
-                </div>
-            </div>
-            
-            <button class="accordion">Neuerkrankungen <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_Neuerkrankungen()"></button>
-            <div class="verlauf"></div>
-            <div class="panel">
-                <div class="panel_links">
-                    <h2>Schwere Symptome</h2>
-                </div>
-                <div class="panel_rechts">
-                </div>
-            </div>
-            
-            <button class="accordion">Todesfälle <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_Todesfälle()"></button>
-            <div class="verlauf"></div>
-            <div class="panel">
-                <div class="panel_links">
-                    <h2>Schwere Symptome</h2>
-                </div>
-                <div class="panel_rechts">
-                </div>
-            </div>   
-        </div>
-    </div>   
-    </div>
 
 
     <footer>
@@ -120,6 +122,6 @@
         <script src="js/dashboard_bundesland.js"></script>
         <!--<script src="js/dashboarddata.js"></script>-->
        
-        
+       </div>
     </body>
 </html>

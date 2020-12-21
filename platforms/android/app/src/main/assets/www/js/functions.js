@@ -93,6 +93,11 @@ function loadJSON(path, success, error)
 
 
 function onOnline(){
+  connBool = true;
+  if(sessionStorage.getItem("Update") == null){
+  checkForUpdate();
+  sessionStorage.setItem("Update", true);
+  }
   const statusDisplay = document.getElementById("status");
   statusDisplay.textContent = "Du hast Internetzugriff! Alles funktioniert reibungslos.";
   if(sessionStorage.getItem("online") == null){
@@ -103,11 +108,7 @@ function onOnline(){
   sessionStorage.setItem("online", true);
   sessionStorage.removeItem("offline");  
   }
-  connBool = true;
-  if(sessionStorage.getItem("Update") == null){
-  checkForUpdate();
-  sessionStorage.setItem("Update", true);
-  }
+  
   console.log("Connection Bool:", connBool, "du hast kein Internet");
   console.log("Path Bool:", pathbool, "online zugriff auf Ampeldaten verweigert");
 }
@@ -127,7 +128,12 @@ function onOffline(){
   console.log("Path Bool:", pathbool, "online zugriff auf Ampeldaten verweigert");
 }
 
-
+$(document).ready(function(){
+  $("#mainwrapper_tipps").scroll(function(){
+    var x = $("#mainwrapper_tipps").position();
+    x.top += 1;
+  });
+});
 
 //App schließt wenn zweimal auf zurück Button getappt wird
 var lastTimeBackPress=0;
@@ -159,7 +165,6 @@ function onBackKeyDown(e){
 }
 
 document.addEventListener("backbutton", onBackKeyDown, false);
-
 
 
 

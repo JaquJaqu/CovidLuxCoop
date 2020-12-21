@@ -14,8 +14,9 @@
         <script src="js/jquery.min.js"></script> 
     </head>
     <body onload="onload_bezirk()" ononline="onOnline()" onoffline="onOffline()">
+<div id="scrollbar">
 
-<header>
+    <header>
     <div class="info">
         <a href="info.html" onclick="saveHistory()"><img alt="Info" src="img/info.png" width="25vw" height="25vw"></a>
     </div>
@@ -48,10 +49,13 @@
         </div>
 
         <div class="Akkordeon_dash">
-            <button class="accordion">Aktive Fälle <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_aktiveFälle()"></button>
+            <button class="accordion" onclick="scrollTo()">Aktive Fälle <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_aktiveFälle()"></button>
             <div class="verlauf"></div>
             <div class="panel">
                 <div class="panel_links">
+                    <h2>Schwere Symptome</h2>
+                    <h2>Schwere Symptome</h2>
+                    <h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
                 </div>
                 <div class="panel_rechts">
@@ -63,6 +67,9 @@
             <div class="panel">
                 <div class="panel_links">
                     <h2>Schwere Symptome</h2>
+                    <h2>Schwere Symptome</h2>
+                    <h2>Schwere Symptome</h2>
+                    <h2>Schwere Symptome</h2>
                 </div>
                 <div class="panel_rechts">
                 </div>
@@ -72,6 +79,9 @@
             <div class="verlauf"></div>
             <div class="panel">
                 <div class="panel_links">
+                    <h2>Schwere Symptome</h2>
+                    <h2>Schwere Symptome</h2>
+                    <h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
                 </div>
                 <div class="panel_rechts">
@@ -120,6 +130,6 @@
         <script src="js/dashboard_bezirk.js"></script>
         <!--<script src="js/dashboarddata.js"></script>-->
        
-        
+        </div>
     </body>
 </html>

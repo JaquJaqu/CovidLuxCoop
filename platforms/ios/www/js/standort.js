@@ -283,16 +283,15 @@ function downloadAmpelFile(path2,eTagResponse) {
     var eTag = {eTagResponse};
     localStorage.setItem("ETag", JSON.stringify(eTag));
     getAmpel();
-    $("#loader_class").fadeOut(700);
-
+    $("#loader_class").css({"display": "flex", "justify-content": "center", "align-items": "center", "flex-direction": "column"}).fadeOut(700);
   }, function () {
     document.getElementById("dataLoader").innerHTML = "Die Daten können momentan leider nicht heruntergeladen werden.";
-  $("#loader_class").fadeOut(700);
+    $("#loader_class").css({"display": "flex", "justify-content": "center", "align-items": "center", "flex-direction": "column"}).fadeOut(700);
   pathbool=false;
   });
 }else{ 
   document.getElementById("dataLoader").innerHTML = "Die Daten können momentan leider nicht heruntergeladen werden.";
-  $("#loader_class").fadeOut(700);
+  $("#loader_class").css({"display": "flex", "justify-content": "center", "align-items": "center", "flex-direction": "column"}).fadeOut(700);
   pathbool=false; //verweiere zugriff auf ampeldaten online auch wenn ich internet hab
 }
 }
@@ -400,7 +399,7 @@ if(connBool == true && accessBool == true){ //wenn es eine Internetverbindung is
         } else {
           pathbool = true; 
           console.log("your Data is not up-to-date, it gets now downloaded from the resource and saved in your local storage");
-          $("#loader_class").fadeIn(800);
+          $("#loader_class").css({"display": "flex", "justify-content": "center", "align-items": "center", "flex-direction": "column"}).show().delay(1500);
           downloadAmpelFile(pathforUpdate,eTagResponse);
         }
     }} 

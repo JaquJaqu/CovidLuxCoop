@@ -16,9 +16,6 @@
     <feature name="Toast">
         <param name="android-package" value="nl.xservices.plugins.Toast" />
     </feature>
-    <feature name="AndroidScrollbar">
-        <param name="android-package" value="de.mayflower.cordova.androidscrollbar.AndroidScrollbar" />
-    </feature>
     <feature name="RequestLocationAccuracy">
         <param name="android-package" value="cordova.plugin.RequestLocationAccuracy" />
     </feature>

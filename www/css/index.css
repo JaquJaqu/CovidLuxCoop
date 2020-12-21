@@ -12,16 +12,53 @@ body {
     /*background-image:linear-gradient(to bottom, #A7A7A7 0%, #E4E4E4 51%);*/
     font-family: system-ui, -apple-system, -apple-system-font, 'Inter UI', 'regular';
     font-size:12px;
-    height:auto;
+    height:100%;
     margin:0;
     padding:0;
     /* Padding to avoid the "unsafe" areas behind notches in the screen */
     padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
     /*text-transform:uppercase;*/
     width:100%;
-    overflow-y:scroll;
-    overflow-x: hidden;
+    overflow:hidden;
+    /*-webkit-overflow-scrolling: touch;*/
 }
+#scrollbar{
+    width: 100%;
+    height: 100%;
+    padding-bottom: 20vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: fixed;
+}
+
+::-webkit-scrollbar {
+    width: 9px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    border: 2px solid  rgba(85, 85, 85, 0.3);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  }
+/*
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, .3);
+    border-radius: 10px; 
+}
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+
+/*
 ::-webkit-scrollbar {
     -webkit-appearance: none;
  }
@@ -183,7 +220,7 @@ footer *{
     font-size: 2vh;
 }
 footer ul {
-    width: 100vw;  
+    width: 100%;  
     display:flex; 
     justify-content: space-evenly;
 }
@@ -297,9 +334,6 @@ footer ul {
      font-size: 18pt;
      font-weight: 500;
  }
- .walk_wrapper{
-     padding-bottom: 20vh;
- }
  .wellen_oben{
      position:absolute;
      top:0;
@@ -325,7 +359,7 @@ footer ul {
     position: fixed; 
     font-size: 18pt; 
     font-weight: 500;
-    width: 100vw;
+    width: 97.5vw;
     height: 225px;
     margin-top: 30vh;
     display:none;
@@ -347,6 +381,7 @@ footer ul {
     background-color: white;
     z-index: 5;
     display:flex;
+    top: 0;
     position: fixed;
     flex-direction: column;
     align-items: center;
@@ -378,7 +413,7 @@ border: 16px solid #f3f3f3;
     100% { transform: rotate(360deg); }
   }
 #bezirk {
-    font-size:3vh;
+    font-size:2.8vh;
     font-weight:500;
     margin:0;
     overflow:visible;
@@ -789,7 +824,7 @@ top: 14px;
     position: fixed; 
     font-size: 18pt; 
     font-weight: 500;
-    width: 100vw;
+    width: 97.5vw;
     height: 225px;
     margin-top: 30vh;
     display:none;
@@ -811,7 +846,7 @@ top: 14px;
     top: 140px;
     left: 0;
     right: 0;
-    padding-bottom: 50vw;
+    padding-bottom: 35vw;
     width: 100vw;
     display: grid;
     justify-content: center; 
@@ -992,6 +1027,7 @@ top: 14px;
     border-radius: 10px;
     position:fixed;
     top: 60vh;
+    width: 97.5vw;
 }
 p{
     color: black;
@@ -1016,7 +1052,7 @@ p{
     border-radius: 15px;
     z-index: 3;
     height: 78vh;
-    width: 100vw;
+    width: 97.5vw;
     position: fixed;  
 }
 #overlay p{
@@ -1056,8 +1092,8 @@ p{
     padding-left: 6vw;
 }
 #blockWieGesamt{
-    margin-top: 45vw;
     width: 100vw;
+    margin-top: 45vw;
 }
 h3{
     font-size: 15px;
@@ -1082,7 +1118,7 @@ h3{
     top: 140px;
     left: 0;
     right: 0;
-    padding-bottom: 40vw;
+    padding-bottom: 20vw;
     width: 100vw;
     justify-content: center;
 }
@@ -1204,8 +1240,8 @@ h3{
     /**************************************__START__********************************/
     footer{
         margin-left: 0vw;
-        width: auto;
         height: 12vh;
+        width: 99vw;
     }
     footer ul{
         margin-left: 15%;
@@ -1360,6 +1396,17 @@ h3{
         font-size: 3vmin;
         margin-top: -0.2vmin;
     }
+    .Akkordeon_dash{
+        width: 70vmin;
+        margin-left: 32%;
+        margin-top: 0;
+    }
+    .Akkordeon_dash > button:first-child{
+        border-top: 0.2px solid gray;
+    }
+    .info_dash_button{
+        margin-left: 5vmin;
+    }
     /********************************__TIPPS__****************************/
     #mainwrapper_tipps{
         top: 100px;
@@ -1481,6 +1528,7 @@ h3{
         padding-top: 5vmin;
         padding-bottom: 5vmin;
         top: 60vmin;
+        width: unset;
     }
     #overlay{
         width: 71vmin;

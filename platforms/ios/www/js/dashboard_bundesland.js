@@ -1,5 +1,7 @@
 const arrBundesland = [];
 
+getAkkordeon_dash();
+
 function onload_bundesland(){
     if(sessionStorage.getItem("storeBundesland") != null){
     document.getElementById("dropbtn_bundesland").innerHTML = sessionStorage.getItem("storeBundesland");

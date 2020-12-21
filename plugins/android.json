@@ -25,9 +25,6 @@
     },
     "cordova-plugin-x-toast": {
       "PACKAGE_NAME": "com.example.covidlux"
-    },
-    "de.mayflower.cordova.android-scrollbar": {
-      "PACKAGE_NAME": "com.example.covidlux"
     }
   },
   "dependent_plugins": {}
