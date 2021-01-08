@@ -1,23 +1,3 @@
-//TO DO:
-//- indexxeddata daten austauschen, 
-//- angezeigter wert immer aus indexxeddb nehmen wenn up to date und vorhanden 
-
-
-// gemacht: 
-//eigenen Proxy angelegt
-//indexxeddata hinzugefügt, updatefunktionalität implementiert mit etag
-// - indexeddb "geupdated" --> still weird.....
-// - AktiveFaelle für ausgewählten Bezirk berechnet und in LS getSpeicherDatum. 
-
-
-
-
-
-//TO DO :
-
-// UPDATE CHECKEN --> INTERNET VERBNDUNG USW
-//Dark Mode Ausschalten --> schrift wird am handy weiß angezeigt 
- 
 const urlBezirke3 = 'https://covid19-dashboard.ages.at/data/CovidFaelle_Timeline_GKZ.csv';
 const corsFixBezirke3 = 'https://evening-reaches-25236.herokuapp.com/'; //eigener Proxy
 //const corsFixBezirke3 = 'https://cors-anywhere.herokuapp.com/';

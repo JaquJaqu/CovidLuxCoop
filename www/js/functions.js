@@ -112,7 +112,7 @@ function onOnline(){
   sessionStorage.removeItem("offline");  
   }
   
-  console.log("Connection Bool:", connBool, "du hast kein Internet");
+  console.log("Connection Bool:", connBool, "du hast Internet");
   console.log("Path Bool:", pathboolAmpel, "online zugriff auf Ampeldaten verweigert");
 }
 function onOffline(){

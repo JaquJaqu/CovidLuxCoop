@@ -44,6 +44,11 @@ Stand: 07.01.2021
 //- Offline Funktionalität wurde ergänzt
  
 
+Kurze Erklärung für Aktive Fälle: 
+3 Möglichkeiten Aktive Faelle angezeigt zu bekommen: 
+- Durch direkten Request wenn es weder Daten im LS noch in DB gibt --> Daten direkt aus dem Internet
+- Wenn DB nicht vorhanden oder nicht up-to date ist aber vom letzten mal noch im LS gespeichert --> LS daten werden verwendet
+- Wenn DB vorhandenund up-to-date --> Daten werden aus der DB verwendet
 
 //TO DO:
 //- Wenn online + standort an und dann der Bezirk manuell umgestellt wird muss der Wert zurück zu "ausgeschalten" toggeln.
@@ -57,7 +62,7 @@ Stand: 07.01.2021
 
 
 
-
+//!!!!!!!Download von den daten wenn nicht vorhanden mit await
 
 
  * 
@@ -122,6 +127,9 @@ var arrLänge = 0;
 let path2 = corsFix + url;
 let pathforUpdate = corsFix + url; //path2 ist nach dem Speicher ooflineData.. deswegen hab ich das im Moment noch dazu getan
 
+
+
+
 var savedAktiveFaelleMeinBezirk;
 
 //localStorage.clear();
@@ -150,7 +158,7 @@ read_from_local_storage();
 getAmpel();
 
 console.log("databasebool", databasebool);
-
+console.log("CONNBOOL:", connBool);
 
 //Zugriff auf API
 function getLocation(latitude, longitude) {
@@ -346,8 +354,6 @@ function getAmpel() {
           console.log("Ampelstufe: "+dataOffline.Warnstufen[i].Warnstufe);
           ampelStufe = dataOffline.Warnstufen[i].Warnstufe;
           drawIllustration(ampelStufe);
-          
-
         }
        }
      }
@@ -357,13 +363,14 @@ function getAmpel() {
 
 //Speichern der AMPELDaten im LocalStorage + Hinzufügen der Zeit und Datum des Downloads
 function downloadAmpelFile(path2) {
+  console.log("WIE SCHAUTS MIT DER CONN AUS?", connBool);
   if(connBool ==true){ //wenn ich internet hab und auf die Ampedaten zugreifen darf dann..
   loadJSON(path2, function (data) {
     let items_json = data[7];
     var date = new Date();//var updateDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
         var updateDate = date.toGMTString(); // Tue, 17 Nov 2020 14:16:29 GMT --> Gibt mir die jetzige Uhrzeit im Format das lastModiefied Header Request auch hat
       //FOR TESTING
-    var ampelDatatrue = { updateDate: updateDate, items_json };
+    var ampelDatatrue = {updateDate: updateDate, items_json };
     console.log(eTagResponse,'eTAG');
     console.log("File wird gedownloadet");
     localStorage.setItem("Ampeldaten3", JSON.stringify(ampelDatatrue));
@@ -420,7 +427,7 @@ function read_from_local_storage() { //gib mir die Datem aus dem localStorage
   }
 }
 
-if(connBool = false){
+if(connBool == false){
 getOfflineBezDaten();
 }
 
@@ -450,6 +457,8 @@ getOfflineBezDaten();
   document.getElementById("dataLoader").innerHTML = "Die Daten werden geladen ...";
   $("#loader_class").css({"display": "flex", "justify-content": "center", "align-items": "center", "flex-direction": "column"}).show().delay(1500);
   downloadAmpelFile(path2);
+
+
  }
 
 // //ETag - Ampel
@@ -699,7 +708,7 @@ function myLocation() {
        console.log(bezirk);
        sessionStorage.setItem("storeBezirk", bezirk);
        document.getElementById("standortText").innerHTML = "zuletzt verwendeter Standort";
-      //getAmpel();
+        //getAmpel();
      
 
     }
@@ -764,9 +773,11 @@ function changeText(elm) {
   myFunction();
   document.getElementById("bezirk").innerHTML = bezirk;
   sessionStorage.setItem("storeBezirk", bezirk);
+  localStorage.setItem("letzterBezirk", bezirk);
   
   //FÄRBT EIN --> WICHTIG
   getAmpel();
+ 
 
   //WENN OFFLINE
   getOfflineBezDaten();
@@ -864,6 +875,8 @@ function prepareBezirksData(pathBezirke2){
             DatatruestoreBezirk = {AnzahlAktiveFaelle: AktiveFaellestoreBezirk, Standort: storeBezirk, updateDate: updateDatestoreBezirk};    
             alleBezirksDaten.push(DatatruestoreBezirk);
            
+
+            //console.log("HAAAAALLLOOO");
             //Speicher den Bezirk + den Wert im LS
             localStorage.setItem("AktiveFaelle", AktiveFaellestoreBezirk);
             localStorage.setItem("letzterBezirk", bezirk);        
