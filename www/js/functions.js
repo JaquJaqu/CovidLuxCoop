@@ -1,6 +1,6 @@
 const url = 'https://corona-ampel.gv.at/sites/corona-ampel.gv.at/files/assets/Warnstufen_Corona_Ampel_aktuell.json';
-const corsFix= 'https://evening-reaches-25236.herokuapp.com/';
-//const corsFix = 'https://cors-anywhere.herokuapp.com/';
+//const corsFix= 'https://evening-reaches-25236.herokuapp.com/';
+const corsFix = 'https://cors-anywhere.herokuapp.com/';
     
 let pathboolAmpel; //Checkt ob Ampfelfile online angefragt werden kann wenn true = MÖGLICH
 let connBool; //checkt Internet wenn true= Internet AN
@@ -112,7 +112,7 @@ function onOnline(){
   sessionStorage.removeItem("offline");  
   }
   
-  console.log("Connection Bool:", connBool, "du hast kein Internet");
+  console.log("Connection Bool:", connBool, "du hast Internet");
   console.log("Path Bool:", pathboolAmpel, "online zugriff auf Ampeldaten verweigert");
 }
 function onOffline(){
