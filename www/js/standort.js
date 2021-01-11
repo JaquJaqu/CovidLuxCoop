@@ -38,14 +38,18 @@ ALT: Stand: 07.01.2021
 //- AktiveFaelle werden mit dem Standort gematched und switcht wieder zurück zu den manuellen Bezirksdaten beim Togglen 
 //- Offline Funktionalität wurde ergänzt
 
-
-
-/*_____________________NEU___________________________________________________________________________________________________________________________________
-NEU: Stand: 10.01.2021
+Stand: 10.01.2021
 // gemacht: 
 //- Ampelfarbe ab Start der App ohne refresh angezeigt --> neue Funktion, Online Ampeldaten! 
     -->"getAmpelwarnstufeOnline" (letzte Warnstufe wird jetzt auch lokal gespeichert) damit mans gleich beim start gezeigt bekommt)
 //- Versuchs zu Stylen..klappt ned so ganz xD
+
+/*_____________________NEU___________________________________________________________________________________________________________________________________
+NEU:
+Stand: 10.01.2021
+// gemacht: 
+// -Bug fix: Ampelfarbe auf Startseite: --> neue funktion getWarnstufe(): checkt ob ich den direkt requesten wert nehmen muss 
+
  
 
 
@@ -97,6 +101,7 @@ var allItems;
 var alleMeineDatenOfflineBez; 
 var alleMeineDatenBezLS; 
 let valueAktiveFaelle;
+let ampelDatatrue;
 
 //Db Offline Data
 //let loadbool =true;      
@@ -347,36 +352,55 @@ function drawIllustration(ampelStufe){
 }
 
 function getAmpel() {
-  if(dataOffline != null){
-    path2 = dataOffline;
-    data = dataOffline;
-    console.log("Offline Data", dataOffline);
-    storeBezirk = sessionStorage.getItem("storeBezirk");
-    for (i = 0; i < dataOffline.Warnstufen.length; i++) {
+var dataOff;
+
+console.log("ampelDatatrue", ampelDatatrue);
+console.log("dataOffline",dataOffline);
+
+//dataOffline: Data aus Json von LS
+  if(dataOffline != null ){
+     dataOff = dataOffline;
+     console.log("AMPELFARBE wird offline genommen", "dataOff:" ,dataOff);
+     getWarnstufe(dataOff);
+//ampelDatatrue: Daten direkt aus dem Request --> zum anzeigen der Daten wenn die Werte noch nicht im LS geladen sind(jetzt muss man nicht mehr refreshen)
+  }else if (ampelDatatrue !=null){
+     dataOff = ampelDatatrue.items_json;
+     console.log("AMPELFARBE wird online(offline) genommen", "ampelDatatrue:" ,dataOff);
+     getWarnstufe(dataOff);
+     }
+
+     function getWarnstufe(dataOff){
+      console.log("Offline Data", dataOff);
+      storeBezirk = sessionStorage.getItem("storeBezirk");
+    for (i = 0; i < dataOff.Warnstufen.length; i++) {
       if(storeBezirk == "Wien"){
-        if(dataOffline.Warnstufen[i].Name == storeBezirk){
+        if(dataOff.Warnstufen[i].Name == storeBezirk){
           console.log(storeBezirk);
-          console.log("Ampelstufe: "+dataOffline.Warnstufen[i].Warnstufe);
-          ampelStufe = dataOffline.Warnstufen[i].Warnstufe;
+          console.log("Ampelstufe: "+dataOff.Warnstufen[i].Warnstufe);
+          ampelStufe = dataOff.Warnstufen[i].Warnstufe;
           drawIllustration(ampelStufe);
         }
       }else{
-      if (dataOffline.Warnstufen[i].Region == "Bezirk") {
-        if (dataOffline.Warnstufen[i].Name == storeBezirk) {
+      if (dataOff.Warnstufen[i].Region == "Bezirk") {
+        if (dataOff.Warnstufen[i].Name == storeBezirk) {
           console.log(storeBezirk);
-          console.log("Ampelstufe: "+dataOffline.Warnstufen[i].Warnstufe);
-          ampelStufe = dataOffline.Warnstufen[i].Warnstufe;
+          console.log("Ampelstufe: "+dataOff.Warnstufen[i].Warnstufe);
+          ampelStufe = dataOff.Warnstufen[i].Warnstufe;
           drawIllustration(ampelStufe);
         }
        }
      }
     }
-  }
 }
+
+
+  }
+
 
 
 //Bekomme Ampelwarnstufe von jsonFile ONLINE --> Damit bei leeren LS/erstem Start der App nach Auswahl des Bezirks die Farbe angezeigt wird 
 function getAmpelwarnstufeOnline(onlineAmpeldata){
+  console.log("AMPFELFARBE wird online genommen");
   try{
     for(i=0; i<onlineAmpeldata.Warnstufen.length; i++){ 
     if(onlineAmpeldata.Warnstufen[i].Region == "Bezirk"){
@@ -386,7 +410,8 @@ function getAmpelwarnstufeOnline(onlineAmpeldata){
             ampelStufe = onlineAmpeldata.Warnstufen[i].Warnstufe;
             drawIllustration(ampelStufe);
             }
-        }}
+          }
+        }
     }catch{
       }
 }
@@ -394,26 +419,24 @@ function getAmpelwarnstufeOnline(onlineAmpeldata){
 
 //Speichern der AMPELDaten im LocalStorage + Hinzufügen der Zeit und Datum des Downloads
 function downloadAmpelFile(path2) {
-  console.log("WIE SCHAUTS MIT DER CONN AUS?", connBool);
+
   if(connBool ==true){ //wenn ich internet hab und auf die Ampedaten zugreifen darf dann..
   loadJSON(path2, function (data) {
     let items_json = data[7];
     var date = new Date();//var updateDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
         var updateDate = date.toGMTString(); // Tue, 17 Nov 2020 14:16:29 GMT --> Gibt mir die jetzige Uhrzeit im Format das lastModiefied Header Request auch hat
-        var ampelDatatrue = {updateDate: updateDate, items_json };
-    // console.log(eTagResponse,'eTAG');
-    console.log("Ampelfile wird gedownloadet");
-    localStorage.setItem("Ampeldaten3", JSON.stringify(ampelDatatrue));
-
-    // console.log("AMPELDATEN:", items_json);
-    // console.log("items_json.length",items_json.Warnstufen.length);
+         ampelDatatrue = {updateDate: updateDate, items_json };
+    
+    //console.log("Ampelfile wird gedownloadet");
+    localStorage.setItem("Ampeldaten", JSON.stringify(ampelDatatrue));
     onlineAmpeldata = items_json;
 
-    if(localStorage.getItem("Ampeldaten") == null){
+    if(!localStorage.getItem("Ampeldaten")){
     valueAktiveFaelle =" "; //damit kein undefinded angezeigt wird..
     getAmpelwarnstufeOnline(onlineAmpeldata);
-    }else{
-      console.log('Ampeldaten vorhanden');
+    }else if (localStorage.getItem("Ampeldaten")){
+      getAmpel();
+      //console.log('Ampeldaten vorhanden');
     }
 
     $("#loader_class").css({"display": "flex", "justify-content": "center", "align-items": "center", "flex-direction": "column"}).fadeOut(700);
@@ -430,7 +453,7 @@ function downloadAmpelFile(path2) {
 
 //Speichern der LOKATION Daten im LocalStorage + Hinzufügen der Zeit und Datum des Downloads
 function downloadLokation() {
-   console.log('DEIN BEZIRK:', lokalstorageBezirk );
+   //console.log('DEIN BEZIRK:', lokalstorageBezirk );
     var lokationobjecttrue = {bezirksObject:lokalstorageBezirk, bundeslandObject:lokalstorageBundesland};
     localStorage.setItem("Lokationsdaten", JSON.stringify(lokationobjecttrue));
    
@@ -444,7 +467,7 @@ function read_from_local_storage() { //gib mir die Datem aus dem localStorage
   if(localStorage.getItem("letzteAmpelstufe") != null){
       alteampelStufe = localStorage.getItem("letzteAmpelstufe");
     }else {
-    console.log("letzteAmpelstufe ist im LS sind noch nicht vorhanden");
+    //console.log("letzteAmpelstufe ist im LS sind noch nicht vorhanden");
   }
 
   //BEZIRK - alt 
@@ -457,9 +480,9 @@ function read_from_local_storage() { //gib mir die Datem aus dem localStorage
     valueAktiveFaelle =getAktiveFaelle;
     drawIllustration(ampelStufe);
     //document.getElementById("farbkreisAktiv").innerHTML = valueAktiveFaelle;
-    console.log("ALTE DATEN", bezirk, valueAktiveFaelle);
+    //console.log("ALTE DATEN", bezirk, valueAktiveFaelle);
   }else {
-  console.log("letzerBezirk im LS sind noch nicht vorhanden");
+  //console.log("letzerBezirk im LS sind noch nicht vorhanden");
 }
    
 //AKTIVE FÄLLE - alt
@@ -470,7 +493,7 @@ function read_from_local_storage() { //gib mir die Datem aus dem localStorage
     drawIllustration(ampelStufe);
     //document.getElementById("farbkreisAktiv").innerHTML = valueAktiveFaelle;
     } else {
-    console.log("AktiveFaelle ist im LS sind noch nicht vorhanden");
+    //console.log("AktiveFaelle ist im LS sind noch nicht vorhanden");
   }
 
 
@@ -492,7 +515,7 @@ getOfflineBezDaten();
 
   
   //AMPELDATEN
-  var items_json = localStorage.getItem("Ampeldaten3");
+  var items_json = localStorage.getItem("Ampeldaten");
   if(items_json !=null){ //check of es diese Daten im localstorage gibt
   items = JSON.parse(items_json);
   items2 = JSON.stringify(items_json);
@@ -531,14 +554,14 @@ function checkForUpdate() {
 //schau ob die lokalen Ampel und Lokationsdaten Speicherdaten geupdated gehören
 if(checkBool == false){ //Standort ist aktiviert wenn checkBool==false
       //Schau ob die Standortdaten upgedated gehören wenn Internet vorhanden und der Standort aktiviert ist,
-      console.log(getbezirkLocalS);
-      console.log(lokalstorageBezirk);
+      //console.log(getbezirkLocalS);
+      //console.log(lokalstorageBezirk);
       if(getbezirkLocalS != null && lokalstorageBezirk != null){
       if(getbezirkLocalS != lokalstorageBezirk){
          downloadLokation();
         }
       }else{
-        console.log('Standort ist seit letztem check unverändert');
+        //console.log('Standort ist seit letztem check unverändert');
       }
     }
 if(connBool == true){ //wenn es eine Internetverbindung ist und dder online zugriff auf die Ampeldaten gestattet dann
@@ -559,14 +582,14 @@ function checkAmpeldata(pathforUpdate){
             var lastModifiedResponse = client.getResponseHeader("Last-Modified");
             var contentTypeResponse = client.getResponseHeader("Content-Type");
             eTagResponse = client.getResponseHeader("ETag");
-            console.log(eTagResponse);
+            //console.log(eTagResponse);
 
       if (contentTypeResponse != "application/json") {
           client.abort();
       } else {
          //Wenn es sich um eine JSOn Datei handelt dann gib mir den Last-Modified Header der Web Resource
-          console.log("Zuletzt am Server gspeichert am (Last-Modified):",lastModifiedResponse);      
-       //console.log("eTagResponse",eTagResponse);
+        //console.log("Zuletzt am Server gspeichert am (Last-Modified):",lastModifiedResponse);      
+        //console.log("eTagResponse",eTagResponse);
         var eTagAmpelLocal = localStorage.getItem("ETagAmpel");
     if(eTagAmpelLocal == null || eTagAmpelLocal != eTagResponse){
       //DOWNLOAD FILE IMPLEMENTIEREN-nur localstorage
@@ -589,9 +612,9 @@ function checkBezirksdata(){
   client.send();
   client.onreadystatechange = function () {
        if (this.readyState == this.HEADERS_RECEIVED) {//gibt mir alle Headers von allen Requests aus
-            var lastModifiedResponse = client.getResponseHeader("Last-Modified");
+            //var lastModifiedResponse = client.getResponseHeader("Last-Modified");
             eTagResponseBezirke = client.getResponseHeader("ETag");
-            console.log(eTagResponseBezirke);
+            //console.log(eTagResponseBezirke);
     var eTagBezirkeLocal = localStorage.getItem("ETagBezirke");
     if(eTagBezirkeLocal == null || eTagBezirkeLocal != eTagResponseBezirke ){
       //DOWNLOAD FILE IMPLEMENTIEREN-nur localstorage
@@ -608,7 +631,7 @@ function checkBezirksdata(){
 
 function checkOfflineAvailableAmpel(){
   if (eTagResponse == getETaglocalS) {
-    console.log('your Data is up-to-date');
+    //console.log('your Data is up-to-date');
     pathboolAmpel = false;
   
 } else {
@@ -629,7 +652,7 @@ function onLocationSuccess(position){
 
 // Error callback
 function onLocationError(error) {
-  console.log("Dein Standort konnte nicht gefunden werden");
+  //console.log("Dein Standort konnte nicht gefunden werden");
  alert("Dein Standort konnte nicht gefunden werden");
   checkBool = true;
   document.getElementById("switchValue").checked = true;
@@ -638,7 +661,7 @@ function onLocationError(error) {
 function getStandort(){
 cordova.plugins.locationAccuracy.request(
   function() {
-    console.log("testhigh success");
+    //console.log("testhigh success");
     setTimeout(function() {
       readUserLocation();
     }, 1500);
@@ -717,7 +740,7 @@ function myLocation() {
       }
       
        bezirk = getbezirkLocalS;
-       console.log(bezirk);
+       //console.log(bezirk);
        sessionStorage.setItem("storeBezirk", bezirk);
        document.getElementById("standortText").innerHTML = "zuletzt verwendeter Standort";
         //getAmpel();
@@ -787,9 +810,9 @@ function changeText(elm) {
   }
   if(localStorage.getItem("Ampeldaten") == null){
     getAmpelwarnstufeOnline(onlineAmpeldata);
-    getAmpel();
+    //getAmpel();
     }else{
-      console.log('Ampeldaten vorhanden');
+      //console.log('Ampeldaten vorhanden');
       getAmpel();
     }
   
@@ -903,7 +926,8 @@ function prepareBezirksData(pathBezirke2){
       database();    
     } //Sonst verwende die eben berechneten Werte  
      else if(databasebool == false){
-      try{ console.log("STANDORT! Das sind die NEUEN Daten aus dem LS", databasebool, AktiveFaellestoreBezirk);
+      try{ 
+      console.log("STANDORT! Das sind die NEUEN Daten aus dem LS", databasebool, AktiveFaellestoreBezirk);
       valueAktiveFaelle = AktiveFaellestoreBezirk;
       drawIllustration(ampelStufe);
 
@@ -998,7 +1022,7 @@ function getmeineDatenFunktion(){
 	var transaction = db.transaction(["bezirksdaten"], "readwrite");
   var objectStore = transaction.objectStore("bezirksdaten");
     transaction.oncomplete = function(event) {
-    console.log("All done!");
+    //console.log("All done!");
     }
   }catch{
  
@@ -1126,7 +1150,7 @@ function downloadFile(pathBezirke2) {
     header: true,
     complete: function (results, file) {
       //console.log("data", results.data);
-        console.log('Completed loading the file...');
+        //console.log('Completed loading the file...');
          // Here starts your real code with this function
          //preprareBezirksData(results.data); 
          dataOfflineBez = results.data;   
