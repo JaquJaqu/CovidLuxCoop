@@ -48,11 +48,6 @@ NEU: Stand: 10.01.2021
 //- Versuchs zu Stylen..klappt ned so ganz xD
  
 
-Kurze Erklärung für Aktive Fälle: 
-3 Möglichkeiten Aktive Faelle angezeigt zu bekommen: 
-- Durch direkten Request wenn es weder Daten im LS noch in DB gibt --> Daten direkt aus dem Internet
-- Wenn DB nicht vorhanden oder nicht up-to date ist aber vom letzten mal noch im LS gespeichert --> LS daten werden verwendet
-- Wenn DB vorhandenund up-to-date --> Daten werden aus der DB verwendet
 
 
 
@@ -68,7 +63,6 @@ Kurze Erklärung zu Ampelfarbe::
 - wenn es bereits aktuelle Daten gibt --> Dann werden sie offline genommen 
 
 
-<<<<<<< HEAD
 //__________________________ANMERKUNGEN______________________________________________________________________________________________
 
 !! Problem: Schaffs ned die positiven Fälle in den Kreis zu bekommen 
@@ -81,9 +75,6 @@ Kurze Erklärung zu Ampelfarbe::
 //- Alles an die richtige Stelle rücken xD
 //- Teste, testen testen...........
 
-=======
-//!!!!!!!Download von den daten wenn nicht vorhanden mit await
->>>>>>> f674a4ac91cf204aefa953f25a600a86e2a5be09
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -409,16 +400,9 @@ function downloadAmpelFile(path2) {
     let items_json = data[7];
     var date = new Date();//var updateDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
         var updateDate = date.toGMTString(); // Tue, 17 Nov 2020 14:16:29 GMT --> Gibt mir die jetzige Uhrzeit im Format das lastModiefied Header Request auch hat
-<<<<<<< HEAD
         var ampelDatatrue = {updateDate: updateDate, items_json };
     // console.log(eTagResponse,'eTAG');
     console.log("Ampelfile wird gedownloadet");
-=======
-      //FOR TESTING
-    var ampelDatatrue = {updateDate: updateDate, items_json };
-    console.log(eTagResponse,'eTAG');
-    console.log("File wird gedownloadet");
->>>>>>> f674a4ac91cf204aefa953f25a600a86e2a5be09
     localStorage.setItem("Ampeldaten3", JSON.stringify(ampelDatatrue));
 
     // console.log("AMPELDATEN:", items_json);
@@ -489,10 +473,7 @@ function read_from_local_storage() { //gib mir die Datem aus dem localStorage
     console.log("AktiveFaelle ist im LS sind noch nicht vorhanden");
   }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> f674a4ac91cf204aefa953f25a600a86e2a5be09
 if(connBool == false){
 getOfflineBezDaten();
 }
@@ -521,10 +502,6 @@ getOfflineBezDaten();
   $("#loader_class").css({"display": "flex", "justify-content": "center", "align-items": "center", "flex-direction": "column"}).show().delay(1500);
   downloadAmpelFile(path2);
 
-<<<<<<< HEAD
-=======
-
->>>>>>> f674a4ac91cf204aefa953f25a600a86e2a5be09
  }
 
 // //ETag - Ampel
@@ -803,7 +780,6 @@ function changeText(elm) {
   document.getElementById("bezirk").innerHTML = bezirk;
   sessionStorage.setItem("storeBezirk", bezirk);
   localStorage.setItem("letzterBezirk", bezirk);
-<<<<<<< HEAD
   
   //FÄRBT Ampel EIN --> WICHTIG
   if(alteampelStufe != null){
@@ -818,11 +794,6 @@ function changeText(elm) {
     }
   
   
-=======
-  
-  //FÄRBT EIN --> WICHTIG
-  getAmpel();
->>>>>>> f674a4ac91cf204aefa953f25a600a86e2a5be09
  
 
   //WENN OFFLINE (für Aktive Faelle)
