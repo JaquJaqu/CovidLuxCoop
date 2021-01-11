@@ -296,7 +296,7 @@ function drawIllustration(ampelStufe){
     document.getElementById("farbkreisAktiv").style.display = "block";
     document.getElementById("farbkreisAktiv").style.verticalAlign = "middle";
     document.getElementById("farbkreisAktiv").style.textAlign = "center";
-    document.getElementById("farbkreisAktiv").innerHTML = "<h2 margin-bottom:'0pt' color:'#211F77'>" + valueAktiveFaelle + "</h2>" + "</br>"+ "<h3 margin-bottom:'0pt'>"+"positive Fälle"+"</h3>";
+    document.getElementById("farbkreisAktiv").innerHTML = "<h2 margin-bottom:'0pt' color:'#211F77'>" + valueAktiveFaelle + "</h2>" + "<h3 margin-bottom:'0pt'>"+"positive Fälle"+"</h3>";
     
   }
 
