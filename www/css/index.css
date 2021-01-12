@@ -21,6 +21,7 @@ body {
     width:100%;
     overflow:hidden;
     /*-webkit-overflow-scrolling: touch;*/
+    color: #000000;
 }
 #scrollbar{
     width: 100%;
@@ -365,6 +366,7 @@ footer ul {
     display:none;
     align-self: center;
     justify-content: center;
+    color: #000000;
 }
 #unterstatus{
     background-color: rgba(173, 173, 185, 0.5);
@@ -431,6 +433,7 @@ border: 16px solid #f3f3f3;
     font-weight: 500;
     grid-row: 2/2;
     grid-column: 2/8;
+    color: #000000;
 
 }
 #standortText{
@@ -539,6 +542,7 @@ div#farbkreisAktiv > h3{
     text-align: center;
     grid-row: 7/7;
     grid-column: 2/8;
+    color: #000000;
 }
 #mainwrapper_start{  
     position: absolute;
