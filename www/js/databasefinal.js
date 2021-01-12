@@ -79,6 +79,9 @@ if (!window.indexedDB) {
         db = event.target.result;
         console.log("success: "+ db);
 
+        // console.log("ETagBezirksdataDatabaseLS", ETagBezirksdataDatabaseLS);
+        // console.log("eTagResponseBezirke3", eTagResponseBezirke3);
+
     if(ETagBezirksdataDatabaseLS != null || ETagBezirksdataDatabaseLS == eTagResponseBezirke3){
     // CHANGE
     databasebool = true;
@@ -90,7 +93,7 @@ if (!window.indexedDB) {
     
   
   //Add --> Daten zu objectStore"bezirksdaten" hinzugügen
-  if (!db.objectStoreNames.contains('bezirksdaten')) {
+  if (!db.objectStoreNames.contains('bezirksdaten') || db.objectStoreNames.contains('bezirksdaten') == null) {
           console.log("storage wird erzeugt");  
           add();
           setAktiveFaelleMeinBezirk();
@@ -147,6 +150,8 @@ function checkETagBezirksDatabase(pathBezirke3){
      if (this.readyState == this.HEADERS_RECEIVED) {//gibt mir alle Headers von allen Requests aus
        eTagResponseBezirke3 = client.getResponseHeader("ETag");
        checkBezirksdataDatabase();
+       console.log("HAAAAALLLOOOO");
+      //  console.log("eTagResponseBezirke3", eTagResponseBezirke3);
        }      
     } 
     console.log("Du bist hier");
@@ -215,6 +220,12 @@ let storeBezirk = sessionStorage.getItem("storeBezirk");
 function checkBezirksdataDatabase(){
   //localStorage.setItem("ETagBezirksdatenDatabase",eTagResponseBezirke3 + "TEST");
   ETagBezirksdataDatabaseLS = localStorage.getItem("ETagBezirksdatenDatabase");
+
+ 
+
+  console.log("ETagBezirksdataDatabaseLS", ETagBezirksdataDatabaseLS);
+  console.log("eTagResponseBezirke3", eTagResponseBezirke3);
+
 
   //Wenn Etag im LS oder verändert dann download und verwende LS Daten für AktiveFaelle
 if(ETagBezirksdataDatabaseLS == null || ETagBezirksdataDatabaseLS != eTagResponseBezirke3){

@@ -25,7 +25,7 @@ __!!_____Was getan wurde(Alt):
  
  //________________________________________________
 
-ALT: Stand: 07.01.2021
+ALT: 
 // gemacht: 
 //- Code allgemein zusammengeräumt
 //- eigenen Proxy angelegt
@@ -37,18 +37,19 @@ ALT: Stand: 07.01.2021
 //- Wenn im der DB bereits aktuelle Daten sind werden die verwendet.
 //- AktiveFaelle werden mit dem Standort gematched und switcht wieder zurück zu den manuellen Bezirksdaten beim Togglen 
 //- Offline Funktionalität wurde ergänzt
-
-Stand: 10.01.2021
-// gemacht: 
 //- Ampelfarbe ab Start der App ohne refresh angezeigt --> neue Funktion, Online Ampeldaten! 
     -->"getAmpelwarnstufeOnline" (letzte Warnstufe wird jetzt auch lokal gespeichert) damit mans gleich beim start gezeigt bekommt)
 //- Versuchs zu Stylen..klappt ned so ganz xD
+// gemacht: 
+// -Bug fix: Ampelfarbe auf Startseite: --> neue funktion getWarnstufe(): checkt ob ich den direkt requesten wert nehmen muss 
+//- Dark Mode Ausschalten --> schrift wird am handy weiß angezeigt 
+ 
+
 
 /*_____________________NEU___________________________________________________________________________________________________________________________________
 NEU:
-Stand: 10.01.2021
-// gemacht: 
-// -Bug fix: Ampelfarbe auf Startseite: --> neue funktion getWarnstufe(): checkt ob ich den direkt requesten wert nehmen muss 
+Stand: 12.01.2021
+// - dashboarddaten(bezirksseite) einbinden(offline von db)
 
  
 
@@ -74,7 +75,6 @@ Kurze Erklärung zu Ampelfarbe::
 //______________________________TO DO:________________________________________________________________________________________
 //- Wenn online + standort an und dann der Bezirk manuell umgestellt wird muss der Wert zurück zu "ausgeschalten" toggeln.
     Frage: Offline und Standort angewählt wie soll der Toggle button sein???
-//- Dark Mode Ausschalten --> schrift wird am handy weiß angezeigt 
 //- Speicherdatum noch extra speichern damit wirs bei den Quellen implementieren können
 //- Alles an die richtige Stelle rücken xD
 //- Teste, testen testen...........
@@ -174,6 +174,10 @@ getAmpel();
 
 console.log("databasebool", databasebool);
 console.log("CONNBOOL:", connBool);
+
+
+
+
 
 //Zugriff auf API
 function getLocation(latitude, longitude) {
@@ -843,8 +847,8 @@ function changeText(elm) {
   
  
 
-  //WENN OFFLINE (für Aktive Faelle)
-  getOfflineBezDaten();
+  
+  getOfflineBezDaten(); //WENN OFFLINE (für Aktive Faelle)
   document.getElementById("infoText").style.display= "none";
   document.getElementById("info_start").style.display= "none"; 
   document.getElementById("standortText").style.display= "none";
