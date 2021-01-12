@@ -7,6 +7,7 @@
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="css/index.css">
         <link rel="icon" href="img/Logo_CovidLux.png">
+        <link rel="manifest" href="/manifest.webmanifest">
         <title>CovidLux</title>
         <script src="js/jquery.min.js"></script>         
     </head>
@@ -34,8 +35,8 @@
                     <div class="einstellungen_content">
                         <div id="einstellungen_standorttext">
                         <h3>Standort</h3>
-                        <p>Ihre aktuelle Position wird verwendet, um Ihnen alle relevanten Daten für ihren
-                            derzeitigen Aufenthaltspunkt anzuzeigen</p>
+                        <p>Deine aktuelle Position wird verwendet, um dir alle relevanten Daten für deinen
+                            derzeitigen Aufenthaltspunkt anzuzeigen.</p>
                         </div>
                         <label class="switch">
                             <input type="checkbox" onclick="checkToggle()"  checked ='true' id='switchValue_setting'  name="disableLocation">
@@ -51,7 +52,7 @@
                         <div id="raumfueller2"></div>
                     </div>
                     <div class="einstellungen_content">
-                        <button class="einstellungen_buttons">Datenschutzerklärung</button>
+                        <button class="einstellungen_buttons" onclick="location.href='datenschutzerklärung.html'">Datenschutzerklärung</button>
                     </div>
 
                     
@@ -61,10 +62,13 @@
                         <div id="raumfueller3"></div>
                     </div>
                     <div class="einstellungen_content">
-                        <button class="einstellungen_buttons">Impressum</button>
+                        <button class="einstellungen_buttons" onclick="location.href='über_die_app.html'">Über die App</button>
                     </div>
                     <div class="einstellungen_content" id="Link">
-                        <button class="einstellungen_buttons">Weiterführende Links</button>
+                        <button class="einstellungen_buttons" onclick="location.href='impressum.html'">Impressum</button>
+                    </div>
+                    <div class="einstellungen_content" id="Link">
+                        <button class="einstellungen_buttons" onclick="location.href='links.html'">Weiterführende Links</button>
                     </div>
                 </div>
 
@@ -75,7 +79,6 @@
         <script src="cordova.js"></script>
         <script src="js/functions.js"></script>
         <script src="js/einstellungen.js"></script>
-        <!--<script src="js/dashboarddata.js"></script>-->
 
 </div>
 </body>

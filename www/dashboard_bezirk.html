@@ -7,6 +7,7 @@
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="css/index.css">
         <link rel="icon" href="img/Logo_CovidLux.png">
+        <link rel="manifest" href="/manifest.webmanifest">
         <title>CovidLux</title>
         <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
         <script src="https://d3js.org/d3-fetch.v2.min.js"></script>
@@ -44,45 +45,48 @@
         <div class="dropdown_dash" display="block">
             <button onclick="myFunction_bezirk()" class="dropbtn" id="dropbtn_bezirk">Bezirk auswählen</button>
             <div id="myDropdown_bezirk" class="dropdown-content-dash">
-            <input type="text" placeholder="Suchen.." id="myInput_bezirk" onkeyup="filterFunction('myInput_bezirk','myDropdown_bezirk')">
-          </div>
+            <input type="text" placeholder="Suchen.." id="myInput_bezirk" onkeyup="filterFunction('myInput_bezirk','myDropdown_bezirk')">          
+        </div>
         </div>
 
+        <p class="letzte_zahlen">Letzte Aktualisierung: Datum.Mustermonat</p>
+
         <div class="Akkordeon_dash">
-            <button class="accordion" onclick="scrollTo()">Aktive Fälle <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_aktiveFälle()"></button>
-            <div class="verlauf"></div>
+            <button class="accordion">Aktive Fälle <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_aktiveFälle()"></button>
+            <div class="verlauf"><img src="./img/Dashboard-1.png" width="100%"></div>
             <div class="panel">
-                <div class="panel_links">
+                <div class="panel_dash">
                     <h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
-                </div>
-                <div class="panel_rechts">
+                    <button class="slmm" onclick="info_area()">So liest man mich</button>
                 </div>
             </div>
             
             <button class="accordion">Neuerkrankungen <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_Neuerkrankungen()"></button>
-            <div class="verlauf"></div>
+            <div class="verlauf"><img src="./img/Dashboard-1.png" width="100%"></div>
             <div class="panel">
-                <div class="panel_links">
+                <div class="panel_dash">
                     <h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
+                    <button class="slmm" onclick="info_area()">So liest man mich</button>
                 </div>
                 <div class="panel_rechts">
                 </div>
             </div>
             
             <button class="accordion">Todesfälle <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_Todesfälle()"></button>
-            <div class="verlauf"></div>
+            <div class="verlauf"><img src="./img/Dashboard-1.png" width="100%"></div>
             <div class="panel">
-                <div class="panel_links">
+                <div class="panel_dash">
                     <h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
+                    <button class="slmm" onclick="info_area()">So liest man mich</button>
                 </div>
                 <div class="panel_rechts">
                 </div>
@@ -128,7 +132,6 @@
         <script src="js/functions.js"></script>
         <script src="js/functions_dash.js"></script>
         <script src="js/dashboard_bezirk.js"></script>
-        <!--<script src="js/dashboarddata.js"></script>-->
        
         </div>
     </body>

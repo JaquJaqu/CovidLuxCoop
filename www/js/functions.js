@@ -131,12 +131,6 @@ function onOffline(){
   console.log("Path Bool:", pathboolAmpel, "online zugriff auf Ampeldaten verweigert");
 }
 
-$(document).ready(function(){
-  $("#mainwrapper_tipps").scroll(function(){
-    var x = $("#mainwrapper_tipps").position();
-    x.top += 1;
-  });
-});
 
 //App schließt wenn zweimal auf zurück Button getappt wird
 var lastTimeBackPress=0;

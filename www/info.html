@@ -7,6 +7,7 @@
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="css/index.css">
         <link rel="icon" href="img/Logo_CovidLux.png">
+        <link rel="manifest" href="/manifest.webmanifest">
         <title>CovidLux</title>
         <script src="js/jquery.min.js"></script> 
     </head>
@@ -29,7 +30,11 @@
                         <div class="flexboxwie">
                             <div class="flexboxwietext">
                                 <h3>Startseite</h3>
-                                <p class="textInfobutton">Hier findest du die aktuelle Ampelfarbe deines derzeitigen Standortes und kannst ebenfalls die Ampelfarbe anderer Bezirke einsehen.</p>
+                                <p class="textInfobutton">Auf der Startseite findest du die aktuelle 
+                                    Ampelfarbe basierend auf deinem Standort. Außerdem hast du die 
+                                    Möglichkeit dir die Ampelfarben anderer Bezirke anzeigen zu lassen. 
+                                    Du kannst aber auch einen Bezirk aus der Liste wählen, ohne deinen 
+                                    Standort freigeben zu müssen.</p>
                             </div>
                             <div class="flexboxwiebild">
                                 <img alt="Ampel" src="img/ampel.png" width="80vw" height="80vw">
@@ -40,8 +45,14 @@
                     <div class="blockWie">
                         <div class="flexboxwie">
                             <div class="flexboxwietext">
-                                <h3>Statistiken</h3>
-                                <p class="textInfobutton">Hier findest du die wichtigsten Zahlen zugeschnitten auf deinen Bezirk, dein Bundesland oder auch ganz Österreich</p>
+                                <h3>Zahlen</h3>
+                                <p class="textInfobutton">Auf der Seite “Zahlen” findest du die wichtigsten 
+                                    Kennzahlen zum Coronavirus. Basierend auf deinem Standort werden dir 
+                                    hier die aktiven Fälle, Neuerkrankungen und Todesfälle angezeigt. Du 
+                                    hast auch hier die Möglichkeit andere Bezirke oder Bundesländer aus 
+                                    der Liste zu wählen. Die Seite “Zahlen” unterscheidet zwischen Zahlen 
+                                    für den Bezirk, das Bundesland oder gesamt Österreich. Klickst du auf 
+                                    eine der drei Kennzahlen, kommst du zu einer interaktiven Grafik.</p>
                             </div>
                             <div class="flexboxwiebild">
                                 <img alt="Graph-Bar" src="img/graph-bar.png" width="80vw" height="80vw">
@@ -52,8 +63,11 @@
                     <div class="blockWie">
                         <div class="flexboxwie">
                             <div class="flexboxwietext">
-                                <h3>Maßnahmen und Symptome</h3>
-                                <p class="textInfobutton">Hier kannst du dir einen Überblick über geltende Maßnahmen, Verhaltenstipps oder auch häufige Symptome einer Covid-19 Infektion verschaffen.</p>
+                                <h3>Tipps und Symptome</h3>
+                                <p class="textInfobutton">Auf den dazugehörigen Seiten findest du die 
+                                    wichtigsten Verhaltenstipps und Symptome einer Infektion 
+                                    zusammengefasst. Falls du glaubst infiziert zu sein, findest du 
+                                    hier ebenfalls weiterführende Informationen.</p>
                             </div>
                             <div class="flexboxwiebild">
                                 <img alt="Sneeze" src="img/sneeze.png" width="80vw" height="80vw">
@@ -65,7 +79,6 @@
         <script src="cordova.js"></script>
         <script src="js/functions.js"></script>
         <script src="js/info.js"></script>
-        <!--<script src="js/dashboarddata.js"></script>-->
 
 </div>
 </body>

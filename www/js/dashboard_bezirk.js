@@ -3,8 +3,8 @@ const arrBezirk = [];
 getAkkordeon_dash();
 
 function onload_bezirk(){
-    if(sessionStorage.getItem("storeBezirk")!= null){
-        document.getElementById("dropbtn_bezirk").innerHTML = sessionStorage.getItem("storeBezirk");
+    if(localStorage.getItem("storeBezirk")!= null){
+        document.getElementById("dropbtn_bezirk").innerHTML = localStorage.getItem("storeBezirk");
     }
 }
 
@@ -34,10 +34,6 @@ function myFunction_bezirk() {
         bezirk = elm.getAttribute('value');
         myFunction_bezirk();
         document.getElementById("dropbtn_bezirk").innerHTML = bezirk;
-        sessionStorage.setItem("storeBezirk",bezirk);
+        localStorage.setItem("storeBezirk",bezirk);
       }
 
-      /*
-      function scrollTo(){
-          window.scrollTo(0,500);
-      }*/

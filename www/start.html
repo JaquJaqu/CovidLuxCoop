@@ -7,6 +7,7 @@
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="css/index.css">
         <link rel="icon" href="img/Logo_CovidLux.png">
+        <link rel="manifest" href="/manifest.webmanifest">
         <title>CovidLux</title>   
         <script src="js/jquery.min.js"></script> 
         <script src='https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js'></script> 
@@ -38,6 +39,11 @@
             
             <div id="mainwrapper_start">
 
+                <div class="lastTime">
+                    <p id="letzte">Letzte Aktualisierung</p>
+                </div>
+                <div id="loader_mini"></div>
+                <h2 id="dataLoader_mini">Der Standort wird ermittelt...</h2>
                 
                             <div class="dropdown" display="block">
                                 <button onclick="myFunction()" class="dropbtn" id="dropbtn">anderen Bezirk wählen</button>

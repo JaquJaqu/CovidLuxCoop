@@ -3,11 +3,11 @@ const arrBundesland = [];
 getAkkordeon_dash();
 
 function onload_bundesland(){
-    if(sessionStorage.getItem("storeBundesland") != null){
-    document.getElementById("dropbtn_bundesland").innerHTML = sessionStorage.getItem("storeBundesland");
+    if(localStorage.getItem("storeBundesland") != null){
+    document.getElementById("dropbtn_bundesland").innerHTML = localStorage.getItem("storeBundesland");
     }
-    if(sessionStorage.getItem("storeBezirk") != null){
-        bezirkTemp = sessionStorage.getItem("storeBezirk");
+    if(localStorage.getItem("storeBezirk") != null){
+        bezirkTemp = localStorage.getItem("storeBezirk");
         loadJSON("bundesland_dropdown.json", function(data){
             for(i=0; i<data[0].Bezirke.length; i++){
                 if(data[0].Bezirke[i].Bezirk == bezirkTemp){

@@ -7,6 +7,7 @@
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="css/index.css">
         <link rel="icon" href="img/Logo_CovidLux.png">
+        <link rel="manifest" href="/manifest.webmanifest">
         <title>CovidLux</title>
         <script src="js/jquery.min.js"></script>
     </head>
@@ -52,7 +53,7 @@
                             <li>Gliederschmerzen</li>
                             <li>Halsschmerzen</li>
                             <li>Kopfschmerzen</li>
-                            <li>Verlust des Geschmacks- oder Geruchsinns</li>
+                            <li>Verlust des Geschmacks- oder Geruchssinns</li>
                         </ul>
                     </div>
                     <div class="panel_rechts">
@@ -76,7 +77,7 @@
                     </div>
                 </div>     
         
-                <p id="DataSymptome">Datenquelle: <a href="https://www.who.int/" target="_blank" id="Quelle">who.int</a></p>
+                <p id="DataSymptome">Datenquelle: <a href="https://www.who.int/" target="_blank" id="Quelle">who.int</a> <span id="stand_who">(Stand: 11.01.2021 11:00)</span></p>
                 <h1 id="Wastun" onclick="startOverlay()">Ich glaube ich bin infiziert. Was nun?</h1>
 
                 <div id=overlay>
@@ -132,7 +133,6 @@
         <script src="cordova.js"></script> 
         <script src="js/functions.js"></script>
         <script src="js/symptome.js"></script>
-        <!--<script src="js/dashboarddata.js"></script>-->
        
         </div>
     </body>
