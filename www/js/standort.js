@@ -321,16 +321,10 @@ function getLocation(latitude, longitude) {
         lokalstorageBundesland = bundesland;
         bundesland = data.principalSubdivision;
         localStorage.setItem("storeBundesland", bundesland);
-        $("#loader_mini").css({"display": "block"}).fadeOut(700);
-        $("#unterstatus").fadeOut(700);
-        $("#dataLoader_mini").fadeOut(700);
       
     },
     function (xhr) {
       console.log("Der Standort kann leider nicht ermittelt werden. Versuchen Sie die Seite mit https:// aufzurufen.");
-      $("#loader_mini").css({"display": "block"}).fadeOut(700);
-      $("#unterstatus").fadeOut(700);
-      $("#dataLoader_mini").fadeOut(700);
     }
   );
 }
@@ -344,7 +338,7 @@ function drawIllustration(ampelStufe){
     document.getElementById("farbkreisAktiv").style.display = "block";
     document.getElementById("farbkreisAktiv").style.verticalAlign = "middle";
     document.getElementById("farbkreisAktiv").style.textAlign = "center";
-    document.getElementById("farbkreisAktiv").innerHTML = "<h2 margin-bottom:'0pt' color:'#211F77'>" + valueAktiveFaelle + "</h2>" + "<h3 margin-bottom:'0pt'>"+"positive Fälle"+"</h3>";
+    document.getElementById("value_pos").innerHTML = valueAktiveFaelle;
     
   }
 
@@ -418,7 +412,6 @@ console.log("dataOffline: ",dataOffline);
       console.log("Offline Data", dataOff);
       
       storeBezirk = localStorage.getItem("storeBezirk");
-      console.log(storeBezirk);
     for (i = 0; i < dataOff.Warnstufen.length; i++) {
       if(storeBezirk == "Wien"){
         if(dataOff.Warnstufen[i].Name == storeBezirk){
@@ -465,8 +458,8 @@ function getAmpelwarnstufeOnline(onlineAmpeldata){
 
 
 //Speichern der AMPELDaten im LocalStorage + Hinzufügen der Zeit und Datum des Downloads
-function downloadAmpelFile(path2) {
-
+async function downloadAmpelFile(path2) {
+await onload_start();
   if(connBool ==true){ //wenn ich internet hab und auf die Ampedaten zugreifen darf dann..
   loadJSON(path2, function (data) {
     let items_json = data[11];
@@ -739,7 +732,6 @@ function onLocationSuccess(position){
 
 // Error callback
 function onLocationError(error) {
-  //console.log("Dein Standort konnte nicht gefunden werden");
  alert("Dein Standort konnte nicht gefunden werden");
   checkBool = true;
   document.getElementById("switchValue").checked = true;
@@ -748,7 +740,6 @@ function onLocationError(error) {
 function getStandort(){
 cordova.plugins.locationAccuracy.request(
   function() {
-    //console.log("testhigh success");
     setTimeout(function() {
       readUserLocation();
     }, 1500);
@@ -779,7 +770,6 @@ function myToggle() {
   }
 }
 
-console.log(connBool);
 
 //______STANDORT verwenden mit Toggle________
 function myLocation() {
@@ -789,7 +779,6 @@ function myLocation() {
   
   //Manuelle Lokation
   if (checkBool == true) {
-    console.log(connBool);
     document.getElementById("bezirk").innerHTML = bezirk;
     localStorage.setItem("storeToggleTrue", true);
     localStorage.removeItem("storeToggleFalse");
@@ -802,7 +791,6 @@ function myLocation() {
 
     //Standortbasierte Lokation
   } else if (checkBool == false) {
-    console.log(connBool);
     if(connBool == true){
       /*___CORDOVA-CODE___
       if(platform != null){
@@ -813,44 +801,30 @@ function myLocation() {
       }
     }*/
 
-    //AktiveFaelle
-    $("#loader_mini").css({"display": "block"}).show().delay(1500);
-  $("#unterstatus").show().delay(1500);
-  $("#dataLoader_mini").show().delay(1500);
     readUserLocation();
     checkBezirksdata();    
     document.getElementById("standortText").style.display= "block";
     document.getElementById("standortText").innerHTML = "derzeitiger Standort";
    //Standort abfragen
     }else if (connBool == false){
-      console.log("Yes");
       read_from_local_storage();
       getOfflineBezDaten();
 
-      console.log("HIER:"+bezirk);
-
       if (databasebool == false){
       downloadBezirksFile(pathBezirke2);
-      console.log("aLLin");
       }
-      
-      console.log(bezirk);
+
        bezirk = getbezirkLocalS;
-       //console.log(bezirk);
        localStorage.setItem("storeBezirk", bezirk);
        document.getElementById("standortText").style.display= "block";
        document.getElementById("standortText").innerHTML = "zuletzt verwendeter Standort";
         getAmpel();
-        console.log("Aba sowas von");
-     
-
     }
       
     if(lokalstorageBezirk != null){
       downloadLokation();
       }
       document.getElementById("bezirk").innerHTML = bezirk;
-      console.log("Jz brauch ich nur noch");
 
     localStorage.setItem("storeToggleFalse", false);
     localStorage.removeItem("storeToggleTrue");

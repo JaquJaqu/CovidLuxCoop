@@ -110,3 +110,26 @@ function info_close(){
   $("#info_dash").fadeOut(700);
   $("#unterinfo").fadeOut(700);
 }
+
+
+$(function() {
+  $('.accordion').hover(function() {
+    $('.accordion:hover > .info_dash_button').attr({style: "content:url(../www/img/pfeil_weiß.png)"});
+  }, function() {
+    // on mouseout, reset the background colour
+    $('.info_dash_button').attr({style: "content:url(../www/img/pfeil_lila.png)"});
+  });
+});
+
+$(function() {
+  $('button').click(function(){
+    if($('button').hasClass('accordion active')){
+      $(this).unbind('mouseenter mouseleave');
+      $(this).closest('.info_dash_button').attr({style: "content:url(../www/img/pfeil_weiß.png)"});
+
+  } else {
+    // on mouseout, reset the background colour
+    $(this).closest('.info_dash_button').attr({style: "content:url(../www/img/pfeil_lila.png)"});
+  }
+});
+});

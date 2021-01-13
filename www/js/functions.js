@@ -97,10 +97,6 @@ function loadJSON(path, success, error)
 
 function onOnline(){
   connBool = true;
-  if(sessionStorage.getItem("Update") == null){
-  checkForUpdate();
-  sessionStorage.setItem("Update", true);
-  }
   const statusDisplay = document.getElementById("status");
   statusDisplay.textContent = "Du hast Internetzugriff! Alles funktioniert reibungslos.";
   if(sessionStorage.getItem("online") == null){
@@ -112,8 +108,6 @@ function onOnline(){
   sessionStorage.removeItem("offline");  
   }
   
-  console.log("Connection Bool:", connBool, "du hast Internet");
-  console.log("Path Bool:", pathboolAmpel, "online zugriff auf Ampeldaten verweigert");
 }
 function onOffline(){
   const statusDisplay = document.getElementById("status");
@@ -127,8 +121,6 @@ function onOffline(){
   sessionStorage.removeItem("online");  
   }
   connBool = false;
-  console.log("Connection Bool:", connBool, "du hast kein Internet");
-  console.log("Path Bool:", pathboolAmpel, "online zugriff auf Ampeldaten verweigert");
 }
 
 

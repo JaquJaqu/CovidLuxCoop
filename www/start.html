@@ -40,10 +40,8 @@
             <div id="mainwrapper_start">
 
                 <div class="lastTime">
-                    <p id="letzte">Letzte Aktualisierung</p>
+                    <p id="letzte"></p>
                 </div>
-                <div id="loader_mini"></div>
-                <h2 id="dataLoader_mini">Der Standort wird ermittelt...</h2>
                 
                             <div class="dropdown" display="block">
                                 <button onclick="myFunction()" class="dropbtn" id="dropbtn">anderen Bezirk wählen</button>
@@ -55,7 +53,10 @@
                 <h2 id ="infoText">Es wird kein Bezirk angezeigt</h2>
                 <h1 id="bezirk"></h1>
                 <h2 id="standortText"></h2>
-                <div id="farbkreisAktiv"></div>
+                <div id="farbkreisAktiv" onclick="location.href='dashboard_bezirk.html'">
+                    <h2 id="value_pos"></h2>
+                    <h3>positive Fälle</h3>
+                </div>
                 <div id="farbkreisPH"></div> 
                 
                 <div id="ringerl"></div>

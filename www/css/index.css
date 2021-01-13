@@ -4,8 +4,6 @@
     box-sizing: border-box;
 }
 
-
-
 body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
@@ -77,9 +75,6 @@ body {
 h2{
     text-align:center;
 }
-
-
-
 header {
     background-image: url("../img/wellen weißer hintergrund.png");
     display:flex;
@@ -339,32 +334,6 @@ footer ul {
     z-index: 5;
     margin-top: 5vh;
 }
-#dataLoader_mini{
-    z-index: 4;
-    margin-top: 5vh;
-    grid-column: 2/8;
-      grid-row: 4/4;
-      align-self: center;
-      justify-self: center;
-      display:none;
-      font-size: 14pt;
-}
-#loader_mini{
-    border: 10px solid #f3f3f3;
-      border-radius: 50%;
-      border-top: 10px solid #211F77;
-      width: 100px;
-      height: 100px;
-      z-index: 4;
-      grid-column: 2/8;
-      grid-row: 3/3;
-      align-self: center;
-      justify-self: center;
-      display:none;
-      
-      -webkit-animation: spin 2s linear infinite; /* Safari */
-      animation: spin 2s linear infinite;
-    }
 #loader{
 border: 16px solid #f3f3f3;
   border-radius: 50%;
@@ -386,8 +355,8 @@ border: 16px solid #f3f3f3;
     100% { transform: rotate(360deg); }
   }
 #bezirk {
-    /* font-size:2.8vh; */
-    font-size: 1.7rem;
+    font-size:2.8vh;
+    /*font-size: 1.7rem;*/
     font-weight:500;
     margin:0;
     overflow:visible;
@@ -437,14 +406,15 @@ border: 16px solid #f3f3f3;
 
 div#farbkreisAktiv > h2{
     color: #211F77; 
-    font-size: 1rem;
-    margin: 5 0 0 0; 
+    font-size: 1.5rem;
+    margin-top: 0.5vw; 
+    font-weight: 500; 
 }
 
 div#farbkreisAktiv > h3{
     color: #211F77; 
-    font-size: 0.8rem;
-    margin: 0; 
+    font-size: 0.7rem;
+    margin-top: -2vh; 
     font-weight: 500; 
 }
 
@@ -1466,6 +1436,16 @@ h3{
         height: 10vmin;
         width: 10vmin;
     }
+    #farbkreisAktiv > h2{
+        font-size: 1rem;
+        margin-top: 0.5vw; 
+    }
+    
+    #farbkreisAktiv > h3{ 
+        font-size: 0.4rem;
+        margin-top: -2vh; 
+        font-weight: 500; 
+    }
     .dropbtn{
         font-size: 2vmin;
         line-height: 22px;
@@ -1697,6 +1677,9 @@ h3{
     #DataSymptome{
         font-size: 2.5vmin;
     }
+    #stand_who{
+        font-size: 2.1vmin;
+    }
     #Quelle{
         font-size: 2.5vmin;
     }
@@ -1816,6 +1799,9 @@ h3{
      #mainwrapper_datenschutz{
         width: 45vw;
         left: 30%;
+        top: unset;
+        margin-top: 15vmin;
+        padding-bottom: 15vmin;
     }
     #mainwrapper_datenschutz p{
         font-size: 2vmin;
@@ -1827,6 +1813,9 @@ h3{
     #mainwrapper_impressum{
         width: 45vw;
         left: 30%;
+        top: unset;
+        margin-top: 15vmin;
+        padding-bottom: 15vmin;
     }
     #mainwrapper_impressum p{
         font-size: 2vmin;
@@ -1841,6 +1830,9 @@ h3{
     #mainwrapper_links{
         width: 45vw;
         left: 30%;
+        top: unset;
+        margin-top: 15vmin;
+        padding-bottom: 15vmin;
     }
     #mainwrapper_links p{
         font-size: 2vmin;
@@ -1861,10 +1853,12 @@ h3{
     }
     .panel_über_start img{
         margin-right: 11vw;
+        width: 14vmin;
     }
     .panel_über_links img{
         margin-right: 5vw;
         margin-left: 6vw;
+        width: 14vmin;
     }
     .über_text_links{
         width: 25vw;
@@ -1875,11 +1869,17 @@ h3{
     }
     .panel_über_rechts img{
         margin-right: 11vw;
+        width: 14vmin;
     }
     .über_text_rechts{
         width: 18vw;
     }
     .über_text_rechts p{
         font-size: 2vmin;
+    }
+    #mainwrapper_überdieapp{
+        top: unset;
+        margin-top:15vmin;
+        padding-bottom: 15vmin;
     }
 }
