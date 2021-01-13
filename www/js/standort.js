@@ -92,10 +92,15 @@ Kurze Erklärung zu Ampelfarbe::
 
 const urlBezirke2 = 'https://covid19-dashboard.ages.at/data/CovidFaelle_Timeline_GKZ.csv';
 //const corsFixBezirke2 = 'https://evening-reaches-25236.herokuapp.com/';
-const corsFixBezirke2 = 'https://cors-anywhere.herokuapp.com/';
+const corsFixBezirke2 = 'https://evening-reaches-25236.herokuapp.com/';
+let pathBezirke2 = corsFixBezirke2 + urlBezirke2;
+
+const urlBundesland = 'https://covid19-dashboard.ages.at/data/CovidFaelle_Timeline.csv';
+const corsFixBundesland = 'https://evening-reaches-25236.herokuapp.com/';
+let pathBundesland = corsFixBundesland + urlBundesland;
         
 let onlineAmpeldata;          
-let pathBezirke2 = corsFixBezirke2 + urlBezirke2;
+
 let alleBezirksDaten = []; 
 var allItems; 
 var alleMeineDatenOfflineBez; 
@@ -142,10 +147,38 @@ var arrLänge = 0;
 let path2 = corsFix + url;
 let pathforUpdate = corsFix + url; //path2 ist nach dem Speicher ooflineData.. deswegen hab ich das im Moment noch dazu getan
 
-
-
-
 var savedAktiveFaelleMeinBezirk;
+
+
+//Damit kannst du arbeiten --> Alle Werte der Datei
+let getDatum;
+let getBundesland;
+let getBundeslandID;
+let getAnzEinwohner;
+let getAnzahlFaelle;
+let getAnzahlFaelleSum;
+let getAnzahlFaelle7Tage;
+let getSiebenTageInzidenzFaelle;
+let getAnzahlTotTaeglich;
+let getAnzahlTotSum;
+let getAnzahlGeheiltTaeglich;
+let getAnzahlGeheiltSum;
+
+
+//Als Arrays gespeichert
+let getDatumArr=[];
+let getBundeslandArr=[];
+let getBundeslandIDArr=[];
+let getAnzEinwohnerArr=[];
+let getAnzahlFaelleArr=[];
+let getAnzahlFaelleSumArr=[];
+let getAnzahlFaelle7TageArr=[];
+let getSiebenTageInzidenzFaelleArr=[];
+let getAnzahlTotTaeglichArr=[];
+let getAnzahlTotSumArr=[];
+let getAnzahlGeheiltTaeglichArr=[];
+let getAnzahlGeheiltSumArr=[];
+
 
 //localStorage.clear();
 
@@ -282,7 +315,7 @@ function getLocation(latitude, longitude) {
           localStorage.setItem("letzterBezirk", bezirk);
 
        
-             downloadFile(pathBezirke2);
+             downloadBezirksFile(pathBezirke2);
              getAmpel();
 
         lokalstorageBundesland = bundesland;
@@ -488,8 +521,12 @@ function read_from_local_storage() { //gib mir die Datem aus dem localStorage
   if(localStorage.getItem("letzterBezirk") != null){
     bezirk = localStorage.getItem("letzterBezirk");
     localStorage.setItem("storeBezirk", bezirk);
+    try{
     document.getElementById("bezirk").innerHTML = bezirk;
-    downloadFile(pathBezirke2);
+    downloadBezirksFile(pathBezirke2);
+    }catch{
+
+    }
     valueAktiveFaelle = localStorage.getItem("AktiveFaelle");
     valueAktiveFaelle =getAktiveFaelle;
     drawIllustration(ampelStufe);
@@ -498,6 +535,15 @@ function read_from_local_storage() { //gib mir die Datem aus dem localStorage
   }else {
   //console.log("letzerBezirk im LS sind noch nicht vorhanden");
 }
+
+//Bundesland - alt 
+if(localStorage.getItem("letztesBundesland") != null){
+  bundesland = localStorage.getItem("letztesBundesland");
+  downloadBundeslandFile(pathBezirke2);
+  }else {
+//console.log("letzerBezirk im LS sind noch nicht vorhanden");
+}
+
    
 //AKTIVE FÄLLE - alt
     if (localStorage.getItem("AktiveFaelle")!= null){
@@ -581,6 +627,7 @@ if(checkBool == false){ //Standort ist aktiviert wenn checkBool==false
 if(connBool == true){ //wenn es eine Internetverbindung ist und dder online zugriff auf die Ampeldaten gestattet dann
    checkBezirksdata();
    checkAmpeldata(pathforUpdate);
+   checkBundeslanddata();
 }
 }
 
@@ -617,6 +664,33 @@ function checkAmpeldata(pathforUpdate){
     }
 }
 
+function checkBundeslanddata(){
+  var client = new XMLHttpRequest(pathBundesland); //mach eine Verbindung zur Resource
+  try{
+  client.open("GET", pathBundesland, true);
+  client.send();
+  client.onreadystatechange = function () {
+       if (this.readyState == this.HEADERS_RECEIVED) {//gibt mir alle Headers von allen Requests aus
+            //var lastModifiedResponse = client.getResponseHeader("Last-Modified");
+            eTagResponseBundesland = client.getResponseHeader("ETag");
+            //console.log(eTagResponseBezirke);
+    var eTagBundeslandLocal = localStorage.getItem("ETagBundesland");
+    if(eTagBundeslandLocal == null || eTagBundeslandLocal != eTagResponseBundesland ){
+      //DOWNLOAD FILE IMPLEMENTIEREN-nur localstorage
+        downloadBundeslandFile(pathBundesland);    
+      localStorage.setItem("ETagBundesland", JSON.parse(eTagResponseBundesland));
+        }else if (eTagBundeslandLocal != null || eTagBundeslandLocal == eTagResponseBundesland ){         
+        } 
+     } 
+  };
+  }catch(error){
+    console.error(error);
+    }
+}
+
+
+
+
 
 
 function checkBezirksdata(){
@@ -632,7 +706,7 @@ function checkBezirksdata(){
     var eTagBezirkeLocal = localStorage.getItem("ETagBezirke");
     if(eTagBezirkeLocal == null || eTagBezirkeLocal != eTagResponseBezirke ){
       //DOWNLOAD FILE IMPLEMENTIEREN-nur localstorage
-        downloadFile(pathBezirke2);    
+        downloadBezirksFile(pathBezirke2);    
       localStorage.setItem("ETagBezirke", JSON.parse(eTagResponseBezirke));
         }else if (eTagBezirkeLocal != null || eTagBezirkeLocal == eTagResponseBezirke ){         
         } 
@@ -652,8 +726,7 @@ function checkOfflineAvailableAmpel(){
  // pathboolAmpel= true; 
   console.log("your Data is not up-to-date, it gets now downloaded from the resource and saved in your local storage");
   $("#loader_class").css({"display": "flex", "justify-content": "center", "align-items": "center", "flex-direction": "column"}).show().delay(1500);
-  //downloadAmpelFile(pathforUpdate,eTagResponse);
-  //downloadFile(pathBezirke2);
+  
 
 }}
 
@@ -746,7 +819,6 @@ function myLocation() {
   $("#dataLoader_mini").show().delay(1500);
     readUserLocation();
     checkBezirksdata();    
-    //downloadFile(pathBezirke2);
     document.getElementById("standortText").style.display= "block";
     document.getElementById("standortText").innerHTML = "derzeitiger Standort";
    //Standort abfragen
@@ -758,7 +830,7 @@ function myLocation() {
       console.log("HIER:"+bezirk);
 
       if (databasebool == false){
-      downloadFile(pathBezirke2);
+      downloadBezirksFile(pathBezirke2);
       console.log("aLLin");
       }
       
@@ -1176,7 +1248,7 @@ function checkInternet(pathBezirke2){
    }
   
 //Bezirksfile Download
-function downloadFile(pathBezirke2) {
+function downloadBezirksFile(pathBezirke2) {
   if(connBool ==true){
   Papa.parse(pathBezirke2, {
     download: true,
@@ -1192,6 +1264,70 @@ function downloadFile(pathBezirke2) {
   }); 
   }
 }
+
+
+//Bezirksfile Download
+
+
+
+
+
+function downloadBundeslandFile(pathBundesland) {
+  if(connBool ==true){
+  Papa.parse(pathBundesland, {
+    download: true,
+    header: true,
+    complete: function (results, file) {
+      //console.log("data", results.data);
+        //console.log('Completed loading the file...');
+         // Here starts your real code with this function
+         //preprareBezirksData(results.data); 
+          dataOfflineBundesland = results.data; 
+         console.log("dataOfflineBundesland", dataOfflineBundesland); 
+         
+         prepareBundeslandData(dataOfflineBundesland);   
+          },
+  }); 
+  }
+}
+
+function prepareBundeslandData(dataOfflineBundesland){
+  const stringReplace = JSON.stringify(dataOfflineBundesland);
+ const jsonReplace = replaceUmlauts(stringReplace);
+ const realData = JSON.parse(jsonReplace);
+ let items_json = realData; 
+
+
+ //Key umbenennen --> Time zu datum
+ for (i = 0; i < realData.length; i ++){
+const obj = items_json[i];
+ const newKeys = { Time: "datum"}; //wenn geändert wird dann unten auch! 
+ const renamedObj = renameKeys(obj, newKeys);
+ items_json[i] = renamedObj;
+
+ var fulldatesofitems = items_json[i].datum; //auch hier schon "datum"!!!!!
+ var dateofitems = fulldatesofitems.split(" ");
+ var dateofitem = dateofitems[0]; //[0] = Datum| [1] = 00:00:00
+ items_json[i].datum = dateofitem; //Erstetzen des Datum + Urzeit String durch neuen "date" - String
+ //console.log(items_json[i]);
+ }
+ 
+//Speichern der Daten im Lokal Storage + Speicherdatum dazu fügen (im GMT Format)
+var date = new Date();//var updateDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
+var updateDate = date.toGMTString(); // Tue, 17 Nov 2020 14:16:29 GMT --> Gibt mir die jetzige Uhrzeit im Format das lastModiefied Header Request auch hat
+var Datatrue = { updateDate: updateDate, items_json };    
+localStorage.setItem("Bundeslanddaten", JSON.stringify(Datatrue));
+
+console.log("dataOfflineBundesland", dataOfflineBundesland); 
+}
+
+
+
+
+
+
+
+
 
 function renameKeys(obj, newKeys) {
   const keyValues = Object.keys(obj).map(key => {

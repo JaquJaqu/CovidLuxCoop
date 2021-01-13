@@ -182,12 +182,16 @@ getTodesfaelleBez = meineDatenATT[IndexlastElementTTBez]
 //document.getElementById("farbkreisAktiv").innerHTML = getAktiveFaelle;
   console.log("DATABASEFUNKT! - die Daten werden aus der DB genommen", databasebool, getAktiveFaelleBez);
   localStorage.setItem("AktiveFaelle", getAktiveFaelleBez);
-  // localStorage.setItem("NeuerkrankungenBez", getNeuerkrankungenBez); 
-  
-//HARDFACTS
+  setHardfacts();
+
+}
+
+function setHardfacts(){
+    //HARDFACTS
 document.getElementById("hfBez_aktF").innerHTML = "<div class = 'hardfacts'>" + getAktiveFaelleBez + "</div";
 document.getElementById("hfBez_Neuerk").innerHTML = "<div class = 'hardfacts'>" + getNeuerkrankungenBez + "</div";
 document.getElementById("hfBez_TTBez").innerHTML = "<div class = 'hardfacts'>" + getTodesfaelleBez + "</div";
+
 
 }
 
@@ -231,6 +235,8 @@ function myFunction_bezirk() {
         document.getElementById("dropbtn_bezirk").innerHTML = bezirk;
         //localStorage.setItem("letzterBezirkBezDash",bezirk);
         localStorage.setItem("letzterBezirk",bezirk);
+        
+        setHardfacts()
       }
 
 
