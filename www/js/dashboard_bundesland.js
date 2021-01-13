@@ -1,3 +1,17 @@
+/**
+ * TO-DO für "Alpha-Release"
+ * - Bundeslandseite komplett auskommentieren 
+ * - Akkordon bei Hardfacts deaktivieren 
+ * - console.logs auskommentieren 
+ * - Letzte Aktualisierung am Dashboard auskommentieren oder einfügen 
+ * - aktuellen Ampeldaten einfügen??? 
+ * 
+ * 
+ * - auf flock hochladen 
+ * 
+ */
+
+
 const arrBundesland = [];
 
 let bundesland;
