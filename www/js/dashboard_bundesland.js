@@ -51,4 +51,4 @@ function myFunction_bundesland() {
         
       }
 
-console.log(localStorage.getItem("letztesBundesland")); 
+// console.log(localStorage.getItem("letztesBundesland")); 

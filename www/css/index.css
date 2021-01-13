@@ -185,15 +185,6 @@ footer ul {
     height:15px;
 }
 
-.hardfacts{
-    color: #000000;
-    font-size:3rem;
-    text-align: right;
-    margin: 0.001rem 1rem;
-}
-
-
-
 
 .walk_kreis_aktiv{
     background-color: #211F77;
@@ -829,7 +820,16 @@ top: 14px;
   .verlauf{
       height: 22vw;
       width: 100%;
+      background-color: #f1f1f1;
   }
+
+  .hardfacts{
+    color: #000000;
+    font-size: 3.1rem;
+    text-align: right;
+    padding: 1.5rem 2rem;
+}
+
   .info_dash_button{
       margin-left: 5vw;
   }
