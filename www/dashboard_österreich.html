@@ -47,17 +47,17 @@
                 <p class="letzte_zahlen">Letzte Aktualisierung: Datum.Mustermonat</p>
 
                 <div class="Akkordeon_dash">
-                    <button class="accordion">Aktive Fälle <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_aktiveFälle()"></button>
-                    <div class="verlauf"><img src="./img/Dashboard-1.png" width="100%"></div>
-                    <div class="panel">
+                    <!-- <button class="accordion">Aktive Fälle <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_aktiveFälle()"></button> -->
+                    <!-- <div id="hfO_AF" class="verlauf"><img src="./img/Dashboard-1.png" width="100%"></div> -->
+                    <!-- <div class="panel">
                         <div class="panel_dash">
                             <h2>Schwere Symptome</h2>
                             <button class="slmm" onclick="info_area()">So liest man mich</button>
                         </div>
-                    </div>
+                    </div> -->
                     
                     <button class="accordion">Neuerkrankungen <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_Neuerkrankungen()"></button>
-                    <div class="verlauf"><img src="./img/Dashboard-1.png" width="100%"></div>
+                    <div id="hfO_Neuerk" class="verlauf"><img src="./img/Dashboard-1.png" width="100%"></div>
                     <div class="panel">
                         <div class="panel_dash">
                             <h2>Schwere Symptome</h2>
@@ -66,7 +66,7 @@
                     </div>
                     
                     <button class="accordion">Todesfälle <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_Todesfälle()"></button>
-                    <div class="verlauf"><img src="./img/Dashboard-1.png" width="100%"></div>
+                    <div id="hfO_TT" class="verlauf"><img src="./img/Dashboard-1.png" width="100%"></div>
                     <div class="panel">
                         <div class="panel_dash">
                             <h2>Schwere Symptome</h2>
@@ -74,13 +74,13 @@
                         </div>
                     </div>   
 
-                    <button class="accordion">Bettenauslastung<img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_Betten()"></button>
+                    <!-- <button class="accordion">Bettenauslastung<img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_Betten()"></button>
                     <div class="verlauf"><img src="./img/Dashboard-1.png" width="100%"></div>
                     <div class="panel">
                         <div class="panel_links">
                             <h2>Schwere Symptome</h2>
                         </div>
-                    </div> 
+                    </div>  -->
                 </div>
                 
             </div>   
@@ -123,6 +123,7 @@
         <script src="cordova.js"></script>
         <script src="js/functions.js"></script>
         <script src="js/functions_dash.js"></script>
+        <script src="js/DashboardData.js"></script>
         <script src="js/dashboard_österreich.js"></script>
        
         </div>

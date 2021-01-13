@@ -77,6 +77,21 @@ function yourMainCode() {
 
 }//Ende yourMainCode
 
+// function HardfactsBL() {
+
+//   // for (i = 0; i < dataOffline.length; i++) {
+//   //     bl = localStorage.getItem("storeBundesland");
+//   //     if (dataOffline[i].Bundesland == bl) {
+
+//   //         var AFBl = dataOffline[i].AnzahlFaelle;
+//   //         // var NEBl = ??
+//   //         var TTBl = dataOffline[i].AnzahlTotTaeglich;
+//   //     }
+//   // }
+
+
+// }
+
 
 
   
@@ -90,9 +105,9 @@ function read_and_prepare_Bundeslanddata() {
     dataOffline = items.items_json; //Ohne Speicherdatum 
     getSpeicherDatum = items.updateDate; //SpeicherDatum
     
-     console.log("Offline Items:" ,items); 
-     console.log("Offline Daten:" ,dataOffline); 
-     console.log("Die Daten wurden zuletzt im Local Storage gespeichert am (updateDate):" , getSpeicherDatum);
+    //  console.log("Offline Items:" ,items); 
+    //  console.log("Offline Daten:" ,dataOffline); 
+    //  console.log("Die Daten wurden zuletzt im Local Storage gespeichert am (updateDate):" , getSpeicherDatum);
 
     for (i = 0; i < dataOffline.length; i ++){
     getDatum = dataOffline[i].datum;
@@ -111,23 +126,22 @@ function read_and_prepare_Bundeslanddata() {
 
   
     //Als Arrays gespeichert
-    getDatumArr.push(getDatum);
-    getBundeslandArr.push(getBundesland);
-    getBundeslandIDArr.push(getBundeslandID);
-    getAnzEinwohnerArr.push(getAnzEinwohner);
-    getAnzahlFaelleArr.push(getAnzahlFaelle);
-    getAnzahlFaelleSumArr.push(getAnzahlFaelleSum);
-    getAnzahlFaelle7TageArr.push(getAnzahlFaelle7Tage);
-    getSiebenTageInzidenzFaelleArr.push(getSiebenTageInzidenzFaelle);
-    getAnzahlTotTaeglichArr.push(getAnzahlTotTaeglich);
-    getAnzahlTotSumArr.push(getAnzahlTotSum);
-    getAnzahlGeheiltTaeglichArr.push(getAnzahlGeheiltTaeglich);
-    getAnzahlGeheiltSumArr.push(getAnzahlGeheiltSum);
+    // getDatumArr.push(getDatum);
+    // getBundeslandArr.push(getBundesland);
+    // getBundeslandIDArr.push(getBundeslandID);
+    // getAnzEinwohnerArr.push(getAnzEinwohner);
+    // getAnzahlFaelleArr.push(getAnzahlFaelle);
+    // getAnzahlFaelleSumArr.push(getAnzahlFaelleSum);
+    // getAnzahlFaelle7TageArr.push(getAnzahlFaelle7Tage);
+    // getSiebenTageInzidenzFaelleArr.push(getSiebenTageInzidenzFaelle);
+    // getAnzahlTotTaeglichArr.push(getAnzahlTotTaeglich);
+    // getAnzahlTotSumArr.push(getAnzahlTotSum);
+    // getAnzahlGeheiltTaeglichArr.push(getAnzahlGeheiltTaeglich);
+    // getAnzahlGeheiltSumArr.push(getAnzahlGeheiltSum);
 
   }
 
   // console.log('test');  
-   console.log(getDatumArr); 
 } else{
   checkForUpdate();
 }

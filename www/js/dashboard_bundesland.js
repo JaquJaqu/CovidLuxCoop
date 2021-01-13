@@ -2,6 +2,7 @@ const arrBundesland = [];
 
 let bundesland;
 getAkkordeon_dash();
+// HardfactsBL(); 
 
 function onload_bundesland() {
     if (localStorage.getItem("storeBundesland") != null) {
@@ -51,15 +52,4 @@ function changeText_bundesland(elm) {
 
 }
 
-// function HardfactsBL() {
-
-//     for (i = 0; i < dataOffline.length; i++) {
-//         bl = localStorage.getItem("storeBundesland");
-//         if (dataOffline[i].Bundesland == bl) {
-
-//             var AFBl = dataOffline[i].AnzahlFaelle;
-//             // var NEBl = ??
-//             var TTBl = dataOffline[i].AnzahlTotTaeglich;
-//         }
-//     }
-// }
+// 
