@@ -170,9 +170,14 @@ getAktiveFaelleBez = meineDatenAAFBez[IndexlastElementAAFBez];
 //document.getElementById("farbkreisAktiv").innerHTML = getAktiveFaelle;
   console.log("DATABASEFUNKT! - die Daten werden aus der DB genommen", databasebool, getAktiveFaelleBez);
   localStorage.setItem("AktiveFaelle", getAktiveFaelleBez);
-  
-//HARDFACTS
+  setHardfacts();
+
+}
+
+function setHardfacts(){
+    //HARDFACTS
 document.getElementById("hfBez_aktF").innerHTML = "<div class = 'hardfacts'>" + getAktiveFaelleBez + "</div";
+
 
 }
 
@@ -216,6 +221,8 @@ function myFunction_bezirk() {
         document.getElementById("dropbtn_bezirk").innerHTML = bezirk;
         //localStorage.setItem("letzterBezirkBezDash",bezirk);
         localStorage.setItem("letzterBezirk",bezirk);
+        
+        setHardfacts()
       }
 
 

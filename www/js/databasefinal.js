@@ -1,6 +1,6 @@
 const urlBezirke3 = 'https://covid19-dashboard.ages.at/data/CovidFaelle_Timeline_GKZ.csv';
-//const corsFixBezirke3 = 'https://evening-reaches-25236.herokuapp.com/'; //eigener Proxy
-const corsFixBezirke3 = 'https://cors-anywhere.herokuapp.com/';
+const corsFixBezirke3 = 'https://evening-reaches-25236.herokuapp.com/'; //eigener Proxy
+//const corsFixBezirke3 = 'https://cors-anywhere.herokuapp.com/';
           
           
 let pathBezirke3 = corsFixBezirke3 + urlBezirke3;
@@ -93,7 +93,7 @@ if (!window.indexedDB) {
     
   
   //Add --> Daten zu objectStore"bezirksdaten" hinzugügen
-  if (!db.objectStoreNames.contains('bezirksdaten') || db.objectStoreNames.contains('bezirksdaten') == null) {
+  if (!db.objectStoreNames.contains('bezirksdaten') || db.objectStoreNames.contains('bezirksdaten') == null || db.objectStoreNames.contains('bezirksdaten') == undefined) {
           console.log("storage wird erzeugt");  
           add();
           setAktiveFaelleMeinBezirk();
