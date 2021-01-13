@@ -1,5 +1,6 @@
 const arrBundesland = [];
 
+let bundesland; 
 getAkkordeon_dash();
 
 function onload_bundesland(){
@@ -46,4 +47,8 @@ function myFunction_bundesland() {
         bundesland = elm.getAttribute('value');
         myFunction_bundesland();
         document.getElementById("dropbtn_bundesland").innerHTML = bundesland;
+        localStorage.setItem("letztesBundesland",bundesland);
+        
       }
+
+console.log(localStorage.getItem("letztesBundesland")); 

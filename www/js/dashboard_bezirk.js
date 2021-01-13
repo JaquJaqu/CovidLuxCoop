@@ -3,6 +3,8 @@ const arrBezirk = [];
 let alleMeineDatenBezLS2;
 let alleMeineDatenOfflineBez2;
 let getAktiveFaelleBez;
+let getNeuerkrankungenBez; 
+let getTodesfaelleBez; 
 let meineDatenATSBez=[];
 let meineDatenAAFBez=[];
 
@@ -128,8 +130,8 @@ if (alleMeineDatenOfflineBez2[i].allItems.Bezirk == bezirk){
   // var alleMeineAEW = alleMeineDatenOfflineBez[i].allItems.AnzEinwohner;
   // meineDatenAEW.push(alleMeineAEW);
 
-  // var alleMeineAF = alleMeineDatenOfflineBez[i].allItems.AnzahlFaelle;
-  // meineDatenAF.push(alleMeineAF);
+  var alleMeineAF = alleMeineDatenOfflineBez2[i].allItems.AnzahlFaelle;
+  meineDatenAF.push(alleMeineAF);
 
   // var alleMeineAFSiebenT = alleMeineDatenOfflineBez[i].allItems.AnzahlFaelle7Tage;
   // meineDatenAFSiebenT.push(alleMeineAFSiebenT);
@@ -146,8 +148,8 @@ if (alleMeineDatenOfflineBez2[i].allItems.Bezirk == bezirk){
   var alleMeineATSBez = alleMeineDatenOfflineBez2[i].allItems.AnzahlTotSum;
   meineDatenATSBez.push(alleMeineATSBez);
 
-  // var alleMeineATT = alleMeineDatenOfflineBez[i].allItems.AnzahlTotTaeglich;
-  // meineDatenATT.push(alleMeineATT);
+  var alleMeineATT = alleMeineDatenOfflineBez2[i].allItems.AnzahlTotTaeglich;
+  meineDatenATT.push(alleMeineATT);
 
   // var alleMeineSTI = alleMeineDatenOfflineBez[i].allItems.SiebenTageInzidenzFaelle;
   // meineDatenSTI.push(alleMeineSTI);
@@ -163,16 +165,29 @@ console.log("meineDatenATS", meineDatenATSBez);
 
 //Letzter Wert des Arrays für die gerade aktiven Faelle
 var IndexlastElementAAFBez = meineDatenAAFBez.length-1;
-console.log("IndexlastElementAAF", IndexlastElementAAFBez);
-console.log("letzter Wert:", meineDatenAAFBez[IndexlastElementAAFBez]);
+// console.log("IndexlastElementAAF", IndexlastElementAAFBez);
+// console.log("letzter Wert Aktive Fälle:", meineDatenAAFBez[IndexlastElementAAFBez]);
 getAktiveFaelleBez = meineDatenAAFBez[IndexlastElementAAFBez];
+
+var IndexlastElementNeuerkBez = meineDatenAF.length-1;
+// console.log("IndexlastElementNeu", IndexlastElementNeuerkBez);
+// console.log("letzter Wert Neuerk:", meineDatenAF[IndexlastElementNeuerkBez]);
+getNeuerkrankungenBez = meineDatenAF[IndexlastElementNeuerkBez]
+
+var IndexlastElementTTBez = meineDatenATT.length-1;
+// console.log("IndexlastElementNeu", IndexlastElementTTBez);
+// console.log("letzter Wert Tot:", meineDatenATT[IndexlastElementTTBez]);
+getTodesfaelleBez = meineDatenATT[IndexlastElementTTBez]
 
 //document.getElementById("farbkreisAktiv").innerHTML = getAktiveFaelle;
   console.log("DATABASEFUNKT! - die Daten werden aus der DB genommen", databasebool, getAktiveFaelleBez);
   localStorage.setItem("AktiveFaelle", getAktiveFaelleBez);
+  // localStorage.setItem("NeuerkrankungenBez", getNeuerkrankungenBez); 
   
 //HARDFACTS
 document.getElementById("hfBez_aktF").innerHTML = "<div class = 'hardfacts'>" + getAktiveFaelleBez + "</div";
+document.getElementById("hfBez_Neuerk").innerHTML = "<div class = 'hardfacts'>" + getNeuerkrankungenBez + "</div";
+document.getElementById("hfBez_TTBez").innerHTML = "<div class = 'hardfacts'>" + getTodesfaelleBez + "</div";
 
 }
 
