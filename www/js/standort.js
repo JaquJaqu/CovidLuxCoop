@@ -205,8 +205,8 @@ checkForUpdate();
 read_from_local_storage();
 getAmpel();
 
-console.log("databasebool", databasebool);
-console.log("CONNBOOL:", connBool);
+//console.log("databasebool", databasebool);
+//console.log("CONNBOOL:", connBool);
 
 
 
@@ -391,40 +391,40 @@ function drawIllustration(ampelStufe){
 function getAmpel() {
 var dataOff;
 
-console.log("ampelDatatrue: ", ampelDatatrue);
-console.log("dataOffline: ",dataOffline);
+//console.log("ampelDatatrue: ", ampelDatatrue);
+//console.log("dataOffline: ",dataOffline);
 
 //dataOffline: Data aus Json von LS
   if(dataOffline != null ){
     var dataOfflineFormat = new Date(dataOffline.Stand);
     document.getElementById("letzte").innerHTML = "Letzte Aktualisierung: "+dataOfflineFormat.toLocaleString();
      dataOff = dataOffline;
-     console.log("AMPELFARBE wird offline genommen", "dataOff:" ,dataOff);
+     //console.log("AMPELFARBE wird offline genommen", "dataOff:" ,dataOff);
      getWarnstufe(dataOff);
 //ampelDatatrue: Daten direkt aus dem Request --> zum anzeigen der Daten wenn die Werte noch nicht im LS geladen sind(jetzt muss man nicht mehr refreshen)
   }else if (ampelDatatrue !=null){
      dataOff = ampelDatatrue.items_json;
-     console.log("AMPELFARBE wird online(offline) genommen", "ampelDatatrue:" ,dataOff);
+     //console.log("AMPELFARBE wird online(offline) genommen", "ampelDatatrue:" ,dataOff);
      getWarnstufe(dataOff);
      }
     }
      function getWarnstufe(dataOff){
-      console.log("Offline Data", dataOff);
+      //console.log("Offline Data", dataOff);
       
       storeBezirk = localStorage.getItem("storeBezirk");
     for (i = 0; i < dataOff.Warnstufen.length; i++) {
       if(storeBezirk == "Wien"){
         if(dataOff.Warnstufen[i].Name == storeBezirk){
-          console.log(storeBezirk);
-          console.log("Ampelstufe: "+dataOff.Warnstufen[i].Warnstufe);
+          //console.log(storeBezirk);
+          //console.log("Ampelstufe: "+dataOff.Warnstufen[i].Warnstufe);
           ampelStufe = dataOff.Warnstufen[i].Warnstufe;
           drawIllustration(ampelStufe);
         }
       }else{
       if (dataOff.Warnstufen[i].Region == "Bezirk") {
         if (dataOff.Warnstufen[i].Name == storeBezirk) {
-          console.log(storeBezirk);
-          console.log("Ampelstufe: "+dataOff.Warnstufen[i].Warnstufe);
+          //console.log(storeBezirk);
+          //console.log("Ampelstufe: "+dataOff.Warnstufen[i].Warnstufe);
           ampelStufe = dataOff.Warnstufen[i].Warnstufe;
           drawIllustration(ampelStufe);
         }
@@ -440,13 +440,13 @@ console.log("dataOffline: ",dataOffline);
 
 //Bekomme Ampelwarnstufe von jsonFile ONLINE --> Damit bei leeren LS/erstem Start der App nach Auswahl des Bezirks die Farbe angezeigt wird 
 function getAmpelwarnstufeOnline(onlineAmpeldata){
-  console.log("AMPFELFARBE wird online genommen");
+  //console.log("AMPFELFARBE wird online genommen");
   try{
     for(i=0; i<onlineAmpeldata.Warnstufen.length; i++){ 
     if(onlineAmpeldata.Warnstufen[i].Region == "Bezirk"){
             if(onlineAmpeldata.Warnstufen[i].Name == bezirk){
-            console.log(bezirk);
-            console.log("Ampelstufe: "+onlineAmpeldata.Warnstufen[i].Warnstufe);
+            //console.log(bezirk);
+            //console.log("Ampelstufe: "+onlineAmpeldata.Warnstufen[i].Warnstufe);
             ampelStufe = onlineAmpeldata.Warnstufen[i].Warnstufe;
             drawIllustration(ampelStufe);
             }
@@ -541,7 +541,7 @@ if(localStorage.getItem("letztesBundesland") != null){
 //AKTIVE FÄLLE - alt
     if (localStorage.getItem("AktiveFaelle")!= null){
     let AktiveFaellestoreBezirkalt = localStorage.getItem("AktiveFaelle");
-    console.log("ALTE STANDORT Daten! --> Das sind die ALTEN Daten aus dem LS", databasebool, AktiveFaellestoreBezirkalt);
+    //console.log("ALTE STANDORT Daten! --> Das sind die ALTEN Daten aus dem LS", databasebool, AktiveFaellestoreBezirkalt);
     valueAktiveFaelle = AktiveFaellestoreBezirkalt;
     drawIllustration(ampelStufe);
     //document.getElementById("farbkreisAktiv").innerHTML = valueAktiveFaelle;
@@ -717,7 +717,7 @@ function checkOfflineAvailableAmpel(){
   
 } else {
  // pathboolAmpel= true; 
-  console.log("your Data is not up-to-date, it gets now downloaded from the resource and saved in your local storage");
+  //console.log("your Data is not up-to-date, it gets now downloaded from the resource and saved in your local storage");
   $("#loader_class").css({"display": "flex", "justify-content": "center", "align-items": "center", "flex-direction": "column"}).show().delay(1500);
   
 
@@ -1004,7 +1004,7 @@ function prepareBezirksData(pathBezirke2){
     } //Sonst verwende die eben berechneten Werte  
      else if(databasebool == false){
       try{ 
-      console.log("STANDORT! Das sind die NEUEN Daten aus dem LS", databasebool, AktiveFaellestoreBezirk);
+      //console.log("STANDORT! Das sind die NEUEN Daten aus dem LS", databasebool, AktiveFaellestoreBezirk);
       valueAktiveFaelle = AktiveFaellestoreBezirk;
       drawIllustration(ampelStufe);
 
@@ -1012,7 +1012,7 @@ function prepareBezirksData(pathBezirke2){
       //Inzwischen solle die DB erstellt worden sein, ab jetzt immer von der DB! 
       databasebool = true;
     } catch{
-      console.log("AktiveFaelle sind noch nicht im LS gespeichert");
+      //console.log("AktiveFaelle sind noch nicht im LS gespeichert");
     }
 }
 }
@@ -1047,7 +1047,7 @@ if (!window.indexedDB) {
 //ON SUCCESS
      request.onsuccess = function(event) {
         db = event.target.result;
-        console.log("success: "+ db);
+        //console.log("success: "+ db);
         //Wenn verbindung aufgebaut werden kann dann gib mit die Daten aus der DB --> "Start"
         getBezirksDatenafterTime();
      }
@@ -1077,7 +1077,7 @@ function resolveAfter2Seconds(x) {
 async function getBezirksDatenafterTime() {
   var x = await resolveAfter2Seconds(10);
   preparemeineDaten();
-  console.log(x); // 10
+  //console.log(x); // 10
 }
 
 
@@ -1098,8 +1098,8 @@ function getmeineDatenFunktion(){
   try{
 	var transaction = db.transaction(["bezirksdaten"], "readwrite");
   var objectStore = transaction.objectStore("bezirksdaten");
-  console.log(transaction);
-  console.log(objectStore);
+  //console.log(transaction);
+  //console.log(objectStore);
     transaction.oncomplete = function(event) {
     //console.log("All done!");
     }
@@ -1118,8 +1118,8 @@ function getmeineDatenFunktion(){
   var itemsRequest = objectStore.getAll();
     itemsRequest.onsuccess= function(alleMeineDatenBezLS) {
     alleMeineDatenOfflineBez = itemsRequest.result;
-    console.log("alleMeineDaten offline",alleMeineDatenOfflineBez);
-    console.log("objectStore",objectStore);
+    //console.log("alleMeineDaten offline",alleMeineDatenOfflineBez);
+    //console.log("objectStore",objectStore);
     alleMeineDatenBezLS = alleMeineDatenOfflineBez;
   }
   itemsRequest.oncomplete= function() {
@@ -1181,13 +1181,13 @@ function preparemeineDaten(){
     }
 }
 
-    console.log("meineDatenATS", meineDatenATS);
+    //console.log("meineDatenATS", meineDatenATS);
   //console.log("meineDatenDatum",alleMeineDatum);
 
   //Letzter Wert des Arrays für die gerade aktiven Faelle
   var IndexlastElementAAF = meineDatenAAF.length-1;
-  console.log("IndexlastElementAAF", IndexlastElementAAF);
-  console.log("letzter Wert:", meineDatenAAF[IndexlastElementAAF]);
+  //console.log("IndexlastElementAAF", IndexlastElementAAF);
+  //console.log("letzter Wert:", meineDatenAAF[IndexlastElementAAF]);
   getAktiveFaelle = meineDatenAAF[IndexlastElementAAF];
   valueAktiveFaelle =getAktiveFaelle;
 
@@ -1195,7 +1195,7 @@ function preparemeineDaten(){
   //document.getElementById("farbkreisAktiv").innerHTML = getAktiveFaelle;
 
 
-      console.log("DATABASEFUNKT! - die Daten werden aus der DB genommen", databasebool, getAktiveFaelle);
+      //console.log("DATABASEFUNKT! - die Daten werden aus der DB genommen", databasebool, getAktiveFaelle);
 
       localStorage.setItem("AktiveFaelle", getAktiveFaelle);
       
@@ -1257,7 +1257,7 @@ function downloadBundeslandFile(pathBundesland) {
          // Here starts your real code with this function
          //preprareBezirksData(results.data); 
           dataOfflineBundesland = results.data; 
-         console.log("dataOfflineBundesland", dataOfflineBundesland); 
+         //console.log("dataOfflineBundesland", dataOfflineBundesland); 
          
          prepareBundeslandData(dataOfflineBundesland);   
           },
@@ -1292,7 +1292,7 @@ var updateDate = date.toGMTString(); // Tue, 17 Nov 2020 14:16:29 GMT --> Gibt m
 var Datatrue = { updateDate: updateDate, items_json };    
 localStorage.setItem("Bundeslanddaten", JSON.stringify(Datatrue));
 
-console.log("dataOfflineBundesland", dataOfflineBundesland); 
+//console.log("dataOfflineBundesland", dataOfflineBundesland); 
 }
 
 

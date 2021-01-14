@@ -7,13 +7,13 @@
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="css/index.css">
         <link rel="icon" href="img/Logo_CovidLux.png">
-        <link rel="manifest" href="/manifest.webmanifest">
         <title>CovidLux</title>
         <script src="js/jquery.min.js"></script> 
     </head>
     <body ononline="onOnline()" onoffline="onOffline()">
 <div id="scrollbar">
 <header>  
+    <div class="flex_menu">
     <div class="info">
         <a href="info.html" onclick="saveHistory()"><img alt="Info" src="img/info.png" width="25vw" height="25vw"></a>
     </div>
@@ -21,6 +21,7 @@
     <div class="einstellungen">
         <a href="einstellungen.html" onclick="saveHistory()"><img alt="Einstellungen" src="img/settings.png" width="25vw" height="25vw"></a>
     </div> 
+</div>
 </header>
 
 <div id="unterstatus"></div>

@@ -11,11 +11,15 @@
         <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
         <script src="https://d3js.org/d3-fetch.v2.min.js"></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js'></script>
+        
         <script src="js/jquery.min.js"></script> 
+        
     </head>
     <body onload="onload_bezirk()" ononline="onOnline()" onoffline="onOffline()">
+<div id="scrollbar">
 
-<header>
+    <header>
+        <div class="flex_menu">
     <div class="info">
         <a href="info.html" onclick="saveHistory()"><img alt="Info" src="img/info.png" width="25vw" height="25vw"></a>
     </div>
@@ -23,6 +27,7 @@
     <div class="einstellungen">
         <a href="einstellungen.html" onclick="saveHistory()"><img alt="Einstellungen" src="img/settings.png" width="25vw" height="25vw"></a>
     </div> 
+        </div>
 </header>
 
 <div id="unterstatus"></div>
@@ -33,7 +38,7 @@
         <nav id="Navi">
             <ul>
                 <li id="dash_bezirk"><a href="dashboard_bezirk.html" class="aktiv_small">Bezirk</a></li>
-                <li><a href="dashboard_bundesland.html" class="aktiv_lila" id="dash_bundesland">Bundesland</a></li>
+                <!--<li><a href="dashboard_bundesland.html" class="aktiv_lila" id="dash_bundesland">Bundesland</a></li>-->
                 <li><a href="dashboard_österreich.html" class="aktiv_lila" id="dash_österreich">Österreich</a></li>
             </ul>
         </nav>
@@ -43,47 +48,49 @@
         <div class="dropdown_dash" display="block">
             <button onclick="myFunction_bezirk()" class="dropbtn" id="dropbtn_bezirk">Bezirk auswählen</button>
             <div id="myDropdown_bezirk" class="dropdown-content-dash">
-            <input type="text" placeholder="Suchen.." id="myInput_bezirk" onkeyup="filterFunction('myInput_bezirk','myDropdown_bezirk')">
-          </div>
+            <input type="text" placeholder="Suchen.." id="myInput_bezirk" onkeyup="filterFunction('myInput_bezirk','myDropdown_bezirk')">          
+        </div>
         </div>
 
+        <!--<p class="letzte_zahlen">Letzte Aktualisierung: Datum.Mustermonat</p>-->
+
         <div class="Akkordeon_dash">
-            <button class="accordion" onclick="scrollTo()">Aktive Fälle <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_aktiveFälle()"></button>
-            <div class="verlauf"></div>
+            <button class="accordion">Aktive Fälle <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_aktiveFälle()"></button>
+            <div id ="hfBez_aktF" class="verlauf"><img src="./img/Dashboard-1.png" width="100%"></div>
             <div class="panel">
-                <div class="panel_links">
+                <div class="panel_dash">
+                    <p>X</p>
+                    <!--<h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
-                    <h2>Schwere Symptome</h2>
-                </div>
-                <div class="panel_rechts">
+                    <button class="slmm" onclick="info_area()">So liest man mich</button>-->
                 </div>
             </div>
             
             <button class="accordion">Neuerkrankungen <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_Neuerkrankungen()"></button>
-            <div class="verlauf"></div>
+            <div id ="hfBez_Neuerk" class="verlauf"><img src="./img/Dashboard-1.png" width="100%"></div>
             <div class="panel">
-                <div class="panel_links">
+                <div class="panel_dash">
+                    <p>X</p>
+                    <!--<h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
-                    <h2>Schwere Symptome</h2>
-                </div>
-                <div class="panel_rechts">
+                    <button class="slmm" onclick="info_area()">So liest man mich</button>-->
                 </div>
             </div>
             
             <button class="accordion">Todesfälle <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_Todesfälle()"></button>
-            <div class="verlauf"></div>
+            <div id ="hfBez_TTBez" class="verlauf"><img src="./img/Dashboard-1.png" width="100%"></div>
             <div class="panel">
-                <div class="panel_links">
+                <div class="panel_dash">
+                    <p>X</p>
+                   <!---<h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
-                    <h2>Schwere Symptome</h2>
-                </div>
-                <div class="panel_rechts">
+                    <button class="slmm" onclick="info_area()">So liest man mich</button>-->
                 </div>
             </div>   
         </div>
@@ -123,12 +130,13 @@
      </footer>
 
 
-        <script src="cordova.js"></script>
+        <script src="cordova.js"></script> 
         <script src="js/functions.js"></script>
         <script src="js/functions_dash.js"></script>
+        <script src="js/standort.js"></script>
+        <script src="js/databasefinal.js"></script>     
         <script src="js/dashboard_bezirk.js"></script>
-        <!--<script src="js/dashboarddata.js"></script>-->
        
-        
+        </div>
     </body>
 </html>

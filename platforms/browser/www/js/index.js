@@ -1,6 +1,9 @@
+if (location.protocol !== "https:") {
+    location.protocol = "https:";
+}
 function onload_walk(){
     /*sessionStorage.setItem("walkthrough", true);*/
-    sessionStorage.removeItem("walkthrough");
+    /*sessionStorage.removeItem("walkthrough");*/
 
     if(sessionStorage.getItem("splash") == null){
         setTimeout(function(){
@@ -14,7 +17,7 @@ function onload_walk(){
     }
 
     setTimeout(function(){
-        if(sessionStorage.getItem("walkthrough") != null){
+        if(localStorage.getItem("walkthrough") != null){
             window.location.replace("start.html");
         }
     },4000);
@@ -22,11 +25,11 @@ function onload_walk(){
 }
 
 function storeSplash(){
-    /*sessionStorage.setItem("splash", true);*/
-    sessionStorage.removeItem("splash");
+    sessionStorage.setItem("splash", true);
+    /*sessionStorage.removeItem("splash");*/
 }
  
 function storeWalk(){
-    /*sessionStorage.setItem("walkthrough", true);*/
+    localStorage.setItem("walkthrough", true);
 }
 

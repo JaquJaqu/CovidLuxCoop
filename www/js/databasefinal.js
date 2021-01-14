@@ -77,7 +77,7 @@ if (!window.indexedDB) {
 //ON SUCCESS
   request.onsuccess = function(event) {
         db = event.target.result;
-        console.log("success: "+ db);
+        //console.log("success: "+ db);
 
         // console.log("ETagBezirksdataDatabaseLS", ETagBezirksdataDatabaseLS);
         // console.log("eTagResponseBezirke3", eTagResponseBezirke3);
@@ -85,23 +85,23 @@ if (!window.indexedDB) {
     if(ETagBezirksdataDatabaseLS != null || ETagBezirksdataDatabaseLS == eTagResponseBezirke3){
     // CHANGE
     databasebool = true;
-    console.log("DB VORHANDEN");
+    //console.log("DB VORHANDEN");
       }else{
     databasebool = false; 
-    console.log("DB muss erst erstellt werden, nimm Daten einstweil vom LS");
+    //console.log("DB muss erst erstellt werden, nimm Daten einstweil vom LS");
   }
     
   
   //Add --> Daten zu objectStore"bezirksdaten" hinzugügen
   if (!db.objectStoreNames.contains('bezirksdaten') || db.objectStoreNames.contains('bezirksdaten') == null || db.objectStoreNames.contains('bezirksdaten') == undefined) {
-          console.log("storage wird erzeugt");  
+          //console.log("storage wird erzeugt");  
           add();
           setAktiveFaelleMeinBezirk();
   //Update
   }else if(db.objectStoreNames.contains('bezirksdaten') && ETagBezirksdataDatabaseLS != eTagResponseBezirke3){
       clearOS();    
       updateDB();
-      console.log("storage wird geupdated");
+      //console.log("storage wird geupdated");
     } 
   }
   
@@ -150,11 +150,11 @@ function checkETagBezirksDatabase(pathBezirke3){
      if (this.readyState == this.HEADERS_RECEIVED) {//gibt mir alle Headers von allen Requests aus
        eTagResponseBezirke3 = client.getResponseHeader("ETag");
        checkBezirksdataDatabase();
-       console.log("HAAAAALLLOOOO");
+       //console.log("HAAAAALLLOOOO");
       //  console.log("eTagResponseBezirke3", eTagResponseBezirke3);
        }      
     } 
-    console.log("Du bist hier");
+    //console.log("Du bist hier");
    }catch(error){
      console.error(error);
      }
@@ -223,8 +223,8 @@ function checkBezirksdataDatabase(){
 
  
 
-  console.log("ETagBezirksdataDatabaseLS", ETagBezirksdataDatabaseLS);
-  console.log("eTagResponseBezirke3", eTagResponseBezirke3);
+  //console.log("ETagBezirksdataDatabaseLS", ETagBezirksdataDatabaseLS);
+  //console.log("eTagResponseBezirke3", eTagResponseBezirke3);
 
 
   //Wenn Etag im LS oder verändert dann download und verwende LS Daten für AktiveFaelle
@@ -241,7 +241,7 @@ if(ETagBezirksdataDatabaseLS == null || ETagBezirksdataDatabaseLS != eTagRespons
 
 }else if (ETagBezirksdataDatabaseLS == eTagResponseBezirke3){
   databasebool = true;
-  console.log("ETag der Bezirksdaten im LS ist up-to-date")
+  //console.log("ETag der Bezirksdaten im LS ist up-to-date")
 }
 }
 
@@ -251,12 +251,12 @@ function downloadFile2(pathBezirke3) {
     download: true,
     header: true,
     complete: function (results, file) {
-        console.log('Completed loading the file...');
+        //console.log('Completed loading the file...');
          // Here starts your real code with this function
         yourMainCode3(results.data);  
         
          dataBez = results.data;
-          console.log("results.data",results.data);
+          //console.log("results.data",results.data);
    return dataBez; 
   },
   }); 
@@ -315,7 +315,7 @@ function add(){
 
   transaction.oncomplete = function(event) {
     // console.log("All done!");
-    console.log("IT HAPPENED");
+    //console.log("IT HAPPENED");
 
   };
   
@@ -336,7 +336,7 @@ function updateDB(){
 	var db = event.target.result;
 	var transaction = db.transaction(["bezirksdaten"], "readwrite");
   transaction.oncomplete = function(event) {
-	console.log("All done!");
+	//console.log("All done!");
 	};
 
 	transaction.onerror = function(event) {
@@ -360,7 +360,7 @@ function clearOS(){
   var transaction = db.transaction(["bezirksdaten"], "readwrite");
 
   transaction.oncomplete = function(event) {
-  console.log("All done!");
+  //console.log("All done!");
   };
   
   transaction.onerror = function(event) {

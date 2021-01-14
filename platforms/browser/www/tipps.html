@@ -11,8 +11,9 @@
         <script src="js/jquery.min.js"></script> 
     </head>
     <body ononline="onOnline()" onoffline="onOffline()">
-
+<div id="scrollbar">
 <header>  
+    <div class="flex_menu">
     <div class="info">
         <a href="info.html" onclick="saveHistory()"><img alt="Info" src="img/info.png" width="25vw" height="25vw"></a>
     </div>
@@ -20,6 +21,7 @@
     <div class="einstellungen">
         <a href="einstellungen.html" onclick="saveHistory()"><img alt="Einstellungen" src="img/settings.png" width="25vw" height="25vw"></a>
     </div> 
+</div>
 </header>
 
 <div id="unterstatus"></div>
@@ -28,8 +30,6 @@
      <div id="mainwrapper_tipps">
         <h1 id="header_tipps">Verhaltenstipps</h1>
         <p id="sub_tipps">so schützt du dich und deine Mitmenschen</p>
-
-        <button id="scrollbarbutton" disabled>Loading...</button><br/>
         
         <div class="panel_tipps_start">
             <img src="img/washing-hands.png" width="100vw" height="100vh">
@@ -126,8 +126,7 @@
 
         <script src="cordova.js"></script>
         <script src="js/functions.js"></script>
-        <!--<script src="js/dashboarddata.js"></script>-->
        
-        
+    </div>
     </body>
 </html>

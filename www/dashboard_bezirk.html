@@ -7,7 +7,6 @@
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="css/index.css">
         <link rel="icon" href="img/Logo_CovidLux.png">
-        <link rel="manifest" href="/manifest.webmanifest">
         <title>CovidLux</title>
         <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
         <script src="https://d3js.org/d3-fetch.v2.min.js"></script>
@@ -20,6 +19,7 @@
 <div id="scrollbar">
 
     <header>
+        <div class="flex_menu">
     <div class="info">
         <a href="info.html" onclick="saveHistory()"><img alt="Info" src="img/info.png" width="25vw" height="25vw"></a>
     </div>
@@ -27,6 +27,7 @@
     <div class="einstellungen">
         <a href="einstellungen.html" onclick="saveHistory()"><img alt="Einstellungen" src="img/settings.png" width="25vw" height="25vw"></a>
     </div> 
+        </div>
 </header>
 
 <div id="unterstatus"></div>
@@ -37,7 +38,7 @@
         <nav id="Navi">
             <ul>
                 <li id="dash_bezirk"><a href="dashboard_bezirk.html" class="aktiv_small">Bezirk</a></li>
-                <li><a href="dashboard_bundesland.html" class="aktiv_lila" id="dash_bundesland">Bundesland</a></li>
+                <!--<li><a href="dashboard_bundesland.html" class="aktiv_lila" id="dash_bundesland">Bundesland</a></li>-->
                 <li><a href="dashboard_österreich.html" class="aktiv_lila" id="dash_österreich">Österreich</a></li>
             </ul>
         </nav>
@@ -51,18 +52,19 @@
         </div>
         </div>
 
-        <p class="letzte_zahlen">Letzte Aktualisierung: Datum.Mustermonat</p>
+        <!--<p class="letzte_zahlen">Letzte Aktualisierung: Datum.Mustermonat</p>-->
 
         <div class="Akkordeon_dash">
             <button class="accordion">Aktive Fälle <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_aktiveFälle()"></button>
             <div id ="hfBez_aktF" class="verlauf"><img src="./img/Dashboard-1.png" width="100%"></div>
             <div class="panel">
                 <div class="panel_dash">
+                    <p>X</p>
+                    <!--<h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
-                    <h2>Schwere Symptome</h2>
-                    <button class="slmm" onclick="info_area()">So liest man mich</button>
+                    <button class="slmm" onclick="info_area()">So liest man mich</button>-->
                 </div>
             </div>
             
@@ -70,13 +72,12 @@
             <div id ="hfBez_Neuerk" class="verlauf"><img src="./img/Dashboard-1.png" width="100%"></div>
             <div class="panel">
                 <div class="panel_dash">
+                    <p>X</p>
+                    <!--<h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
-                    <h2>Schwere Symptome</h2>
-                    <button class="slmm" onclick="info_area()">So liest man mich</button>
-                </div>
-                <div class="panel_rechts">
+                    <button class="slmm" onclick="info_area()">So liest man mich</button>-->
                 </div>
             </div>
             
@@ -84,13 +85,12 @@
             <div id ="hfBez_TTBez" class="verlauf"><img src="./img/Dashboard-1.png" width="100%"></div>
             <div class="panel">
                 <div class="panel_dash">
+                    <p>X</p>
+                   <!---<h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
                     <h2>Schwere Symptome</h2>
-                    <h2>Schwere Symptome</h2>
-                    <button class="slmm" onclick="info_area()">So liest man mich</button>
-                </div>
-                <div class="panel_rechts">
+                    <button class="slmm" onclick="info_area()">So liest man mich</button>-->
                 </div>
             </div>   
         </div>

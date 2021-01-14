@@ -65,8 +65,8 @@ function getmeineDatenFunktionBez() {
   try {
     var transaction = db.transaction(["bezirksdaten"], "readwrite");
     var objectStore = transaction.objectStore("bezirksdaten");
-    console.log(transaction);
-    console.log(objectStore);
+    //console.log(transaction);
+    //console.log(objectStore);
     transaction.oncomplete = function (event) {
       //console.log("All done!");
     }
@@ -86,15 +86,15 @@ function getmeineDatenFunktionBez() {
   itemsRequest.onsuccess = function (alleMeineDatenBezLS2) {
     alleMeineDatenOfflineBez2 = itemsRequest.result;
 
-    console.log("Alle BEzirksdaten auf Bezirksseite offline", alleMeineDatenOfflineBez2);
-    console.log("objectStore", objectStore);
+    //console.log("Alle BEzirksdaten auf Bezirksseite offline", alleMeineDatenOfflineBez2);
+    //console.log("objectStore", objectStore);
     alleMeineDatenBezLS2 = alleMeineDatenOfflineBez2;
-    console.log("alleMeineDaten offline2", alleMeineDatenOfflineBez2);
+    //console.log("alleMeineDaten offline2", alleMeineDatenOfflineBez2);
     preparemeineDatenBez(alleMeineDatenOfflineBez2);
   }
   itemsRequest.oncomplete = function () {
     alleMeineDatenOfflineBez2 = itemsRequest.result;
-    console.log("alleMeineDaten offline2", alleMeineDatenOfflineBez2);
+    //console.log("alleMeineDaten offline2", alleMeineDatenOfflineBez2);
     preparemeineDatenBez(alleMeineDatenOfflineBez2);
   }
 }
@@ -160,7 +160,7 @@ function preparemeineDatenBez(alleMeineDatenOfflineBez2) {
     }
   }
 
-  console.log("meineDatenATS", meineDatenATSBez);
+  //console.log("meineDatenATS", meineDatenATSBez);
   //console.log("meineDatenDatum",alleMeineDatum);
 
   //Letzter Wert des Arrays für die gerade aktiven Faelle
@@ -180,7 +180,7 @@ function preparemeineDatenBez(alleMeineDatenOfflineBez2) {
   getTodesfaelleBez = meineDatenATT[IndexlastElementTTBez]
 
   //document.getElementById("farbkreisAktiv").innerHTML = getAktiveFaelle;
-  console.log("DATABASEFUNKT! - die Daten werden aus der DB genommen", databasebool, getAktiveFaelleBez);
+  //console.log("DATABASEFUNKT! - die Daten werden aus der DB genommen", databasebool, getAktiveFaelleBez);
   localStorage.setItem("AktiveFaelle", getAktiveFaelleBez);
   setHardfacts();
 

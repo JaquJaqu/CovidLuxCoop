@@ -1,10 +1,13 @@
 const url = 'https://corona-ampel.gv.at/sites/corona-ampel.gv.at/files/assets/Warnstufen_Corona_Ampel_aktuell.json';
-const corsFix = 'https://cors-anywhere.herokuapp.com/';
-
-let pathbool; //Checkt ob Ampfelfile online angefragt werden kann wenn true = MÖGLICH
+const corsFix= 'https://evening-reaches-25236.herokuapp.com/';
+//const corsFix = 'https://cors-anywhere.herokuapp.com/';
+    
+let pathboolAmpel; //Checkt ob Ampfelfile online angefragt werden kann wenn true = MÖGLICH
 let connBool; //checkt Internet wenn true= Internet AN
 let checkBool; //checkt Standort wenn false = Standort AN
-let accessBool = true; //checkt of ampelfile online geladen werden soll, wenn true = AN
+let accessBoolAmpel = true; //checkt of ampelfile online geladen werden soll, wenn true = AN
+let accessBoolBezirk = true; //checkt of ampelfile online geladen werden soll, wenn true = AN
+
 
 function saveHistory(){
   sessionStorage.setItem("pathname",location.pathname);
@@ -94,10 +97,6 @@ function loadJSON(path, success, error)
 
 function onOnline(){
   connBool = true;
-  if(sessionStorage.getItem("Update") == null){
-  checkForUpdate();
-  sessionStorage.setItem("Update", true);
-  }
   const statusDisplay = document.getElementById("status");
   statusDisplay.textContent = "Du hast Internetzugriff! Alles funktioniert reibungslos.";
   if(sessionStorage.getItem("online") == null){
@@ -109,8 +108,6 @@ function onOnline(){
   sessionStorage.removeItem("offline");  
   }
   
-  console.log("Connection Bool:", connBool, "du hast kein Internet");
-  console.log("Path Bool:", pathbool, "online zugriff auf Ampeldaten verweigert");
 }
 function onOffline(){
   const statusDisplay = document.getElementById("status");
@@ -124,16 +121,8 @@ function onOffline(){
   sessionStorage.removeItem("online");  
   }
   connBool = false;
-  console.log("Connection Bool:", connBool, "du hast kein Internet");
-  console.log("Path Bool:", pathbool, "online zugriff auf Ampeldaten verweigert");
 }
 
-$(document).ready(function(){
-  $("#mainwrapper_tipps").scroll(function(){
-    var x = $("#mainwrapper_tipps").position();
-    x.top += 1;
-  });
-});
 
 //App schließt wenn zweimal auf zurück Button getappt wird
 var lastTimeBackPress=0;
@@ -165,8 +154,6 @@ function onBackKeyDown(e){
 }
 
 document.addEventListener("backbutton", onBackKeyDown, false);
-
-
 
 
 
