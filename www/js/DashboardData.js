@@ -72,8 +72,10 @@ HardfactsBL();
 
 //MainCode
 function yourMainCode() {
+  
 
   read_and_prepare_Bundeslanddata()
+  
 
 
 }//Ende yourMainCode
