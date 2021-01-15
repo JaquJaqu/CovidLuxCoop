@@ -350,8 +350,8 @@ function drawIllustration(ampelStufe){
         basicIllu();
       
       document.getElementById("ringerl").style.display = "block";
-      document.getElementById("ringerl").style.gridColumn = "3/3";
-        document.getElementById("ringerl").style.gridRow = "6/7";
+      document.getElementById("ringerl").style.gridColumn = "4/4";
+        document.getElementById("ringerl").style.gridRow = "7/7";
         document.getElementById("ringerl").style.alignSelf = "center";
       } else if (ampelStufe == 2) {
         document.getElementById("farbkreis").style.backgroundColor = "#FED500";
@@ -360,8 +360,8 @@ function drawIllustration(ampelStufe){
         basicIllu();
         
         document.getElementById("ringerl").style.display = "block";
-        document.getElementById("ringerl").style.gridColumn = "4/4";
-        document.getElementById("ringerl").style.gridRow = "7/8";
+        document.getElementById("ringerl").style.gridColumn = "5/5";
+        document.getElementById("ringerl").style.gridRow = "8/8";
         document.getElementById("ringerl").style.alignSelf = "center";
       } else if (ampelStufe == 3) {
         document.getElementById("farbkreis").style.backgroundColor = "#F59C00";
@@ -370,8 +370,8 @@ function drawIllustration(ampelStufe){
         basicIllu();
         
         document.getElementById("ringerl").style.display = "block";
-        document.getElementById("ringerl").style.gridColumn = "5/5";
-        document.getElementById("ringerl").style.gridRow = "7/8";
+        document.getElementById("ringerl").style.gridColumn = "6/6";
+        document.getElementById("ringerl").style.gridRow = "8/8";
         document.getElementById("ringerl").style.alignSelf = "center";
       } else if (ampelStufe == 4) {
         document.getElementById("farbkreis").style.backgroundColor = "#CB0538";
@@ -380,8 +380,8 @@ function drawIllustration(ampelStufe){
         basicIllu();
         
         document.getElementById("ringerl").style.display = "block";
-        document.getElementById("ringerl").style.gridColumn = "6/6";
-        document.getElementById("ringerl").style.gridRow = "6/7";
+        document.getElementById("ringerl").style.gridColumn = "7/7";
+        document.getElementById("ringerl").style.gridRow = "7/7";
         document.getElementById("ringerl").style.alignSelf = "center";
       }
       $("#loader_class").css({"display": "flex", "justify-content": "center", "align-items": "center", "flex-direction": "column"}).fadeOut(1000);

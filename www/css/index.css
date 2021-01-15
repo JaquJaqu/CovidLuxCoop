@@ -105,28 +105,28 @@ header h1{
 #RectStart{
     width: 45px;
     height:0.4vh;
-    margin-top: -1.5vh;
+    /* margin-top: -1.5vh; */
     background-color: #211F77;
 }
 
 #RectDashboard{
     width: 45px;
     height:0.4vh;
-    margin-top: -1.5vh;
+    /* margin-top: -1.5vh; */
     background-color: #211F77;
 }
 
 #RectTipps{
     width: 60px;
     height:0.4vh;
-    margin-top: -1.5vh;
+    /* margin-top: -1.5vh; */
     background-color: #211F77;
 }
 
 #RectSymptome{
     width: 55px;
     height:0.4vh;
-    margin-top: -1.5vh;
+    /* margin-top: -1.5vh; */
     background-color: #211F77;
 }
 
@@ -166,7 +166,7 @@ footer *{
 }
 footer ul {
     width: 100%;  
-    display:flex; 
+    display: flex; 
     justify-content: space-evenly;
 }
 .nav_element{
@@ -370,7 +370,7 @@ border: 16px solid #f3f3f3;
     text-align:center;
     text-transform: uppercase;
     grid-row: 3/4;
-    grid-column: 2/8;
+    grid-column: 2/10;
     align-self: start;
     color: #000000;  
 }
@@ -378,7 +378,7 @@ border: 16px solid #f3f3f3;
     font-size:16pt;
     font-weight: 500;
     grid-row: 3/3;
-    grid-column: 2/8;
+    grid-column: 3/8;
     color: #000000;
 
 }
@@ -387,11 +387,11 @@ border: 16px solid #f3f3f3;
     font-size: 10pt;
     margin-top: -0.2vh;
     grid-row: 3/4;
-    grid-column: 2/8;
+    grid-column: 3/8;
     align-self: end;
 }
 .lastTime{
-    grid-column: 2/8;
+    grid-column: 2/10;
     text-align: center;
     grid-row: 1/2;
     margin-top: 3vw;
@@ -425,14 +425,14 @@ div#farbkreisAktiv > h3{
 }
 
 #farbkreisPH{
-    grid-row: 4/6;
-    grid-column: 2/8;
+    grid-row: 4/7;
+    grid-column: 4/8;
     justify-self: center;
     align-self: center;
 }
 
 #farbkreisAktiv{
-    margin-right: auto;
+    margin-right: 0;
     position: absolute;
     border-radius: 100vw;
     width:80px;
@@ -440,9 +440,41 @@ div#farbkreisAktiv > h3{
     display: none;
     background-color: white;
     border:1px solid #ADADB9;
-    grid-row: 4/4;
-    grid-column: 7/7;
+    grid-row: 4/6;
+    grid-column: 7/9;
+    justify-self: center;
+    align-self: center;
+    /* margin-left: -3px; */
 }
+
+#positiveFaelle{
+    position: absolute;
+    grid-row: 5/6;
+    grid-column: 7/9;
+    justify-self: center;
+    align-self: center;
+    /* font-size: 11px; */
+    font-weight: 500;
+    color: #211F77;
+
+    font-size: 0.65rem;
+    margin-top: 0.5vw; 
+
+
+}
+
+#value_pos{
+    position: absolute;
+    grid-row: 4/6;
+    grid-column: 7/9;
+    justify-self: center;
+    align-self: center;
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #211F77;
+}
+
 #ringerl{
     border-radius: 100vw;
     width:16px;
@@ -463,8 +495,8 @@ div#farbkreisAktiv > h3{
 
 #farbkreisgreen{   
     background-color: #60B564;
-    grid-row: 6/6;
-    grid-column: 3/3;
+    grid-row: 7/7;
+    grid-column: 4/4;
     justify-self: center;
     align-self: center;
 
@@ -472,24 +504,24 @@ div#farbkreisAktiv > h3{
 
 #farbkreisred{
     background-color: #CB0538;
-    grid-row: 6/6;
-    grid-column: 6/6;
+    grid-row: 7/7;
+    grid-column: 7/7;
     justify-self: center;
     align-self: center;
 }
 
 #farbkreisyellow{
     background-color: #FED500;
-    grid-row: 7/7;
-    grid-column: 4/4;
+    grid-row: 8/8;
+    grid-column: 5/5;
     justify-self: center;
     align-self: center;
 }
 
 #farbkreisorange{
     background-color: #F59C00;
-    grid-row: 7/7;
-    grid-column: 5/5;
+    grid-row: 8/8;
+    grid-column: 6/6;
     justify-self: center;
     align-self: center;
 }
@@ -498,8 +530,8 @@ div#farbkreisAktiv > h3{
     font-weight: 500;
     width: 75vw;
     text-align: center;
-    grid-row: 8/8;
-    grid-column: 2/8;
+    grid-row: 9/9;
+    grid-column: 3/8;
     color: #000000;
 }
 #mainwrapper_start{  
@@ -510,8 +542,8 @@ div#farbkreisAktiv > h3{
     padding-bottom: 60vw;
     width: 100vw;
     display: grid;
-    grid-template-rows: 12% 10% 13% 20% 19% 0.6% 6% 20% 15%;
-    grid-template-columns: 10vw 30vw 5vw 5vw 5vw 5vw 30vw 10vw;
+    grid-template-rows: 12% 10% 13% 10% 10% 17% 2% 1% 20% 15%;
+    grid-template-columns: 10vw 10vw 20vw 5vw 5vw 5vw 5vw 20vw 10vw 10vw;
     justify-content: center;
 }
 
@@ -519,10 +551,11 @@ div#farbkreisAktiv > h3{
     text-align:center;
     font-size: 3vh;
     font-weight: 500;
-    grid-row: 8/8;
-    grid-column: 2/8;
+    grid-row: 9/9;
+    grid-column: 2/10;
     color: #000000;
     line-height: 1.7rem;
+    margin-top: 1.8rem;
 }
 
 .dropbtn {
@@ -563,7 +596,7 @@ div#farbkreisAktiv > h3{
     position: relative;
     display: block;
     text-align:center;
-    grid-column: 2/8;
+    grid-column: 2/10;
     align-self: end;
     grid-row: 2/3;
   }
@@ -606,8 +639,8 @@ div#farbkreisAktiv > h3{
         margin-left:auto;
         margin-right: auto;
         margin-top: 1vh;
-        grid-row: 9/9;
-        grid-column: 2/8;
+        grid-row: 10/10;
+        grid-column: 2/10;
     color: #000000;
   }
 
@@ -715,7 +748,7 @@ top: 14px;
 }
 #dash_bezirk{
     grid-row: 1/1;
-    grid-column: 1/2;
+    grid-column: 2/3;
     align-self: center;
 }
 #Navi{
@@ -1401,8 +1434,11 @@ h3{
     #mainwrapper_start{
         top:100px;
         padding-bottom: 10vw;
-        grid-template-columns: 10vw 30vw 1.5vw 1.5vw 1.5vw 1.5vw 30vw 10vw;
-        grid-template-rows: 10vh 8vh 10vh 12vh 12vh 1.5vh 1.5vh 12vh 10vh;
+        /* grid-template-columns: 10vw 30vw 1.5vw 1.5vw 1.5vw 1.5vw 30vw 10vw; */
+        /* grid-template-columns: 10vw 10vw 6vw 2vw 2vw 2vw 2vw 6vw 10vw 10vw; */
+        grid-template-columns: 10% 10% 6% 2% 2% 2% 2% 6% 10% 10%;
+        grid-template-rows: 10vh 8vh 10vh 6vh 6vh 12vh 1.5vh 0.5vh 12vh 10vh;
+        /* grid-template-rows: 10vh 8vh 10vh 12vh 12vh 1.5vh 1.5vh 12vh 10vh; */
     }
     .lastTime{
         margin-top: 4vmin;
@@ -1437,10 +1473,14 @@ h3{
     #farbkreis{
         height: 20vmin;
         width: 20vmin;
+        
     }
     #farbkreisAktiv{
         height: 10vmin;
         width: 10vmin;
+        grid-column: 7/9;
+        justify-self: center;
+        margin-left: 0px;
     }
     #farbkreisAktiv > h2{
         font-size: 1rem;
@@ -1493,6 +1533,24 @@ h3{
         margin-top: 0vh;
         width: 25vmin;
     }
+    
+    #positiveFaelle{
+        /* font-size: 30vmin; */
+        font-size: 0.60rem;
+        justify-self: center;
+        /* margin-left: 8px; */
+        align-self: center;
+        grid-column: 7/9;
+        margin-bottom: 1.8vw;
+    }
+
+    #value_pos{
+        justify-self: center;
+        margin-left: 7px;
+        align-self: center;
+        grid-column: 7/9;
+    }
+    
     h3{
         font-size: 2.2vmin;
         justify-self: center;
