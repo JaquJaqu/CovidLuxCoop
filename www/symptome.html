@@ -28,6 +28,19 @@
 
         <div id="unterstatus"></div>
         <div id="status"></div>
+
+        <div id=overlay>
+            <div id="overlay_flex">
+                <button id="overlay_x" onclick="endOverlay()"><img src="img/X3_leer_grau.svg" width="35vw"></button>
+                <img src="img/notruf.png" id="overlay_img" width="100vw" height="100vh">
+            <p>Solltest du die beschriebenen Krankheitssymptome aufweisen, bleibe bitte zu Hause und kontaktiere
+                die 24h-Hotline <b><a href="tel:1450" class="number">1450</a></b> !
+            </p>
+            <p>Solltest du allgemeine Fragen zum Corona Virus haben, kannst du dich an die Infoline 
+                <b><a href="tel:+43-800-555621" class="number">0800 555 621</a></b> (täglich von 7:00 bis 20:00) wenden. Hier wird dir gerne eine Auskunft gegeben.
+            </p>
+            </div>
+        </div>
             
             <div id="mainwrapper_symptome">
                 <div id="Akkordeon">
@@ -79,52 +92,40 @@
                 </div>     
         
                 <p id="DataSymptome">Datenquelle: <a href="https://www.who.int/" target="_blank" id="Quelle">who.int</a> <span id="stand_who">(Stand: 11.01.2021 11:00)</span></p>
-                <h1 id="Wastun" onclick="startOverlay()">Ich glaube ich bin infiziert. Was nun?</h1>
+                
 
-                <div id=overlay>
-                    <div id="overlay_flex">
-                        <button id="overlay_x" onclick="endOverlay()"><img src="img/X3_leer_grau.svg" width="35vw"></button>
-                        <img src="img/notruf.png" id="overlay_img" width="100vw" height="100vh">
-                    <p>Solltest du die beschriebenen Krankheitssymptome aufweisen, bleibe bitte zu Hause und kontaktiere
-                        die 24h-Hotline <b>1450</b> !
-                    </p>
-                    <p>Solltest du allgemeine Fragen zum Corona Virus haben, kannst du dich an die Infoline 
-                        <b>0800 555 621</b> (täglich von 7:00 bis 20:00) wenden. Hier wird dir gerne eine Auskunft gegeben.
-                    </p>
-                    </div>
+                
                 </div>
-                </div>
+                <h1 id="Wastun" onclick="startOverlay()">Ich glaube ich bin infiziert. Was nun?</h1>
             </div>   
             
 
 
             <footer>
+                
                 <nav>
                     <ul>
                         <li>
                             <div class="nav_element">
-                            <a href="start.html" class="nav_element"><img alt="Start" src="img/home_grau.svg" width="30vw" height="30vw">    
-                            Start</a>
-                            </div>                 
-                        </li>
-                        <li>
-                            <div class="nav_element">
-                            <a href="dashboard_bezirk.html" class="nav_element"><img alt="Zahlen" src="img/statistics_grau.svg" width="30vw" height="30vw">
-                            Zahlen</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="nav_element">
-                            <a href="tipps.html" class="nav_element"><img alt="Tipps" src="img/maske_grau.svg" width="30vw" height="30vw">
-                            Tipps</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="nav_element">
-                            <div id="RectSymptome"></div>
-                            <a href="symptome.html" class="nav_element"><img alt="Symptome" src="img/fieber_blau.svg" width="30vw" height="30vw">
-                            <span class="aktiv">Symptome </span></a>
-                            </div>
+                                <a href="start.html" class="nav_element"><img alt="Start" src="img/home_grau.svg" width="30vw" height="30vw">Start</a>
+                               </div>                 
+                           </li>
+                           <li>
+                               <div class="nav_element">
+                                <a href="dashboard_bezirk.html" class="nav_element"><img alt="Zahlen" src="img/statistics_grau.svg" width="30vw" height="30vw">Zahlen</a>
+                               </div>
+                           </li>
+                           <li>
+                               <div class="nav_element">
+                                <a href="tipps.html" class="nav_element"><img alt="Tipps" src="img/maske_grau.svg" width="30vw" height="30vw">Tipps</a>
+                               </div>
+                           </li>
+                           <li>
+                               <div class="nav_element">
+                                <div id="RectSymptome"></div>
+                                <a href="symptome.html" class="nav_element"><img alt="Symptome" src="img/fieber_blau.svg" width="30vw" height="30vw"><span class="aktiv">Symptome</span></a>
+                               </div>
+                            
                         </li>
                     </ul>
                 </nav>

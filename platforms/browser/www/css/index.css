@@ -88,7 +88,7 @@ header {
     top: 0;
     position:fixed;
     width: 100vw;
-    z-index: 2;
+    z-index: 4;
 }
 header h1{
     font-size: 16pt;
@@ -105,28 +105,28 @@ header h1{
 #RectStart{
     width: 45px;
     height:0.4vh;
-    margin-top: -1.5vh;
+   /* margin-top: -1.5vh;*/
     background-color: #211F77;
 }
 
 #RectDashboard{
     width: 45px;
     height:0.4vh;
-    margin-top: -1.5vh;
+    /*margin-top: -1.5vh;*/
     background-color: #211F77;
 }
 
 #RectTipps{
     width: 60px;
     height:0.4vh;
-    margin-top: -1.5vh;
+    /*margin-top: -1.5vh;*/
     background-color: #211F77;
 }
 
 #RectSymptome{
     width: 55px;
     height:0.4vh;
-    margin-top: -1.5vh;
+    /*margin-top: -1.5vh;*/
     background-color: #211F77;
 }
 
@@ -370,7 +370,7 @@ border: 16px solid #f3f3f3;
     text-align:center;
     text-transform: uppercase;
     grid-row: 3/4;
-    grid-column: 2/8;
+    grid-column: 2/10;
     align-self: start;
     color: #000000;  
 }
@@ -378,7 +378,7 @@ border: 16px solid #f3f3f3;
     font-size:16pt;
     font-weight: 500;
     grid-row: 3/3;
-    grid-column: 2/8;
+    grid-column: 2/10;
     color: #000000;
 
 }
@@ -387,24 +387,27 @@ border: 16px solid #f3f3f3;
     font-size: 10pt;
     margin-top: -0.2vh;
     grid-row: 3/4;
-    grid-column: 2/8;
+    grid-column: 3/9;
     align-self: end;
 }
 .lastTime{
-    grid-column: 2/8;
+    grid-column: 2/10;
     text-align: center;
     grid-row: 1/2;
     margin-top: 3vw;
 }
-#letzte{
+#letzte_ampel, #letzte_pos_faelle{
     font-size: 9pt;
     font-weight: 500;
     color: #ADADB9;
 }
+#letzte_pos_faelle{
+    margin-top: -2vw;
+}
 #farbkreis{
     border-radius: 100vw;
-    width:150px;
-    height:150px;
+    width: 20vh;
+    height:20vh;
     display: block;
     background-color: #ADADB9;
     grid-row: 3/4;
@@ -425,23 +428,53 @@ div#farbkreisAktiv > h3{
 }
 
 #farbkreisPH{
-    grid-row: 4/6;
-    grid-column: 2/8;
+    grid-row: 4/7;
+    grid-column: 4/8;
     justify-self: center;
     align-self: center;
 }
 
 #farbkreisAktiv{
-    margin-right: auto;
+    margin-right: 0;
     position: absolute;
     border-radius: 100vw;
-    width:80px;
-    height:80px;
+    width:10vh;
+    height:10vh;
     display: none;
     background-color: white;
     border:1px solid #ADADB9;
-    grid-row: 4/4;
-    grid-column: 7/7;
+    grid-row: 4/6;
+    grid-column: 7/9;
+    justify-self: center;
+    align-self: center;
+    /* margin-left: -3px; */
+}
+#positiveFaelle{
+    position: absolute;
+    grid-row: 5/6;
+    grid-column: 7/9;
+    justify-self: center;
+    align-self: center;
+    /* font-size: 11px; */
+    font-weight: 500;
+    color: #211F77;
+
+    font-size: 0.65rem;
+    margin-top: 0.5vw; 
+
+
+}	
+
+#value_pos{
+    position: absolute;
+    grid-row: 4/6;
+    grid-column: 7/9;
+    justify-self: center;
+    align-self: center;
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #211F77;
 }
 #ringerl{
     border-radius: 100vw;
@@ -463,8 +496,8 @@ div#farbkreisAktiv > h3{
 
 #farbkreisgreen{   
     background-color: #60B564;
-    grid-row: 6/6;
-    grid-column: 3/3;
+    grid-row: 7/7;
+    grid-column: 4/4;
     justify-self: center;
     align-self: center;
 
@@ -472,24 +505,24 @@ div#farbkreisAktiv > h3{
 
 #farbkreisred{
     background-color: #CB0538;
-    grid-row: 6/6;
-    grid-column: 6/6;
+    grid-row: 7/7;
+    grid-column: 7/7;
     justify-self: center;
     align-self: center;
 }
 
 #farbkreisyellow{
     background-color: #FED500;
-    grid-row: 7/7;
-    grid-column: 4/4;
+    grid-row: 8/8;
+    grid-column: 5/5;
     justify-self: center;
     align-self: center;
 }
 
 #farbkreisorange{
     background-color: #F59C00;
-    grid-row: 7/7;
-    grid-column: 5/5;
+    grid-row: 8/8;
+    grid-column: 6/6;
     justify-self: center;
     align-self: center;
 }
@@ -498,8 +531,8 @@ div#farbkreisAktiv > h3{
     font-weight: 500;
     width: 75vw;
     text-align: center;
-    grid-row: 8/8;
-    grid-column: 2/8;
+    grid-row: 9/9;
+    grid-column: 2/10;
     color: #000000;
 }
 #mainwrapper_start{  
@@ -510,8 +543,8 @@ div#farbkreisAktiv > h3{
     padding-bottom: 60vw;
     width: 100vw;
     display: grid;
-    grid-template-rows: 12% 10% 13% 20% 19% 0.6% 6% 20% 15%;
-    grid-template-columns: 10vw 30vw 5vw 5vw 5vw 5vw 30vw 10vw;
+    grid-template-rows: 15% 10% 13% 10% 10% 17% 2% 1% 20% 15%;
+    grid-template-columns: 10vw 10vw 20vw 5vw 5vw 5vw 5vw 20vw 10vw 10vw;
     justify-content: center;
 }
 
@@ -519,10 +552,11 @@ div#farbkreisAktiv > h3{
     text-align:center;
     font-size: 3vh;
     font-weight: 500;
-    grid-row: 8/8;
-    grid-column: 2/8;
+    grid-row: 9/9;
+    grid-column: 2/10;
     color: #000000;
     line-height: 1.7rem;
+    margin-top: 1.8rem;
 }
 
 .dropbtn {
@@ -563,7 +597,7 @@ div#farbkreisAktiv > h3{
     position: relative;
     display: block;
     text-align:center;
-    grid-column: 2/8;
+    grid-column: 2/10;
     align-self: end;
     grid-row: 2/3;
   }
@@ -606,8 +640,8 @@ div#farbkreisAktiv > h3{
         margin-left:auto;
         margin-right: auto;
         margin-top: 1vh;
-        grid-row: 9/9;
-        grid-column: 2/8;
+        grid-row: 10/10;
+        grid-column: 2/10;
     color: #000000;
   }
 
@@ -715,7 +749,7 @@ top: 14px;
 }
 #dash_bezirk{
     grid-row: 1/1;
-    grid-column: 1/2;
+    grid-column: 2/3;
     align-self: center;
 }
 #Navi{
@@ -749,13 +783,14 @@ top: 14px;
     color: #504F95;
 }
 
-#Österreich{
+#Österreich, #dash_bezirk_name{
     text-align: center;
     color: #221F77;
     grid-row: 1/1;
     grid-column: 1/4;
     font-size: 16pt;
 }
+
 #dropbtn_bezirk, #dropbtn_bundesland{
     font-size: 16pt;
 }
@@ -958,7 +993,7 @@ top: 14px;
     top: 90px;
     left: 0;
     right: 0;
-    padding-bottom: 40vw;
+    padding-bottom: 20vw;
     width: 100vw;
     justify-content: center;
 }
@@ -1041,14 +1076,20 @@ top: 14px;
     padding-top:4%;
     padding-bottom:4%;
     border-radius: 10px;
-    position:fixed;
-    top: 55vh;
+    /*position:fixed;
+    top: 370px;*/
+    margin-top: -100px;
     width: 97.5vw;
 }
 p{
     color: black;
     font-size: 12pt;
     font-weight: 500;
+}
+.number{
+    color: white;
+    font-size: 16pt;
+    text-decoration: underline;
 }
 #Quelle{
     color: #504F95;
@@ -1067,19 +1108,21 @@ p{
 #overlay{
     background-color: #221F78;
     display: none;
-    top: 15vh;
+    /*top: 0vw;
     left: 0;
-    margin-top: 7vh; 
+    margin-top: 7vh; */
     border-radius: 15px;
     z-index: 3;
-    height: 78vh;
+    height: 185vw;
     width: 97.5vw;
-    position: fixed;  
+    margin-top: 100px;
+    position: absolute;  
+
 }
 #overlay p{
     color: white;
     font-weight: 300;
-    font-size: 16pt; 
+    font-size: 15pt; 
 }
 #overlay b{
     font-weight: 500;
@@ -1087,7 +1130,7 @@ p{
 #overlay_flex{
     width: 85vw;
     margin-left: 7vw;
-    margin-top: 18vh; 
+    margin-top: 15vh; 
 }
 #overlay_img{
  float:right;
@@ -1100,7 +1143,7 @@ p{
     color: white;
     border: none;
     font-size: 25pt;
-    margin-top: -15vh;
+    margin-top: -12vh;
     margin-left: 3vw;
     float: right;
 }
@@ -1398,11 +1441,17 @@ h3{
         width: 4vmin;
         height: 4vmin;
     }
+    .flex_menu{
+        height: unset;
+    }
     #mainwrapper_start{
         top:100px;
         padding-bottom: 10vw;
-        grid-template-columns: 10vw 30vw 1.5vw 1.5vw 1.5vw 1.5vw 30vw 10vw;
-        grid-template-rows: 10vh 8vh 10vh 12vh 12vh 1.5vh 1.5vh 12vh 10vh;
+        /* grid-template-columns: 10vw 30vw 1.5vw 1.5vw 1.5vw 1.5vw 30vw 10vw; */
+        /* grid-template-columns: 10vw 10vw 6vw 2vw 2vw 2vw 2vw 6vw 10vw 10vw; */
+        grid-template-columns: 10% 10% 6% 2% 2% 2% 2% 6% 10% 10%;
+        grid-template-rows: 10vh 8vh 10vh 6vh 6vh 12vh 1.5vh 0.5vh 12vh 10vh;
+        /* grid-template-rows: 10vh 8vh 10vh 12vh 12vh 1.5vh 1.5vh 12vh 10vh; */
     }
     .lastTime{
         margin-top: 4vmin;
@@ -1441,6 +1490,9 @@ h3{
     #farbkreisAktiv{
         height: 10vmin;
         width: 10vmin;
+        grid-column: 7/9;
+        justify-self: center;
+        margin-left: 0px;
     }
     #farbkreisAktiv > h2{
         font-size: 1rem;
@@ -1479,6 +1531,22 @@ h3{
         font-size: 2.5vmin;
         align-self: center;
         justify-self: center;
+    }
+    #positiveFaelle{
+        /* font-size: 30vmin; */
+        font-size: 0.60rem;
+        justify-self: center;
+        /* margin-left: 8px; */
+        align-self: center;
+        grid-column: 7/9;
+        margin-bottom: 1.8vw;
+    }
+
+    #value_pos{
+        justify-self: center;
+        margin-left: 7px;
+        align-self: center;
+        grid-column: 7/9;
     }
     #standortText{
         font-size: 1.5vh;
@@ -1696,7 +1764,11 @@ h3{
         padding-top: 5vmin;
         padding-bottom: 5vmin;
         top: 60vmin;
-        width: unset;
+        width: 70vmin;
+    margin-left: 55%;
+    margin-right: -45%;
+    transform: translate(-57%, -0%);
+    margin-top: -10%;
     }
     #overlay{
         width: 71vmin;

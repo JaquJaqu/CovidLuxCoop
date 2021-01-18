@@ -1,6 +1,6 @@
-if (location.protocol !== "https:") {
+/*if (location.protocol !== "https:") {
     location.protocol = "https:";
-}
+}*/
 function onload_walk(){
     /*sessionStorage.setItem("walkthrough", true);*/
     /*sessionStorage.removeItem("walkthrough");*/
