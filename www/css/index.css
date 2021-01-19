@@ -267,11 +267,12 @@ footer ul {
     margin-left: 0vw;
     border-top: 1px solid #ADADB9;
  }
- #walk_welle{
+ .walk_welle{
      margin-top: 0vh;
-     height: 50%;
+     /*height: 50%;*/
      padding-bottom: 5vh;
-     width: 100vw;
+     /*width: 100vw;*/
+     display:block;
  }
  #walk_h2{
      position: absolute;

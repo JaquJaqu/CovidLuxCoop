@@ -33,3 +33,4 @@ function storeWalk(){
     localStorage.setItem("walkthrough", true);
 }
 
+
