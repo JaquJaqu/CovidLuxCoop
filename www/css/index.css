@@ -841,6 +841,55 @@ top: 14px;
     text-align: right;
     padding: 1.5rem 2rem;
 }
+/* Areachart */
+.grid line {
+    stroke: #f1f1f1; 
+    stroke-opacity: 0.7;
+    shape-rendering: crispEdges; 
+  }
+  
+  .grid path {
+    stroke: #f1f1f1; 
+    stroke-opacity: 0.7;
+    shape-rendering: crispEdges;
+  }
+
+  .grid{
+      font-size: 0.938rem;
+  }
+
+  #AC_TT > svg{
+    padding: 10 0 0 0;
+  }
+
+/* Auslastung */
+  .smallLabel{
+    font-size: 0.938rem;/*15px;*/
+}
+
+
+.bigLabel{
+    font-size: 1.3em;
+}
+
+.anfangstext{
+    font-size: 0.938rem, /*15px;*/
+}
+
+#wrapper > svg{
+    margin: 1rem 0; 
+}
+
+
+.rectLinks{
+    fill: #34367d;
+}
+
+.rectRechts{
+    fill: #f4f3ff;
+
+}
+ /*_*/ 
 
   .info_dash_button{
       margin-left: 5vw;
