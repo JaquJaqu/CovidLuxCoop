@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html>
     <head>
         <meta charset="utf-8">
         <meta name="msapplication-tap-highlight" content="no">
@@ -12,6 +12,7 @@
     </head>
     <body ononline="onOnline()" onoffline="onOffline()">
 <div id="scrollbar">
+
 <header>  
     <div class="flex_menu">
     <div class="info">
@@ -24,9 +25,6 @@
 </div>
 </header>
 
-<div class="ro"><img src="img/rechts_oben.png" width="175vh"></div>
-        <div class="lu"><img src="img/links_unten.png" width="175vh"></div>
-
 <div id="unterstatus"></div>
 <div id="status"></div>
      
@@ -35,20 +33,20 @@
         <p id="sub_tipps">so schützt du dich und deine Mitmenschen</p>
         
         <div class="panel_tipps_start">
-            <img src="img/washing-hands.png" alt="Hände waschen" width="100vw" height="100vh">
+            <img src="img/washing-hands.png" width="100vw" height="100vh">
             <p>Regelmäßig Hände mit Seife oder alkoholhaltigem Desinfektionsmittel waschen
             </p>
         </div>
 
         <div class="panel_tipps_links">
-            <p>Gesicht - vor allem Mund - Augen und Nase
+            <p>Gesicht, vor allem Mund, Augen und Nase
                 nicht mit den Fingern berühren
             </p>
-            <img src="img/eyes.png" alt="Auge mit Virus" width="100vw" height="100vh">
+            <img src="img/eyes.png" width="100vw" height="100vh">
         </div>
 
         <div class="panel_tipps_rechts">
-            <img src="img/shake.png" alt="Alternativer Händedruck mit Füßen" width="100vw" height="100vh">
+            <img src="img/shake.png" width="100vw" height="100vh">
             <p>Händeschütteln und Umarmungen vermeiden
             </p>
         </div>
@@ -56,11 +54,11 @@
         <div class="panel_tipps_links">
             <p>In Armbeugen oder Taschentuch niesen, Taschentuch entsorgen
             </p>
-            <img src="img/sneeze.png" alt="Niesen in Armbeuge" width="100vw" height="100vh">
+            <img src="img/sneeze.png" width="100vw" height="100vh">
         </div>
 
         <div class="panel_tipps_rechts">
-            <img src="img/distance.png" alt="Abstand zwischen 2 Personen" width="100vw" height="100vh">
+            <img src="img/distance.png" width="100vw" height="100vh">
             <p>1 bis 2 Meter Abstand halten
             </p>
         </div>
@@ -68,11 +66,11 @@
         <div class="panel_tipps_links">
             <p>Räume regelmäßig lüften
             </p>
-            <img src="img/window.png" alt="Fenster" width="100vw" height="100vh">
+            <img src="img/window.png" width="100vw" height="100vh">
         </div>
 
         <div class="panel_tipps_rechts">
-            <img src="img/quarantine.png" alt="Quarantäne" width="100vw" height="100vh">
+            <img src="img/quarantine.png" width="100vw" height="100vh">
             <p>Bei Anzeichen von Krankheit zuhause bleiben
             </p>
         </div>
@@ -80,7 +78,7 @@
         <div class="panel_tipps_links">
             <p>Falls nötig Mund-Nasen-Schutz tragen
             </p>
-            <img src="img/face-mask (2).png" alt="Mund-Nasen-Schutz" width="100vw" height="100vh">
+            <img src="img/face-mask (2).png" width="100vw" height="100vh">
         </div>
 
         <div class="panel_weitere_tipps">
@@ -98,26 +96,33 @@
         <nav>
             <ul>
                 <li>
-                    <div class="nav_element">
-                        <a href="start.html" class="nav_element"><img alt="Start" src="img/home_grau.svg" width="30vw" height="30vw">Start</a>
-                       </div>                 
-                   </li>
-                   <li>
-                       <div class="nav_element">
-                        <a href="dashboard_bezirk.html" class="nav_element"><img alt="Zahlen" src="img/statistics_grau.svg" width="30vw" height="30vw">Zahlen</a>
-                       </div>
-                   </li>
-                   <li>
-                       <div class="nav_element">
-                        <div id="RectTipps"></div>
-                        <a href="tipps.html" class="nav_element"><img alt="Tipps" src="img/maske_blau.svg" width="30vw" height="30vw"><span class="aktiv">Tipps</span></a>
-                       </div>
-                   </li>
-                   <li>
-                       <div class="nav_element">
-                        <a href="symptome.html" class="nav_element"><img alt="Symptome" src="img/fieber_grau.svg" width="30vw" height="30vw">Symptome</a>
-                       </div>
-                  
+                   <div class="nav_element">
+                   <a href="start.html" class="nav_element"><img alt="Start" src="img/home_grau.svg" width="30vw" height="30vw">
+                    <!-- <br>     -->
+                   Start</a>
+                   </div>                 
+               </li>
+               <li>
+                   <div class="nav_element">
+                   <a href="dashboard_bezirk.html" class="nav_element"><img alt="Zahlen" src="img/statistics_grau.svg" width="30vw" height="30vw">
+                    <!-- <br> -->
+                   Zahlen</a>
+                   </div>
+               </li>
+               <li>
+                   <div class="nav_element">
+                    <div id="RectTipps"></div>
+                   <a href="tipps.html"  class="nav_element"><img alt="Tipps" src="img/maske_blau.svg" width="30vw" height="30vw">
+                   <!-- <br> -->
+                    <span class="aktiv">Tipps</span></a>
+                   </div>
+               </li>
+               <li>
+                   <div class="nav_element">
+                   <a href="symptome.html" class="nav_element"><img alt="Symptome" src="img/fieber_grau.svg" width="30vw" height="30vw">
+                   <!-- <br> -->
+                    Symptome</a>
+                   </div>
                </li>
             </ul>
         </nav>

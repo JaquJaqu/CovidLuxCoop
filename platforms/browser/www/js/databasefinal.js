@@ -127,11 +127,8 @@ if (!window.indexedDB) {
 //---PREPARE DATA--------------propably useless?
         const stringReplace = JSON.stringify(remoteData3);
         const jsonReplace = stringReplace;
-        let realData;
-        if(jsonReplace != null){
-        realData = JSON.parse(jsonReplace);
-        items_jsonBezirke3 = realData;  
-        }           
+        const realData = JSON.parse(jsonReplace);
+        items_jsonBezirke3 = realData;          
 //         
 
 //______END MAIN CODE_____________________
@@ -276,7 +273,7 @@ function renameKeys(obj, newKeys) {
  }
 
 
- if(realData != null){
+
 //Key umbenennen --> Time zu datum
         for (i = 0; i < realData.length; i ++){
         const obj = items_jsonBezirke3[i];
@@ -304,7 +301,6 @@ function renameKeys(obj, newKeys) {
         var Datatrue = {AnzahlAktiveFaelle: AnzahlAktiveFaelle, updateDate: updateDate,  allItems};    
          alleBezirksDaten2.push(Datatrue);
     }
-  }
       
     
     

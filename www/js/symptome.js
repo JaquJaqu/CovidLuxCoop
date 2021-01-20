@@ -22,8 +22,3 @@ function startOverlay(){
 function endOverlay(){
   $("#overlay").fadeOut(700);
 }
-/*
-$("#scrollbar").scroll(function(){
-  var fromTop = $('#scrollbar').scrollTop();
-  $("#overlay").css('margin', (120 + fromTop) + 'px 0px 0px 0px');
-});*/

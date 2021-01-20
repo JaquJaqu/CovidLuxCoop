@@ -20,45 +20,17 @@ getAkkordeon_dash();
 
 function onload_bundesland() {
     if (localStorage.getItem("storeBundesland") != null) {
-        document.getElementById("dash_bundesland_name").innerHTML = localStorage.getItem("storeBundesland");
+        document.getElementById("dropbtn_bundesland").innerHTML = localStorage.getItem("storeBundesland");
     }
-    if (localStorage.getItem("letzterBezirk") != null) {
-        bezirkTemp = localStorage.getItem("letzterBezirk");
+    if (localStorage.getItem("storeBezirk") != null) {
+        bezirkTemp = localStorage.getItem("storeBezirk");
         loadJSON("bundesland_dropdown.json", function (data) {
             for (i = 0; i < data[0].Bezirke.length; i++) {
                 if (data[0].Bezirke[i].Bezirk == bezirkTemp) {
-                    document.getElementById("dash_bundesland_name").innerHTML = data[0].Bezirke[i].Bundesland;
-                    // console.log(document.getElementById("dash_bundesland_name").innerHTML); 
+                    document.getElementById("dropbtn_bundesland").innerHTML = data[0].Bezirke[i].Bundesland;
                 }
-                
             }
-            const dateParser = d3.timeParse('%d.%m.%Y');
-            blN = document.getElementById("dash_bundesland_name").innerHTML;
-            // console.log(dataOffline)
-            const dataBL = dataOffline.filter(d => d.Bundesland == blN); 
-            // console.log(dataBL); 
-
-            function setPreviewBL(){
-                let widthRes = document.getElementById('hfBL_Neuerk').clientWidth;
-                let hfAFBL = dataBL[dataBL.length - 1].AnzahlFaelle;
-                let hfTBL = dataBL[dataBL.length - 1].AnzahlTotTaeglich;
-                // console.log('test-set')
-
-                drawPreview('#hfBL_Neuerk', dataBL, d => dateParser(d.datum), d => d.AnzahlFaelle, 1700, hfAFBL, widthRes);
-                drawPreview('#hfBL_TT', dataBL, d => dateParser(d.datum), d => d.AnzahlTotTaeglich, 50, hfTBL, widthRes);
-            }
-            function getAreachartsBL(){
-  
-    
-                drawAreaChart('#ACBL_Neuerk', dataBL, d => dateParser(d.datum), d => d.AnzahlFaelle, 1700); 
-                drawAreaChart('#ACBL_TT', dataBL, d => dateParser(d.datum), d => d.AnzahlTotTaeglich, 50); 
-            
-            }
-            setPreviewBL();
-            getAreachartsBL(); 
-
         }, function (xhr) { console.error(xhr); });
-       
     }
 }
 
