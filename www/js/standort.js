@@ -1329,7 +1329,7 @@ function renameKeys(obj, newKeys) {
 //Umlaute ersetzen
 function replaceUmlauts(value){
 //value = value.replace(/\u00e4/g, 'ae');
-value = value.replace(/\u00f6/g, 'oe');
+// value = value.replace(/\u00f6/g, 'oe');
 value = value.replace(/\u00fc/g, 'ue');
 value = value.replace(/\u00c4/g, 'Ae');
 value = value.replace(/\u00d6/g, 'Oe');
@@ -1342,7 +1342,7 @@ return value;
 //Umlaute einfügen
 function makeUmlauts(value){
 //value = value.replace(/\u00e4/g, 'ae');
-value = value.replace( /'oe'/g,'\u00f6');
+// value = value.replace( /'oe'/g,'\u00f6');
 value = value.replace( /'ue'/g,'\u00fc');
 value = value.replace( /'Ae'/g,'\u00c4');
 value = value.replace( /'Oe'/g,'\u00d6');

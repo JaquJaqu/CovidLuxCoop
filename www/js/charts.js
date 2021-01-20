@@ -1,11 +1,20 @@
 //  const { start } = require("../../platforms/android/cordova/lib/Adb");
 
-var widthRes = document.getElementById('hfO_Neuerk').clientWidth; 
+// var widthRes = document.getElementsByClassName('verlauf').clientWidth; 
+// console.log(widthRes); 
+
+ 
+
+const dateParser = d3.timeParse('%d.%m.%Y');
+// if (widthRes == null) {
+//     console.log("test")
+//     widthRes = document.getElementById('').clientWidth; 
+// }
 // console.log(widthRes); 
 
 
 //Areachart
-async function drawPreview(place, url, xA, yA, range, hardfact) {
+async function drawPreview(place, url, xA, yA, range, hardfact, weite) {
     const yAccessor = yA;
     const xAccessor = xA;
     let dataset = await url;
@@ -19,8 +28,17 @@ async function drawPreview(place, url, xA, yA, range, hardfact) {
 
     // console.log('start' + startDate);
     // console.log(endDate); 
+    // var screenSize = window.innerWidth;
+    let width = weite; 
 
-    let width = widthRes
+    // if (screenSize > 600) {
+    //     width = 500; 
+    // } else {
+    //     width = window.innerWidth; 
+    // }
+
+    // // let width = widthRes
+    // console.log(width); 
 
 
     //2 - set dimension and properties
@@ -76,12 +94,14 @@ async function drawPreview(place, url, xA, yA, range, hardfact) {
         .style("fill", "#000")
         .style("font-size", "3.1rem")
         .style("text-align", "right")
-        .style("letter-spacing", "0.3rem")
+        .style("letter-spacing", "0.3rem"); 
+    // console.log(hf); 
 
 }
 
 
-async function drawAreaChart(placeA, urlA, xAA, yAA, rangeA, clip) {
+async function drawAreaChart(placeA, urlA, xAA, yAA, rangeA) {
+    // var ua = d3.locale();
 
     //1 - access data
     const yAccessor = yAA;
@@ -178,6 +198,7 @@ async function drawAreaChart(placeA, urlA, xAA, yAA, rangeA, clip) {
 
     yAxisGenerator.ticks(4);
     yAxisGenerator.tickSize(-dimensions.boundW); //weißes 'grid'
+    yAxisGenerator.tickFormat(d3.format("d"));
     //yAxisGenerator.tickValues([startValue, endValue]);
 
     let yAxis = bounds.append('g')
@@ -190,9 +211,11 @@ async function drawAreaChart(placeA, urlA, xAA, yAA, rangeA, clip) {
 
     xAxisGenerator.ticks(3);
     // xAxisGenerator.tickValues([startDate, endDate]);
-    xAxisGenerator.tickFormat(d3.timeFormat("%m"));
+    xAxisGenerator.tickFormat(d3.timeFormat("%d.%m."));
 
-    yAxisGenerator.ticks(3);
+
+    // yAxisGenerator.ticks(3);
+   
     // yAxisGenerator.tickValues([0,endValue+100]);
 
     let xAxis = bounds.append('g')

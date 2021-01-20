@@ -71,7 +71,7 @@ function yourMainCode(remoteDataAusl) {
 
     //dataset = items_json;
 
-    async function drawAuslastung() {
+    async function drawAuslastung(region) {
 
         // const dataset = await d3.json('./CovidFallzahlen.json');   //https://covid19-dashboard.ages.at/data/CovidFallzahlen.csv
 
@@ -91,7 +91,7 @@ function yourMainCode(remoteDataAusl) {
         // dataset[8] //Kärnten ID 2
         // dataset[9] //Burgenland ID 1
 
-        var auswahl = 1;
+        var auswahl = region;
 
 
         if (auswahl == 1) {
@@ -345,7 +345,8 @@ function yourMainCode(remoteDataAusl) {
 
     }
 
-    async function drawAuslastungHF() {
+    async function drawAuslastungHF(region) {
+        let widthRes = document.getElementById('hfO_Neuerk').clientWidth; 
 
         // const dataset = await d3.json('./CovidFallzahlen.json');   //https://covid19-dashboard.ages.at/data/CovidFallzahlen.csv
 
@@ -365,7 +366,7 @@ function yourMainCode(remoteDataAusl) {
         // dataset[8] //Kärnten ID 2
         // dataset[9] //Burgenland ID 1
 
-        var auswahl = 1;
+        var auswahl = region;
 
 
         if (auswahl == 1) {
@@ -530,8 +531,8 @@ function yourMainCode(remoteDataAusl) {
 
 
 
-    drawAuslastung();
-    drawAuslastungHF();
+    drawAuslastung(1);
+    drawAuslastungHF(1);
 
 
 

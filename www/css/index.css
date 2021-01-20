@@ -909,12 +909,12 @@ top: 14px;
 }
 
 #wrapper > svg{
-    margin: 1rem 0; 
+    margin: 1rem 0.5rem 0rem 0rem ; 
 }
 
 
 .rectLinks{
-    fill: #34367d;
+    fill: #968AB6;
 }
 
 .rectRechts{
