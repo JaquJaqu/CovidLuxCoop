@@ -8,7 +8,6 @@ const data = dataOffline.filter(d => d.Bundesland == "Oesterreich");
 
 function setPreviewO() {
     
-    // console.table(data[1]); 
     let hfAF = data[data.length - 1].AnzahlFaelle;
     let hfT = data[data.length - 1].AnzahlTotTaeglich;
    
