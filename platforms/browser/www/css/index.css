@@ -1,3 +1,16 @@
+.accordion:focus {
+    outline: 2px solid #000000;
+    padding: 18px;
+    /* padding-left: 3.5vw; */
+    /* transition: 0.4s; */
+    padding-left: 75px;
+
+}
+
+*:focus {
+    outline: 2px solid #000000;
+}
+
 
 * {
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
@@ -88,7 +101,7 @@ header {
     top: 0;
     position:fixed;
     width: 100vw;
-    z-index: 2;
+    z-index: 4;
 }
 header h1{
     font-size: 16pt;
@@ -105,28 +118,28 @@ header h1{
 #RectStart{
     width: 45px;
     height:0.4vh;
-    margin-top: -1.5vh;
+   /* margin-top: -1.5vh;*/
     background-color: #211F77;
 }
 
 #RectDashboard{
     width: 45px;
     height:0.4vh;
-    margin-top: -1.5vh;
+    /*margin-top: -1.5vh;*/
     background-color: #211F77;
 }
 
 #RectTipps{
     width: 60px;
     height:0.4vh;
-    margin-top: -1.5vh;
+    /*margin-top: -1.5vh;*/
     background-color: #211F77;
 }
 
 #RectSymptome{
     width: 55px;
     height:0.4vh;
-    margin-top: -1.5vh;
+    /*margin-top: -1.5vh;*/
     background-color: #211F77;
 }
 
@@ -267,11 +280,12 @@ footer ul {
     margin-left: 0vw;
     border-top: 1px solid #ADADB9;
  }
- #walk_welle{
+ .walk_welle{
      margin-top: 0vh;
-     height: 50%;
+     /*height: 50%;*/
      padding-bottom: 5vh;
-     width: 100vw;
+     /*width: 100vw;*/
+     display:block;
  }
  #walk_h2{
      position: absolute;
@@ -370,7 +384,7 @@ border: 16px solid #f3f3f3;
     text-align:center;
     text-transform: uppercase;
     grid-row: 3/4;
-    grid-column: 2/8;
+    grid-column: 2/10;
     align-self: start;
     color: #000000;  
 }
@@ -378,33 +392,34 @@ border: 16px solid #f3f3f3;
     font-size:16pt;
     font-weight: 500;
     grid-row: 3/3;
-    grid-column: 2/8;
+    grid-column: 2/10;
     color: #000000;
 
 }
 #standortText{
     font-weight: 500;
-    font-size: 10pt;
+    font-size: 1.8vh;
     margin-top: -0.2vh;
     grid-row: 3/4;
-    grid-column: 2/8;
+    grid-column: 3/9;
     align-self: end;
 }
-.lastTime{
-    grid-column: 2/8;
-    text-align: center;
-    grid-row: 1/2;
-    margin-top: 3vw;
-}
-#letzte{
-    font-size: 9pt;
+#letzte_ampel, #letzte_pos_faelle{
+    font-size: 1.8vh;
     font-weight: 500;
     color: #ADADB9;
+    grid-column: 2/10;
+    text-align: center;
+    grid-row: 1/2;
+}
+#letzte_pos_faelle{
+    margin-top: 3vh;
+    align-self: center;
 }
 #farbkreis{
     border-radius: 100vw;
-    width:150px;
-    height:150px;
+    width: 20vh;
+    height:20vh;
     display: block;
     background-color: #ADADB9;
     grid-row: 3/4;
@@ -425,24 +440,57 @@ div#farbkreisAktiv > h3{
 }
 
 #farbkreisPH{
-    grid-row: 4/6;
-    grid-column: 2/8;
+    grid-row: 4/7;
+    grid-column: 4/8;
     justify-self: center;
     align-self: center;
 }
 
+
 #farbkreisAktiv{
-    margin-right: auto;
+    margin-right: 0;
     position: absolute;
     border-radius: 100vw;
-    width:80px;
-    height:80px;
+    width:11vh;
+    height:11vh;
     display: none;
     background-color: white;
     border:1px solid #ADADB9;
-    grid-row: 4/4;
-    grid-column: 7/7;
+    grid-row: 4/6;
+    grid-column: 7/9;
+    justify-self: center;
+    align-self: center;
+    /* margin-left: -3px; */
 }
+#positiveFaelle {
+    position: absolute;
+    grid-row: 5/6;
+    grid-column: 7/9;
+    justify-self: center;
+    align-self: center;
+    /* font-size: 11px; */
+    font-weight: 500;
+    color: #211F77;
+
+    font-size: 1.5vh;
+    margin-top: -1vh; 
+
+
+}	
+
+
+#value_pos{
+    position: absolute;
+    grid-row: 4/6;
+    grid-column: 7/9;
+    justify-self: center;
+    align-self: center;
+    margin-bottom: 6vh;
+    font-size: 3.5vh;
+    font-weight: 500;
+    color: #211F77;
+}
+
 #ringerl{
     border-radius: 100vw;
     width:16px;
@@ -463,8 +511,8 @@ div#farbkreisAktiv > h3{
 
 #farbkreisgreen{   
     background-color: #60B564;
-    grid-row: 6/6;
-    grid-column: 3/3;
+    grid-row: 7/7;
+    grid-column: 4/4;
     justify-self: center;
     align-self: center;
 
@@ -472,24 +520,24 @@ div#farbkreisAktiv > h3{
 
 #farbkreisred{
     background-color: #CB0538;
-    grid-row: 6/6;
-    grid-column: 6/6;
+    grid-row: 7/7;
+    grid-column: 7/7;
     justify-self: center;
     align-self: center;
 }
 
 #farbkreisyellow{
     background-color: #FED500;
-    grid-row: 7/7;
-    grid-column: 4/4;
+    grid-row: 8/8;
+    grid-column: 5/5;
     justify-self: center;
     align-self: center;
 }
 
 #farbkreisorange{
     background-color: #F59C00;
-    grid-row: 7/7;
-    grid-column: 5/5;
+    grid-row: 8/8;
+    grid-column: 6/6;
     justify-self: center;
     align-self: center;
 }
@@ -498,20 +546,21 @@ div#farbkreisAktiv > h3{
     font-weight: 500;
     width: 75vw;
     text-align: center;
-    grid-row: 8/8;
-    grid-column: 2/8;
+    grid-row: 9/9;
+    grid-column: 2/10;
     color: #000000;
 }
 #mainwrapper_start{  
     position: absolute;
-    top: 90px;
+    top: 25vmin;
     left: 0;
     right: 0;
-    padding-bottom: 60vw;
+    padding-bottom: 30vw;
     width: 100vw;
     display: grid;
-    grid-template-rows: 12% 10% 13% 20% 19% 0.6% 6% 20% 15%;
-    grid-template-columns: 10vw 30vw 5vw 5vw 5vw 5vw 30vw 10vw;
+    /*grid-template-rows: 15% 10% 13% 10% 10% 17% 2% 1% 20% 15%;*/
+    grid-template-rows: 11vh 6vh 8vh 6vh 6vh 9vh 1vh 0.5vh 13vh 8vh;
+    grid-template-columns: 10vw 10vw 20vw 5vw 5vw 5vw 5vw 20vw 10vw 10vw;
     justify-content: center;
 }
 
@@ -519,10 +568,11 @@ div#farbkreisAktiv > h3{
     text-align:center;
     font-size: 3vh;
     font-weight: 500;
-    grid-row: 8/8;
-    grid-column: 2/8;
+    grid-row: 9/9;
+    grid-column: 2/10;
     color: #000000;
     line-height: 1.7rem;
+    margin-top: 1.8rem;
 }
 
 .dropbtn {
@@ -530,7 +580,7 @@ div#farbkreisAktiv > h3{
     background-color: white;
     font-weight: 750;
     padding: 16px;
-    font-size: 12pt;
+    font-size: 2.5vh;
     border: none;
     cursor: pointer;
   }
@@ -563,7 +613,7 @@ div#farbkreisAktiv > h3{
     position: relative;
     display: block;
     text-align:center;
-    grid-column: 2/8;
+    grid-column: 2/10;
     align-self: end;
     grid-row: 2/3;
   }
@@ -606,16 +656,19 @@ div#farbkreisAktiv > h3{
         margin-left:auto;
         margin-right: auto;
         margin-top: 1vh;
-        grid-row: 9/9;
-        grid-column: 2/8;
+        grid-row: 10/10;
+        grid-column: 2/10;
     color: #000000;
+  }
+  #Standortbox h3{
+      font-size: 2.2vh;
   }
 
 .switch {
     position: relative;
     display: inline-block;
     width: 70px;
-    height: 30px;
+    height:30px;
     align-self: center;
   }
   
@@ -696,6 +749,15 @@ top: 14px;
     border-radius: 15%;
   }
 
+  .ro{
+      display:none;
+  }
+  .lu{
+      display:none;
+  }
+  .lu_unterseite{
+    display:none;
+}
 /*************************************************__ZAHLEN__********************************/
 .mainwrapper_dash{ 
     position: absolute;
@@ -715,7 +777,7 @@ top: 14px;
 }
 #dash_bezirk{
     grid-row: 1/1;
-    grid-column: 1/2;
+    grid-column: 2/3;
     align-self: center;
 }
 #Navi{
@@ -730,10 +792,9 @@ top: 14px;
     position:absolute;
     width: 92vw;
     text-align: center;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 #Navi li{
-    margin-left: 10vw;
     font-weight: 500;
 }
 .aktiv_small{
@@ -749,13 +810,14 @@ top: 14px;
     color: #504F95;
 }
 
-#Österreich{
+#Österreich, #dash_bezirk_name{
     text-align: center;
     color: #221F77;
     grid-row: 1/1;
     grid-column: 1/4;
-    font-size: 16pt;
+    font-size: 3vh;
 }
+
 #dropbtn_bezirk, #dropbtn_bundesland{
     font-size: 16pt;
 }
@@ -805,7 +867,62 @@ top: 14px;
     text-align: right;
     padding: 1.5rem 2rem;
 }
+/* Areachart */
+.grid line {
+    stroke: #f1f1f1; 
+    stroke-opacity: 0.7;
+    shape-rendering: crispEdges; 
+  }
+  
+  .grid path {
+    stroke: #f1f1f1; 
+    stroke-opacity: 0.7;
+    shape-rendering: crispEdges;
+  }
 
+  .grid{
+      font-size: 0.938rem;
+  }
+
+  #AC_TT > svg{
+    padding: 10 0 0 0;
+  }
+
+/* Auslastung */
+  .smallLabel{
+    font-size: 0.938rem;/*15px;*/
+    text-align: center;
+    text-transform: none; 
+}
+
+
+.bigLabel{
+    font-size: 1.3em;
+    text-align: center;
+    text-transform: none; 
+}
+
+.anfangstext{
+    font-size: 0.938rem; /*15px;*/
+    text-align: center;
+    text-transform: none; 
+}
+
+#wrapper > svg{
+    margin: 1rem 0; 
+}
+
+
+.rectLinks{
+    fill: #34367d;
+}
+
+.rectRechts{
+    fill: #fff;
+    /* fill: #f4f3ff; */
+
+}
+ /*_*/ 
   .info_dash_button{
       margin-left: 5vw;
   }
@@ -855,6 +972,9 @@ top: 14px;
 .panel_dash{
     text-align: center;
     width: 100%;
+}
+.Akkordeon_dash > button{
+    line-height: 4vh;
 }
 /************************************************__TIPPS__********************************/
 #mainwrapper_tipps{
@@ -958,7 +1078,7 @@ top: 14px;
     top: 90px;
     left: 0;
     right: 0;
-    padding-bottom: 40vw;
+    padding-bottom: 20vw;
     width: 100vw;
     justify-content: center;
 }
@@ -1042,13 +1162,19 @@ top: 14px;
     padding-bottom:4%;
     border-radius: 10px;
     position:fixed;
-    top: 55vh;
+    bottom: 14vh;
+    /*margin-top: -100px;*/
     width: 97.5vw;
 }
 p{
     color: black;
     font-size: 12pt;
     font-weight: 500;
+}
+.number{
+    color: white;
+    font-size: 16pt;
+    text-decoration: underline;
 }
 #Quelle{
     color: #504F95;
@@ -1067,19 +1193,21 @@ p{
 #overlay{
     background-color: #221F78;
     display: none;
-    top: 15vh;
+    /*top: 0vw;
     left: 0;
-    margin-top: 7vh; 
+    margin-top: 7vh; */
     border-radius: 15px;
     z-index: 3;
-    height: 78vh;
+    height: 85vh;
     width: 97.5vw;
+    margin-top: 15vh;
     position: fixed;  
+
 }
 #overlay p{
     color: white;
     font-weight: 300;
-    font-size: 16pt; 
+    font-size: 15pt; 
 }
 #overlay b{
     font-weight: 500;
@@ -1087,7 +1215,7 @@ p{
 #overlay_flex{
     width: 85vw;
     margin-left: 7vw;
-    margin-top: 18vh; 
+    margin-top: 15vh; 
 }
 #overlay_img{
  float:right;
@@ -1100,7 +1228,7 @@ p{
     color: white;
     border: none;
     font-size: 25pt;
-    margin-top: -15vh;
+    margin-top: -12vh;
     margin-left: 3vw;
     float: right;
 }
@@ -1326,7 +1454,7 @@ h3{
 
 @media screen and (min-width:720px) {
     /**************************************__INDEX__********************************/
-    #walk_welle{
+    .walk_welle{
         width: 45vmin;
     }
     #walk_h2{
@@ -1398,17 +1526,23 @@ h3{
         width: 4vmin;
         height: 4vmin;
     }
+    .flex_menu{
+        height: unset;
+    }
     #mainwrapper_start{
         top:100px;
         padding-bottom: 10vw;
-        grid-template-columns: 10vw 30vw 1.5vw 1.5vw 1.5vw 1.5vw 30vw 10vw;
-        grid-template-rows: 10vh 8vh 10vh 12vh 12vh 1.5vh 1.5vh 12vh 10vh;
+        /* grid-template-columns: 10vw 30vw 1.5vw 1.5vw 1.5vw 1.5vw 30vw 10vw; */
+        /* grid-template-columns: 10vw 10vw 6vw 2vw 2vw 2vw 2vw 6vw 10vw 10vw; */
+        grid-template-columns: 10% 10% 6% 2% 2% 2% 2% 6% 10% 10%;
+        grid-template-rows: 10vh 7vh 8vh 6vh 6vh 9vh 1.5vh 0.5vh 11vh 10vh;
+        /* grid-template-rows: 10vh 8vh 10vh 12vh 12vh 1.5vh 1.5vh 12vh 10vh; */
     }
-    .lastTime{
-        margin-top: 4vmin;
-    }
-    #letzte{
+    #letzte_ampel, #letzte_pos_faelle{
         font-size: 1.7vmin;
+    }
+    #letzte_pos_faelle{
+        margin-top: 3vw;
     }
     .slider:before{
         line-height: 4vmin;
@@ -1416,10 +1550,10 @@ h3{
         left:3.8vmin;
         height: 4vmin;
         margin-top: -1px;
-        font-size: 1.3vmin;
+        font-size: 1.6vmin;
     }
     .slider:after{
-        font-size: 1.3vmin;
+        font-size: 1.6vmin;
         top: 1.8vmin;
         left:2vmin;
     }
@@ -1441,6 +1575,9 @@ h3{
     #farbkreisAktiv{
         height: 10vmin;
         width: 10vmin;
+        grid-column: 7/9;
+        justify-self: center;
+        margin-left: 0px;
     }
     #farbkreisAktiv > h2{
         font-size: 1rem;
@@ -1480,6 +1617,22 @@ h3{
         align-self: center;
         justify-self: center;
     }
+    #positiveFaelle{
+        /* font-size: 30vmin; */
+        font-size: 0.60rem;
+        justify-self: center;
+        /* margin-left: 8px; */
+        align-self: center;
+        grid-column: 7/9;
+        margin-bottom: 1.8vw;
+    }
+
+    #value_pos{
+        justify-self: center;
+        margin-left: 7px;
+        align-self: center;
+        grid-column: 7/9;
+    }
     #standortText{
         font-size: 1.5vh;
     }
@@ -1517,6 +1670,35 @@ h3{
         height:18vmin;
         width: 18vmin;
     }
+    .ro{
+        position: fixed;
+        top: 12vh;
+        right: 0.5vw;
+        text-align: end;
+        display:block;
+        z-index: 2;
+    }
+    .ro img{
+        width: 25vmin;
+    }
+    .lu{
+        bottom: 10vh;
+        position: fixed;
+        display:block;
+        z-index: 2;
+    }
+    .lu img{
+        width: 25vmin;
+    }
+    .lu_unterseite{
+        bottom: 0;
+        position: fixed;
+        display:block;
+        z-index: 2;
+    }
+    .lu_unterseite img{
+        width: 25vh;
+    }
 
     /*********************************__ZAHLEN__********************/
 
@@ -1528,10 +1710,10 @@ h3{
         height: 9vmin;
     }
     #Navi ul{
-        width: 98vw;
-    }
-    #Navi li{
-        margin-left: 10vmin;
+        width: 50vw;
+        margin-left: 55%;
+        margin-right: -45%;
+        transform: translate(-57%, -0%);
     }
     #Navi ul li a{
         font-size: 2.5vmin;
@@ -1553,11 +1735,14 @@ h3{
     }
     .Akkordeon_dash{
         width: 70vmin;
-        margin-left: 33.5%;
         margin-top: 0;
+        margin-left: 55%;
+        margin-right: -45%;
+        transform: translate(-57%, -0%);
     }
     .Akkordeon_dash > button{
         border-top: 0.2px solid gray;
+        line-height: 6vh;
     }
     .info_dash_button{
         margin-left: 5vmin;
@@ -1649,11 +1834,14 @@ h3{
     /******************************************__SYMPTOME__*****************************/
     #mainwrapper_symptome{
         padding-bottom: 20vmin;
+        top: 25vmin;
     }
     #Akkordeon{
         width: 70vmin;
-        margin-left: 32%;
         margin-top: 0;
+        margin-left: 55%;
+        margin-right: -45%;
+        transform: translate(-57%, -0%);
     }
     .panel_links ul{
         margin-left: 9vmin;
@@ -1695,14 +1883,19 @@ h3{
         padding-right: 11vmin;
         padding-top: 5vmin;
         padding-bottom: 5vmin;
-        top: 60vmin;
-        width: unset;
+        width: 70vmin;
+    margin-left: 55%;
+    margin-right: -45%;
+    transform: translate(-57%, -0%);
+    margin-top: -11.5%;
     }
     #overlay{
         width: 71vmin;
+        margin-top: 13vh;
         left: initial;
-        height: 84.5vmin;
-        margin-top: 0;
+        margin-left: 55%;
+        margin-right: -45%;
+        transform: translate(-57%, -0%);
     }
     #overlay_flex{
        width: 50vmin;
@@ -1859,12 +2052,10 @@ h3{
     }
     .panel_über_start img{
         margin-right: 11vw;
-        width: 14vmin;
     }
     .panel_über_links img{
         margin-right: 5vw;
         margin-left: 6vw;
-        width: 14vmin;
     }
     .über_text_links{
         width: 25vw;
@@ -1875,7 +2066,6 @@ h3{
     }
     .panel_über_rechts img{
         margin-right: 11vw;
-        width: 14vmin;
     }
     .über_text_rechts{
         width: 18vw;

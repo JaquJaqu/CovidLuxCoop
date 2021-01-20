@@ -334,7 +334,7 @@ var dataOff;
 //dataOffline: Data aus Json von LS
   if(dataOffline != null ){
     var dataOfflineFormat = new Date(dataOffline.Stand);
-    document.getElementById("letzte").innerHTML = "Letzte Aktualisierung: "+dataOfflineFormat.toLocaleString();
+    document.getElementById("letzte_ampel").innerHTML = "Ampel Stand: "+dataOfflineFormat.toLocaleString("de-DE");
      dataOff = dataOffline;
      //console.log("AMPELFARBE wird offline genommen", "dataOff:" ,dataOff);
      getWarnstufe(dataOff);
@@ -395,15 +395,16 @@ function downloadAmpelFile(path2) {
   if(connBool ==true){ //wenn ich internet hab 
   //console.log("Ampelfile wird gedownloaded");
   loadJSON(path2, function (data) {
-    let items_json = data[11];
+    let items_json = data[12];
     var date = new Date();//var updateDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
         var updateDate = date.toGMTString(); // Tue, 17 Nov 2020 14:16:29 GMT --> Gibt mir die jetzige Uhrzeit im Format das lastModiefied Header Request auch hat
          ampelDatatrue = {updateDate: updateDate, items_json };
-          //console.log("AMPELDATEN WERDEN GELADEN", ampelDatatrue);
-
-          //console.log("Ampelfile wird gedownloadet");
-          localStorage.setItem("Ampeldaten", JSON.stringify(ampelDatatrue));
-          onlineAmpeldata = items_json;
+         var dataOfflineFormat = new Date(items_json.Stand);
+    document.getElementById("letzte_ampel").innerHTML = "Ampel Stand: "+dataOfflineFormat.toLocaleString("de-DE");
+    
+    //console.log("Ampelfile wird gedownloadet");
+    localStorage.setItem("Ampeldaten", JSON.stringify(ampelDatatrue));
+    onlineAmpeldata = items_json;
 
     if(!localStorage.getItem("Ampeldaten")){
         valueAktiveFaelle =" "; //damit kein undefinded angezeigt wird..
@@ -907,6 +908,16 @@ function prepareBezirksData(pathBezirke2){
         items_jsonBezirke2 = realData; 
         let AktiveFaellestoreBezirk;
 
+        var last = items_jsonBezirke2.length-1;
+
+        let posFaelleDatum = items_jsonBezirke2[last].Time;
+       var index = posFaelleDatum.indexOf(" ");
+       var id = posFaelleDatum.substr(0, index);
+       var text = posFaelleDatum.substr(index + 1);
+        var realDatum = id+", "+text;
+
+        document.getElementById("letzte_pos_faelle").innerHTML = "Positive Fälle Stand: "+realDatum;
+
         for (i = 0; i < items_jsonBezirke2.length; i ++){
           const obj = items_jsonBezirke2[i];
           const newKeys = { Time: "datum"}; //wenn geändert wird dann unten auch! 
@@ -1126,6 +1137,8 @@ function preparemeineDaten(){
   //console.log("letzter Wert:", meineDatenAAF[IndexlastElementAAF]);
   getAktiveFaelle = meineDatenAAF[IndexlastElementAAF];
 
+  valueAktiveFaelle =getAktiveFaelle;
+
 
 
   
@@ -1147,7 +1160,8 @@ function preparemeineDaten(){
 
   
 //Bezirksfile Download
-function downloadBezirksFile(pathBezirke2) {
+async function downloadBezirksFile(pathBezirke2) {
+  //await onload_start();
   if(connBool ==true){
   //console.log("Bezirksfile wird gedownloaded");
   Papa.parse(pathBezirke2, {
@@ -1233,7 +1247,7 @@ function renameKeys(obj, newKeys) {
 //Umlaute ersetzen
 function replaceUmlauts(value){
 //value = value.replace(/\u00e4/g, 'ae');
-value = value.replace(/\u00f6/g, 'oe');
+// value = value.replace(/\u00f6/g, 'oe');
 value = value.replace(/\u00fc/g, 'ue');
 value = value.replace(/\u00c4/g, 'Ae');
 value = value.replace(/\u00d6/g, 'Oe');
@@ -1246,7 +1260,7 @@ return value;
 //Umlaute einfügen
 function makeUmlauts(value){
 //value = value.replace(/\u00e4/g, 'ae');
-value = value.replace( /'oe'/g,'\u00f6');
+// value = value.replace( /'oe'/g,'\u00f6');
 value = value.replace( /'ue'/g,'\u00fc');
 value = value.replace( /'Ae'/g,'\u00c4');
 value = value.replace( /'Oe'/g,'\u00d6');

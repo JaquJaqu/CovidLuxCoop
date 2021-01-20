@@ -199,10 +199,10 @@ function setHardfacts() {
 
 function onload_bezirk() {
   if (localStorage.getItem("letzterBezirk") == null) {
-    document.getElementById("dropbtn_bezirk").innerHTML = bezirk;
+    document.getElementById("dash_bezirk_name").innerHTML = bezirk;
   }
   else if (localStorage.getItem("storeBezirk") != null) {
-    document.getElementById("dropbtn_bezirk").innerHTML = localStorage.getItem("letzterBezirk");
+    document.getElementById("dash_bezirk_name").innerHTML = localStorage.getItem("letzterBezirk");
   }
 }
 

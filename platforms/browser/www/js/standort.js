@@ -350,8 +350,8 @@ function drawIllustration(ampelStufe){
         basicIllu();
       
       document.getElementById("ringerl").style.display = "block";
-      document.getElementById("ringerl").style.gridColumn = "3/3";
-        document.getElementById("ringerl").style.gridRow = "6/7";
+      document.getElementById("ringerl").style.gridColumn = "4/4";
+        document.getElementById("ringerl").style.gridRow = "7/7";
         document.getElementById("ringerl").style.alignSelf = "center";
       } else if (ampelStufe == 2) {
         document.getElementById("farbkreis").style.backgroundColor = "#FED500";
@@ -360,8 +360,8 @@ function drawIllustration(ampelStufe){
         basicIllu();
         
         document.getElementById("ringerl").style.display = "block";
-        document.getElementById("ringerl").style.gridColumn = "4/4";
-        document.getElementById("ringerl").style.gridRow = "7/8";
+        document.getElementById("ringerl").style.gridColumn = "5/5";
+        document.getElementById("ringerl").style.gridRow = "8/8";
         document.getElementById("ringerl").style.alignSelf = "center";
       } else if (ampelStufe == 3) {
         document.getElementById("farbkreis").style.backgroundColor = "#F59C00";
@@ -370,8 +370,8 @@ function drawIllustration(ampelStufe){
         basicIllu();
         
         document.getElementById("ringerl").style.display = "block";
-        document.getElementById("ringerl").style.gridColumn = "5/5";
-        document.getElementById("ringerl").style.gridRow = "7/8";
+        document.getElementById("ringerl").style.gridColumn = "6/6";
+        document.getElementById("ringerl").style.gridRow = "8/8";
         document.getElementById("ringerl").style.alignSelf = "center";
       } else if (ampelStufe == 4) {
         document.getElementById("farbkreis").style.backgroundColor = "#CB0538";
@@ -380,8 +380,8 @@ function drawIllustration(ampelStufe){
         basicIllu();
         
         document.getElementById("ringerl").style.display = "block";
-        document.getElementById("ringerl").style.gridColumn = "6/6";
-        document.getElementById("ringerl").style.gridRow = "6/7";
+        document.getElementById("ringerl").style.gridColumn = "7/7";
+        document.getElementById("ringerl").style.gridRow = "7/7";
         document.getElementById("ringerl").style.alignSelf = "center";
       }
       $("#loader_class").css({"display": "flex", "justify-content": "center", "align-items": "center", "flex-direction": "column"}).fadeOut(1000);
@@ -397,7 +397,7 @@ var dataOff;
 //dataOffline: Data aus Json von LS
   if(dataOffline != null ){
     var dataOfflineFormat = new Date(dataOffline.Stand);
-    document.getElementById("letzte").innerHTML = "Letzte Aktualisierung: "+dataOfflineFormat.toLocaleString();
+    document.getElementById("letzte_ampel").innerHTML = "Ampel Stand: "+dataOfflineFormat.toLocaleString("de-DE");
      dataOff = dataOffline;
      //console.log("AMPELFARBE wird offline genommen", "dataOff:" ,dataOff);
      getWarnstufe(dataOff);
@@ -462,10 +462,12 @@ async function downloadAmpelFile(path2) {
 await onload_start();
   if(connBool ==true){ //wenn ich internet hab und auf die Ampedaten zugreifen darf dann..
   loadJSON(path2, function (data) {
-    let items_json = data[11];
+    let items_json = data[12];
     var date = new Date();//var updateDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
         var updateDate = date.toGMTString(); // Tue, 17 Nov 2020 14:16:29 GMT --> Gibt mir die jetzige Uhrzeit im Format das lastModiefied Header Request auch hat
          ampelDatatrue = {updateDate: updateDate, items_json };
+         var dataOfflineFormat = new Date(data[12].Stand);
+    document.getElementById("letzte_ampel").innerHTML = "Ampel Stand: "+dataOfflineFormat.toLocaleString("de-DE");
     
     //console.log("Ampelfile wird gedownloadet");
     localStorage.setItem("Ampeldaten", JSON.stringify(ampelDatatrue));
@@ -964,6 +966,16 @@ function prepareBezirksData(pathBezirke2){
         const realData = JSON.parse(jsonReplace);
         items_jsonBezirke2 = realData; 
 
+        var last = items_jsonBezirke2.length-1;
+
+        let posFaelleDatum = items_jsonBezirke2[last].Time;
+       var index = posFaelleDatum.indexOf(" ");
+       var id = posFaelleDatum.substr(0, index);
+       var text = posFaelleDatum.substr(index + 1);
+        var realDatum = id+", "+text;
+
+        document.getElementById("letzte_pos_faelle").innerHTML = "Positive Fälle Stand: "+realDatum;
+
         for (i = 0; i < items_jsonBezirke2.length; i ++){
           const obj = items_jsonBezirke2[i];
           const newKeys = { Time: "datum"}; //wenn geändert wird dann unten auch! 
@@ -1189,6 +1201,7 @@ function preparemeineDaten(){
   //console.log("IndexlastElementAAF", IndexlastElementAAF);
   //console.log("letzter Wert:", meineDatenAAF[IndexlastElementAAF]);
   getAktiveFaelle = meineDatenAAF[IndexlastElementAAF];
+
   valueAktiveFaelle =getAktiveFaelle;
 
   drawIllustration(ampelStufe);
@@ -1222,7 +1235,8 @@ function checkInternet(pathBezirke2){
    }
   
 //Bezirksfile Download
-function downloadBezirksFile(pathBezirke2) {
+async function downloadBezirksFile(pathBezirke2) {
+  //await onload_start();
   if(connBool ==true){
   Papa.parse(pathBezirke2, {
     download: true,

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
     <head>
         <meta charset="utf-8">
         <meta name="msapplication-tap-highlight" content="no">
@@ -31,6 +31,9 @@
         </div>
         </header>
 
+        <div class="ro"><img src="img/rechts_oben.png" width="175vh"></div>
+        <div class="lu"><img src="img/links_unten.png" width="175vh"></div>
+
         <div id="unterstatus"></div>
         <div id="status"></div>
         <div id="loader_class">
@@ -40,9 +43,9 @@
             
             <div id="mainwrapper_start">
 
-                <div class="lastTime">
-                    <p id="letzte"></p>
-                </div>
+                    <p id="letzte_ampel"></p>
+                    <p id="letzte_pos_faelle"></p>
+                
                 
                             <div class="dropdown" display="block">
                                 <button onclick="myFunction()" class="dropbtn" id="dropbtn">anderen Bezirk wählen</button>
@@ -52,19 +55,19 @@
                             </div>
 
                 <h2 id ="infoText">Es wird kein Bezirk angezeigt</h2>
-                <h1 id="bezirk"></h1>
-                <h2 id="standortText"></h2>
+                <h1 id="bezirk">Bezirk</h1>
+                <h2 id="standortText">Standort</h2>
                 <div id="farbkreisAktiv" onclick="location.href='dashboard_bezirk.html'"></div>
-                    <h2 id="value_pos" onclick="location.href='dashboard_bezirk.html'"></h2>
-                    <h3 id="positiveFaelle" onclick="location.href='dashboard_bezirk.html'">positive Fälle</h3>
-                
-                <div id="farbkreisPH"></div> 
+                <h2 id="value_pos" onclick="location.href='dashboard_bezirk.html'"></h2>
+                <h3 id="positiveFaelle" onclick="location.href='dashboard_bezirk.html'">positive Fälle</h3>
+
+                <div id="farbkreisPH" role="img" aria-label="Ampelfarbe des ausgewählten Bezirks"></div> 
                 
                 <div id="ringerl"></div>
-                <div class = "farbkreiseklein" id="farbkreisgreen"></div>
-                <div class = "farbkreiseklein" id="farbkreisyellow"></div>
-                <div class = "farbkreiseklein" id="farbkreisorange"></div>
-                <div class = "farbkreiseklein" id="farbkreisred"></div>
+                <div class = "farbkreiseklein" id="farbkreisgreen" role="img" aria-label="Ampelfarbe Grün"></div>
+                <div class = "farbkreiseklein" id="farbkreisyellow" role="img" aria-label="Ampelfarbe Gelb"></div>
+                <div class = "farbkreiseklein" id="farbkreisorange" role="img" aria-label="Ampelfarbe Orange"></div>
+                <div class = "farbkreiseklein" id="farbkreisred" role="img" aria-label="Ampelfarbe Rot"></div>
             
             <h1 id="WarnstufeGeschrieben"></h1>
             <h2 id="info_start">Aktiviere den Zugriff auf deinen Standort oder wähle einen Bezirk aus der Liste</h2>
@@ -72,7 +75,7 @@
             <div id="Standortbox">
                 <h3>Standort</h3>
                 <label class="switch">
-                    <input type="checkbox" onclick="myLocation()"  checked ='true' id='switchValue'  name="disableLocation">
+                    <input type="checkbox" onclick="myLocation()" checked ='true' id='switchValue'  name="disableLocation" title="Standort">
                     <span class="slider round"></span>
                 </label>
             </div>
@@ -82,32 +85,29 @@
 
             
             <footer>
-                <nav>
+                <nav aria-label="Navigation">
                     <ul>
                         <li>
-                        <div class="nav_element">
-                            <div id="RectStart"></div>
-                        <a href="start.html" class="nav_element"><img alt="Start" src="img/home_blau.svg" width="30vw" height="30vw">    
-                        <span class="aktiv">Start</span></a>
-                        </div>                 
-                    </li>
-                    <li>
-                        <div class="nav_element">
-                        <a href="dashboard_bezirk.html" class="nav_element"><img alt="Zahlen" src="img/statistics_grau.svg" width="30vw" height="30vw">
-                        Zahlen</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="nav_element">
-                        <a href="tipps.html" class="nav_element"><img alt="Tipps" src="img/maske_grau.svg" width="30vw" height="30vw">
-                        Tipps</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="nav_element">
-                        <a href="symptome.html" class="nav_element"><img alt="Symptome" src="img/fieber_grau.svg" width="30vw" height="30vw">
-                        Symptome</a>
-                        </div>
+                            <div class="nav_element" role="img" aria-label="Start">
+                                <div id="RectStart"></div>
+                                <a href="start.html" class="nav_element"><img alt="Start" src="img/home_blau.svg" width="30vw" height="30vw"><span class="aktiv">Start</span></a>
+                               </div>                 
+                           </li>
+                           <li>
+                               <div class="nav_element" role="img" aria-label="Zahlen">
+                                <a href="dashboard_bezirk.html" class="nav_element"><img alt="Zahlen" src="img/statistics_grau.svg" width="30vw" height="30vw">Zahlen</a>
+                               </div>
+                           </li>
+                           <li>
+                               <div class="nav_element" role="img" aria-label="Tipps">
+                                <a href="tipps.html" class="nav_element"><img alt="Tipps" src="img/maske_grau.svg" width="30vw" height="30vw">Tipps</a>
+                               </div>
+                           </li>
+                           <li>
+                               <div class="nav_element" role="img" aria-label="Symptome">
+                                <a href="symptome.html" class="nav_element"><img alt="Symptome" src="img/fieber_grau.svg" width="30vw" height="30vw">Symptome</a>
+                               </div>
+                        
                     </li>
                     </ul>
                 </nav>
