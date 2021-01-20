@@ -8,8 +8,8 @@
         <link rel="stylesheet" href="css/index.css">
         <link rel="icon" href="img/Logo_CovidLux.png">
         <title>CovidLux</title>
-        <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
-        <script src="https://d3js.org/d3-fetch.v2.min.js"></script>
+         <!-- <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script> -->
+         <script src="https://d3js.org/d3.v5.min.js"></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js'></script>
         <script src="js/jquery.min.js"></script> 
     </head>
@@ -29,6 +29,9 @@
         </div>
         </header>
 
+        <div class="ro"><img src="img/rechts_oben.png" width="175vh"></div>
+        <div class="lu"><img src="img/links_unten.png" width="175vh"></div>
+        
         <div id="unterstatus"></div>
         <div id="status"></div>
         <div id="unterinfo" onclick="info_close()"></div>
@@ -57,34 +60,24 @@
                         </div>
                     </div> -->
                     
-                    <button class="accordion">Neuerkrankungen <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_Neuerkrankungen()"></button>
+                    <button class="accordion">Neuerkrankungen <img src="./img/fragezeichen_gray.png" class="info_dash_button" onclick="info_Neuerkrankungen()"></button>
                     <div id="hfO_Neuerk" class="verlauf"></div>
                     <div class="panel">
-                        <div class="panel_dash">
-                            <p>X</p>
-                            <!--<h2>Schwere Symptome</h2>
-                            <button class="slmm" onclick="info_area()">So liest man mich</button>-->
-                        </div>
+                        <div id="AC_Neuerk"class="panel_dash"></div>
                     </div>
                     
-                    <button class="accordion">Todesfälle <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_Todesfälle()"></button>
+                    <button class="accordion">Todesfälle <img src="./img/fragezeichen_gray.png" class="info_dash_button" onclick="info_Todesfälle()"></button>
                     <div id="hfO_TT" class="verlauf"></div>
                     <div class="panel">
-                        <div class="panel_dash">
-                            <p>X</p>
-                            <!--<h2>Schwere Symptome</h2>
-                            <button class="slmm" onclick="info_area()">So liest man mich</button>-->
-                        </div>
+                        <div id="AC_TT" class="panel_dash"></div>
                     </div>   
 
-                    <!-- <button class="accordion">Bettenauslastung<img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_Betten()"></button>
-                    <div class="verlauf"><img src="./img/Dashboard-1.png" width="100%"></div>
+                    <button class="accordion">Bettenauslastung<img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_Betten()"></button>
+                    <div id="wrapper2" class="verlauf"></div>
                     <div class="panel">
-                        <div class="panel_links">
-                            <h2>Schwere Symptome</h2>
+                        <div id="wrapper" class="panel_links">
                         </div>
-                    </div>  -->
-                </div>
+                    </div> 
                 
             </div>   
             </div>
@@ -120,12 +113,14 @@
             </footer>
 
 
-        <script src="cordova.js"></script>
-        <script src="js/functions.js"></script>
-        <script src="js/functions_dash.js"></script>
-        <script src="js/DashboardData.js"></script>
-        <script src="js/previewchart.js"></script>
-        <script src="js/dashboard_österreich.js"></script>
+            <script src="cordova.js"></script>
+            <script src="js/functions.js"></script>
+            <script src="js/functions_dash.js"></script>
+            <script src="js/DashboardData.js"></script>
+            <script src="js/charts.js"></script>
+            <!-- <script src="js/chartfunction2.js"></script> -->
+            <script src="js/chartAuslastung.js"></script>
+            <script src="js/dashboard_österreich.js"></script>
        
         </div>
     </body>

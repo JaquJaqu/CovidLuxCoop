@@ -11,7 +11,6 @@
         <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
         <script src="https://d3js.org/d3-fetch.v2.min.js"></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js'></script>
-        
         <script src="js/jquery.min.js"></script> 
         
     </head>
@@ -29,6 +28,9 @@
     </div> 
         </div>
 </header>
+
+<div class="ro"><img src="img/rechts_oben.png" width="175vh"></div>
+        <div class="lu"><img src="img/links_unten.png" width="175vh"></div>
 
 <div id="unterstatus"></div>
 <div id="status"></div>
@@ -57,7 +59,7 @@
         <!--<p class="letzte_zahlen">Letzte Aktualisierung: Datum.Mustermonat</p>-->
 
         <div class="Akkordeon_dash">
-            <button class="accordion">Aktive Fälle <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_aktiveFälle()"></button>
+            <button class="accordion">Aktive Fälle <img src="./img/fragezeichen_gray.png" class="info_dash_button" onclick="info_aktiveFälle()"></button>
             <div id ="hfBez_aktF" class="verlauf"></div>
             <div class="panel">
                 <div class="panel_dash">
@@ -70,7 +72,7 @@
                 </div>
             </div>
             
-            <button class="accordion">Neuerkrankungen <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_Neuerkrankungen()"></button>
+            <button class="accordion">Neuerkrankungen <img src="./img/fragezeichen_gray.png" class="info_dash_button" onclick="info_Neuerkrankungen()"></button>
             <div id ="hfBez_Neuerk" class="verlauf"></div>
             <div class="panel">
                 <div class="panel_dash">
@@ -83,7 +85,7 @@
                 </div>
             </div>
             
-            <button class="accordion">Todesfälle <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_Todesfälle()"></button>
+            <button class="accordion">Todesfälle <img src="./img/fragezeichen_gray.png" class="info_dash_button" onclick="info_Todesfälle()"></button>
             <div id ="hfBez_TTBez" class="verlauf"></div>
             <div class="panel">
                 <div class="panel_dash">
