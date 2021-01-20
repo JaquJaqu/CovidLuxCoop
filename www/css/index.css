@@ -622,9 +622,9 @@ div#farbkreisAktiv > h3{
   .dropdown-content {
     display: none;
     position: absolute;
-    left: 55%;
-    margin-right: -45%;
-    transform: translate(-57%, -0%);
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -0%);
     background-color: white;
     min-width: 50vw;
     border: 1px solid #ddd;
@@ -810,7 +810,7 @@ top: 14px;
     color: #504F95;
 }
 
-#Österreich, #dash_bezirk_name{
+#Österreich, #dash_bezirk_name, #dash_bundesland_name{
     text-align: center;
     color: #221F77;
     grid-row: 1/1;
@@ -832,9 +832,9 @@ top: 14px;
     display: none;
     position: absolute;
     top: 50px;
-    left: 55%;
-    margin-right: -45%;
-    transform: translate(-57%, -0%);
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -0%);
     background-color: white;
     min-width: 50vw;
     border: 1px solid #ddd;
@@ -1711,9 +1711,9 @@ h3{
     }
     #Navi ul{
         width: 50vw;
-        margin-left: 55%;
-        margin-right: -45%;
-        transform: translate(-57%, -0%);
+        margin-left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -0%);
     }
     #Navi ul li a{
         font-size: 2.5vmin;
@@ -1736,9 +1736,9 @@ h3{
     .Akkordeon_dash{
         width: 70vmin;
         margin-top: 0;
-        margin-left: 55%;
-        margin-right: -45%;
-        transform: translate(-57%, -0%);
+        margin-left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -0%);
     }
     .Akkordeon_dash > button{
         border-top: 0.2px solid gray;
@@ -1789,10 +1789,10 @@ h3{
         width: 50vmin;
     }
     .panel_tipps_links{
-        width: 100vw;
+        width: 60vw;
         padding-right: 0;
         padding-left: 0;
-        margin-left: 0;
+        margin-left: 20vw;
         padding-bottom: 2%;
         justify-content: center;
     }
@@ -1806,10 +1806,10 @@ h3{
         margin-left: 0;
     }
     .panel_tipps_rechts{
-        width: 100vw;
+        width: 60vw;
         padding-right: 0;
         padding-left: 0;
-        margin-left: 0;
+        margin-left: 20vw;
         padding-bottom: 2%;
         justify-content: center;
     }
@@ -1822,10 +1822,11 @@ h3{
         width: 50vmin;
     }
     .panel_weitere_tipps{
-        width: 100vw;
+        width: 60vw;
         padding-top: 5vmin;
         padding-bottom: 10vmin;
         justify-content: center;
+        margin-left: 20vw;
     }
     .panel_weitere_tipps a{
         font-size: 2.5vmin;
@@ -1839,9 +1840,9 @@ h3{
     #Akkordeon{
         width: 70vmin;
         margin-top: 0;
-        margin-left: 55%;
-        margin-right: -45%;
-        transform: translate(-57%, -0%);
+        margin-left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -0%);
     }
     .panel_links ul{
         margin-left: 9vmin;
@@ -1884,18 +1885,18 @@ h3{
         padding-top: 5vmin;
         padding-bottom: 5vmin;
         width: 70vmin;
-    margin-left: 55%;
-    margin-right: -45%;
-    transform: translate(-57%, -0%);
+    margin-left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -0%);
     margin-top: -11.5%;
     }
     #overlay{
         width: 71vmin;
         margin-top: 13vh;
         left: initial;
-        margin-left: 55%;
-        margin-right: -45%;
-        transform: translate(-57%, -0%);
+        margin-left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -0%);
     }
     #overlay_flex{
        width: 50vmin;

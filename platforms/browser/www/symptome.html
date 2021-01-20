@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
     <head>
         <meta charset="utf-8">
         <meta name="msapplication-tap-highlight" content="no">
@@ -26,20 +26,23 @@
             </div>
         </header>
 
+        <div class="ro"><img src="img/rechts_oben.png" width="175vh"></div>
+        <div class="lu"><img src="img/links_unten.png" width="175vh"></div>
+
         <div id="unterstatus"></div>
         <div id="status"></div>
 
         <div id=overlay>
             <div id="overlay_flex">
-                <button id="overlay_x" onclick="endOverlay()"><img src="img/X3_leer_grau.svg" width="35vw"></button>
-                <img src="img/notruf.png" id="overlay_img" width="100vw" height="100vh">
+                <button id="overlay_x" onclick="endOverlay()"><img src="img/X3_leer_grau.svg" alt="schließen" width="35vw"></button>
+                <img src="img/notruf.png" alt="Telefonhörer mit Sprechblase" id="overlay_img" width="100vw" height="100vh">
             <p>Solltest du die beschriebenen Krankheitssymptome aufweisen, bleibe bitte zu Hause und kontaktiere
                 die 24h-Hotline <b><a href="tel:1450" class="number">1450</a></b> !
             </p>
             <p>Solltest du allgemeine Fragen zum Corona Virus haben, kannst du dich an die Infoline 
                 <b><a href="tel:+43-800-555621" class="number">0800 555 621</a></b> (täglich von 7:00 bis 20:00) wenden. Hier wird dir gerne eine Auskunft gegeben.
             </p>
-            </div>
+        </div>
         </div>
             
             <div id="mainwrapper_symptome">
@@ -55,7 +58,7 @@
                         </ul>
                     </div>
                     <div class="panel_rechts">
-                        <img src="img/fever.png" width="80vw" height="80vh">
+                        <img src="img/fever.png" alt="Person mit Fibertheromometer" width="80vw" height="80vh">
                     </div>
                 </div>
                 
@@ -71,7 +74,7 @@
                         </ul>
                     </div>
                     <div class="panel_rechts">
-                        <img src="img/kopfschmerzen.png" width="80vw" height="80vh">
+                        <img src="img/kopfschmerzen.png" alt="Person mit Kopfschmerzen" width="80vw" height="80vh">
                     </div>
                 </div>
                 
@@ -87,7 +90,7 @@
                         </ul>
                     </div>
                     <div class="panel_rechts">
-                        <img src="img/lunge.png" width="80vw" height="80vh">
+                        <img src="img/lunge.png" alt="kranke Lunge" width="80vw" height="80vh">
                     </div>
                 </div>     
         
@@ -96,12 +99,13 @@
 
                 
                 </div>
+                <h1 id="Wastun" onclick="startOverlay()">Ich glaube ich bin infiziert. Was nun?</h1>
             </div>   
             
 
 
             <footer>
-                <h1 id="Wastun" onclick="startOverlay()">Ich glaube ich bin infiziert. Was nun?</h1>
+                
                 <nav>
                     <ul>
                         <li>

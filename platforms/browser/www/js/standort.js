@@ -1235,7 +1235,8 @@ function checkInternet(pathBezirke2){
    }
   
 //Bezirksfile Download
-function downloadBezirksFile(pathBezirke2) {
+async function downloadBezirksFile(pathBezirke2) {
+  //await onload_start();
   if(connBool ==true){
   Papa.parse(pathBezirke2, {
     download: true,
@@ -1246,7 +1247,6 @@ function downloadBezirksFile(pathBezirke2) {
          // Here starts your real code with this function
          //preprareBezirksData(results.data); 
          dataOfflineBez = results.data;   
-        
          prepareBezirksData(dataOfflineBez);   
           },
   }); 

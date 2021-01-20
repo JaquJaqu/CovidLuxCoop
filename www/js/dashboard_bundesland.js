@@ -20,14 +20,14 @@ getAkkordeon_dash();
 
 function onload_bundesland() {
     if (localStorage.getItem("storeBundesland") != null) {
-        document.getElementById("dropbtn_bundesland").innerHTML = localStorage.getItem("storeBundesland");
+        document.getElementById("dash_bundesland_name").innerHTML = localStorage.getItem("storeBundesland");
     }
-    if (localStorage.getItem("storeBezirk") != null) {
-        bezirkTemp = localStorage.getItem("storeBezirk");
+    if (localStorage.getItem("letzterBezirk") != null) {
+        bezirkTemp = localStorage.getItem("letzterBezirk");
         loadJSON("bundesland_dropdown.json", function (data) {
             for (i = 0; i < data[0].Bezirke.length; i++) {
                 if (data[0].Bezirke[i].Bezirk == bezirkTemp) {
-                    document.getElementById("dropbtn_bundesland").innerHTML = data[0].Bezirke[i].Bundesland;
+                    document.getElementById("dash_bundesland_name").innerHTML = data[0].Bezirke[i].Bundesland;
                 }
             }
         }, function (xhr) { console.error(xhr); });
