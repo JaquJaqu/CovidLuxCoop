@@ -1,3 +1,16 @@
+.accordion:focus {
+    outline: 2px solid #000000;
+    padding: 18px;
+    /* padding-left: 3.5vw; */
+    /* transition: 0.4s; */
+    padding-left: 75px;
+
+}
+
+*:focus {
+    outline: 2px solid #000000;
+}
+
 
 * {
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
@@ -435,6 +448,7 @@ div#farbkreisAktiv > h3{
     align-self: center;
 }
 
+
 #farbkreisAktiv{
     margin-right: 0;
     position: absolute;
@@ -450,7 +464,7 @@ div#farbkreisAktiv > h3{
     align-self: center;
     /* margin-left: -3px; */
 }
-#positiveFaelle{
+#positiveFaelle {
     position: absolute;
     grid-row: 5/6;
     grid-column: 7/9;
@@ -466,6 +480,7 @@ div#farbkreisAktiv > h3{
 
 }	
 
+
 #value_pos{
     position: absolute;
     grid-row: 4/6;
@@ -477,6 +492,7 @@ div#farbkreisAktiv > h3{
     font-weight: 500;
     color: #211F77;
 }
+
 #ringerl{
     border-radius: 100vw;
     width:16px;
