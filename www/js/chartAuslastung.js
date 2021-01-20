@@ -418,13 +418,17 @@ function yourMainCode(remoteDataAusl) {
             dataset.splice(0, 9);
         }
 
+        // console.log(dataset[0])
+        let AuslHF1 = dataset[0].FZHosp
+        let AuslHF2 = dataset[0].FZHospFree
+        // console.log(AuslHF2/AuslHF1)
 
 
         // console.log("richtige Daten: ", dataset);
 
 
 
-        const width = 400;
+        const width = widthRes;
         const height = 400;
         const barPadding = 200;
         const abstandErsterText = 35;
@@ -459,6 +463,7 @@ function yourMainCode(remoteDataAusl) {
 
         const FZHospPercent = d => dimensions.boundedW * ((d.FZHosp / d3.sum([d.FZHosp, d.FZHospFree])));
         const FZHospFreePercent = d => dimensions.boundedW * ((d.FZHospFree / d3.sum([d.FZHosp, d.FZHospFree])));
+        
 
         // console.log("FZHospFreePercent :", FZHospFreePercent);
 
@@ -493,7 +498,7 @@ function yourMainCode(remoteDataAusl) {
         wrapper.append('text')
             .attr("x", width - 150)
             .attr("y", height - 323)
-            .text('130')
+            .text(AuslHF1)
             .style("fill", "#000")
             .style("font-size", "3.1rem")
             .style("text-align", "right")

@@ -8,7 +8,7 @@ const data = dataOffline.filter(d => d.Bundesland == "Oesterreich");
 
 function setPreviewO() {
     
-    console.table(data[1]); 
+    // console.table(data[1]); 
     let hfAF = data[data.length - 1].AnzahlFaelle;
     let hfT = data[data.length - 1].AnzahlTotTaeglich;
    
@@ -21,7 +21,7 @@ function getAreacharts(){
   
     
     drawAreaChart('#AC_Neuerk', data, d => dateParser(d.datum), d => d.AnzahlFaelle, 9500); 
-    drawAreaChart('#AC_TT', data, d => dateParser(d.datum), d => d.AnzahlTotTaeglich, 500); 
+    drawAreaChart('#AC_TT', data, d => dateParser(d.datum), d => d.AnzahlTotTaeglich, 150); 
 
 }
 

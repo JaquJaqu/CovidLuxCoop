@@ -875,15 +875,21 @@ top: 14px;
 /* Auslastung */
   .smallLabel{
     font-size: 0.938rem;/*15px;*/
+    text-align: center;
+    text-transform: none; 
 }
 
 
 .bigLabel{
     font-size: 1.3em;
+    text-align: center;
+    text-transform: none; 
 }
 
 .anfangstext{
-    font-size: 0.938rem, /*15px;*/
+    font-size: 0.938rem; /*15px;*/
+    text-align: center;
+    text-transform: none; 
 }
 
 #wrapper > svg{
@@ -896,7 +902,8 @@ top: 14px;
 }
 
 .rectRechts{
-    fill: #f4f3ff;
+    fill: #fff;
+    /* fill: #f4f3ff; */
 
 }
  /*_*/ 

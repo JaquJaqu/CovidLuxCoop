@@ -1,6 +1,7 @@
 //  const { start } = require("../../platforms/android/cordova/lib/Adb");
 
-
+var widthRes = document.getElementById('hfO_Neuerk').clientWidth; 
+// console.log(widthRes); 
 
 
 //Areachart
@@ -19,11 +20,13 @@ async function drawPreview(place, url, xA, yA, range, hardfact) {
     // console.log('start' + startDate);
     // console.log(endDate); 
 
+    let width = widthRes
+
 
     //2 - set dimension and properties
     let dimensions = {
-        width: window.innerWidth,
-        height: window.innerWidth * 0.2,
+        width: width,
+        height: width * 0.2,
     };
 
     //3 - draw canvas
@@ -84,6 +87,15 @@ async function drawAreaChart(placeA, urlA, xAA, yAA, rangeA, clip) {
     const yAccessor = yAA;
     const xAccessor = xAA;
     let dataset = await urlA
+
+    let width = window.innerWidth * 0.9; 
+    // console.log(width); 
+
+    if (width > 650) {
+        width = 500; 
+    } else {
+        width = width
+    }
  
     
 
@@ -96,14 +108,17 @@ async function drawAreaChart(placeA, urlA, xAA, yAA, rangeA, clip) {
 
     //2 - set dimension and properties
     let dimensions = {
-        width: window.innerWidth * 0.9,
-        height: window.innerWidth * 0.5,
-        margin: {
-            top: 20,
-            right: 10,
-            bottom: 35,
-            left: 40
-        },
+        
+            width: width, 
+            height: width * 0.5,
+            margin: {
+                top: 20,
+                right: 10,
+                bottom: 35,
+                left: 40
+            },
+        
+       
     };
     //calculate bounded width and height
     dimensions.boundW = dimensions.width - dimensions.margin.left - dimensions.margin.right;
