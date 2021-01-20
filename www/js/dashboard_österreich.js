@@ -1,5 +1,6 @@
 getAkkordeon_dash();
 
+
 const dateParser = d3.timeParse('%d.%m.%Y');
 const data = dataOffline.filter(d => d.Bundesland == "Oesterreich");
 
@@ -29,7 +30,5 @@ function getAreacharts(){
 setPreviewO();
 
 getAreacharts(); 
-
-
 
 

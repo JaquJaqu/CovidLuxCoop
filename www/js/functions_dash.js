@@ -114,23 +114,22 @@ function info_close(){
 /*
 $(function() {
   $('.accordion').hover(function() {
-    $('.accordion:hover > .info_dash_button').attr({style: "content:url(../img/pfeil_weiß.png)"});
+    $(this).find('.info_dash_button').attr("src", "./img/fragezeichen_white.png");
   }, function() {
     // on mouseout, reset the background colour
-    $('.info_dash_button').attr({style: "content:url(../img/pfeil_lila.png)"});
+    $(this).find('.info_dash_button').attr("src", "./img/fragezeichen_gray.png");
   });
 });*/
 
-/*
+
 $(function() {
   $('button').click(function(){
     if($('button').hasClass('accordion active')){
-      $(this).unbind('mouseenter mouseleave');
-      $(this).closest('.info_dash_button').attr({style: "content:url(../www/img/pfeil_weiß.png)"});
+      $(this).find('.info_dash_button').attr("src", "./img/fragezeichen_white.png");
 
   } else {
     // on mouseout, reset the background colour
-    $(this).closest('.info_dash_button').attr({style: "content:url(../www/img/pfeil_lila.png)"});
+    $(this).find('.info_dash_button').attr("src", "./img/fragezeichen_gray.png");
   }
 });
-});*/
+});
