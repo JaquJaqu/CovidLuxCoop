@@ -34,3 +34,4 @@ function storeWalk(){
     sessionStorage.removeItem("splash");
 }
 
+

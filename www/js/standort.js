@@ -46,15 +46,9 @@ var alleMeineDatenBezLS;
 let valueAktiveFaelle;
 let ampelDatatrue;
 let AktiveFaellestoreBezirkalt;
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
 let Neuerkrankungen;
 let Todesfaelle;
 let AktiveFaellestoreBezirk;
-=======
->>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
->>>>>>> Stashed changes
 
 //Db Offline Data
 //let loadbool =true;      
@@ -344,16 +338,8 @@ var dataOff;
 //dataOffline: Data aus Json von LS
   if(dataOffline != null ){
     var dataOfflineFormat = new Date(dataOffline.Stand);
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
     document.getElementById("letzte_ampel").innerHTML = "Ampel Stand: "+dataOfflineFormat.toLocaleString("de-DE");
     dataOff = dataOffline;
-=======
->>>>>>> Stashed changes
-    document.getElementById("letzte").innerHTML = "Letzte Aktualisierung: "+dataOfflineFormat.toLocaleString();
-     dataOff = dataOffline;
->>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
      //console.log("AMPELFARBE wird offline genommen", "dataOff:" ,dataOff);
      getWarnstufe(dataOff);
 //ampelDatatrue: Daten direkt aus dem Request --> zum anzeigen der Daten wenn die Werte noch nicht im LS geladen sind(jetzt muss man nicht mehr refreshen)
@@ -413,21 +399,15 @@ function downloadAmpelFile(path2) {
   if(connBool ==true){ //wenn ich internet hab 
   //console.log("Ampelfile wird gedownloaded");
   loadJSON(path2, function (data) {
-    let items_json = data[11];
+    let items_json = data[12];
     var date = new Date();//var updateDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
         var updateDate = date.toGMTString(); // Tue, 17 Nov 2020 14:16:29 GMT --> Gibt mir die jetzige Uhrzeit im Format das lastModiefied Header Request auch hat
          ampelDatatrue = {updateDate: updateDate, items_json };
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
 
 
          var dataOfflineFormat = new Date(data[12].Stand);
          document.getElementById("letzte_ampel").innerHTML = "Ampel Stand: "+dataOfflineFormat.toLocaleString("de-DE");
          
-=======
->>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
->>>>>>> Stashed changes
           //console.log("AMPELDATEN WERDEN GELADEN", ampelDatatrue);
 
           //console.log("Ampelfile wird gedownloadet");
@@ -734,18 +714,8 @@ function myLocation() {
   //Standort abfragen
      readUserLocation();
   ////  
-<<<<<<< Updated upstream
-
-    document.getElementById("standortText").style.display= "block";
-=======
-<<<<<<< HEAD
     document.getElementById("standortText").style.display= "block";
     document.getElementById("standortText").innerHTML= "derzeitiger Standort";
-=======
-
-    document.getElementById("standortText").style.display= "block";
->>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
->>>>>>> Stashed changes
    
     }else if (connBool == false){
       read_from_local_storage();
@@ -756,45 +726,20 @@ function myLocation() {
     //  // downloadBezirksFile(pathBezirke2);
     //  checkAvailableDatabase();
     //   }
-<<<<<<< Updated upstream
 
-=======
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
->>>>>>> Stashed changes
        bezirk = lokalstorageBezirk;
        localStorage.setItem("storeBezirk", bezirk);
        document.getElementById("standortText").style.display= "block";
        document.getElementById("standortText").innerHTML = "zuletzt verwendeter Standort";
       getAmpel();
 
-<<<<<<< Updated upstream
-      
-
-
-=======
-<<<<<<< HEAD
-=======
-      
-
-
->>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
->>>>>>> Stashed changes
     }
       
     // if(lokalstorageBezirk != null){
     //   downloadLokation();
     //   }
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
 
-=======
->>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
->>>>>>> Stashed changes
       document.getElementById("bezirk").innerHTML = bezirk;
 
     localStorage.setItem("storeToggleFalse", false);
@@ -920,10 +865,6 @@ function onload_start() {
     drawIllustration();
   }
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
->>>>>>> Stashed changes
 
   //HIER
 if(databaseCompletebool == true){
@@ -932,19 +873,6 @@ if(databaseCompletebool == true){
 } else  {
   downloadBezirksFile(pathBezirke2);
 
-<<<<<<< Updated upstream
-=======
-=======
-
-  //HIER
-if(databaseCompletebool == true){
-  getOfflineBezDaten(); 
-  drawIllustration(ampelStufe);  
-} else  {
-  downloadBezirksFile(pathBezirke2);
-
->>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
->>>>>>> Stashed changes
 }
 
   if (bezirkStorage != null) {
@@ -992,10 +920,6 @@ function prepareBezirksData(pathBezirke2){
         const jsonReplace = stringReplace;
         const realData = JSON.parse(jsonReplace);
         items_jsonBezirke2 = realData; 
-<<<<<<< Updated upstream
-        let AktiveFaellestoreBezirk;
-=======
-<<<<<<< HEAD
         
 
 
@@ -1009,12 +933,8 @@ function prepareBezirksData(pathBezirke2){
         var realDatum = id+", "+text;
 
         document.getElementById("letzte_pos_faelle").innerHTML = "Positive Fälle Stand: "+realDatum;
-=======
-        let AktiveFaellestoreBezirk;
->>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
 
           //console.log("items_jsonBezirke2",items_jsonBezirke2);
->>>>>>> Stashed changes
 
         for (i = 0; i < items_jsonBezirke2.length; i ++){
           const obj = items_jsonBezirke2[i];
@@ -1098,13 +1018,8 @@ function prepareBezirksData(pathBezirke2){
        }
     } else if(databaseCompletebool == false && connBool == false && AktiveFaelleStoreBezirkalt != null){
      valueAktiveFaelle = AktiveFaellestoreBezirkalt;
-<<<<<<< Updated upstream
 
 
-=======
-
-
->>>>>>> Stashed changes
       drawIllustration(ampelStufe);
       //checkAvailableDatabase();
 console.log("STANDORT! Das sind die NEUEN Daten aus dem LS", databasebool, AktiveFaellestoreBezirk);
@@ -1173,42 +1088,9 @@ var itemsRequest = objectStore.getAll();
   alleMeineDatenBezLS = alleMeineDatenOfflineBez;
 }
 
-<<<<<<< Updated upstream
-=======
 //console.log("alleMeineDaten offline2",alleMeineDatenOfflineBez); 
 
 
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
-// //ON SUCCESS
-//      
-//         db = event.target.result;
-//         //console.log("success: "+ db);
-//         //Wenn verbindung aufgebaut werden kann dann gib mit die Daten aus der DB --> "Start"
-//         preparemeineDaten();
-        
-
-//Gib mir die Daten aus der DB
-
-request.oncomplete = function(event) {
-var objectStore = db.objectStore("bezirksdaten");
-
-var itemsRequest = objectStore.getAll();
-  itemsRequest.oncomplete= function(alleMeineDatenBezLS) {
-  alleMeineDatenOfflineBez = itemsRequest.result;
-  console.log("alleMeineDaten offline",alleMeineDatenOfflineBez);
-  //console.log("objectStore",objectStore);
-  alleMeineDatenBezLS = alleMeineDatenOfflineBez;
-}
-
-//console.log("alleMeineDaten offline2",alleMeineDatenOfflineBez); 
-
-
-<<<<<<< Updated upstream
-=======
->>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
->>>>>>> Stashed changes
      }
  
 //ON ERROR
@@ -1417,7 +1299,7 @@ return value;
 //Umlaute einfügen
 function makeUmlauts(value){
 //value = value.replace(/\u00e4/g, 'ae');
-value = value.replace( /'oe'/g,'\u00f6');
+// value = value.replace( /'oe'/g,'\u00f6');
 value = value.replace( /'ue'/g,'\u00fc');
 value = value.replace( /'Ae'/g,'\u00c4');
 value = value.replace( /'Oe'/g,'\u00d6');

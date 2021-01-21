@@ -84,15 +84,7 @@ if (!window.indexedDB) {
        var countRequest = objectStore.count();
        
 //kennt der wenn upgrade ned needet is die daten überhaupt???
-<<<<<<< Updated upstream
-console.log('ETagBezirksdataDatabaseLS')
-=======
-<<<<<<< HEAD
 //console.log('ETagBezirksdataDatabaseLS')
-=======
-console.log('ETagBezirksdataDatabaseLS')
->>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
->>>>>>> Stashed changes
        //checkETagBezirksDatabase(pathBezirke3);
 
 
@@ -129,25 +121,15 @@ console.log('ETagBezirksdataDatabaseLS')
   
   //Add --> Daten zu objectStore"bezirksdaten" hinzugügen
   if (!db.objectStoreNames.contains('bezirksdaten') || db.objectStoreNames.contains('bezirksdaten') == null || db.objectStoreNames.contains('bezirksdaten') == undefined) {
-<<<<<<< Updated upstream
-          console.log("storage wird erzeugt");  
-          console.log("hier1");
-=======
-<<<<<<< HEAD
           //console.log("storage wird erzeugt");  
           //console.log("hier1");
-=======
-          console.log("storage wird erzeugt");  
-          console.log("hier1");
->>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
->>>>>>> Stashed changes
           add();
           
   //Update
   }else if(db.objectStoreNames.contains('bezirksdaten') && ETagBezirksdataDatabaseLS != eTagResponseBezirke3 || ETagBezirksdataDatabaseLS != eTagResponseBezirke3 || upgradebool == true){
       clearOS();    
       updateDB();
-      console.log("storage wird geupdated");
+      //console.log("storage wird geupdated");
     } 
   }
   
@@ -161,23 +143,10 @@ console.log('ETagBezirksdataDatabaseLS')
      
      request.onupgradeneeded = function(event) {
         var db = event.target.result;
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
         //console.log("eTagResponseBezirke3ffff",eTagResponseBezirke3);
         var objectStore = db.createObjectStore("bezirksdaten", {autoIncrement : true });
         //check Aktualität der Daten
         //console.log("UPgradeneeded!");
-=======
->>>>>>> Stashed changes
-        console.log("eTagResponseBezirke3ffff",eTagResponseBezirke3);
-        var objectStore = db.createObjectStore("bezirksdaten", {autoIncrement : true });
-        //check Aktualität der Daten
-        console.log("UPgradeneeded!");
-<<<<<<< Updated upstream
-=======
->>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
->>>>>>> Stashed changes
         checkETagBezirksDatabase(pathBezirke3);
          upgradebool = true;
         //ETAg nur da checken,danach kennt ers im onsucces, onsuccess kommt später!
@@ -285,15 +254,7 @@ function clearOS(){
 
 //Aktualität checken1
 function checkETagBezirksDatabase(pathBezirke3){  
-<<<<<<< Updated upstream
-  console.log("hello3");
-=======
-<<<<<<< HEAD
   //console.log("hello3");
-=======
-  console.log("hello3");
->>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
->>>>>>> Stashed changes
   //wenn es eine Internetverbindung ist und dder online zugriff auf die Ampeldaten gestattet dann
    var client = new XMLHttpRequest(); //mach eine Verbindung zur Resource
    try{
@@ -307,18 +268,8 @@ function checkETagBezirksDatabase(pathBezirke3){
 
  
 
-<<<<<<< Updated upstream
-  console.log("ETagBezirksdataDatabaseLS", ETagBezirksdataDatabaseLS);
-  console.log("eTagResponseBezirke3", eTagResponseBezirke3);
-=======
-<<<<<<< HEAD
   //console.log("ETagBezirksdataDatabaseLS", ETagBezirksdataDatabaseLS);
   //console.log("eTagResponseBezirke3", eTagResponseBezirke3);
-=======
-  console.log("ETagBezirksdataDatabaseLS", ETagBezirksdataDatabaseLS);
-  console.log("eTagResponseBezirke3", eTagResponseBezirke3);
->>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
->>>>>>> Stashed changes
 
 
   //Wenn Etag im LS oder verändert dann download und verwende LS Daten für AktiveFaelle
@@ -341,15 +292,7 @@ localStorage.setItem("ETagBezirksdatenDatabase",eTagResponseBezirke3);
     } 
     //console.log("Du bist hier");
    }catch(error){
-<<<<<<< Updated upstream
-     console.error(error);
-=======
-<<<<<<< HEAD
      //console.error(error);
-=======
-     console.error(error);
->>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
->>>>>>> Stashed changes
      }
    }
 
@@ -358,29 +301,13 @@ localStorage.setItem("ETagBezirksdatenDatabase",eTagResponseBezirke3);
 
 
 function downloadFile2(pathBezirke3) {
-<<<<<<< Updated upstream
-  console.log("hello4");
-=======
-<<<<<<< HEAD
   //console.log("hello4");
-=======
-  console.log("hello4");
->>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
->>>>>>> Stashed changes
   Papa.parse(pathBezirke3, {
     download: true,
     header: true,
     complete: function (results, ) {
       //Key umbenennen --> Time zu datum
-<<<<<<< Updated upstream
-      console.log("hello2",results.data.length);
-=======
-<<<<<<< HEAD
      // console.log("hello2",results.data.length);
-=======
-      console.log("hello2",results.data.length);
->>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
->>>>>>> Stashed changes
       items_jsonBezirke3 = results.data;
       for (i = 0; i < results.data.length; i ++){
 
@@ -414,15 +341,7 @@ function downloadFile2(pathBezirke3) {
         yourMainCode3(results.data);  
         
         items_jsonBezirke3 = results.data;
-<<<<<<< Updated upstream
-        console.log("items_jsonBezirke3",items_jsonBezirke3);
-=======
-<<<<<<< HEAD
        // console.log("items_jsonBezirke3",items_jsonBezirke3);
-=======
-        console.log("items_jsonBezirke3",items_jsonBezirke3);
->>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
->>>>>>> Stashed changes
         return dataBez; 
   },
   }); 
@@ -431,15 +350,7 @@ function downloadFile2(pathBezirke3) {
 
 
 function renameKeys(obj, newKeys) {
-<<<<<<< Updated upstream
-  console.log("hello5");
-=======
-<<<<<<< HEAD
  // console.log("hello5");
-=======
-  console.log("hello5");
->>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
->>>>>>> Stashed changes
   let keyValues = Object.keys(obj).map(key => {
     let newKey = newKeys[key] || key;
     return { [newKey]: obj[key] };
