@@ -14,7 +14,7 @@ const dateParser = d3.timeParse('%d.%m.%Y');
 
 
 //Areachart
-async function drawPreview(place, url, xA, yA, range, hardfact, weite) {
+async function drawPreview(place, url, xA, yA, range, hardfact, weite, breite) {
     const yAccessor = yA;
     const xAccessor = xA;
     let dataset = await url;
@@ -25,26 +25,14 @@ async function drawPreview(place, url, xA, yA, range, hardfact, weite) {
     let endDate = dateParser(dataset[dataset.length - 1].datum);
 
     let hf = hardfact;
-
-    // console.log('start' + startDate);
-    // console.log(endDate); 
-    // var screenSize = window.innerWidth;
     let width = weite; 
-
-    // if (screenSize > 600) {
-    //     width = 500; 
-    // } else {
-    //     width = window.innerWidth; 
-    // }
-
-    // // let width = widthRes
-    // console.log(width); 
+    let height = breite; 
 
 
     //2 - set dimension and properties
     let dimensions = {
         width: width,
-        height: width * 0.2,
+        height: height,
     };
 
     //3 - draw canvas
@@ -79,14 +67,6 @@ async function drawPreview(place, url, xA, yA, range, hardfact, weite) {
         .attr('fill', '#e6e5eb')
         .attr('stroke', '#e6e5eb');
 
-    // let areaClip = bounds.append("rect")        // attach a rectangle
-    //     .attr("x", 0)        // position the left of the rectangle
-    //     .attr("y", 0)         // position the top of the rectangle
-    //     .attr("clip-path", "url(#area-clip)") // clip the rectangle
-    //     .style("fill", "#e6e5eb")   // fill the clipped path with grey
-    //     .attr("height", dimensions.height)    // set the height
-    //     .attr("width", dimensions.width);    // set the width
-
     let hardf = bounds.append("text")
         .attr("x", dimensions.width - 150)
         .attr("y", dimensions.height - 14)
@@ -95,8 +75,7 @@ async function drawPreview(place, url, xA, yA, range, hardfact, weite) {
         .style("font-size", "3.1rem")
         .style("text-align", "right")
         .style("letter-spacing", "0.3rem"); 
-    // console.log(hf); 
-
+   
 }
 
 

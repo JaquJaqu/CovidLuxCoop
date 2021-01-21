@@ -347,6 +347,7 @@ function yourMainCodeAusl(remoteDataAusl) {
 
     async function drawAuslastungHF(region) {
         let widthRes = document.getElementById('hfO_Neuerk').clientWidth; 
+        let heightRes = document.getElementById('hfO_Neuerk').clientHeight;
 
         // const dataset = await d3.json('./CovidFallzahlen.json');   //https://covid19-dashboard.ages.at/data/CovidFallzahlen.csv
 
@@ -436,7 +437,7 @@ function yourMainCodeAusl(remoteDataAusl) {
         const abstandProzentLabels = 20;
         const lineHeight = 30;
         const abstandProzentLabelsBig = 50;
-        const barHeight = height / 4.5;
+        const barHeight = heightRes; 
 
 
         let dimensions = {
