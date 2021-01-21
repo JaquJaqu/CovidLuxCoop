@@ -27,6 +27,7 @@ Kurze Erklärung zu Ampelfarbe::
  */
 
 
+
 const urlBezirke2 = 'https://covid19-dashboard.ages.at/data/CovidFaelle_Timeline_GKZ.csv';
 //const corsFixBezirke2 = 'https://evening-reaches-25236.herokuapp.com/';
 const corsFixBezirke2 = 'https://evening-reaches-25236.herokuapp.com/';
@@ -45,11 +46,20 @@ var alleMeineDatenBezLS;
 let valueAktiveFaelle;
 let ampelDatatrue;
 let AktiveFaellestoreBezirkalt;
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+let Neuerkrankungen;
+let Todesfaelle;
+let AktiveFaellestoreBezirk;
+=======
+>>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
+>>>>>>> Stashed changes
 
 //Db Offline Data
 //let loadbool =true;      
-var db; 
-var request = window.indexedDB.open("alleBezirksDaten",1); 
+//var db; 
+//var request = window.indexedDB.open("alleBezirksDaten",1); 
 // var meineDatenAAF = []; //Alle Aktive Fälle jedes Datums des Gewählten Bezirks
 // var meineDatenAEW = [];
 // var meineDatenAF = [];
@@ -334,8 +344,16 @@ var dataOff;
 //dataOffline: Data aus Json von LS
   if(dataOffline != null ){
     var dataOfflineFormat = new Date(dataOffline.Stand);
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+    document.getElementById("letzte_ampel").innerHTML = "Ampel Stand: "+dataOfflineFormat.toLocaleString("de-DE");
+    dataOff = dataOffline;
+=======
+>>>>>>> Stashed changes
     document.getElementById("letzte").innerHTML = "Letzte Aktualisierung: "+dataOfflineFormat.toLocaleString();
      dataOff = dataOffline;
+>>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
      //console.log("AMPELFARBE wird offline genommen", "dataOff:" ,dataOff);
      getWarnstufe(dataOff);
 //ampelDatatrue: Daten direkt aus dem Request --> zum anzeigen der Daten wenn die Werte noch nicht im LS geladen sind(jetzt muss man nicht mehr refreshen)
@@ -399,6 +417,17 @@ function downloadAmpelFile(path2) {
     var date = new Date();//var updateDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
         var updateDate = date.toGMTString(); // Tue, 17 Nov 2020 14:16:29 GMT --> Gibt mir die jetzige Uhrzeit im Format das lastModiefied Header Request auch hat
          ampelDatatrue = {updateDate: updateDate, items_json };
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+
+
+         var dataOfflineFormat = new Date(data[12].Stand);
+         document.getElementById("letzte_ampel").innerHTML = "Ampel Stand: "+dataOfflineFormat.toLocaleString("de-DE");
+         
+=======
+>>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
+>>>>>>> Stashed changes
           //console.log("AMPELDATEN WERDEN GELADEN", ampelDatatrue);
 
           //console.log("Ampelfile wird gedownloadet");
@@ -705,8 +734,18 @@ function myLocation() {
   //Standort abfragen
      readUserLocation();
   ////  
+<<<<<<< Updated upstream
 
     document.getElementById("standortText").style.display= "block";
+=======
+<<<<<<< HEAD
+    document.getElementById("standortText").style.display= "block";
+    document.getElementById("standortText").innerHTML= "derzeitiger Standort";
+=======
+
+    document.getElementById("standortText").style.display= "block";
+>>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
+>>>>>>> Stashed changes
    
     }else if (connBool == false){
       read_from_local_storage();
@@ -717,21 +756,45 @@ function myLocation() {
     //  // downloadBezirksFile(pathBezirke2);
     //  checkAvailableDatabase();
     //   }
+<<<<<<< Updated upstream
 
+=======
+
+<<<<<<< HEAD
+
+=======
+>>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
+>>>>>>> Stashed changes
        bezirk = lokalstorageBezirk;
        localStorage.setItem("storeBezirk", bezirk);
        document.getElementById("standortText").style.display= "block";
        document.getElementById("standortText").innerHTML = "zuletzt verwendeter Standort";
       getAmpel();
 
+<<<<<<< Updated upstream
       
 
 
+=======
+<<<<<<< HEAD
+=======
+      
+
+
+>>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
+>>>>>>> Stashed changes
     }
       
     // if(lokalstorageBezirk != null){
     //   downloadLokation();
     //   }
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
+>>>>>>> Stashed changes
       document.getElementById("bezirk").innerHTML = bezirk;
 
     localStorage.setItem("storeToggleFalse", false);
@@ -857,6 +920,10 @@ function onload_start() {
     drawIllustration();
   }
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+>>>>>>> Stashed changes
 
   //HIER
 if(databaseCompletebool == true){
@@ -865,6 +932,19 @@ if(databaseCompletebool == true){
 } else  {
   downloadBezirksFile(pathBezirke2);
 
+<<<<<<< Updated upstream
+=======
+=======
+
+  //HIER
+if(databaseCompletebool == true){
+  getOfflineBezDaten(); 
+  drawIllustration(ampelStufe);  
+} else  {
+  downloadBezirksFile(pathBezirke2);
+
+>>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
+>>>>>>> Stashed changes
 }
 
   if (bezirkStorage != null) {
@@ -897,7 +977,14 @@ if(databaseCompletebool == true){
 
 
 //***_______AKTIVE FAELLE_FUNKTIONALITÄT_______***
+// function setHardfacts() {
+//   //HARDFACTS
+//   document.getElementById("hfBez_aktF").innerHTML = "<div class = 'hardfacts'>" + AktiveFaellestoreBezirk + "</div";
+//   document.getElementById("hfBez_Neuerk").innerHTML = "<div class = 'hardfacts'>" + Neuerkrankungen + "</div";
+//   document.getElementById("hfBez_TTBez").innerHTML = "<div class = 'hardfacts'>" + Todesfaelle + "</div";
 
+
+// }
 //___NUR EINZELNEN WERT BERECHNEN
 //Hier wird nur ein Wert (AktiveFaelle) für den gerade ausgewählten Bezirk berechnet, Berechnung erfolgt direkt nach Request an URL
 function prepareBezirksData(pathBezirke2){
@@ -905,7 +992,29 @@ function prepareBezirksData(pathBezirke2){
         const jsonReplace = stringReplace;
         const realData = JSON.parse(jsonReplace);
         items_jsonBezirke2 = realData; 
+<<<<<<< Updated upstream
         let AktiveFaellestoreBezirk;
+=======
+<<<<<<< HEAD
+        
+
+
+
+        var last = items_jsonBezirke2.length-1;
+
+        let posFaelleDatum = items_jsonBezirke2[last].Time;
+       var index = posFaelleDatum.indexOf(" ");
+       var id = posFaelleDatum.substr(0, index);
+       var text = posFaelleDatum.substr(index + 1);
+        var realDatum = id+", "+text;
+
+        document.getElementById("letzte_pos_faelle").innerHTML = "Positive Fälle Stand: "+realDatum;
+=======
+        let AktiveFaellestoreBezirk;
+>>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
+
+          //console.log("items_jsonBezirke2",items_jsonBezirke2);
+>>>>>>> Stashed changes
 
         for (i = 0; i < items_jsonBezirke2.length; i ++){
           const obj = items_jsonBezirke2[i];
@@ -926,6 +1035,29 @@ function prepareBezirksData(pathBezirke2){
             let AnzahlGeheiltSum = itemsstoreBezirk.AnzahlGeheiltSum;
             let AnzahlTotSum = itemsstoreBezirk.AnzahlTotSum;
             AktiveFaellestoreBezirk = AnzahlFaelleSum - AnzahlGeheiltSum - AnzahlTotSum;
+
+
+
+
+
+           
+            // //Anzahl Neuerkrankungen
+            Neuerkrankungen = items_jsonBezirke2[i].AnzahlFaelle;
+            //console.log("AnzahlFaelleSum", AnzahlFaelleSum);
+            //console.log("Neuerkrankungen", Neuerkrankungen);
+
+             // //Anzahl Todesfälle
+             Todesfaelle = items_jsonBezirke2[i].AnzahlTotTaeglich;
+             //console.log("AnzahlFaelleSum", AnzahlFaelleSum);
+            //console.log("Todesfaelle", Todesfaelle);
+
+
+
+            // let AnzahlFaelleSum = itemsstoreBezirk.AnzahlFaelleSum;
+            // let AnzahlGeheiltSum = itemsstoreBezirk.AnzahlGeheiltSum;
+            // let AnzahlTotSum = itemsstoreBezirk.AnzahlTotSum;
+            // AktiveFaellestoreBezirk = AnzahlFaelleSum - AnzahlGeheiltSum - AnzahlTotSum;
+            
     
             //Speicherdatum
             var date = new Date();
@@ -939,6 +1071,7 @@ function prepareBezirksData(pathBezirke2){
             
             localStorage.setItem("letzterBezirk", bezirk);        
         } 
+        
       }    
 
 
@@ -965,8 +1098,13 @@ function prepareBezirksData(pathBezirke2){
        }
     } else if(databaseCompletebool == false && connBool == false && AktiveFaelleStoreBezirkalt != null){
      valueAktiveFaelle = AktiveFaellestoreBezirkalt;
+<<<<<<< Updated upstream
 
 
+=======
+
+
+>>>>>>> Stashed changes
       drawIllustration(ampelStufe);
       //checkAvailableDatabase();
 console.log("STANDORT! Das sind die NEUEN Daten aus dem LS", databasebool, AktiveFaellestoreBezirk);
@@ -1009,7 +1147,7 @@ if (!window.indexedDB) {
 }
 
 //Öffne DB Zugriff
- request = window.indexedDB.open("alleBezirksDaten",1);
+ //request = window.indexedDB.open("alleBezirksDaten",1);
 
         
 
@@ -1035,14 +1173,47 @@ var itemsRequest = objectStore.getAll();
   alleMeineDatenBezLS = alleMeineDatenOfflineBez;
 }
 
+<<<<<<< Updated upstream
+=======
 //console.log("alleMeineDaten offline2",alleMeineDatenOfflineBez); 
 
 
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+// //ON SUCCESS
+//      
+//         db = event.target.result;
+//         //console.log("success: "+ db);
+//         //Wenn verbindung aufgebaut werden kann dann gib mit die Daten aus der DB --> "Start"
+//         preparemeineDaten();
+        
+
+//Gib mir die Daten aus der DB
+
+request.oncomplete = function(event) {
+var objectStore = db.objectStore("bezirksdaten");
+
+var itemsRequest = objectStore.getAll();
+  itemsRequest.oncomplete= function(alleMeineDatenBezLS) {
+  alleMeineDatenOfflineBez = itemsRequest.result;
+  console.log("alleMeineDaten offline",alleMeineDatenOfflineBez);
+  //console.log("objectStore",objectStore);
+  alleMeineDatenBezLS = alleMeineDatenOfflineBez;
+}
+
+//console.log("alleMeineDaten offline2",alleMeineDatenOfflineBez); 
+
+
+<<<<<<< Updated upstream
+=======
+>>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
+>>>>>>> Stashed changes
      }
  
 //ON ERROR
      request.onerror = function(event) {   
-        console.error("Database error: " + event.target.errorCode);
+        //console.error("Database error: " + event.target.errorCode);
         };
 //ON UPRADE
         request.onupgradeneeded = function(event) {
@@ -1188,7 +1359,7 @@ function downloadBundeslandFile(pathBundesland) {
 
 function prepareBundeslandData(dataOfflineBundesland){
   const stringReplace = JSON.stringify(dataOfflineBundesland);
- const jsonReplace = replaceUmlauts(stringReplace);
+ const jsonReplace = replaceUmlautsB(stringReplace);
  const realData = JSON.parse(jsonReplace);
  let items_json = realData; 
 
@@ -1255,7 +1426,33 @@ value = value.replace( /'ss'/g,'\u00df');
 return value;
 }
 
-
+//EVA????
+//Umlaute ersetzen
+function replaceUmlautsB(value){
+  //value = value.replace(/\u00e4/g, 'ae');
+  // value = value.replace(/\u00f6/g, 'oe');
+  value = value.replace(/\u00fc/g, 'ue');
+  value = value.replace(/\u00c4/g, 'Ae');
+  value = value.replace(/\u00d6/g, 'Oe');
+  value = value.replace(/\u00dc/g, 'Ue');
+  value = value.replace(/\u00df/g, 'ss');
+  return value;
+  }
+  
+  
+//   //Umlaute einfügen
+//   function makeUmlauts(value){
+//   //value = value.replace(/\u00e4/g, 'ae');
+//   // value = value.replace( /'oe'/g,'\u00f6');
+//   value = value.replace( /'ue'/g,'\u00fc');
+//   value = value.replace( /'Ae'/g,'\u00c4');
+//   value = value.replace( /'Oe'/g,'\u00d6');
+//   value = value.replace( /'Ue'/g,'\u00dc');
+//   value = value.replace( /'ss'/g,'\u00df');
+//   return value;
+//   }
+  
+  
 
 
 

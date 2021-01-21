@@ -1,3 +1,22 @@
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+.accordion:focus {
+    outline: 1px solid #000000;
+    padding: 18px;
+    /* padding-left: 3.5vw; */
+    /* transition: 0.4s; */
+    padding-left: 75px;
+
+}
+
+*:focus {
+    outline: 1px solid #000000;
+}
+
+=======
+>>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
+>>>>>>> Stashed changes
 
 * {
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
@@ -166,8 +185,16 @@ footer *{
 }
 footer ul {
     width: 100%;  
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+    display:flex; 
+    justify-content: space-around;
+=======
+>>>>>>> Stashed changes
     display: flex; 
     justify-content: space-evenly;
+>>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
 }
 .nav_element{
     display: flex;
@@ -763,7 +790,18 @@ top: 14px;
     position:absolute;
     width: 92vw;
     text-align: center;
+<<<<<<< Updated upstream
     justify-content: center;
+=======
+<<<<<<< HEAD
+    justify-content: space-evenly;
+    margin-left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -0%);
+=======
+    justify-content: center;
+>>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
+>>>>>>> Stashed changes
 }
 #Navi li{
     margin-left: 10vw;
@@ -850,7 +888,7 @@ top: 14px;
     font-size: 14pt; 
     font-weight: 500;
     width: 97.5vw;
-    height: 250px;
+    height: 270px;
     margin-top: 30vh;
     padding-left: 8%;
     padding-right: 8%;
@@ -868,6 +906,7 @@ top: 14px;
     z-index: 4;
     top: 0;
     display:none;
+    cursor: pointer;
 }
 .slmm{
     color: #504F95;
@@ -876,7 +915,8 @@ top: 14px;
     text-align: center;
     background-color: none;
     border: none;
-    padding-bottom: 2%;
+    padding-bottom: 5%;
+    padding-top: 2%;
 }
 .letzte_zahlen{
     text-align: center;
@@ -889,6 +929,19 @@ top: 14px;
     text-align: center;
     width: 100%;
 }
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+.Akkordeon_dash > button{
+    line-height: 4vh;
+}
+.flex_panel{
+    display:flex;
+    flex-direction: column;
+}
+=======
+>>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
+>>>>>>> Stashed changes
 /************************************************__TIPPS__********************************/
 #mainwrapper_tipps{
     position: absolute;
@@ -1021,7 +1074,9 @@ top: 14px;
     background-color:#504F95;
     color: white;
   }
-  
+  .accordion:hover .info_dash_button{
+    content: url("../img/fragezeichen_white.png");
+  }
   .accordion:after {
     content: url("../img/pfeil_lila.png");
     font-weight: bold;
@@ -1032,6 +1087,49 @@ top: 14px;
   .active:after, .accordion:hover::after {
     content: url("../img/pfeil_weiß.png");
   }
+
+  .accordion_bezirk {
+    background-color: white;
+    color: #504F95;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    border-bottom: 0.2px solid gray;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    font-weight: 550;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    transition: 0.4s;
+    padding-left: 8vw;
+    display:flex;
+    padding-bottom: 0vh;
+  }
+
+  .accordion_bezirk:hover .fragezeichen_klein{
+    background-color:#504F95;
+    content: url("../img/fragezeichen_white.png");
+  }
+
+
+  .fragezeichen{
+      padding-left: 2vh;
+      padding-right: 2vh;
+      padding-bottom: 4vh;
+      padding-top: 4vh;
+      margin-left: 3vh;
+      margin-top: -4vh;
+
+  }
+  .fragezeichen_klein{
+    display:flex;
+    padding: 1vh;
+    margin-left: -2vh;
+    margin-top: -1vh;
+
+}
   
   .panel {
     padding: 0 18px;
@@ -1136,6 +1234,7 @@ p{
     margin-top: -15vh;
     margin-left: 3vw;
     float: right;
+    cursor: pointer;
 }
 /*****************************************************__INFO__****************************/
 .blockWie{
@@ -1185,7 +1284,6 @@ h3{
 .einstellungen_header {
     background-color: white;
     color: #444;
-    cursor: pointer;
     padding-top: 2vh;
     margin-left: 7vw;
     display:flex;
@@ -1413,7 +1511,6 @@ h3{
     footer{
         margin-left: 0vw;
         height: 12vh;
-        width: 99vw;
     }
     footer ul{
         margin-left: 15%;
@@ -1437,7 +1534,15 @@ h3{
         /* grid-template-columns: 10vw 30vw 1.5vw 1.5vw 1.5vw 1.5vw 30vw 10vw; */
         /* grid-template-columns: 10vw 10vw 6vw 2vw 2vw 2vw 2vw 6vw 10vw 10vw; */
         grid-template-columns: 10% 10% 6% 2% 2% 2% 2% 6% 10% 10%;
+<<<<<<< Updated upstream
         grid-template-rows: 10vh 8vh 10vh 6vh 6vh 12vh 1.5vh 0.5vh 12vh 10vh;
+=======
+<<<<<<< HEAD
+        grid-template-rows: 10vh 8vh 8vh 6vh 6vh 9vh 1.5vh 0.5vh 11vh 10vh;
+=======
+        grid-template-rows: 10vh 8vh 10vh 6vh 6vh 12vh 1.5vh 0.5vh 12vh 10vh;
+>>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
+>>>>>>> Stashed changes
         /* grid-template-rows: 10vh 8vh 10vh 12vh 12vh 1.5vh 1.5vh 12vh 10vh; */
     }
     .lastTime{
@@ -1481,6 +1586,7 @@ h3{
         grid-column: 7/9;
         justify-self: center;
         margin-left: 0px;
+        cursor: pointer;
     }
     #farbkreisAktiv > h2{
         font-size: 1rem;
@@ -1542,6 +1648,7 @@ h3{
         align-self: center;
         grid-column: 7/9;
         margin-bottom: 1.8vw;
+        cursor: pointer;
     }
 
     #value_pos{
@@ -1549,6 +1656,7 @@ h3{
         margin-left: 7px;
         align-self: center;
         grid-column: 7/9;
+        cursor: pointer;
     }
     
     h3{
@@ -1575,6 +1683,40 @@ h3{
         height:18vmin;
         width: 18vmin;
     }
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+    .ro{
+        position: fixed;
+        top: 12vh;
+        right: 1vw;
+        text-align: end;
+        display:block;
+    }
+    .ro img{
+        width: 25vmin;
+    }
+    .lu{
+        bottom: 10vh;
+        position: fixed;
+        display:block;
+        z-index: 2;
+    }
+    .lu img{
+        width: 25vmin;
+    }
+    .lu_unterseite{
+        bottom: 0;
+        position: fixed;
+        display:block;
+        z-index: 2;
+    }
+    .lu_unterseite img{
+        width: 25vh;
+    }
+=======
+>>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
+>>>>>>> Stashed changes
 
     /*********************************__ZAHLEN__********************/
 
@@ -1586,10 +1728,23 @@ h3{
         height: 9vmin;
     }
     #Navi ul{
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+        width: 40vw;
+        margin-left: 50%;
+        margin-right: -50%;
+        transform: translate(-46%, -0%);
+=======
+>>>>>>> Stashed changes
         width: 98vw;
     }
     #Navi li{
         margin-left: 10vmin;
+<<<<<<< Updated upstream
+=======
+>>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
+>>>>>>> Stashed changes
     }
     #Navi ul li a{
         font-size: 2.5vmin;
@@ -1616,6 +1771,15 @@ h3{
     }
     .Akkordeon_dash > button{
         border-top: 0.2px solid gray;
+<<<<<<< Updated upstream
+=======
+    }
+    .accordion_bezirk{
+        font-size: 2vmin;
+        padding-left: 10vmin;
+        border-left: 0.2px solid gray;
+        border-right: 0.2px solid gray;
+>>>>>>> Stashed changes
     }
     .info_dash_button{
         margin-left: 5vmin;
@@ -1741,6 +1905,9 @@ h3{
     #DataSymptome{
         font-size: 2.5vmin;
     }
+    .number{
+        font-size: unset;
+    }
     #stand_who{
         font-size: 2.1vmin;
     }
@@ -1753,8 +1920,22 @@ h3{
         padding-right: 11vmin;
         padding-top: 5vmin;
         padding-bottom: 5vmin;
+<<<<<<< Updated upstream
         top: 60vmin;
         width: unset;
+=======
+<<<<<<< HEAD
+        width: 70vmin;
+    margin-left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -0%);
+    margin-top: -11.5%;
+    cursor: pointer;
+=======
+        top: 60vmin;
+        width: unset;
+>>>>>>> 14890a18dc1fb7129c22ecd5b30de6348c6441a6
+>>>>>>> Stashed changes
     }
     #overlay{
         width: 71vmin;
@@ -1841,6 +2022,7 @@ h3{
     .einstellungen_buttons{
         width: 50vmin;
         font-size: 2.5vmin;
+        cursor: pointer;
     }
     .einstellungen_buttons:after{
         float:unset;
