@@ -1,11 +1,12 @@
 .accordion:focus {
     outline: 1px solid #000000;
-    padding: 18px;
+    /* padding: 18px; */
     /* padding-left: 3.5vw; */
     /* transition: 0.4s; */
-    padding-left: 75px;
+    /* padding-left: 75px; */
 
 }
+
 
 *:focus {
     outline: 1px solid #000000;
