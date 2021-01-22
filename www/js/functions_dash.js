@@ -100,13 +100,13 @@ function info_Todesfälle(){
 }
 
 function info_Betten(){
-  document.getElementById("info_dash").innerHTML = "Diese Zahl gibt die Auslastung der Normal- und Intensivbetten, die in deiner gewählten Region für Covid-19-Patientinnen und Patienten bereitstehe, in Prozent an. Die Kurve zeigt einen Trend der letzten 14 Tage.";
+  document.getElementById("info_dash").innerHTML = "Diese Zahl gibt an wieviele Normalbetten mit Covid-19-Patientinnen und Patienten belegt sind. Der Balkan zeigt wie sehr die Normalbetten ausgelastet sind.";
   $("#info_dash").css({"display": "flex", "justify-content": "center", "align-items": "center"}).hide().fadeIn(800);
   $("#unterinfo").fadeIn(800);
 }
 
 function info_area(){
-  document.getElementById("info_dash").innerHTML = "Die horizontale Achse stellt die ausgewählte Zeitperiode dar, während die vertikale Achse die Fallzahlen zeigt. Es kann zwischen verschiedenen Zeitperioden gewählt werden. Tippst du auf die Grafik, siehst du den entsprechenden Tag und die dazugehörige Fallzahl.";
+  document.getElementById("info_dash").innerHTML = "Die horizontale Achse stellt die Zeitperiode seit Beginn der Pandemie dar, während die vertikale Achse die Fallzahlen zeigt."; /*Tippst du auf die Grafik, siehst du den entsprechenden Tag und die dazugehörige Fallzahl.*/
   $("#info_dash").css({"display": "flex", "justify-content": "center", "align-items": "center"}).hide().fadeIn(800);
   $("#unterinfo").fadeIn(800);
 }
