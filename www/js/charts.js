@@ -69,7 +69,7 @@ async function drawPreview(place, url, xA, yA, range, hardfact, weite, breite) {
 
     let hardf = bounds.append("text")
         .attr("x", dimensions.width - 150)
-        .attr("y", dimensions.height - 14)
+        .attr("y", dimensions.height * 0.7)
         .text(hf)
         .style("fill", "#000")
         .style("font-size", "3.1rem")
@@ -79,7 +79,7 @@ async function drawPreview(place, url, xA, yA, range, hardfact, weite, breite) {
 }
 
 
-async function drawAreaChart(placeA, urlA, xAA, yAA, rangeA) {
+async function drawAreaChart(placeA, urlA, xAA, yAA, rangeA, weite) {
     // var ua = d3.locale();
 
     //1 - access data
@@ -87,14 +87,14 @@ async function drawAreaChart(placeA, urlA, xAA, yAA, rangeA) {
     const xAccessor = xAA;
     let dataset = await urlA
 
-    let width = window.innerWidth * 0.9; 
+    let width = weite; 
     // console.log(width); 
 
-    if (width > 650) {
-        width = 500; 
-    } else {
-        width = width
-    }
+    // if (width > 650) {
+    //     width = 500; 
+    // } else {
+    //     width = width
+    // }
  
     
 
@@ -108,7 +108,7 @@ async function drawAreaChart(placeA, urlA, xAA, yAA, rangeA) {
     //2 - set dimension and properties
     let dimensions = {
         
-            width: width, 
+            width: width * 0.92, 
             height: width * 0.5,
             margin: {
                 top: 20,
