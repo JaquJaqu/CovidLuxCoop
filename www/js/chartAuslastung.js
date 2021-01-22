@@ -150,9 +150,9 @@ function yourMainCodeAusl(remoteDataAusl) {
 
 
 
-        const width = 400;
+        const width = 550;
         const height = 400;
-        const barPadding = 200;
+        const barPadding = 180;
         const abstandErsterText = 35;
         const abstandProzentLabels = 20;
         const lineHeight = 30;
