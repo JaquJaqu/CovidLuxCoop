@@ -19,6 +19,10 @@ getAkkordeon_dash();
 // HardfactsBL(); 
 
 function onload_bundesland() {
+if(localStorage.getItem("storeBundesland") == null && localStorage.getItem("letzterBezirk") == null){
+    document.getElementById("dash_bundesland_name").innerHTML = "Bitte wähle einen Bezirk!";
+}
+
     if (localStorage.getItem("storeBundesland") != null) {
         document.getElementById("dash_bundesland_name").innerHTML = localStorage.getItem("storeBundesland");
     }

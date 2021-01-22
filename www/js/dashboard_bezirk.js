@@ -158,10 +158,13 @@ function setHardfacts() {
 //_________DB STUFF ENDE______________________
 
 function onload_bezirk() {
+  if(bezirk == null || localStorage.getItem("letzterBezirk") == null){
+    document.getElementById("dash_bezirk_name").innerHTML = "Bitte wähle einen Bezirk!";
+  }
   if (localStorage.getItem("letzterBezirk") == null && bezirk != null) {
     document.getElementById("dash_bezirk_name").innerHTML = bezirk;
   }
-  else if (localStorage.getItem("storeBezirk") != null) {
+  else if (localStorage.getItem("letzterBezirk") != null) {
     document.getElementById("dash_bezirk_name").innerHTML = localStorage.getItem("letzterBezirk");
   }
 }

@@ -286,13 +286,12 @@ footer ul {
  .walk_welle{
      margin-top: 0vh;
      /*height: 50%;*/
-     padding-bottom: 5vh;
      /*width: 100vw;*/
      display:block;
  }
  #walk_h2{
      position: absolute;
-     top: 5vh;
+     top: 2vh;
      left: 18vw;
      color: white;
      font-size: 18pt;
