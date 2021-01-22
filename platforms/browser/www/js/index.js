@@ -31,5 +31,7 @@ function storeSplash(){
  
 function storeWalk(){
     localStorage.setItem("walkthrough", true);
+    sessionStorage.removeItem("splash");
 }
+
 

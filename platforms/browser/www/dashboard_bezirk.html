@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
     <head>
         <meta charset="utf-8">
         <meta name="msapplication-tap-highlight" content="no">
@@ -11,8 +11,8 @@
         <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
         <script src="https://d3js.org/d3-fetch.v2.min.js"></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js'></script>
-        
         <script src="js/jquery.min.js"></script> 
+      
         
     </head>
     <body onload="onload_bezirk()" ononline="onOnline()" onoffline="onOffline()">
@@ -21,7 +21,7 @@
     <header>
         <div class="flex_menu">
     <div class="info">
-        <a href="info.html" onclick="saveHistory()"><img alt="Info" src="img/info.png" width="25vw" height="25vw"></a>
+        <a href="info.html" onclick="saveHistory()"><img alt="Informationen" src="img/info.png" width="25vw" height="25vw"></a>
     </div>
     <h1>Zahlen</h1>
     <div class="einstellungen">
@@ -29,6 +29,9 @@
     </div> 
         </div>
 </header>
+
+<div class="ro"><img src="img/rechts_oben.png" width="175vh"></div>
+        <div class="lu"><img src="img/links_unten.png" width="175vh"></div>
 
 <div id="unterstatus"></div>
 <div id="status"></div>
@@ -38,25 +41,31 @@
         <nav id="Navi">
             <ul>
                 <li id="dash_bezirk"><a href="dashboard_bezirk.html" class="aktiv_small">Bezirk</a></li>
-                <!--<li><a href="dashboard_bundesland.html" class="aktiv_lila" id="dash_bundesland">Bundesland</a></li>-->
+                <li><a href="dashboard_bundesland.html" class="aktiv_lila" id="dash_bundesland">Bundesland</a></li>
                 <li><a href="dashboard_österreich.html" class="aktiv_lila" id="dash_österreich">Österreich</a></li>
             </ul>
         </nav>
 
         
     <div class="mainwrapper_dash">          
-        <div class="dropdown_dash" display="block">
+        <!--<div class="dropdown_dash" display="block">
             <button onclick="myFunction_bezirk()" class="dropbtn" id="dropbtn_bezirk">Bezirk auswählen</button>
             <div id="myDropdown_bezirk" class="dropdown-content-dash">
             <input type="text" placeholder="Suchen.." id="myInput_bezirk" onkeyup="filterFunction('myInput_bezirk','myDropdown_bezirk')">          
         </div>
-        </div>
+        </div>-->
+
+        <h1 id="dash_bezirk_name"></h1>
 
         <!--<p class="letzte_zahlen">Letzte Aktualisierung: Datum.Mustermonat</p>-->
 
         <div class="Akkordeon_dash">
-            <button class="accordion">Aktive Fälle <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_aktiveFälle()"></button>
-            <div id ="hfBez_aktF" class="verlauf"><img src="./img/Dashboard-1.png" width="100%"></div>
+            <div class="button_dash">
+                <img src="./img/fragezeichen_gray.png" alt="Fragezeichen" class="info_dash_button" onclick="info_aktiveFälle()">
+                <button class="accordion_dash">Aktive Fälle</button>
+            </div>
+            <!--<button class="accordion_bezirk">Aktive Fälle <div class="fragezeichen"><div class="fragezeichen_klein" onclick="info_aktiveFälle()"><img src="./img/fragezeichen_gray.png"  onclick="info_aktiveFälle()"></div></div></button>-->
+            <div id ="hfBez_aktF" class="verlauf"></div>
             <div class="panel">
                 <div class="panel_dash">
                     <p>X</p>
@@ -68,8 +77,12 @@
                 </div>
             </div>
             
-            <button class="accordion">Neuerkrankungen <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_Neuerkrankungen()"></button>
-            <div id ="hfBez_Neuerk" class="verlauf"><img src="./img/Dashboard-1.png" width="100%"></div>
+            <div class="button_dash">
+                <img src="./img/fragezeichen_gray.png" alt="Fragezeichen" class="info_dash_button" onclick="info_Neuerkrankungen()">
+                <button class="accordion_dash">Neuerkrankungen</button>
+            </div>
+            <!--<button class="accordion_bezirk">Neuerkrankungen <div class="fragezeichen"><div class="fragezeichen_klein" onclick="info_Neuerkrankungen()"><img src="./img/fragezeichen_gray.png" onclick="info_Neuerkrankungen()"></div></div></button>-->
+            <div id ="hfBez_Neuerk" class="verlauf"></div>
             <div class="panel">
                 <div class="panel_dash">
                     <p>X</p>
@@ -81,8 +94,12 @@
                 </div>
             </div>
             
-            <button class="accordion">Todesfälle <img src="./img/pfeil_lila.png" class="info_dash_button" onclick="info_Todesfälle()"></button>
-            <div id ="hfBez_TTBez" class="verlauf"><img src="./img/Dashboard-1.png" width="100%"></div>
+            <div class="button_dash">
+                <img src="./img/fragezeichen_gray.png" alt="Fragezeichen" class="info_dash_button" onclick="info_Todesfälle()">
+                <button class="accordion_dash">Todesfälle</button>
+            </div>
+            <!--<button class="accordion_bezirk">Todesfälle <div class="fragezeichen"><div class="fragezeichen_klein" onclick="info_Todesfälle()"><img src="./img/fragezeichen_gray.png"  onclick="info_Todesfälle()"></div></div></button>-->
+            <div id ="hfBez_TTBez" class="verlauf"></div>
             <div class="panel">
                 <div class="panel_dash">
                     <p>X</p>
@@ -102,27 +119,23 @@
             <ul>
                 <li>
                    <div class="nav_element">
-                   <a href="start.html"><img alt="Start" src="img/home_grau.svg" width="30vw" height="30vw"></a>    
-                   <a href="start.html">Start</a>
+                    <a href="start.html" class="nav_element"><img alt="Start" src="img/home_grau.svg" width="30vw" height="30vw">Start</a>
                    </div>                 
                </li>
                <li>
                    <div class="nav_element">
                     <div id="RectDashboard"></div>
-                   <a href="dashboard_bezirk.html"><img alt="Zahlen" src="img/statistics_blau.svg" width="30vw" height="30vw"></a>
-                   <a href="dashboard_bezirk.html" class="aktiv">Zahlen</a>
+                    <a href="dashboard_bezirk.html" class="nav_element"><img alt="Zahlen" src="img/statistics_blau.svg" width="30vw" height="30vw"><span class="aktiv">Zahlen</span></a>
                    </div>
                </li>
                <li>
                    <div class="nav_element">
-                   <a href="tipps.html"><img alt="Tipps" src="img/maske_grau.svg" width="30vw" height="30vw"></a>
-                   <a href="tipps.html">Tipps</a>
+                    <a href="tipps.html" class="nav_element"><img alt="Tipps" src="img/maske_grau.svg" width="30vw" height="30vw">Tipps</a>
                    </div>
                </li>
                <li>
                    <div class="nav_element">
-                   <a href="symptome.html"><img alt="Symptome" src="img/fieber_grau.svg" width="30vw" height="30vw"></a>
-                   <a href="symptome.html">Symptome</a>
+                    <a href="symptome.html" class="nav_element"><img alt="Symptome" src="img/fieber_grau.svg" width="30vw" height="30vw">Symptome</a>
                    </div>
                </li>
             </ul>
@@ -130,12 +143,15 @@
      </footer>
 
 
-        <script src="cordova.js"></script> 
+        <!-- <script src="cordova.js"></script>  -->
         <script src="js/functions.js"></script>
         <script src="js/functions_dash.js"></script>
+        <script src="js/DashboardData.js"></script>
         <script src="js/standort.js"></script>
-        <script src="js/databasefinal.js"></script>     
-        <script src="js/dashboard_bezirk.js"></script>
+        <!-- <script src="js/databasefinal.js"></script>  -->
+        <script src="js/dashboard_bezirk.js"></script>    
+        
+        <!-- <script src="js/previewchart.js"></script> -->
        
         </div>
     </body>

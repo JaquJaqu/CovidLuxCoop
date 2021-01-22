@@ -1,23 +1,24 @@
 function getAkkordeon_dash(){
-  var acc = document.getElementsByClassName("accordion");
+  var acc = document.getElementsByClassName("button_dash");
     var i;
       
     // Add onclick listener to every accordion element
     for (i = 0; i < acc.length; i++) {
       acc[i].onclick = function() {
         // For toggling purposes detect if the clicked section is already "active"
-        var isActive = this.classList.contains("active");
+        var isActive = this.classList.contains("active_dash");
   
         // Close all accordions
-        var allAccordions = document.getElementsByClassName("accordion");
+        var allAccordions = document.getElementsByClassName("button_dash");
         for (j = 0; j < allAccordions.length; j++) {
           // Remove active class from section header
-          allAccordions[j].classList.remove("active");
+          allAccordions[j].classList.remove("active_dash");
           allAccordions[j].nextElementSibling.style.display = "block";
   
           // Remove the max-height class from the panel to close it
           var panel = allAccordions[j].nextElementSibling.nextElementSibling;
           var maxHeightValue = getStyle(panel, "maxHeight");
+          console.log(panel);
           
         
         if (maxHeightValue !== "0px") {
@@ -26,18 +27,22 @@ function getAkkordeon_dash(){
         }
   
         // Toggle the clicked section using a ternary operator
-        isActive ? this.classList.remove("active") : this.classList.add("active");
+        isActive ? this.classList.remove("active_dash") : this.classList.add("active_dash");
   
         // Toggle the panel element
         var panel = this.nextElementSibling.nextElementSibling;
         var maxHeightValue = getStyle(panel, "maxHeight");
+
+        console.log(panel);
         
         if (maxHeightValue !== "0px") {
           panel.style.maxHeight = null;
           this.nextElementSibling.style.display = "block";
+          console.log(this.nextElementSibling);
         } else {
           panel.style.maxHeight = panel.scrollHeight + "px";
           this.nextElementSibling.style.display = "none";
+          console.log(this.nextElementSibling);
         window.scrollTo(0,(panel.offsetTop-panel.scrollHeight));
         }
         
@@ -114,10 +119,10 @@ function info_close(){
 /*
 $(function() {
   $('.accordion').hover(function() {
-    $('.accordion:hover > .info_dash_button').attr({style: "content:url(../img/pfeil_weiß.png)"});
+    $(this).find('.info_dash_button').attr("src", "./img/fragezeichen_white.png");
   }, function() {
     // on mouseout, reset the background colour
-    $('.info_dash_button').attr({style: "content:url(../img/pfeil_lila.png)"});
+    $(this).find('.info_dash_button').attr("src", "./img/fragezeichen_gray.png");
   });
 });*/
 
@@ -125,12 +130,11 @@ $(function() {
 $(function() {
   $('button').click(function(){
     if($('button').hasClass('accordion active')){
-      $(this).unbind('mouseenter mouseleave');
-      $(this).closest('.info_dash_button').attr({style: "content:url(../www/img/pfeil_weiß.png)"});
+      $(this).find('.info_dash_button').attr("src", "./img/fragezeichen_white.png");
 
   } else {
     // on mouseout, reset the background colour
-    $(this).closest('.info_dash_button').attr({style: "content:url(../www/img/pfeil_lila.png)"});
+    $(this).find('.info_dash_button').attr("src", "./img/fragezeichen_gray.png");
   }
 });
 });*/
