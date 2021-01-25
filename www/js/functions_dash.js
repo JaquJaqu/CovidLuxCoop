@@ -100,7 +100,7 @@ function info_Todesfälle(){
 }
 
 function info_Betten(){
-  document.getElementById("info_dash").innerHTML = "Diese Zahl gibt an wieviele Normalbetten mit Covid-19-Patientinnen und Patienten belegt sind. Der Balkan zeigt wie sehr die Normalbetten ausgelastet sind.";
+  document.getElementById("info_dash").innerHTML = "Diese Zahl gibt an wie viele Normalbetten mit Covid-19-Patientinnen und Patienten belegt sind. Der Balken zeigt an, wie sehr die Normalbetten ausgelastet sind.";
   $("#info_dash").css({"display": "flex", "justify-content": "center", "align-items": "center"}).hide().fadeIn(800);
   $("#unterinfo").fadeIn(800);
 }

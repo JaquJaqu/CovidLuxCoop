@@ -10,6 +10,7 @@
     outline: 1px solid #000000; 
 }  
 
+
 *:focus {
     outline: 1px solid #000000;
 }
@@ -970,6 +971,7 @@ top: 14px;
     border: none;
     padding-bottom: 5%;
     padding-top: 2%;
+    cursor: pointer;
 }
 .letzte_zahlen{
     text-align: center;
@@ -987,6 +989,14 @@ top: 14px;
     margin-top: 3vh;
 }
 .Akkordeon_dash .button_dash:first-child{
+    line-height: 4vh;
+    margin-top: 0vh;
+}
+.Akkordeon_dash .button_dash_bezirk{
+    line-height: 4vh;
+    margin-top: 3vh;
+}
+.Akkordeon_dash .button_dash_bezirk:first-child{
     line-height: 4vh;
     margin-top: 0vh;
 }
@@ -1028,14 +1038,39 @@ top: 14px;
   }
   .active_dash .info_dash_button, .button_dash:hover .info_dash_button{
     content: url("../img/fragezeichen_white.png");
+    cursor: pointer;
   }
   .active_dash .accordion_dash, .button_dash:hover .accordion_dash{
     color: white;
   }
   .active_dash .pfeil, .button_dash:hover .pfeil{
     content: url("../img/pfeil_weiß.png");
+    cursor: pointer;
   }
 
+  .button_dash_bezirk{
+    display:flex;
+    align-items: center;
+    width: 100vw;
+    background-color: white;
+    border-bottom: 0.2px solid gray;
+    padding: 18px;
+}
+
+.button_dash_bezirk:hover .info_dash_button{
+    content: url("../img/fragezeichen_white.png");
+    cursor: pointer;
+  }
+  .button_dash_bezirk:hover .fragezeichen_klein{
+    background-color:#504F95;
+    color: white;
+  }
+  .button_dash_bezirk:hover .accordion_dash{
+     cursor: auto;
+  }
+  .button_dash_bezirk:hover .accordion_dash:focus{
+    outline: none;
+ }
 
 
 /************************************************__TIPPS__********************************/
@@ -1184,32 +1219,6 @@ top: 14px;
     content: url("../img/pfeil_weiß.png");
   }
 
-  .accordion_bezirk {
-    background-color: white;
-    color: #504F95;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border: none;
-    border-bottom: 0.2px solid gray;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-    font-weight: 550;
-    letter-spacing: 0.3px;
-    text-transform: uppercase;
-    transition: 0.4s;
-    padding-left: 8vw;
-    display:flex;
-    padding-bottom: 0vh;
-  }
-
-  .accordion_bezirk:hover .fragezeichen_klein{
-    background-color:#504F95;
-    content: url("../img/fragezeichen_white.png");
-  }
-
-
   .fragezeichen{
       padding-left: 2vh;
       padding-right: 2vh;
@@ -1222,8 +1231,8 @@ top: 14px;
   .fragezeichen_klein{
     display:flex;
     padding: 1vh;
-    margin-left: -2vh;
-    margin-top: -1vh;
+    /*margin-left: -2vh;
+    margin-top: -1vh;*/
 
 }
   
@@ -1782,7 +1791,7 @@ h3{
     }
     .ro{
         position: fixed;
-        top: 12vh;
+        top: 12vmin;
         right: 1vw;
         text-align: end;
         display:block;
@@ -1853,11 +1862,18 @@ h3{
         border-top: 0.2px solid gray;
         line-height: 6vh;
     }
+    .Akkordeon_dash > .button_dash_bezirk{
+        border-top: 0.2px solid gray;
+        line-height: 6vh;
+    }
     .accordion_bezirk{
         font-size: 2vmin;
         padding-left: 10vmin;
         border-left: 0.2px solid gray;
         border-right: 0.2px solid gray;
+    }
+    .accordion_dash{
+        font-size: 2vmin;
     }
     .info_dash_button{
         margin-left: 0vmin;
@@ -1874,6 +1890,13 @@ h3{
         font-size: 1.8vmin;
     }
     .button_dash{
+        font-size: 2vmin;
+        padding-left: 10vmin;
+        border-left: 0.2px solid gray;
+        border-right: 0.2px solid gray;
+        width: unset;
+    }
+    .button_dash_bezirk{
         font-size: 2vmin;
         padding-left: 10vmin;
         border-left: 0.2px solid gray;
