@@ -8,6 +8,9 @@ const data = dataOffline.filter(d => d.Bundesland == "Oesterreich");
 let widthRes = document.getElementById('hfO_Neuerk').clientWidth; 
 let heightRes = document.getElementById('hfO_Neuerk').clientHeight;
 
+let letzteAkt = data[data.length - 1].datum;
+document.getElementById("letzte_zahlen").innerHTML = "Letzte Aktualisierung: "+letzteAkt;
+
 function setPreviewO() {
    
     

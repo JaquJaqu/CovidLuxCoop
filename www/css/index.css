@@ -973,7 +973,7 @@ top: 14px;
     padding-top: 2%;
     cursor: pointer;
 }
-.letzte_zahlen{
+#letzte_zahlen{
     text-align: center;
     font-size: 9pt;
     margin-top: -1vh;
@@ -1886,7 +1886,7 @@ h3{
         height: 10vw;
         /*border: 0.2px solid gray;*/
     }
-    .letzte_zahlen{
+    #letzte_zahlen{
         font-size: 1.8vmin;
     }
     .button_dash{

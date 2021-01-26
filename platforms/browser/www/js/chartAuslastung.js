@@ -72,6 +72,8 @@ function yourMainCodeAusl(remoteDataAusl) {
     //dataset = items_json;
 
     async function drawAuslastung(region) {
+        let widthRes = document.getElementById('hfO_Neuerk').clientWidth; 
+        let heightRes = document.getElementById('hfO_Neuerk').clientHeight;
 
         // const dataset = await d3.json('./CovidFallzahlen.json');   //https://covid19-dashboard.ages.at/data/CovidFallzahlen.csv
 
@@ -150,9 +152,9 @@ function yourMainCodeAusl(remoteDataAusl) {
 
 
 
-        const width = 400;
+        const width = widthRes;
         const height = 400;
-        const barPadding = 200;
+        const barPadding = 180;
         const abstandErsterText = 35;
         const abstandProzentLabels = 20;
         const lineHeight = 30;
@@ -499,7 +501,7 @@ function yourMainCodeAusl(remoteDataAusl) {
 
         wrapper.append('text')
             .attr("x", width - 150)
-            .attr("y", height - 323)
+            .attr("y", heightRes * 0.7)
             .text(AuslHF1)
             .style("fill", "#000")
             .style("font-size", "3.1rem")

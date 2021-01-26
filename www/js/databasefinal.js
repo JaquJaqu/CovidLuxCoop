@@ -115,7 +115,7 @@ if (!window.indexedDB) {
     // Dann refresh --> Key steigt, gelöschter Wert ist wieder da! 
         db = event.target.result;
         //console.log("success: "+ db);
-        console.log("eTagResponseBezirke3ggggggggggg",eTagResponseBezirke3);
+        //console.log("eTagResponseBezirke3ggggggggggg",eTagResponseBezirke3);
     
     
   

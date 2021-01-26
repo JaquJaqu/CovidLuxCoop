@@ -32,7 +32,7 @@ function downloadBezirksFile4(pathBezirke4) {
     header: true,
     complete: function (results, file) {
       //console.log("data", results.data);
-        console.log('Completed loading the file...');
+        //console.log('Completed loading the file...');
          // Here starts your real code with this function
          //preprareBezirksData(results.data); 
          dataOfflineBez4 = results.data;   
@@ -91,6 +91,9 @@ bezirk = localStorage.getItem("letzterBezirk");
        //console.log("AnzahlFaelleSum", AnzahlFaelleSum);
       //console.log("Todesfaelle", Todesfaelle);
 
+      let letzteAkt = items_jsonBezirke4[i].datum;
+      document.getElementById("letzte_zahlen").innerHTML = "Letzte Aktualisierung: "+letzteAkt;
+
       if(AktiveFaellestoreBezirk != null){
       document.getElementById("hfBez_aktF").innerHTML = "<div class = 'hardfacts'>" + AktiveFaellestoreBezirk + "</div";
       }
@@ -128,15 +131,6 @@ bezirk = localStorage.getItem("letzterBezirk");
 //HIER
 
 } 
-
-
-
-
-
-
-
-
-
 
 
 

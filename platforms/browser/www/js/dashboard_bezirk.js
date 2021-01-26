@@ -91,11 +91,15 @@ bezirk = localStorage.getItem("letzterBezirk");
        //console.log("AnzahlFaelleSum", AnzahlFaelleSum);
       //console.log("Todesfaelle", Todesfaelle);
 
-
+      if(AktiveFaellestoreBezirk != null){
       document.getElementById("hfBez_aktF").innerHTML = "<div class = 'hardfacts'>" + AktiveFaellestoreBezirk + "</div";
+      }
+      if(Neuerkrankungen != null){
       document.getElementById("hfBez_Neuerk").innerHTML = "<div class = 'hardfacts'>" + Neuerkrankungen + "</div";
+      }
+      if(Todesfaelle != null){
       document.getElementById("hfBez_TTBez").innerHTML = "<div class = 'hardfacts'>" + Todesfaelle + "</div";
-    
+      }
 
 
       // let AnzahlFaelleSum = itemsstoreBezirk.AnzahlFaelleSum;
@@ -139,20 +143,28 @@ bezirk = localStorage.getItem("letzterBezirk");
 
 function setHardfacts() {
   //HARDFACTS
+  if(getAktiveFaelleBez != null){
   document.getElementById("hfBez_aktF").innerHTML = "<div class = 'hardfacts'>" + getAktiveFaelleBez + "</div";
+  }
+  if(getNeuerkrankungenBez != null){
   document.getElementById("hfBez_Neuerk").innerHTML = "<div class = 'hardfacts'>" + getNeuerkrankungenBez + "</div";
+  }
+  if(getTodesfaelleBez != null){
   document.getElementById("hfBez_TTBez").innerHTML = "<div class = 'hardfacts'>" + getTodesfaelleBez + "</div";
-
+  }
 
 }
 
 //_________DB STUFF ENDE______________________
 
 function onload_bezirk() {
-  if (localStorage.getItem("letzterBezirk") == null) {
+  if(bezirk == null || localStorage.getItem("letzterBezirk") == null){
+    document.getElementById("dash_bezirk_name").innerHTML = "Bitte wähle einen Bezirk!";
+  }
+  if (localStorage.getItem("letzterBezirk") == null && bezirk != null) {
     document.getElementById("dash_bezirk_name").innerHTML = bezirk;
   }
-  else if (localStorage.getItem("storeBezirk") != null) {
+  else if (localStorage.getItem("letzterBezirk") != null) {
     document.getElementById("dash_bezirk_name").innerHTML = localStorage.getItem("letzterBezirk");
   }
 }

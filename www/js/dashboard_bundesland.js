@@ -38,11 +38,14 @@ if(localStorage.getItem("storeBundesland") == null && localStorage.getItem("letz
             }
             const dateParser = d3.timeParse('%d.%m.%Y');
             blN = document.getElementById("dash_bundesland_name").innerHTML;
-            // console.log(dataOffline)
+            //console.log(dataOffline)
             const dataBL = dataOffline.filter(d => d.Bundesland == blN); 
             // console.log(dataBL); 
             let widthRes = document.getElementById('hfBL_Neuerk').clientWidth;
             let heightRes = document.getElementById('hfBL_Neuerk').clientHeight;
+
+            let letzteAkt = dataBL[dataBL.length - 1].datum;
+            document.getElementById("letzte_zahlen").innerHTML = "Letzte Aktualisierung: "+letzteAkt;
 
             function setPreviewBL(){
                 

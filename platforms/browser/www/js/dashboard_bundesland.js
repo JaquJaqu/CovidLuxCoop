@@ -19,6 +19,10 @@ getAkkordeon_dash();
 // HardfactsBL(); 
 
 function onload_bundesland() {
+if(localStorage.getItem("storeBundesland") == null && localStorage.getItem("letzterBezirk") == null){
+    document.getElementById("dash_bundesland_name").innerHTML = "Bitte wähle einen Bezirk!";
+}
+
     if (localStorage.getItem("storeBundesland") != null) {
         document.getElementById("dash_bundesland_name").innerHTML = localStorage.getItem("storeBundesland");
     }
@@ -37,10 +41,11 @@ function onload_bundesland() {
             // console.log(dataOffline)
             const dataBL = dataOffline.filter(d => d.Bundesland == blN); 
             // console.log(dataBL); 
+            let widthRes = document.getElementById('hfBL_Neuerk').clientWidth;
+            let heightRes = document.getElementById('hfBL_Neuerk').clientHeight;
 
             function setPreviewBL(){
-                let widthRes = document.getElementById('hfBL_Neuerk').clientWidth;
-                let heightRes = document.getElementById('hfBL_Neuerk').clientHeight;
+                
                 let hfAFBL = dataBL[dataBL.length - 1].AnzahlFaelle;
                 let hfTBL = dataBL[dataBL.length - 1].AnzahlTotTaeglich;
                 // console.log('test-set')
@@ -49,10 +54,11 @@ function onload_bundesland() {
                 drawPreview('#hfBL_TT', dataBL, d => dateParser(d.datum), d => d.AnzahlTotTaeglich, 50, hfTBL, widthRes, heightRes);
             }
             function getAreachartsBL(){
+                
   
     
-                drawAreaChart('#ACBL_Neuerk', dataBL, d => dateParser(d.datum), d => d.AnzahlFaelle, 1700); 
-                drawAreaChart('#ACBL_TT', dataBL, d => dateParser(d.datum), d => d.AnzahlTotTaeglich, 50); 
+                drawAreaChart('#ACBL_Neuerk', dataBL, d => dateParser(d.datum), d => d.AnzahlFaelle, 1700, widthRes ); 
+                drawAreaChart('#ACBL_TT', dataBL, d => dateParser(d.datum), d => d.AnzahlTotTaeglich, 50, widthRes); 
             
             }
                 setPreviewBL();
