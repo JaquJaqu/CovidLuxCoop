@@ -894,6 +894,19 @@ top: 14px;
     padding: 10 0 0 0;
   }
 
+  .overlayTT {
+    fill: none;
+    pointer-events: all;
+  }       
+  .tooltip {
+    fill: white;
+    stroke: #000;
+}
+
+.tooltip-date, .tooltip-likes {
+    font-weight: bold;
+} 
+
 /* Auslastung */
   .smallLabel{
     font-size: 0.938rem;/*15px;*/
