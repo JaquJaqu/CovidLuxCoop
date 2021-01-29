@@ -1244,8 +1244,7 @@ top: 14px;
   .fragezeichen_klein{
     display:flex;
     padding: 1vh;
-    /*margin-left: -2vh;
-    margin-top: -1vh;*/
+    border-radius: 100%;
 
 }
   

@@ -186,7 +186,7 @@ async function drawAreaChart(placeA, urlA, xAA, yAA, rangeA, weite, tooltip) {
         tooltipTT.style("opacity", 1)
     }
     function onMouseLeave() {
-        console.log("2");
+        //console.log("2");
     }
 
     // /*-------------------------------------------------------------*/
@@ -224,7 +224,7 @@ async function drawAreaChart(placeA, urlA, xAA, yAA, rangeA, weite, tooltip) {
             .attr("width", dimensions.boundW)
             .attr("height", dimensions.boundH)
             .on("mouseover", (e) => {focus.style("display", null)
-        console.log(e); 
+        //console.log(e); 
         })
             .on("mouseout", () => focus.style("display", "none"))
             .on("mousemove", mousemove);
@@ -244,7 +244,7 @@ async function drawAreaChart(placeA, urlA, xAA, yAA, rangeA, weite, tooltip) {
             focus.select(".tooltip-date").text(dateFormatTT(d.datum));
             focus.select(".tooltip-likes").text(formatTT(d.testTT));
 
-            console.log(e); 
+            //console.log(e); 
 
 
         }

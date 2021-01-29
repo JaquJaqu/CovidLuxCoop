@@ -111,3 +111,21 @@ function info_close(){
   $("#unterinfo").fadeOut(700);
 }
 
+
+function info_aktiveFälle_bezirk(){
+  document.getElementById("info_dash").innerHTML = "Diese Zahl gibt an wie viele Menschen in dieser Region akut an Covid-19 erkrankt sind. Von allen nachgewiesenen Infektionen werden die Todesfälle und die Genesenen abgezogen.";
+  $("#info_dash").css({"display": "flex", "justify-content": "center", "align-items": "center"}).hide().fadeIn(800);
+  $("#unterinfo").fadeIn(800);
+}
+
+function info_Neuerkrankungen_bezirk(){
+  document.getElementById("info_dash").innerHTML = "Diese Zahl zeigt alle Neuinfektionen, die am Vortag gemeldet wurden. Diese Zahl kann jedoch starken Schwankungen unterliegen, weil es an Wochenenden in der Regel einen Meldeverzug gibt.";
+  $("#info_dash").css({"display": "flex", "justify-content": "center", "align-items": "center"}).hide().fadeIn(800);
+  $("#unterinfo").fadeIn(800);
+}
+
+function info_Todesfälle_bezirk(){
+  document.getElementById("info_dash").innerHTML = "Diese Zahl gibt an wie viele Menschen am Vortag an einer Covid-19 Infektion in der gewählten Region gestorben sind.";
+  $("#info_dash").css({"display": "flex", "justify-content": "center", "align-items": "center"}).hide().fadeIn(800);
+  $("#unterinfo").fadeIn(800);
+}
