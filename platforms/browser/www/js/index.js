@@ -2,8 +2,6 @@ if (location.protocol !== "https:") {
     location.protocol = "https:";
 }
 function onload_walk(){
-    /*sessionStorage.setItem("walkthrough", true);*/
-    /*sessionStorage.removeItem("walkthrough");*/
 
     if(sessionStorage.getItem("splash") == null){
         setTimeout(function(){
@@ -26,7 +24,6 @@ function onload_walk(){
 
 function storeSplash(){
     sessionStorage.setItem("splash", true);
-    /*sessionStorage.removeItem("splash");*/
 }
  
 function storeWalk(){

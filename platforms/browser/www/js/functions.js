@@ -155,20 +155,3 @@ function onBackKeyDown(e){
 
 document.addEventListener("backbutton", onBackKeyDown, false);
 
-/*
-$("#walk_welle")
-    .on('load', function() { alert("Time until everything loaded: ", Date.now()-timerStart); })
-    .on('error', function() { alert("error loading image"); });*/
-   /* $(document).ready(function() {
-      //alert("Time until DOMready: ", Date.now()-timerStart);
-      console.log(timerStart);
-      console.log(Date.now()-timerStart);
-      var tesrt = Date.now()-timerStart;
-      document.getElementById("testet").innerHTML = "Time until DOMready: "+ tesrt;
-  });*/
-  /*
-  $(window).on('load', function () {
-    //alert("Time until everything loaded: ", Date.now()-timerStart);
-    var tesrt = Date.now()-timerStart;
-    document.getElementById("testet").innerHTML = "Time until everything loaded: "+ tesrt;
-});*/

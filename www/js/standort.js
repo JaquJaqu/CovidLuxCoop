@@ -388,11 +388,10 @@ function getAmpelwarnstufeOnline(onlineAmpeldata){
 function downloadAmpelFile(path2) {
   if(connBool ==true){ //wenn ich internet hab 
   loadJSON(path2, function (data) {
-    let items_json = data[12];
+    let items_json = data[14];
     var date = new Date();//var updateDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
         var updateDate = date.toGMTString(); // Tue, 17 Nov 2020 14:16:29 GMT --> Gibt mir die jetzige Uhrzeit im Format das lastModiefied Header Request auch hat
          ampelDatatrue = {updateDate: updateDate, items_json };
-
 
          var dataOfflineFormat = new Date(data[12].Stand);
          document.getElementById("letzte_ampel").innerHTML = "Ampel Stand: "+dataOfflineFormat.toLocaleString("de-DE");

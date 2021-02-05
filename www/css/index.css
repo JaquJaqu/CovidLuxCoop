@@ -944,9 +944,9 @@ top: 14px;
 
 }
  /*_*/ 
-  .info_dash_button{
+ /* .info_dash_button{
       margin-left: 5vw;
-  }
+  }*/
   #info_dash{
     text-align:center;
     z-index: 4;

@@ -586,7 +586,7 @@ function read_from_local_storage() {
         pathbool = true;
         // downloadFileAusl(path);
         //checkForUpdate();
-        console.log("test1")
+        //console.log("test1")
 
     }
 }

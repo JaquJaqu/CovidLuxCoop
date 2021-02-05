@@ -18,7 +18,6 @@ function getAkkordeon_dash(){
           // Remove the max-height class from the panel to close it
           var panel = allAccordions[j].nextElementSibling.nextElementSibling;
           var maxHeightValue = getStyle(panel, "maxHeight");
-          console.log(panel);
           
         
         if (maxHeightValue !== "0px") {
@@ -32,17 +31,13 @@ function getAkkordeon_dash(){
         // Toggle the panel element
         var panel = this.nextElementSibling.nextElementSibling;
         var maxHeightValue = getStyle(panel, "maxHeight");
-
-        console.log(panel);
         
         if (maxHeightValue !== "0px") {
           panel.style.maxHeight = null;
           this.nextElementSibling.style.display = "block";
-          console.log(this.nextElementSibling);
         } else {
           panel.style.maxHeight = panel.scrollHeight + "px";
           this.nextElementSibling.style.display = "none";
-          console.log(this.nextElementSibling);
         window.scrollTo(0,(panel.offsetTop-panel.scrollHeight));
         }
         
@@ -116,25 +111,21 @@ function info_close(){
   $("#unterinfo").fadeOut(700);
 }
 
-/*
-$(function() {
-  $('.accordion').hover(function() {
-    $(this).find('.info_dash_button').attr("src", "./img/fragezeichen_white.png");
-  }, function() {
-    // on mouseout, reset the background colour
-    $(this).find('.info_dash_button').attr("src", "./img/fragezeichen_gray.png");
-  });
-});*/
 
-/*
-$(function() {
-  $('button').click(function(){
-    if($('button').hasClass('accordion active')){
-      $(this).find('.info_dash_button').attr("src", "./img/fragezeichen_white.png");
+function info_aktiveFälle_bezirk(){
+  document.getElementById("info_dash").innerHTML = "Diese Zahl gibt an wie viele Menschen in dieser Region akut an Covid-19 erkrankt sind. Von allen nachgewiesenen Infektionen werden die Todesfälle und die Genesenen abgezogen.";
+  $("#info_dash").css({"display": "flex", "justify-content": "center", "align-items": "center"}).hide().fadeIn(800);
+  $("#unterinfo").fadeIn(800);
+}
 
-  } else {
-    // on mouseout, reset the background colour
-    $(this).find('.info_dash_button').attr("src", "./img/fragezeichen_gray.png");
-  }
-});
-});*/
+function info_Neuerkrankungen_bezirk(){
+  document.getElementById("info_dash").innerHTML = "Diese Zahl zeigt alle Neuinfektionen, die am Vortag gemeldet wurden. Diese Zahl kann jedoch starken Schwankungen unterliegen, weil es an Wochenenden in der Regel einen Meldeverzug gibt.";
+  $("#info_dash").css({"display": "flex", "justify-content": "center", "align-items": "center"}).hide().fadeIn(800);
+  $("#unterinfo").fadeIn(800);
+}
+
+function info_Todesfälle_bezirk(){
+  document.getElementById("info_dash").innerHTML = "Diese Zahl gibt an wie viele Menschen am Vortag an einer Covid-19 Infektion in der gewählten Region gestorben sind.";
+  $("#info_dash").css({"display": "flex", "justify-content": "center", "align-items": "center"}).hide().fadeIn(800);
+  $("#unterinfo").fadeIn(800);
+}
