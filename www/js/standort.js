@@ -1,33 +1,3 @@
-
-/*
-
-//- Ampelfarbe ab Start der App ohne refresh angezeigt --> neue Funktion, Online Ampeldaten! 
-    -->"getAmpelwarnstufeOnline" (letzte Warnstufe wird jetzt auch lokal gespeichert) damit mans gleich beim start gezeigt bekommt)
-//______________________________ERKLÄRUNG_________________________________________________________________________________________________________________
-Kurze Erklärung für Aktive Fälle: 
-3 Möglichkeiten Aktive Faelle angezeigt zu bekommen: 
-- Durch direkten Request wenn es weder Daten im LS noch in DB gibt --> Daten direkt aus dem Internet
-- Wenn DB nicht vorhanden oder nicht up-to date ist aber vom letzten mal noch im LS gespeichert --> LS daten werden verwendet
-- Wenn DB vorhandenund up-to-date --> Daten werden aus der DB verwendet !!! geht nicht !!
-
-Kurze Erklärung zu Ampelfarbe::
-- wenn App zum erstenmal gestartet --> Online Warnstufe wird requested, angezeigt und im LS gespeichert
-- wenn es bereits aktuelle Daten gibt --> Dann werden sie offline genommen 
-
-
-//__________________________ANMERKUNGEN______________________________________________________________________________________________
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- * 
- * ______________WICHTIG FÜRS TESTEN___________________
- * -) Erst seit den letzten 3, 4 Ampelfile Versionen sind die Bezirke von Vorarlberg auch wirklich als Bezirke
- *    angeführt. Wenn mit älteren Versionen getestet wird kann es also sein das Bregenz, Bludenz, Dornbirn
- *    oder Feldkirch nicht funktionieren.
- */
-
-
-
 const urlBezirke2 = 'https://covid19-dashboard.ages.at/data/CovidFaelle_Timeline_GKZ.csv';
 //const corsFixBezirke2 = 'https://evening-reaches-25236.herokuapp.com/';
 const corsFixBezirke2 = 'https://evening-reaches-25236.herokuapp.com/';
@@ -49,22 +19,6 @@ let AktiveFaellestoreBezirkalt;
 let Neuerkrankungen;
 let Todesfaelle;
 let AktiveFaellestoreBezirk;
-
-//Db Offline Data
-//let loadbool =true;      
-//var db; 
-//var request = window.indexedDB.open("alleBezirksDaten",1); 
-// var meineDatenAAF = []; //Alle Aktive Fälle jedes Datums des Gewählten Bezirks
-// var meineDatenAEW = [];
-// var meineDatenAF = [];
-// var meineDatenAFSiebenT = [];
-// var meineDatenAFS = [];
-// var meineDatenAGS = [];
-// var meineDatenAGT = [];
-// var meineDatenATS = [];
-// var meineDatenATT = [];
-// var meineDatenSTI = [];
-// var meineDatenDatum = [];
 
 let storeBezirk;
 let pathboolBezirk;
@@ -121,16 +75,6 @@ let getAnzahlGeheiltSumArr=[];
 
 let databaseCompletebool  = false;
 
-
-/*__CORDOVA-CODE___
-var platform = null;
-
-document.addEventListener("deviceready", onDeviceReady, false);
-        function onDeviceReady() {
-          platform = device.platform;
-          console.log(platform);
-        }
-*/
 createDropdown();
 farbkreisPH = document.getElementById("farbkreisPH");
 farbkreis = document.createElement("div");
@@ -142,9 +86,6 @@ checkForUpdate();
 //Wenn vom letzten mal noch eine Lokation im LS gespeichert ist dann zeig die Daten von der an
 read_from_local_storage();
 getAmpel();
-
-//console.log("databasebool", databasebool);
-//console.log("CONNBOOL:", connBool);
 
 //Zugriff auf API
 function getLocation(latitude, longitude) {
@@ -254,7 +195,6 @@ function getLocation(latitude, longitude) {
         getAmpel();
         lokalstorageBundesland = bundesland;
         bundesland = data.principalSubdivision;
-        //localStorage.setItem("storeBundesland", bundesland);
       
     },
     function (xhr) {
@@ -283,7 +223,7 @@ function drawIllustration(ampelStufe){
       document.getElementById("farbkreis").style.backgroundColor = "#60B564";
       document.getElementById("WarnstufeGeschrieben").innerHTML = "GRÜN <br/> geringes Risiko";
       document.getElementById("farbkreisAktiv").style.border = "1px solid #60B564";
-        //basicIllu();
+        
       
       document.getElementById("ringerl").style.display = "block";
       document.getElementById("ringerl").style.gridColumn = "4/4";
@@ -293,7 +233,7 @@ function drawIllustration(ampelStufe){
         document.getElementById("farbkreis").style.backgroundColor = "#FED500";
         document.getElementById("WarnstufeGeschrieben").innerHTML = "GELB <br/> mittleres Risiko";
         document.getElementById("farbkreisAktiv").style.border = "1px solid #FED500";
-        //basicIllu();
+        
         
         document.getElementById("ringerl").style.display = "block";
         document.getElementById("ringerl").style.gridColumn = "5/5";
@@ -303,7 +243,7 @@ function drawIllustration(ampelStufe){
         document.getElementById("farbkreis").style.backgroundColor = "#F59C00";
         document.getElementById("WarnstufeGeschrieben").innerHTML = "ORANGE <br/> hohes Risiko";
         document.getElementById("farbkreisAktiv").style.border = "1px solid #F59C00";
-       // basicIllu();
+       
         
         document.getElementById("ringerl").style.display = "block";
         document.getElementById("ringerl").style.gridColumn = "6/6";
@@ -313,7 +253,7 @@ function drawIllustration(ampelStufe){
         document.getElementById("farbkreis").style.backgroundColor = "#CB0538";
         document.getElementById("WarnstufeGeschrieben").innerHTML = "ROT <br/> sehr hohes Risiko";
         document.getElementById("farbkreisAktiv").style.border = "1px solid #CB0538";
-        //basicIllu();
+       
         
         document.getElementById("ringerl").style.display = "block";
         document.getElementById("ringerl").style.gridColumn = "7/7";
@@ -329,27 +269,20 @@ function drawIllustration(ampelStufe){
 function getAmpel() {
 var dataOff;
 
-//console.log("ampelDatatrue: ", ampelDatatrue);
-//console.log("dataOffline: ",dataOffline);
-
 //dataOffline: Data aus Json von LS
   if(dataOffline != null ){
     var dataOfflineFormat = new Date(dataOffline.Stand);
     document.getElementById("letzte_ampel").innerHTML = "Ampel Stand: "+dataOfflineFormat.toLocaleString("de-DE");
     dataOff = dataOffline;
-     //console.log("AMPELFARBE wird offline genommen", "dataOff:" ,dataOff);
      getWarnstufe(dataOff);
 //ampelDatatrue: Daten direkt aus dem Request --> zum anzeigen der Daten wenn die Werte noch nicht im LS geladen sind(jetzt muss man nicht mehr refreshen)
   }else if (ampelDatatrue !=null){
      dataOff = ampelDatatrue.items_json;
-     //console.log("AMPELFARBE wird online(offline) genommen", "ampelDatatrue:" ,dataOff);
      getWarnstufe(dataOff);
      }
 }
      
 function getWarnstufe(dataOff){
-  //console.log("Offline Data", dataOff);
-  //storeBezirk = localStorage.getItem("storeBezirk");
   storeBezirk = bezirk;
       for (i = 0; i < dataOff.Warnstufen.length; i++) {
         if(storeBezirk == "Wien"){
@@ -389,7 +322,7 @@ function downloadAmpelFile(path2) {
   if(connBool ==true){ //wenn ich internet hab 
   loadJSON(path2, function (data) {
     let items_json = data[14];
-    var date = new Date();//var updateDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
+    var date = new Date();
         var updateDate = date.toGMTString(); // Tue, 17 Nov 2020 14:16:29 GMT --> Gibt mir die jetzige Uhrzeit im Format das lastModiefied Header Request auch hat
          ampelDatatrue = {updateDate: updateDate, items_json };
 
@@ -433,7 +366,7 @@ function read_from_local_storage() { //gib mir die Datem aus dem localStorage
   if(localStorage.getItem("letzteAmpelstufe") != null){
       alteampelStufe = localStorage.getItem("letzteAmpelstufe");
     }else {
-    //console.log("letzteAmpelstufe ist im LS sind noch nicht vorhanden");
+    
   }
 
   //BEZIRK - alt 
@@ -450,19 +383,9 @@ function read_from_local_storage() { //gib mir die Datem aus dem localStorage
 //AKTIVE FÄLLE - alt
 if (localStorage.getItem("AktiveFaelle")!= null){
   AktiveFaellestoreBezirkalt = localStorage.getItem("AktiveFaelle");
-  //console.log("ALTE STANDORT Daten! --> Das sind die ALTEN Daten aus dem LS", databasebool, AktiveFaellestoreBezirkalt);
   valueAktiveFaelle = AktiveFaellestoreBezirkalt;
   drawIllustration(ampelStufe);
-  //document.getElementById("farbkreisAktiv").innerHTML = valueAktiveFaelle;
   } else {
-  //console.log("AktiveFaelle ist im LS sind noch nicht vorhanden");
-
-//von DB
-    // if(databasebool == true){
-    // getOfflineBezDaten();
-    // }else{
-
-    // }
 
 }
 
@@ -470,7 +393,7 @@ if (localStorage.getItem("AktiveFaelle")!= null){
 if(localStorage.getItem("letztesBundesland") != null){
   bundesland = localStorage.getItem("letztesBundesland");
   }else {
-//console.log("letzerBezirk im LS sind noch nicht vorhanden");
+
 }
 
   //LOKATION
@@ -500,10 +423,6 @@ async function checkForUpdate() {
   await onload_start();
   read_from_local_storage(); //Les mir das Objekte vom Lokalstorage aus (brauche "updateDate", "lokalstorageBezirk" )
 
-//schau ob die lokalen Ampel und Lokationsdaten Speicherdaten geupdated gehören
-// if(checkBool == false){ //Standort ist aktiviert wenn checkBool==false
-//            downloadLokation();
-//           }
 if(connBool == true){ //wenn es eine Internetverbindung ist und dder online zugriff auf die Ampeldaten gestattet dann
    checkBezirksdata();
    checkAmpeldata(pathforUpdate);
@@ -525,15 +444,10 @@ function checkAmpeldata(pathforUpdate){
           client.abort();
       } else {
          //Wenn es sich um eine JSOn Datei handelt dann gib mir den Last-Modified Header der Web Resource
-        //console.log("Zuletzt am Server gspeichert am (Last-Modified):",lastModifiedResponse);      
-        //console.log("eTagResponse",eTagResponse);
         var eTagAmpelLocal = localStorage.getItem("ETagAmpel");
-        //console.log('eTagResponseAmpel',eTagResponse);
-        //console.log("Ampel ETag Local", eTagAmpelLocal);
       if(eTagAmpelLocal == null || eTagAmpelLocal != eTagResponse){
       //DOWNLOAD FILE IMPLEMENTIEREN-nur localstorage
       localStorage.setItem("ETagAmpel", eTagResponse);
-      //localStorage.setItem("ETagAmpel", eTagResponse+"TEST");
       downloadAmpelFile(pathforUpdate);   
          } 
     }} 
@@ -550,16 +464,11 @@ function checkBundeslanddata(){
   client.send();
   client.onreadystatechange = function () {
        if (this.readyState == this.HEADERS_RECEIVED) {//gibt mir alle Headers von allen Requests aus
-            //var lastModifiedResponse = client.getResponseHeader("Last-Modified");
             eTagResponseBundesland = client.getResponseHeader("ETag");
-            //console.log(eTagResponseBezirke);
     var eTagBundeslandLocal = localStorage.getItem("ETagBundesland");
-    //console.log('eTagResponseBundesland',eTagResponseBundesland);
-    //console.log("Bundesland ETag Local", eTagBundeslandLocal);
     if(eTagBundeslandLocal == null || eTagBundeslandLocal != eTagResponseBundesland ){
       //DOWNLOAD FILE IMPLEMENTIEREN-nur localstorage
         downloadBundeslandFile(pathBundesland);    
-      //localStorage.setItem("ETagBundesland", eTagResponseBundesland+"TEST");
       localStorage.setItem("ETagBundesland", eTagResponseBundesland);
         }else if (eTagBundeslandLocal != null || eTagBundeslandLocal == eTagResponseBundesland ){         
         } 
@@ -577,12 +486,8 @@ function checkBezirksdata(){
   client.send();
   client.onreadystatechange = function () {
        if (this.readyState == this.HEADERS_RECEIVED) {//gibt mir alle Headers von allen Requests aus
-            //var lastModifiedResponse = client.getResponseHeader("Last-Modified");
             eTagResponseBezirke = client.getResponseHeader("ETag");
-            //console.log(eTagResponseBezirke);  
             var eTagBezirkeLocal = localStorage.getItem("ETagBezirke");
-            //console.log('eTagResponseBezirke',eTagResponseBezirke);
-            //console.log("Bezirke ETag Local", eTagBezirkeLocal);
   
     if(eTagBezirkeLocal == null || eTagBezirkeLocal != eTagResponseBezirke ){
       //DOWNLOAD FILE IMPLEMENTIEREN-nur localstorage
@@ -599,12 +504,9 @@ function checkBezirksdata(){
 
 function checkOfflineAvailableAmpel(){
   if (eTagResponse == getETaglocalS) {
-    //console.log('your Data is up-to-date');
     pathboolAmpel = false;
   
 } else {
- // pathboolAmpel= true; 
-  //console.log("your Data is not up-to-date, it gets now downloaded from the resource and saved in your local storage");
   $("#loader_class").css({"display": "flex", "justify-content": "center", "align-items": "center", "flex-direction": "column"}).show().delay(1500);
   
 
@@ -632,7 +534,7 @@ cordova.plugins.locationAccuracy.request(
     }, 1500);
   },
   function() {
-    //console.log("error");
+
   },
   cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY
 );
@@ -679,18 +581,7 @@ function myLocation() {
   } else if (checkBool == false) {
 
     if(connBool == true){
-     
-      // location.reload();
-      /*___CORDOVA-CODE___
-      if(platform != null){
-      if(platform ==="Android" || platform ==="iOS"){
-        getStandort();
-      }else if(platform ==="browser"){
-        readUserLocation();
-      }
-    }*/
 
-  //ABSOLUT WICHTIG FÜR TOGGLE!!!!
   //Standort abfragen
      readUserLocation();
   ////  
@@ -701,12 +592,6 @@ function myLocation() {
       read_from_local_storage();
       getOfflineBezDaten();
 
-    //   if (databasebool == false){
-    //     checkBezirksdata(); 
-    //  // downloadBezirksFile(pathBezirke2);
-    //  checkAvailableDatabase();
-    //   }
-
 
        bezirk = lokalstorageBezirk;
        localStorage.setItem("storeBezirk", bezirk);
@@ -716,9 +601,6 @@ function myLocation() {
 
     }
       
-    // if(lokalstorageBezirk != null){
-    //   downloadLokation();
-    //   }
 
       document.getElementById("bezirk").innerHTML = bezirk;
 
@@ -769,7 +651,6 @@ function changeText(elm) {
   bezirk = elm.getAttribute("value");
   myFunction();
   document.getElementById("bezirk").innerHTML = bezirk;
-  //localStorage.setItem("storeBezirk", bezirk);
   localStorage.setItem("letzterBezirk", bezirk);
   
   //FÄRBT Ampel EIN --> WICHTIG
@@ -778,16 +659,10 @@ function changeText(elm) {
   }
   if(localStorage.getItem("Ampeldaten") == null){
     getAmpelwarnstufeOnline(onlineAmpeldata);
-    //getAmpel();
     }else{
       getAmpel();
     }
-  
-  
- //prepareBezirksData(pathBezirke2);
- 
 
- 
 
   document.getElementById("infoText").style.display= "none";
   document.getElementById("info_start").style.display= "none"; 
@@ -795,20 +670,10 @@ function changeText(elm) {
   document.getElementById("switchValue").checked = true;
   localStorage.removeItem("storeBundesland");
 
-  //localStorage.setItem("storeBezirk",bezirk);
   localStorage.setItem("storeToggleTrue", true);
   localStorage.removeItem("storeToggleFalse");
 
-//  if (databasebool == true){
-//   //Daten aus der DB!!!
-//   getOfflineBezDaten(); //WENN OFFLINE (für Aktive Faelle)
-//   } else if (connBool == true && databasebool == false){
-//   //Daten Direkt! 
-//   
-  
-//   }
 
- //HIER
  if(databaseCompletebool == true){
   getOfflineBezDaten(); 
   drawIllustration(ampelStufe);  
@@ -883,15 +748,6 @@ if(databaseCompletebool == true){
 }
 
 
-//***_______AKTIVE FAELLE_FUNKTIONALITÄT_______***
-// function setHardfacts() {
-//   //HARDFACTS
-//   document.getElementById("hfBez_aktF").innerHTML = "<div class = 'hardfacts'>" + AktiveFaellestoreBezirk + "</div";
-//   document.getElementById("hfBez_Neuerk").innerHTML = "<div class = 'hardfacts'>" + Neuerkrankungen + "</div";
-//   document.getElementById("hfBez_TTBez").innerHTML = "<div class = 'hardfacts'>" + Todesfaelle + "</div";
-
-
-// }
 //___NUR EINZELNEN WERT BERECHNEN
 //Hier wird nur ein Wert (AktiveFaelle) für den gerade ausgewählten Bezirk berechnet, Berechnung erfolgt direkt nach Request an URL
 function prepareBezirksData(pathBezirke2){
@@ -913,7 +769,6 @@ function prepareBezirksData(pathBezirke2){
 
         document.getElementById("letzte_pos_faelle").innerHTML = "Positive Fälle Stand: "+realDatum;
 
-          //console.log("items_jsonBezirke2",items_jsonBezirke2);
 
         for (i = 0; i < items_jsonBezirke2.length; i ++){
           const obj = items_jsonBezirke2[i];
@@ -942,21 +797,11 @@ function prepareBezirksData(pathBezirke2){
            
             // //Anzahl Neuerkrankungen
             Neuerkrankungen = items_jsonBezirke2[i].AnzahlFaelle;
-            //console.log("AnzahlFaelleSum", AnzahlFaelleSum);
-            //console.log("Neuerkrankungen", Neuerkrankungen);
+
 
              // //Anzahl Todesfälle
              Todesfaelle = items_jsonBezirke2[i].AnzahlTotTaeglich;
-             //console.log("AnzahlFaelleSum", AnzahlFaelleSum);
-            //console.log("Todesfaelle", Todesfaelle);
 
-
-
-            // let AnzahlFaelleSum = itemsstoreBezirk.AnzahlFaelleSum;
-            // let AnzahlGeheiltSum = itemsstoreBezirk.AnzahlGeheiltSum;
-            // let AnzahlTotSum = itemsstoreBezirk.AnzahlTotSum;
-            // AktiveFaellestoreBezirk = AnzahlFaelleSum - AnzahlGeheiltSum - AnzahlTotSum;
-            
     
             //Speicherdatum
             var date = new Date();
@@ -976,33 +821,20 @@ function prepareBezirksData(pathBezirke2){
       //HIER
       //DB Bezirksdaten sind vorhanden --> verwende die!
       if(databaseCompletebool == true){
-      // getOfflineBezDaten(); 
-      // drawIllustration(ampelStufe);  
+ 
     } //Wenn es keine bezirksdaten gibt --> verwende die eben berechneten Werte  
      else if(databaseCompletebool == false){
        if (connBool == true){
-      
-       //console.log('AktiveFaellestoreBezirk',AktiveFaellestoreBezirk);
 
      valueAktiveFaelle = AktiveFaellestoreBezirk;
-     //console.log('valueAktiveFaelle',valueAktiveFaelle);
-
       drawIllustration(ampelStufe);
-      //checkAvailableDatabase();
        }
     } else if(databaseCompletebool == false && connBool == false && AktiveFaelleStoreBezirkalt != null){
      valueAktiveFaelle = AktiveFaellestoreBezirkalt;
 
 
       drawIllustration(ampelStufe);
-      //checkAvailableDatabase();
 console.log("STANDORT! Das sind die NEUEN Daten aus dem LS", databasebool, AktiveFaellestoreBezirk);
-   
-      
-      //document.getElementById("farbkreisAktiv").innerHTML = AktiveFaellestoreBezirk;
-      //Inzwischen solle die DB erstellt worden sein, ab jetzt immer von der DB! 
-      //HIER anders checken ob es db gibt??
-      //databasebool = true;
       console.log("AktiveFaelle sind noch nicht im LS gespeichert");
     }
   }
@@ -1034,18 +866,6 @@ if (!window.indexedDB) {
    window.alert("Your browser doesn't support a stable version of IndexedDB.")
 }
 
-//Öffne DB Zugriff
- //request = window.indexedDB.open("alleBezirksDaten",1);
-
-        
-
-
-// //ON SUCCESS
-//      
-//         db = event.target.result;
-//         //Wenn verbindung aufgebaut werden kann dann gib mit die Daten aus der DB --> "Start"
-//         preparemeineDaten();
-        
 
 //Gib mir die Daten aus der DB
 
@@ -1064,7 +884,7 @@ var itemsRequest = objectStore.getAll();
  
 //ON ERROR
      request.onerror = function(event) {   
-        //console.error("Database error: " + event.target.errorCode);
+        
         };
 //ON UPRADE
         request.onupgradeneeded = function(event) {
@@ -1144,19 +964,8 @@ function preparemeineDaten(){
   getAktiveFaelle = meineDatenAAF[IndexlastElementAAF];
 
 
-
-  
-//HIER
-  //drawIllustration(ampelStufe);
-  //document.getElementById("farbkreisAktiv").innerHTML = getAktiveFaelle;
-
-
-      //console.log("DATABASEFUNKT! - die Daten werden aus der DB genommen", databasebool, getAktiveFaelle);
-
       localStorage.setItem("AktiveFaelle", getAktiveFaelle);
       
-      // farbkreisValue = localStorage.getItem("AktiveFaelle");
-      // document.getElementById("farbkreisAktiv").innerHTML = getAktiveFaelle;
    
   }
 
@@ -1170,8 +979,6 @@ function downloadBezirksFile(pathBezirke2) {
     download: true,
     header: true,
     complete: function (results, file) {
-         // Here starts your real code with this function
-         //preprareBezirksData(results.data); 
          dataOfflineBez = results.data;   
          prepareBezirksData(dataOfflineBez);   
           },
@@ -1187,8 +994,6 @@ function downloadBundeslandFile(pathBundesland) {
     download: true,
     header: true,
     complete: function (results, file) {
-         // Here starts your real code with this function
-         //preprareBezirksData(results.data); 
           dataOfflineBundesland = results.data; 
           prepareBundeslandData(dataOfflineBundesland);   
           },
@@ -1212,12 +1017,12 @@ const obj = items_json[i];
 
  var fulldatesofitems = items_json[i].datum; //auch hier schon "datum"!!!!!
  var dateofitems = fulldatesofitems.split(" ");
- var dateofitem = dateofitems[0]; //[0] = Datum| [1] = 00:00:00
+ var dateofitem = dateofitems[0]; 
  items_json[i].datum = dateofitem; //Erstetzen des Datum + Urzeit String durch neuen "date" - String
  }
  
 //Speichern der Daten im Lokal Storage + Speicherdatum dazu fügen (im GMT Format)
-var date = new Date();//var updateDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
+var date = new Date();
 var updateDate = date.toGMTString(); // Tue, 17 Nov 2020 14:16:29 GMT --> Gibt mir die jetzige Uhrzeit im Format das lastModiefied Header Request auch hat
 var Datatrue = { updateDate: updateDate, items_json };    
 localStorage.setItem("Bundeslanddaten", JSON.stringify(Datatrue));
@@ -1240,7 +1045,6 @@ function renameKeys(obj, newKeys) {
 
 //Umlaute ersetzen
 function replaceUmlauts(value){
-//value = value.replace(/\u00e4/g, 'ae');
 value = value.replace(/\u00f6/g, 'oe');
 value = value.replace(/\u00fc/g, 'ue');
 value = value.replace(/\u00c4/g, 'Ae');
@@ -1253,8 +1057,6 @@ return value;
 
 //Umlaute einfügen
 function makeUmlauts(value){
-//value = value.replace(/\u00e4/g, 'ae');
-// value = value.replace( /'oe'/g,'\u00f6');
 value = value.replace( /'ue'/g,'\u00fc');
 value = value.replace( /'Ae'/g,'\u00c4');
 value = value.replace( /'Oe'/g,'\u00d6');
@@ -1266,8 +1068,6 @@ return value;
 //EVA????
 //Umlaute ersetzen
 function replaceUmlautsB(value){
-  //value = value.replace(/\u00e4/g, 'ae');
-  // value = value.replace(/\u00f6/g, 'oe');
   value = value.replace(/\u00fc/g, 'ue');
   value = value.replace(/\u00c4/g, 'Ae');
   value = value.replace(/\u00d6/g, 'Oe');
@@ -1277,17 +1077,6 @@ function replaceUmlautsB(value){
   }
   
   
-//   //Umlaute einfügen
-//   function makeUmlauts(value){
-//   //value = value.replace(/\u00e4/g, 'ae');
-//   // value = value.replace( /'oe'/g,'\u00f6');
-//   value = value.replace( /'ue'/g,'\u00fc');
-//   value = value.replace( /'Ae'/g,'\u00c4');
-//   value = value.replace( /'Oe'/g,'\u00d6');
-//   value = value.replace( /'Ue'/g,'\u00dc');
-//   value = value.replace( /'ss'/g,'\u00df');
-//   return value;
-//   }
   
   
 

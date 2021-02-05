@@ -1,9 +1,5 @@
 getAkkordeon_dash();
 
-
-// const dateParser = d3.timeParse('%d.%m.%Y');
-
-
 const data = dataOffline.filter(d => d.Bundesland == "Oesterreich");
 let widthRes = document.getElementById('hfO_Neuerk').clientWidth; 
 let heightRes = document.getElementById('hfO_Neuerk').clientHeight;
@@ -25,8 +21,6 @@ function getAreacharts(){
     
     drawAreaChart('#AC_Neuerk', data, d => dateParser(d.datum), d => d.AnzahlFaelle, 9500, widthRes, 'AnzahlFaelle'); 
     drawAreaChart('#AC_TT', data, d => dateParser(d.datum), d => d.AnzahlTotTaeglich, 150, widthRes, 'AnzahlTotTaeglich'); 
-    // drawAuslastung(1);
-    // drawAuslastungHF(1);
 
 }
 

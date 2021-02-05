@@ -1,13 +1,6 @@
-// TO DO: 
-// letztes Datum auswählen CHECK
-// richtiges Bundesland auswählen CHECK
-// richtige Quelle einbinden CHECK
-
-
 const urlAusl = 'https://covid19-dashboard.ages.at/data/CovidFallzahlen.csv';
 //const corsFix = 'https://cors-anywhere.herokuapp.com/';
 
-//deiner
 // const corsFixAusl = 'https://sheltered-scrubland-89578.herokuapp.com/';
 
 //const corsFix = 'https://evening-reaches-25236.herokuapp.com/';
@@ -37,48 +30,27 @@ var dataset;
 
 downloadFileAusl(path);
 
-//dataset = results.data;
-//yourMainCode(remoteData);
-//dataset = results.data;
-
-
 //MainCode
 function yourMainCodeAusl(remoteDataAusl) {
 
     read_from_local_storage();
-    //console.log("Array Example:", getMeldedat);
-
-    // console.log("Offline Daten2:" , dataOffline);   GEHT A NED 
-
-
 
     const stringReplace = JSON.stringify(remoteDataAusl);
-    // const realData = JSON.parse(stringReplace);
     let items_json = stringReplace;
 
 
     //Speichern der Daten im Lokal Storage + Speicherdatum dazu fügen (im GMT Format)
-    var date = new Date();//var updateDate = date.toISOString(); //"2011-12-19T15:28:46.493Z"
+    var date = new Date();
     var updateDate = date.toGMTString(); // Tue, 17 Nov 2020 14:16:29 GMT --> Gibt mir die jetzige Uhrzeit im Format das lastModiefied Header Request auch hat
     var Datatrue = { updateDate: updateDate, items_json };
     localStorage.setItem("Data", JSON.stringify(Datatrue));
-
-
-    // console.log("TEST 2 (außen):  ", dataset); // ist außerhalb der downloadFile Funktion "undefined"
-    //console.log("TEST 2 (außen):  ", items_json); // Kann ich auch mit dem arbeiten?????
-    // console.log("remoteData: ", remoteData);
-    // console.log("items_json: ", items_json);
-
-    //dataset = items_json;
 
     async function drawAuslastung(region) {
         let widthRes = document.getElementById('hfO_Neuerk').clientWidth; 
         let heightRes = document.getElementById('hfO_Neuerk').clientHeight;
 
-        // const dataset = await d3.json('./CovidFallzahlen.json');   //https://covid19-dashboard.ages.at/data/CovidFallzahlen.csv
-
-        const reversed = dataset.reverse();  // Reihenfolge der Datensätze werden umgekehrt  (https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse
-        var removed = dataset.splice(10); // alle Elemente nach dem 10. Index werden gelöscht  (https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)
+        const reversed = dataset.reverse();  // Reihenfolge der Datensätze werden umgekehrt 
+        var removed = dataset.splice(10); // alle Elemente nach dem 10. Index werden gelöscht
         // Datensatz besteht nun nur noch aus 10 Einträgen == letztes Datum
         // jedes Bundesland hat einen Datensatz + ein Datenzsatz für Österreich
 
@@ -146,12 +118,6 @@ function yourMainCodeAusl(remoteDataAusl) {
             dataset.splice(0, 9);
         }
 
-
-
-        // console.log("richtige Daten: ", dataset);
-
-
-
         const width = widthRes;
         const height = 400;
         const barPadding = 180;
@@ -188,13 +154,8 @@ function yourMainCodeAusl(remoteDataAusl) {
         const FZHospPercent = d => dimensions.boundedW * ((d.FZHosp / d3.sum([d.FZHosp, d.FZHospFree])));
         const FZHospFreePercent = d => dimensions.boundedW * ((d.FZHospFree / d3.sum([d.FZHosp, d.FZHospFree])));
 
-        // console.log("FZHospFreePercent :", FZHospFreePercent);
-
         const FZICUPercent = d => dimensions.boundedW * ((d.FZICU / d3.sum([d.FZICU, d.FZICUFree])));
         const FZICUFreePercent = d => dimensions.boundedW * ((d.FZICUFree / d3.sum([d.FZICU, d.FZICUFree])));
-
-        // const sumHosp = d => d3.sum([d.FZHosp + d.FZHospFree]);
-        // const sumICU = d => d3.sum([d.FZICU + d.FZICUFree]);
 
 
         /// BALKEN ///////////////////////////////////////////////
@@ -351,11 +312,9 @@ function yourMainCodeAusl(remoteDataAusl) {
         let widthRes = document.getElementById('hfO_Neuerk').clientWidth; 
         let heightRes = document.getElementById('hfO_Neuerk').clientHeight;
 
-        // const dataset = await d3.json('./CovidFallzahlen.json');   //https://covid19-dashboard.ages.at/data/CovidFallzahlen.csv
-
-        const reversed = dataset.reverse();  // Reihenfolge der Datensätze werden umgekehrt  (https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse
-        var removed = dataset.splice(10); // alle Elemente nach dem 10. Index werden gelöscht  (https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)
-        // Datensatz besteht nun nur noch aus 10 Einträgen == letztes Datum
+        const reversed = dataset.reverse();  // Reihenfolge der Datensätze werden umgekehrt  
+        var removed = dataset.splice(10); // alle Elemente nach dem 10. Index werden gelöscht  
+                // Datensatz besteht nun nur noch aus 10 Einträgen == letztes Datum
         // jedes Bundesland hat einen Datensatz + ein Datenzsatz für Österreich
 
         // dataset[0] //Österreich ID 10
@@ -422,15 +381,8 @@ function yourMainCodeAusl(remoteDataAusl) {
             dataset.splice(0, 9);
         }
 
-        // console.log(dataset[0])
         let AuslHF1 = dataset[0].FZHosp
         let AuslHF2 = dataset[0].FZHospFree
-        // console.log(AuslHF2/AuslHF1)
-
-
-        // console.log("richtige Daten: ", dataset);
-
-
 
         const width = widthRes;
         const height = 400;
@@ -469,15 +421,6 @@ function yourMainCodeAusl(remoteDataAusl) {
         const FZHospFreePercent = d => dimensions.boundedW * ((d.FZHospFree / d3.sum([d.FZHosp, d.FZHospFree])));
         
 
-        // console.log("FZHospFreePercent :", FZHospFreePercent);
-
-        // const FZICUPercent = d => dimensions.boundedW * ((d.FZICU / d3.sum([d.FZICU, d.FZICUFree])));
-        // const FZICUFreePercent = d => dimensions.boundedW * ((d.FZICUFree / d3.sum([d.FZICU, d.FZICUFree])));
-
-        // const sumHosp = d => d3.sum([d.FZHosp + d.FZHospFree]);
-        // const sumICU = d => d3.sum([d.FZICU + d.FZICUFree]);
-
-
         /// BALKEN ///////////////////////////////////////////////
         var barFZHosp = wrapper.selectAll("FZHosp")
             .data(dataset)
@@ -508,27 +451,6 @@ function yourMainCodeAusl(remoteDataAusl) {
             .style("text-align", "right")
             .style("letter-spacing", "0.3rem")
 
-        // var barFZICU = wrapper.selectAll("FZICU")
-        //     .data(dataset)
-        //     .enter()
-        //     .append("rect")
-        //     .attr("class", "rectLinks")
-        //     .attr("x", 0)
-        //     .attr("y", dimensions.margin.top + barHeight + barPadding)
-        //     .attr("width", FZICUPercent)
-        //     .attr("height", barHeight);
-
-        // var barFZICUFree = wrapper.selectAll("FZICUFree")
-        //     .data(dataset)
-        //     .enter()
-        //     .append("rect")
-        //     .attr("class", "rectRechts")
-        //     .attr("x", FZICUPercent)
-        //     .attr("y", dimensions.margin.top + barHeight + barPadding)
-        //     .attr("width", FZICUFreePercent)
-        //     .attr("height", barHeight);
-
-
     }
 
 
@@ -536,9 +458,6 @@ function yourMainCodeAusl(remoteDataAusl) {
 
     drawAuslastung(1);
     drawAuslastungHF(1);
-
-    // console.log("1 anzeigen")
-
 
 }
 
@@ -550,14 +469,9 @@ function downloadFileAusl(path) {
             download: true,
             header: true,
             complete: function (results, file) {
-                // console.log('Completed loading the file...');
-                // Here starts your real code with this function
-
-                //console.log("Results ", results.data); 
+            
                 dataset = results.data;
                 yourMainCodeAusl(results.data);
-                // console.log("2 anzeigen")
-                // console.log("TEST 1 :", dataset);
                 return dataset;
             },
         });//wenn ich internet hab und auf die Ampedaten zugreifen darf dann..
@@ -570,24 +484,12 @@ function read_from_local_storage() {
     //DATEN
     var items_json = localStorage.getItem("Data");
     if (items_json != null) { //check of es diese Daten im localstorage gibt
-        //accessBool = false; 
         items = JSON.parse(items_json); //mit Speicherdatum 
-        //dataOffline = JSON.parse(items.items_json);
         dataOfflineAusl = items.items_json; //Ohne Speicherdatum 
         getSpeicherDatumAusl = items.updateDate; //SpeicherDatum
 
-        //   console.log("Offline Items:" , items); 
-        //   console.log("Offline Daten:" , dataOfflineAusl); 
-        //   console.log("Die Daten wurden zuletzt im Local Storage gespeichert am (updateDate):" , getSpeicherDatumAusl);
-
-
     } else {
-        //accessBool = true; //Wenn es die Daten nicht gibt dann starte den zugriff auf die online-Daten 
         pathbool = true;
-        // downloadFileAusl(path);
-        //checkForUpdate();
-        //console.log("test1")
-
     }
 }
 

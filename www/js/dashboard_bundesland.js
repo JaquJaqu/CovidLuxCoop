@@ -1,22 +1,9 @@
-/**
- * TO-DO für "Alpha-Release"
- * - Bundeslandseite komplett auskommentieren 
- * - Akkordon bei Hardfacts deaktivieren 
- * - console.logs auskommentieren 
- * - Letzte Aktualisierung am Dashboard auskommentieren oder einfügen 
- * - aktuellen Ampeldaten einfügen??? 
- * 
- * 
- * - auf flock hochladen 
- * 
- */
-
 
 const arrBundesland = [];
 
 let bundesland;
 getAkkordeon_dash();
-// HardfactsBL(); 
+
 
 function onload_bundesland() {
 if(localStorage.getItem("storeBundesland") == null && localStorage.getItem("letzterBezirk") == null){
@@ -32,15 +19,12 @@ if(localStorage.getItem("storeBundesland") == null && localStorage.getItem("letz
             for (i = 0; i < data[0].Bezirke.length; i++) {
                 if (data[0].Bezirke[i].Bezirk == bezirkTemp) {
                     document.getElementById("dash_bundesland_name").innerHTML = data[0].Bezirke[i].Bundesland;
-                    // console.log(document.getElementById("dash_bundesland_name").innerHTML); 
                 }
                 
             }
             const dateParser = d3.timeParse('%d.%m.%Y');
             blN = document.getElementById("dash_bundesland_name").innerHTML;
-            //console.log(dataOffline)
-            const dataBL = dataOffline.filter(d => d.Bundesland == blN); 
-            // console.log(dataBL); 
+            const dataBL = dataOffline.filter(d => d.Bundesland == blN);  
             let widthRes = document.getElementById('hfBL_Neuerk').clientWidth;
             let heightRes = document.getElementById('hfBL_Neuerk').clientHeight;
 
@@ -51,7 +35,6 @@ if(localStorage.getItem("storeBundesland") == null && localStorage.getItem("letz
                 
                 let hfAFBL = dataBL[dataBL.length - 1].AnzahlFaelle;
                 let hfTBL = dataBL[dataBL.length - 1].AnzahlTotTaeglich;
-                // console.log('test-set')
 
                 drawPreview('#hfBL_Neuerk', dataBL, d => dateParser(d.datum), d => d.AnzahlFaelle, 1700, hfAFBL, widthRes, heightRes);
                 drawPreview('#hfBL_TT', dataBL, d => dateParser(d.datum), d => d.AnzahlTotTaeglich, 50, hfTBL, widthRes, heightRes);
@@ -103,5 +86,3 @@ function changeText_bundesland(elm) {
     localStorage.setItem("letztesBundesland", bundesland);
 
 }
-
-// 

@@ -1,19 +1,4 @@
 
-// const arrBezirk = [];
-// let alleMeineDatenBezLS2;
-// let alleMeineDatenOfflineBez2;
-// let getAktiveFaelleBez;
-// let getNeuerkrankungenBez;
-// let getTodesfaelleBez;
-// let meineDatenATSBez = [];
-// let meineDatenAAFBez = [];
-
-
-//getAkkordeon_dash();
-
-
-
-
 const urlBezirke4 = 'https://covid19-dashboard.ages.at/data/CovidFaelle_Timeline_GKZ.csv';
 //const corsFixBezirke2 = 'https://evening-reaches-25236.herokuapp.com/';
 const corsFixBezirke4 = 'https://evening-reaches-25236.herokuapp.com/';
@@ -25,21 +10,14 @@ downloadBezirksFile4(pathBezirke4);
 
 //Bezirksfile Download
 function downloadBezirksFile4(pathBezirke4) {
- // if(connBool ==true){
-  //console.log("Bezirksfile wird gedownloaded");
   Papa.parse(pathBezirke4, {
     download: true,
     header: true,
     complete: function (results, file) {
-      //console.log("data", results.data);
-        //console.log('Completed loading the file...');
-         // Here starts your real code with this function
-         //preprareBezirksData(results.data); 
          dataOfflineBez4 = results.data;   
          prepareBezirksData4(dataOfflineBez4);   
           },
   }); 
- //}
 }
 
 
@@ -58,9 +36,6 @@ function prepareBezirksData4(pathBezirke4){
     items_jsonBezirke4[i] = renamedObj;    
 
 bezirk = localStorage.getItem("letzterBezirk"); 
-
-    // console.log("bezirk", bezirk);
-    // console.log("items_jsonBezirke4[i].Bezirk", items_jsonBezirke4[i].Bezirk);
 
   if(bezirk == items_jsonBezirke4[i].Bezirk){
 
@@ -83,13 +58,10 @@ bezirk = localStorage.getItem("letzterBezirk");
      
       // //Anzahl Neuerkrankungen
       Neuerkrankungen = items_jsonBezirke4[i].AnzahlFaelle;
-      //console.log("AnzahlFaelleSum", AnzahlFaelleSum);
-      //console.log("Neuerkrankungen", Neuerkrankungen);
 
        // //Anzahl Todesfälle
        Todesfaelle = items_jsonBezirke4[i].AnzahlTotTaeglich;
-       //console.log("AnzahlFaelleSum", AnzahlFaelleSum);
-      //console.log("Todesfaelle", Todesfaelle);
+
 
       let letzteAkt = items_jsonBezirke4[i].datum;
       document.getElementById("letzte_zahlen").innerHTML = "Letzte Aktualisierung: "+letzteAkt;
@@ -105,20 +77,12 @@ bezirk = localStorage.getItem("letzterBezirk");
       }
 
 
-      // let AnzahlFaelleSum = itemsstoreBezirk.AnzahlFaelleSum;
-      // let AnzahlGeheiltSum = itemsstoreBezirk.AnzahlGeheiltSum;
-      // let AnzahlTotSum = itemsstoreBezirk.AnzahlTotSum;
-      // AktiveFaellestoreBezirk = AnzahlFaelleSum - AnzahlGeheiltSum - AnzahlTotSum;
-      
-
       //Speicherdatum
       var date = new Date();
       var updateDatestoreBezirk = date.toGMTString(); 
       DatatruestoreBezirk = {AnzahlAktiveFaelle: AktiveFaellestoreBezirk, Standort: storeBezirk, updateDate: updateDatestoreBezirk};    
       alleBezirksDaten.push(DatatruestoreBezirk);
      
-
-      //console.log("HAAAAALLLOOO");
       //Speicher den Bezirk + den Wert im LS
       
       localStorage.setItem("letzterBezirk", bezirk);        
@@ -126,9 +90,6 @@ bezirk = localStorage.getItem("letzterBezirk");
   
 }    
 
-
-//localStorage.setItem("AktiveFaelle", AktiveFaellestoreBezirk);
-//HIER
 
 } 
 
@@ -190,7 +151,6 @@ function changeText_bezirk(elm) {
   bezirk = elm.getAttribute('value');
   myFunction_bezirk();
   document.getElementById("dropbtn_bezirk").innerHTML = bezirk;
-  //localStorage.setItem("letzterBezirkBezDash",bezirk);
   localStorage.setItem("letzterBezirk", bezirk);
 
 
